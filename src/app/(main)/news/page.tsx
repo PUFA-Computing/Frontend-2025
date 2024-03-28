@@ -4,6 +4,7 @@ import Seperator from "@/components/Seperator";
 import { SelectSeparator } from "@/components/ui/select";
 import React from "react";
 import PageHeading from "@/components/PageHeading";
+import Image from "next/image";
 
 export default function NewsPage() {
    return (
@@ -23,10 +24,12 @@ export default function NewsPage() {
             {/* main big news   */}
             <div className="flex w-full flex-col gap-4 rounded-lg border-2 md:flex-row">
                <div className="rounded bg-[#000000] md:w-1/2">
-                  <img
+                  <Image
                      className="w-full rounded bg-cover bg-center"
-                     src="../news/duolingo.png"
+                     src="/news/duolingo.png"
                      alt=""
+                     width={1080}
+                     height={930}
                   />
                </div>
                <div className="space-y-10 p-4 md:w-1/2 md:space-y-[5.5rem]">
