@@ -11,33 +11,36 @@ import {
 } from "@heroicons/react/24/outline";
 import Sidebar from "@/components/admin/Sidebar";
 import Header from "@/components/admin/Header";
+import {usePathname, useRouter} from "next/navigation";
 
-const navigation = [
-    {name: 'Dashboard', href: '#', icon: HomeIcon, current: true},
-    {name: 'Events', href: '#', icon: CalendarIcon, current: false},
-    {name: 'News', href: '#', icon: NewspaperIcon, current: false},
-    {name: 'Users', href: '#', icon: UsersIcon, current: false},
-    {name: 'Aspirations', href: '#', icon: DocumentDuplicateIcon, current: false},
-    {name: 'Merch', href: '#', icon: BuildingStorefrontIcon, current: false},
-]
-const teams = [
-    {id: 1, name: 'PUFA Computing', href: '#', initial: 'PUFA', current: false},
-    {id: 2, name: 'PUMA Informatics', href: '#', initial: 'PUMA', current: false},
-    {id: 3, name: 'PUMA Information System', href: '#', initial: 'PUMA', current: false},
-    {id: 4, name: 'PUMA Visual Communication Design', href: '#', initial: 'PUMA', current: false},
-    {id: 5, name: 'PUMA Interior Design', href: '#', initial: 'PUMA', current: false},
-
-]
-const userNavigation = [
-    {name: 'Your profile', href: '#'},
-    {name: 'Sign out', href: '#'},
-]
-
-export default async function AdminLayout({
+export default function AdminLayout({
                                               children,
                                           }: {
     children: React.ReactNode;
 }) {
+    const currentPath = usePathname();
+
+    const navigation = [
+        {name: 'Dashboard', href: '/admin', icon: HomeIcon, current: currentPath === '/admin',},
+        {name: 'Events', href: '/admin/events', icon: CalendarIcon, current: currentPath === '/admin/events'},
+        {name: 'News', href: '/admin/news', icon: NewspaperIcon, current: currentPath === '/admin/news'},
+        {name: 'Users', href: '/admin/users', icon: UsersIcon, current: currentPath === '/admin/users'},
+        {name: 'Aspirations', href: '/admin/aspirations', icon: DocumentDuplicateIcon, current: currentPath === '/admin/aspirations'},
+        {name: 'Merch', href: '/admin/merch', icon: BuildingStorefrontIcon, current: currentPath === '/admin/merch'},
+    ]
+    const teams = [
+        {id: 1, name: 'PUFA Computing', href: '#', initial: 'PUFA', current: false},
+        {id: 2, name: 'PUMA Informatics', href: '#', initial: 'PUMA', current: false},
+        {id: 3, name: 'PUMA Information System', href: '#', initial: 'PUMA', current: false},
+        {id: 4, name: 'PUMA Visual Communication Design', href: '#', initial: 'PUMA', current: false},
+        {id: 5, name: 'PUMA Interior Design', href: '#', initial: 'PUMA', current: false},
+
+    ]
+    const userNavigation = [
+        {name: 'Your profile', href: '#'},
+        {name: 'Sign out', href: '#'},
+    ]
+
     const [sidebarOpen, setSidebarOpen] = useState(false)
 
     return (
