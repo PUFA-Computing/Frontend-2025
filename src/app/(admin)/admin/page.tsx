@@ -1,9 +1,9 @@
-import UploadFile from "./UploadFile";
+import React from 'react'
 
 export default async function AdminIndex() {
-   return (
-      <div>
-         <UploadFile />
-      </div>
-   );
+    return (
+        <>
+            <h1>Admin Page</h1>
+        </>
+    );
 }
