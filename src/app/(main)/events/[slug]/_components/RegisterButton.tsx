@@ -13,12 +13,14 @@ interface RegisterButtonProps {
     eventId: number;
     eventTitle: string;
     eventSlug: string;
+    eventStatus: string;
 }
 
 export default function RegisterButton({
     eventId,
     eventTitle,
     eventSlug,
+    eventStatus,
 }: RegisterButtonProps) {
     const [registerDisabled, setregisterDisabled] = useState(false);
     const [buttonRegisterText, setButtonRegisterText] = useState("Loading...");
@@ -48,7 +50,13 @@ export default function RegisterButton({
                         return;
                     }
                 }
-                setButtonRegisterText("Register Now!");
+                if (eventStatus !== "Open") {
+                    setButtonRegisterText("Registration Closed");
+                    setregisterDisabled(true);
+                } else {
+                    setButtonRegisterText("Register");
+                    setregisterDisabled(false)
+                }
             } catch (error) {
                 console.log(error);
                 await Swal.fire({
@@ -63,6 +71,17 @@ export default function RegisterButton({
 
     const router = useRouter();
     const handleRegister = async () => {
+        if (eventStatus !== "Open") {
+            await Swal.fire({
+                icon: "error",
+                title: "Registration failed",
+                text: "Event registration is closed.",
+            });
+            setButtonRegisterText("Registration Closed")
+            setregisterDisabled(true)
+            return;
+        }
+
         if (buttonRegisterText.toLowerCase().includes("login")) {
             router.push("/auth/signin");
             return;

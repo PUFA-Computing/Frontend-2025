@@ -3,7 +3,6 @@ import { fetchEvents } from "@/services/api/event";
 import LogoOrganizationEventPage from "@/components/event/LogoOrganizationEventPage";
 import PosterCardEventPage from "@/components/event/PosterCardEventPage";
 import { Metadata } from "next";
-import PageHeading from "@/components/PageHeading";
 import EventCardPageMobile from "@/components/event/EventCardMobile";
 
 export const metadata: Metadata = {
@@ -19,11 +18,11 @@ export default async function EventsPage() {
 
    const today: Date = new Date();
 
-   // 2 Highlighted Closest Events either upcoming or open
+   // Upcoming events sorted by end date and equal or greater than today
    const upcomingEvents = events
-      .filter((event) => event.end_date >= today)
-      .sort((a, b) => a.end_date.getTime() - b.end_date.getTime())
-      .slice(0, 2);
+        .filter((event) => event.end_date.getTime() >= today.getTime())
+        .sort((a, b) => a.end_date.getTime() - b.end_date.getTime())
+        .slice(0, 2);
 
    // All event sorted by end date exclude the first 2 upcoming events
    const allEvents = events
@@ -33,19 +32,14 @@ export default async function EventsPage() {
    return (
       <div>
          {/* // title */}
-         {/* <section className="flex items-center bg-[#F2F2F2] px-[5rem] py-[2rem] md:px-[10rem]">
+         <section className="flex items-center bg-[#F2F2F2] px-[5rem] py-[2rem] md:px-[10rem]">
             <div className="border-l-4 border-[#E50D0D] pl-8">
                <h1 className="text-[2rem] font-[600]">Computing Events</h1>
                <h1 className="text-[0.8rem]">
                   Discover the latest updates on events in our faculty.
                </h1>
             </div>
-         </section> */}
-         <PageHeading
-            title="Computing Events"
-            description="Discover the latest updates on events in our faculty."
-            borderColor="#E50D0D"
-         />
+         </section>
 
          {/* event highlights */}
          <section className="mx-auto max-w-7xl p-10">

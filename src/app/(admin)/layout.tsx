@@ -3,5 +3,9 @@ export default async function AdminLayout({
 }: {
    children: React.ReactNode;
 }) {
-   return <div>{children}</div>;
+   return (
+        <div className="grid grid-cols-1 gap-4 p-4">
+            {children}
+        </div>
+     );
 }

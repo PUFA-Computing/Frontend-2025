@@ -13,7 +13,7 @@ const members = [
       position: "Head of Division (Communication)",
       image: "/member/comm/annisa-delicia-yansaf.jpg",
       instagram: "",
-      linkedin: "",
+      linkedin: "https://www.linkedin.com/in/annisa-yansaf04/",
    },
    {
       name: "Annisa Nirwana Nasution",
@@ -26,29 +26,31 @@ const members = [
       name: "Nailah Septiani Putri",
       position: "Member (Communication)",
       image: "/member/bod/Bintang Wira Gemilang.png",
-      instagram: "",
-      linkedin: "",
+      instagram: "https://www.instagram.com/nailahesp/",
+      linkedin: "https://www.linkedin.com/in/nailah-septiani-putri-248b2328a/",
    },
    {
       name: "Ricarda Sebastian Hutagalung",
       position: "Member (Communication)",
       image: "/member/bod/Bintang Wira Gemilang.png",
       instagram: "",
-      linkedin: "",
+      linkedin:
+         "https://www.linkedin.com/in/ricarda-sebastian-hutagalung-2b503b2b6/",
    },
    {
       name: "Aqeel Fazlemawla Faslah",
       position: "Member (Communication)",
       image: "/member/bod/Bintang Wira Gemilang.png",
       instagram: "",
-      linkedin: "",
+      linkedin:
+         "https://www.linkedin.com/in/aqeel-fazlemawla-faslah-bba439288/",
    },
    {
       name: "Ngurah Jaya Deva",
       position: "Member (Multimedia)",
       image: "/member/bod/Bintang Wira Gemilang.png",
       instagram: "",
-      linkedin: "",
+      linkedin: "https://www.linkedin.com/in/ngurah-jaya-deva-5b401528b/",
    },
    {
       name: "Deswita Ranny",
@@ -75,8 +77,8 @@ const members = [
       name: "Riswaldy Pakpahan",
       position: "Member (Multimedia)",
       image: "/member/bod/Bintang Wira Gemilang.png",
-      instagram: "",
-      linkedin: "",
+      instagram: "https://www.instagram.com/riswaldyp/",
+      linkedin: "https://www.linkedin.com/in/riswaldy-pakpahan-321b74252/",
    },
 ];
 

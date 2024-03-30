@@ -1,5 +1,9 @@
 FROM node:18-alpine AS base
 
+# Set build arguments for API URL
+ARG NEXT_PUBLIC_API_URL
+ENV NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL
+
 # Install dependencies only when needed
 FROM base AS deps
 # Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
@@ -56,6 +60,8 @@ COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
 RUN mkdir -p /app/public/uploads
 RUN chmod -R 777 /app/public/uploads
+
+COPY ./public /app/public
 
 USER nextjs
 

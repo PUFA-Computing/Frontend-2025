@@ -47,7 +47,7 @@ export default function Footer() {
                   </div>
                   {/*Version Info*/}
                   <div className="mt-2 text-xs font-normal tracking-widest text-[#9CA3AF]">
-                     Version Alpha 0.6.2
+                     Version 1.0.0 Atalanta
                   </div>
                </div>
 

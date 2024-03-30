@@ -41,8 +41,9 @@ export default async function EventSection() {
             <div className="block px-[1rem] md:hidden">
                 <EventCardMobile events={upcomingEvents} />
             </div>
-
-            <EventCardCompleted events={completedEvents} />
+            <div className="mt-16">
+                <EventCardCompleted events={completedEvents} />
+            </div>
         </div>
     );
 }

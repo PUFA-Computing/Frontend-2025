@@ -165,48 +165,15 @@ export default async function Index() {
                 id="news"
                 className="max-h-xl mx-auto max-w-7xl space-y-12 p-5 text-center md:px-[5rem]"
             >
+                {/*Coming Soon*/}
                 <h2 className="text-2xl font-bold">
                     <span className="mr-4 border-l-4 border-l-[#FF6F22]"></span>
-                    Computing News
+                    News
                 </h2>
                 <h3 className="">
-                    The latest news about research, technology, achievements,
-                    and campus life
+                    Stay updated with the latest news and announcements.
                 </h3>
-                <div className="grid grid-cols-1 gap-8 text-justify md:grid-cols-2">
-                    <NewsCardBig
-                        image="/coming_soon.jpg"
-                        title="Coming Soon"
-                        description="Coming Soon"
-                        time="Coming Soon"
-                    />
-                    <div className="grid grid-cols-2 gap-8">
-                        <NewsCard
-                            image="/coming_soon.jpg"
-                            title="Coming Soon"
-                            description="Coming Soon"
-                            time="Coming Soon"
-                        />
-                        <NewsCard
-                            image="/coming_soon.jpg"
-                            title="Coming Soon"
-                            description="Coming Soon"
-                            time="Coming Soon"
-                        />
-                        <NewsCard
-                            image="/coming_soon.jpg"
-                            title="Coming Soon"
-                            description="Coming Soon"
-                            time="Coming Soon"
-                        />
-                        <NewsCard
-                            image="/coming_soon.jpg"
-                            title="Coming Soon"
-                            description="Coming Soon"
-                            time="Coming Soon"
-                        />
-                    </div>
-                </div>
+
                 <div className="flex items-center justify-center">
                     <Link href="/" className="block w-max">
                         <Button className="border-[#FF6F22] px-10 py-2 text-[#FF6F22] hover:bg-[#FF6F22] hover:text-white">
@@ -243,36 +210,15 @@ export default async function Index() {
 
             {/* store */}
             <section className="my-[10rem] flex flex-col items-center space-y-6 md:space-y-12">
+                {/*Coming Soon*/}
                 <div className="border-l-4 border-[#BA704F] pl-4">
-                    <h1 className="text-[1.5rem] font-[600]">
-                        Computing Store
-                    </h1>
+                    <h1 className="text-[1.5rem] font-[600]">Computing Store</h1>
                 </div>
 
                 <h1 className="text-center">
-                    Special merchandise for all Computizens
+                    Get your hands on exclusive Computing merchandise.
                 </h1>
 
-                <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-                    <CardStore
-                        image="../store/merch.png"
-                        title="Computing Varsity"
-                        category="Jacket"
-                        price={343}
-                    />
-                    <CardStore
-                        image="../store/merch.png"
-                        title="Computing Varsity"
-                        category="Jacket"
-                        price={343}
-                    />
-                    <CardStore
-                        image="../store/merch.png"
-                        title="Computing Varsity"
-                        category="Jacket"
-                        price={343}
-                    />
-                </div>
                 <Link href="/merch">
                     <button className="rounded-lg border-2 border-[#BA704F] px-10 py-2 text-[#BA704F] transition-all duration-300 hover:bg-[#BA704F] hover:text-white">
                         See all Items

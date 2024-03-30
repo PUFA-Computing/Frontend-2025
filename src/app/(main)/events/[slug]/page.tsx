@@ -83,6 +83,7 @@ export default async function EventDetailsPage({ params }: EventPageProps) {
                             eventSlug={event.slug}
                             eventId={event.id}
                             eventTitle={event.title}
+                            eventStatus={event.status}
                         />
                     </div>
                 </div>
