@@ -1,5 +1,7 @@
 import Link from "next/link";
 import Event from "@/models/event";
+import NoData from "@/components/ui/NoData";
+import React from "react";
 
 /**
  * PosterCardEventPage component represents a card with a poster image linked to a specific page.
@@ -27,6 +29,14 @@ interface PosterCardEventPageProps {
 }
 
 export default function PosterCardEventPage({ events }: { events: Event[] }) {
+    if (events.length === 0) {
+        return (
+            <NoData
+                title={"No Events Available"}
+                message={"There are currently no upcoming events available. Please check back later."} />
+        );
+    }
+
    return (
       <section className="mx-auto max-w-7xl px-10 py-[5rem]">
          <h1 className="mb-[3rem] text-[1.2rem] font-bold">All Events</h1>

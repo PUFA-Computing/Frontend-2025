@@ -2,8 +2,10 @@ import Image from "next/image";
 import Event from "@/models/event";
 import React from "react";
 import Link from "next/link";
+import NoData from "@/components/ui/NoData";
 
 export default function EventCardMobile({ events }: { events: Event[] }) {
+
     const truncateDescription = (description: string, maxLength: number) => {
         if (description.length <= maxLength) {
             return description;
@@ -15,6 +17,15 @@ export default function EventCardMobile({ events }: { events: Event[] }) {
         const differenceInTime = endDate.getTime() - today.getTime();
         return Math.ceil(differenceInTime / (1000 * 60 * 60 * 24));
     };
+
+    if (events.length === 0) {
+        return (
+            <NoData
+                title={"No Upcoming Events"}
+                message={"There are currently no upcoming events available. Please check back later."} />
+        );
+    }
+
     return (
         <div className="mt-16 grid grid-cols-1 gap-16 lg:grid-cols-2">
             {events.map((event) => (

@@ -2,6 +2,7 @@ import Image from "next/image";
 import Event from "@/models/event";
 import React from "react";
 import Link from "next/link";
+import NoData from "@/components/ui/NoData";
 
 export default function EventCardPage({ events }: { events: Event[] }) {
    const calculateDaysLeft = (endDate: Date) => {
@@ -19,12 +20,9 @@ export default function EventCardPage({ events }: { events: Event[] }) {
 
    if (events.length === 0) {
       return (
-          <div className="flex items-center justify-center h-screen">
-             <div className="text-center">
-                <h1 className="text-5xl font-bold text-gray-700 mb-4">No Upcoming Events</h1>
-                <p className="text-xl text-gray-500">Check back later for updates.</p>
-             </div>
-          </div>
+          <NoData
+              title={"No Upcoming Events"}
+              message={"There are currently no upcoming events available. Please check back later."} />
       );
    }
 

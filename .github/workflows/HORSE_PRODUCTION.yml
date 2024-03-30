@@ -13,7 +13,7 @@ jobs:
          - name: Build the Docker image
            run: |
               docker login -u kizoukun -p ${{ secrets.GH_TOKEN }} ghcr.io
-              docker build . --tag ghcr.io/kizoukun/pufafrontend:latest
+              docker build --build-arg NEXT_PUBLIC_API_URL=${{ secrets.NEXT_PUBLIC_API_URL }} -t ghcr.io/kizoukun/pufafrontend:latest .
               docker push ghcr.io/kizoukun/pufafrontend:latest
 
    deployments:
@@ -31,5 +31,5 @@ jobs:
               script: |
                  whoami
                  docker stop ${{ vars.CONTAINER_NAME }} || true && docker rm ${{ vars.CONTAINER_NAME }} || true
-                 docker pull ${{ vars.IMAGE_NAME}}:beta
+                 docker pull ${{ vars.IMAGE_NAME}}
                  docker run -d -p ${{ secrets.API_PORT }}:3000 --name ${{ vars.CONTAINER_NAME }} ${{ vars.IMAGE_NAME}}
