@@ -7,6 +7,7 @@ export const fetchNews = async (): Promise<News[]> => {
       const response = await axios.get(API_NEWS);
       const newsData = response.data?.data || [];
       return newsData as News[];
+
    } catch (error) {
       console.error("Error fetching news", error);
       throw error;
