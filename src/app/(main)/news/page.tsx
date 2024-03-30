@@ -5,14 +5,24 @@ import { SelectSeparator } from "@/components/ui/select";
 import React from "react";
 import PageHeading from "@/components/PageHeading";
 import Image from "next/image";
+import { Metadata } from "next";
+import { fetchNews } from "@/services/api/news";
+import Loading from "@/components/Loading";
 
-export default function NewsPage() {
+export const metadata: Metadata ={
+   title: "News"
+} 
+export const revalidate = 0;
+export const dynamic = "force-dynamic";
+
+export default async function NewsPage() {
+   const news = await fetchNews();
+
+   if(!news) return <Loading/>
+   
+
    return (
       <div>
-         <div className="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4" role="alert">
-            <p className="font-bold">Under Construction!</p>
-            <p>This page is currently under construction. Stay tuned for updates.</p>
-         </div>
          <PageHeading
             title="Computing News"
             description="The latest news about research, technology, achievements, and campus life."
@@ -53,21 +63,9 @@ export default function NewsPage() {
             </div>
             {/* 2 secondary medium news  */}
             <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-               <CardSecondaryNewsPage
-                  major="Informatics"
-                  title="Implementation of Artificial Intelligence in Foreign
-               Language Learning App Duolingo"
-                  date="November 26, 2023"
-                  image="../news/duolingo.png"
-               />
+               <CardSecondaryNewsPage news={news}/>
 
-               <CardSecondaryNewsPage
-                  major="Informatics"
-                  title="Implementation of Artificial Intelligence in Foreign
-               Language Learning App Duolingo"
-                  date="November 26, 2023"
-                  image="../news/AI.png"
-               />
+               
             </div>
 
             <Seperator className="border-[#d0d0d0]" />
