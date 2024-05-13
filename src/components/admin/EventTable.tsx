@@ -14,7 +14,7 @@ function EventTable({ events }: { events: Event[] }) {
 
     const handleView = (event: Event) => {
         Swal.fire({
-            title: "View Product",
+            title: "View Event",
             html: `
                 <b>ID:</b> ${event.id}<br>
                 <b>Title:</b> ${event.title}<br>
@@ -33,7 +33,7 @@ function EventTable({ events }: { events: Event[] }) {
     // const handleEdit = (event: Event) => {
     //     // edit logic
     //     Swal.fire({
-    //       title: "Edit Product",
+    //       title: "Edit Event",
     //       html: `
     //       <b>Id:</b> ${id}<br>
     //       <b>Name:</b> ${name}<br>
@@ -47,7 +47,7 @@ function EventTable({ events }: { events: Event[] }) {
     
       const handleDelete = (event : Event) => {
         Swal.fire({
-          title: "Delete Product",
+          title: "Delete Event",
           text: `Are you sure you want to delete ${event.title}?`,
           icon: "error",
           showCancelButton: true,
