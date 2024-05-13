@@ -35,9 +35,7 @@ export default function AspirationForm() {
    async function fetchUserProfile() {
       try {
          const response = await GetUserProfile();
-         console.log("User Profile:", response);
-         // Join the first and last name
-         setUserName(`${response.user.first_name} ${response.user.last_name}`);
+            setUserName(`${response.first_name} ${response.last_name}`);
       } catch (error) {
          console.error("Error fetching user profile", error);
       }
