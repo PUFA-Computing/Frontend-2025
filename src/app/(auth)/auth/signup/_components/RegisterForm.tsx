@@ -192,7 +192,7 @@ export default function RegisterForm() {
                         <input
                             type="text"
                             className="mt-2 block w-full rounded-lg border bg-white px-5 py-3 text-gray-700"
-                            placeholder="John"
+                            placeholder="First Name"
                             name="firstName"
                             required
                         />
@@ -201,7 +201,7 @@ export default function RegisterForm() {
                         <input
                             type="text"
                             className="mt-2 block w-full rounded-lg border bg-white px-5 py-3 text-gray-700"
-                            placeholder="Doe"
+                            placeholder="Last Name"
                             name="lastName"
                             required
                         />
@@ -213,7 +213,7 @@ export default function RegisterForm() {
                     <input
                         type="text"
                         className="mt-2 block w-full rounded-lg border bg-white px-5 py-3 text-gray-700"
-                        placeholder="johndoe@example.com"
+                        placeholder="Email"
                         name="email"
                         required
                     />
