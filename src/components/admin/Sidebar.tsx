@@ -29,7 +29,7 @@ function classNames(...classes: any[]) {
 const Sidebar = ({navigation, teams}: SidebarProps) => {
 
     return (
-        <nav className="flex flex-1 flex-col">
+        <nav className="flex flex-1 flex-col overflow-hidden">
             <ul role="list" className="flex flex-1 flex-col gap-y-7">
                 <li>
                     <ul role="list" className="-mx-2 space-y-1">

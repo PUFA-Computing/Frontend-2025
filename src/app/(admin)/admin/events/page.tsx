@@ -1,9 +1,12 @@
+import EventTable from '@/components/admin/EventTable';
+import Title from '@/components/admin/Title';
 import React from 'react';
 
 const EventPage = () => {
     return (
         <div>
-            <h1>Event Page</h1>
+            <Title title='Event Table'/>
+            <EventTable/>
         </div>
     );
 }
