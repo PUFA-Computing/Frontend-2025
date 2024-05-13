@@ -34,18 +34,30 @@ function UserTable() {
                 <tbody className="divide-y divide-gray-200">
                     <tr className="text-center">
                         <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
-                            John Doe
+                            PamanAleph
                         </td>
                         <td className="whitespace-nowrap px-4 py-2 text-gray-700">
-                            24/05/1995
+                           Alief Firmanda
                         </td>
                         <td className="whitespace-nowrap px-4 py-2 text-gray-700">
-                            Web Developer
+                            Alieffirmanda@student.president.ac.id
                         </td>
                         <td className="whitespace-nowrap px-4 py-2 text-gray-700">
-                            $120,000
+                            001202200023
                         </td>
-                        <td className="whitespace-nowrap px-4 py-2">
+                        <td className="whitespace-nowrap px-4 py-2 text-gray-700">
+                            Informatics
+                        </td>
+                        <td className="whitespace-nowrap px-4 py-2 text-gray-700">
+                            22/09/2022
+                        </td>
+                        <td className="whitespace-nowrap px-4 py-2 text-gray-700">
+                           Computizen
+                        </td>
+                        <td className="whitespace-nowrap px-4 py-2 flex gap-2">
+                            <button className="inline-block rounded bg-indigo-600 px-4 py-2 text-xs font-medium text-white hover:bg-indigo-700">
+                                View
+                            </button>
                             <button className="inline-block rounded bg-indigo-600 px-4 py-2 text-xs font-medium text-white hover:bg-indigo-700">
                                 View
                             </button>

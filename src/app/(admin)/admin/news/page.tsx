@@ -1,11 +1,13 @@
-import React from 'react';
+import Title from "@/components/admin/Title";
+import React from "react";
 
 const NewsPage = () => {
+
     return (
         <div>
-            <h1>News Page</h1>
+            <Title title="News Page"/>
         </div>
     );
-}
+};
 
 export default NewsPage;
