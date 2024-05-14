@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 import axios from "axios";
 import { API_EVENT } from "@/config/config";
 
+
 function EventTable({ events }: { events: Event[] }) {
 
     const deleteEvent = async (eventId: number): Promise<void> => {
@@ -46,11 +47,6 @@ function EventTable({ events }: { events: Event[] }) {
                 <b>ID:</b> ${event.id}<br>
                 <b>Title:</b> ${event.title}<br>
                 <b>Description:</b> ${event.description}<br>
-                <b>Start Date:</b> ${event.start_date.toDateString()}<br>
-                <b>End Date:</b> ${event.end_date.toDateString()}<br>
-                <b>Status:</b> ${event.status}<br>
-                <b>Max Registration:</b> ${event.max_registration}<br>
-                <b>Organization:</b> ${event.organization}<br>
             `,
             icon: "info",
             confirmButtonText: "Close",
@@ -70,6 +66,7 @@ function EventTable({ events }: { events: Event[] }) {
                 try {
                     await deleteEvent(event.id);
                     Swal.fire("Deleted!", `${event.title} has been deleted.`, "success");
+                    window.location.reload();
                 } catch (error) {
                     Swal.fire("Error", `Failed to delete ${event.title}. Please try again later.`, "error");
                 }

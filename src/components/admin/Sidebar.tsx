@@ -7,7 +7,8 @@ interface NavigationItem {
     name: string;
     href: string;
     current: boolean;
-    icon: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+    icon: any;
+    // icon: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
 }
 
 interface Team {
