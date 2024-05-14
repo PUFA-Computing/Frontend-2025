@@ -2,8 +2,20 @@
 import React from "react";
 import Event from "@/models/event";
 import Swal from "sweetalert2";
+import axios from "axios";
+import { API_EVENT } from "@/config/config";
 
 function EventTable({ events }: { events: Event[] }) {
+
+    const deleteEvent = async (eventId: number): Promise<void> => {
+        try {
+            await axios.delete(`${API_EVENT}/${eventId}/delete`);
+        } catch (error) {
+            console.error(`Error deleting event with ID ${eventId}`, error);
+            throw error;
+        }
+    };
+
     const sortedEvents = events.sort((a, b) => a.id - b.id);
     const truncateDescription = (description: string, maxLength: number) => {
         if (description.length <= maxLength) {
@@ -29,36 +41,26 @@ function EventTable({ events }: { events: Event[] }) {
             confirmButtonText: "Close",
         });
     };
-
-    // const handleEdit = (event: Event) => {
-    //     // edit logic
-    //     Swal.fire({
-    //       title: "Edit Event",
-    //       html: `
-    //       <b>Id:</b> ${id}<br>
-    //       <b>Name:</b> ${name}<br>
-    //       <b>Name:</b> ${problem}<br>
-    //         <b>Price:</b> ${price}<br>
-    //       `,
-    //       icon: "warning",
-    //       confirmButtonText: "Close",
-    //     });
-    //   };
     
-      const handleDelete = (event : Event) => {
+    const handleDelete = (event: Event) => {
         Swal.fire({
-          title: "Delete Event",
-          text: `Are you sure you want to delete ${event.title}?`,
-          icon: "error",
-          showCancelButton: true,
-          confirmButtonText: "Delete",
-          cancelButtonText: "Cancel",
-        }).then((result) => {
-          if (result.isConfirmed) {
-            Swal.fire("Deleted!", `${event.title} has been deleted.`, "success");
-          }
+            title: "Delete Event",
+            text: `Are you sure you want to delete ${event.title}?`,
+            icon: "error",
+            showCancelButton: true,
+            confirmButtonText: "Delete",
+            cancelButtonText: "Cancel",
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                try {
+                    await deleteEvent(event.id);
+                    Swal.fire("Deleted!", `${event.title} has been deleted.`, "success");
+                } catch (error) {
+                    Swal.fire("Error", `Failed to delete ${event.title}. Please try again later.`, "error");
+                }
+            }
         });
-      };
+    };
 
 
     return (
