@@ -9,10 +9,25 @@ function EventTable({ events }: { events: Event[] }) {
 
     const deleteEvent = async (eventId: number): Promise<void> => {
         try {
-            await axios.delete(`${API_EVENT}/${eventId}/delete`);
-        } catch (error) {
-            console.error(`Error deleting event with ID ${eventId}`, error);
-            throw error;
+            const token = localStorage.getItem('access_token');
+    
+            if (!token) {
+                console.error('Authentication token not found in local storage.');
+                return;
+            }
+    
+            await axios.delete(`${API_EVENT}/${eventId}/delete`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+        } catch (error : any) {
+            if (error.response && error.response.status === 401) {
+                console.error('Authentication error. Please log in again.');
+            } else {
+                console.error(`Error deleting event with ID ${eventId}`, error);
+                throw error;
+            }
         }
     };
 
