@@ -11,6 +11,7 @@ interface News {
    thumbnail: string;
    slug: string;
    organization: string;
+   author: string;
 }
 
 export default News;
