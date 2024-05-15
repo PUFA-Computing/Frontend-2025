@@ -46,7 +46,7 @@ export default async function NewsDetailsPage({
                         </h1>
                         <div className="flex flex-col py-2 text-[0.938rem] font-[500] text-[#2F2F2F]">
                             <p>
-                                {news.author} | {news.organization}
+                                {news.author} <span className="font-black"> | </span>From: {news.organization}
                             </p>
                             <p>{news.publish_date.toDateString()}</p>
                         </div>
