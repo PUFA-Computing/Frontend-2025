@@ -1,6 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
    output: "standalone",
-};
-
-module.exports = nextConfig;
+   images: {
+     domains: ["id.pufacomputing.live"],
+   },
+ };
+ 
+ module.exports = nextConfig;

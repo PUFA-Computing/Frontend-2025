@@ -10,6 +10,7 @@ interface News {
    updated_at: Date;
    thumbnail: string;
    slug: string;
+   organization: string;
 }
 
 export default News;
