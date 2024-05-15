@@ -58,12 +58,10 @@ export default async function NewsDetailsPage({
                 </div>
                 <div className="flex items-center justify-center py-2">
                     <div className="w-[1103px]">
-                        <h1 className="text-[1.25rem] font-[500] text-[#2F2F2F]">
+                        <h1 className="text-[1.25rem] font-[500] text-[#2F2F2F] py-2">
                             More Computing News
                         </h1>
-                        <div className="grid grid-cols-3">
-                            <NewsCard news={moreNews} />
-                        </div>
+                        <NewsCard news={moreNews} />
                     </div>
                 </div>
             </div>
