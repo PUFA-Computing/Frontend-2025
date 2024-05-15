@@ -1,30 +1,31 @@
-"use client"
+"use client";
 import React from "react";
 import Event from "@/models/event";
 import Swal from "sweetalert2";
 import axios from "axios";
 import { API_EVENT } from "@/config/config";
-
+import { createEvent } from "@/services/api/event";
 
 function EventTable({ events }: { events: Event[] }) {
-
     const deleteEvent = async (eventId: number): Promise<void> => {
         try {
-            const token = localStorage.getItem('access_token');
-    
+            const token = localStorage.getItem("access_token");
+
             if (!token) {
-                console.error('Authentication token not found in local storage.');
+                console.error(
+                    "Authentication token not found in local storage."
+                );
                 return;
             }
-    
+
             await axios.delete(`${API_EVENT}/${eventId}/delete`, {
                 headers: {
-                    Authorization: `Bearer ${token}`
-                }
+                    Authorization: `Bearer ${token}`,
+                },
             });
-        } catch (error : any) {
+        } catch (error: any) {
             if (error.response && error.response.status === 401) {
-                console.error('Authentication error. Please log in again.');
+                console.error("Authentication error. Please log in again.");
             } else {
                 console.error(`Error deleting event with ID ${eventId}`, error);
                 throw error;
@@ -52,7 +53,7 @@ function EventTable({ events }: { events: Event[] }) {
             confirmButtonText: "Close",
         });
     };
-    
+
     const handleDelete = (event: Event) => {
         Swal.fire({
             title: "Delete Event",
@@ -65,24 +66,57 @@ function EventTable({ events }: { events: Event[] }) {
             if (result.isConfirmed) {
                 try {
                     await deleteEvent(event.id);
-                    Swal.fire("Deleted!", `${event.title} has been deleted.`, "success");
+                    Swal.fire(
+                        "Deleted!",
+                        `${event.title} has been deleted.`,
+                        "success"
+                    );
                     window.location.reload();
                 } catch (error) {
-                    Swal.fire("Error", `Failed to delete ${event.title}. Please try again later.`, "error");
+                    Swal.fire(
+                        "Error",
+                        `Failed to delete ${event.title}. Please try again later.`,
+                        "error"
+                    );
                 }
             }
         });
     };
 
+    const handleCreate = (event: Event) => {
+        Swal.fire({
+            title: "Delete Event",
+            text: `Are you sure you want to delete ${event.title}?`,
+            icon: "error",
+            showCancelButton: true,
+            confirmButtonText: "Delete",
+            cancelButtonText: "Cancel",
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                try {
+                    await deleteEvent(event.id);
+                    Swal.fire(
+                        "Deleted!",
+                        `${event.title} has been deleted.`,
+                        "success"
+                    );
+                    window.location.reload();
+                } catch (error) {
+                    Swal.fire(
+                        "Error",
+                        `Failed to delete ${event.title}. Please try again later.`,
+                        "error"
+                    );
+                }
+            }
+        });
+    };
 
     return (
         <div className="overflow-x-auto">
             <table className="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">
                 <thead className="ltr:text-left rtl:text-right">
                     <tr>
-                        <th>
-                            <button>dasd</button>
-                        </th>
                         <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
                             ID
                         </th>
@@ -115,7 +149,6 @@ function EventTable({ events }: { events: Event[] }) {
                 <tbody className="divide-y divide-gray-200">
                     {sortedEvents.map((event) => (
                         <tr key={event.id} className="text-justify">
-                            <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900"></td>
                             <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
                                 {event.id}
                             </td>
@@ -155,7 +188,7 @@ function EventTable({ events }: { events: Event[] }) {
                                 </button>
                                 <button
                                     className="inline-block rounded bg-red-500 px-4 py-2 text-xs font-medium text-white"
-                                    onClick={() =>handleDelete(event)}
+                                    onClick={() => handleDelete(event)}
                                 >
                                     Delete
                                 </button>
