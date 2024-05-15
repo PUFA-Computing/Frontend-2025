@@ -43,7 +43,7 @@ export default function CardMainNewsPage({ news }: { news: News[] }) {
                             </h1>
                             <div className="flex justify-between">
                                 <h1>{new Date(item.publish_date).toDateString()}</h1>
-                                <div className="rounded-xl border border-[#FF6F22] px-2 text-[#FF6F22]">
+                                <div className="rounded-xl border border-[#FF6F22] px-2 text-[#FF6F22] text-sm text-center md:text-base">
                                     <h1> {item.organization}</h1>
                                 </div>
                             </div>

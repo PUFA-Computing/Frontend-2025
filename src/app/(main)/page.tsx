@@ -14,11 +14,13 @@ import { FaqData, StudyProgramData } from "@/lib/data";
 import Logo from "@/assets/anagatalogo.svg";
 import CompreciationCards from "./_components/CompreciationCards";
 import Loading from "@/components/Loading";
+import { fetchNews } from "@/services/api/news";
 
 export const revalidate = 600;
 export const dynamic = "force-dynamic";
 
 export default async function Index() {
+    const news = await fetchNews();
     return (
         <div className="min-h-screen text-[#353535]">
             <div>
@@ -174,38 +176,8 @@ export default async function Index() {
                     and campus life
                 </h3>
                 <div className="grid grid-cols-1 gap-8 text-justify md:grid-cols-2">
-                    <NewsCardBig
-                        image="/coming_soon.jpg"
-                        title="Coming Soon"
-                        description="Coming Soon"
-                        time="Coming Soon"
-                    />
-                    <div className="grid grid-cols-2 gap-8">
-                        <NewsCard
-                            image="/coming_soon.jpg"
-                            title="Coming Soon"
-                            description="Coming Soon"
-                            time="Coming Soon"
-                        />
-                        <NewsCard
-                            image="/coming_soon.jpg"
-                            title="Coming Soon"
-                            description="Coming Soon"
-                            time="Coming Soon"
-                        />
-                        <NewsCard
-                            image="/coming_soon.jpg"
-                            title="Coming Soon"
-                            description="Coming Soon"
-                            time="Coming Soon"
-                        />
-                        <NewsCard
-                            image="/coming_soon.jpg"
-                            title="Coming Soon"
-                            description="Coming Soon"
-                            time="Coming Soon"
-                        />
-                    </div>
+                    <NewsCardBig news={news}/>
+                    <NewsCard news={news}/>
                 </div>
                 <div className="flex items-center justify-center">
                     <Link href="/" className="block w-max">
