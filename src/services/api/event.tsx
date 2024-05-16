@@ -1,7 +1,7 @@
 import axios from "axios";
 import Event from "../../models/event";
 import { API_EVENT } from "@/config/config";
-import fs from "fs";
+import { format } from "date-fns";
 import FormData from "form-data";
 
 /**
@@ -97,13 +97,20 @@ export const createEvent = async (eventData: EventCreation, file: File): Promise
 
         formData.append("file", file, file.name);
 
+        const formattedEventData = {
+            ...eventData,
+            start_date: new Date(eventData.start_date).toISOString(),
+            end_date: new Date(eventData.end_date).toISOString(),
+        };
+
         // Convert eventData to JSON string and append it with content type application/json.
-        formData.append("data", JSON.stringify(eventData));
+        formData.append("data", JSON.stringify(formattedEventData));
 
         // Make a POST request to the API endpoint.
         const response = await axios.post(`${API_EVENT}/create`, formData, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+                "Content-Type": "multipart/form-data",
             },
         });
 
