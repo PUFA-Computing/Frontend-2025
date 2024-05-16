@@ -5,5 +5,9 @@ const nextConfig = {
      domains: ["id.pufacomputing.live"],
    },
  };
- 
- module.exports = nextConfig;
+
+ module.exports = {
+     httpAgentOptions: {
+         keepAlive:false,
+     }
+ }, nextConfig;

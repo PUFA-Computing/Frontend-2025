@@ -1,6 +1,8 @@
 import EventTable from "@/components/admin/EventTable";
 import Title from "@/components/admin/Title";
 import { fetchEvents } from "@/services/api/event";
+import Link from "next/link";
+import Button from "@/components/Button";
 
 export default async function page() {
     const events = await fetchEvents();
@@ -9,7 +11,13 @@ export default async function page() {
     return (
         <div>
             <Title title="Event Table" />
-            <EventTable  events={events}/>
+            <div className="flex justify-end mb-4">
+                {/*Create Event*/}
+                <Link href="/admin/events/create">
+                    <Button>Create Event</Button>
+                </Link>
+            </div>
+            <EventTable events={events} />
         </div>
     );
 }
