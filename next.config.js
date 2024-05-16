@@ -2,7 +2,7 @@
 const nextConfig = {
    output: "standalone",
    images: {
-     domains: ["id.pufacomputing.live"],
+     domains: ["sg.pufacomputing.live"],
    },
  };
 
