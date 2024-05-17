@@ -1,13 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-   output: "standalone",
-   images: {
-     domains: ["sg.pufacomputing.live"],
-   },
- };
+  output: "standalone",
+  images: {
+    domains: ["sg.pufacomputing.live", "id.pufacomputing.live"],
+  },
+  httpAgentOptions: {
+      keepAlive: false,
+  },
+};
 
- module.exports = {
-     httpAgentOptions: {
-         keepAlive:false,
-     }
- }, nextConfig;
+module.exports = nextConfig;
