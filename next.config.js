@@ -2,12 +2,11 @@
 const nextConfig = {
    output: "standalone",
    images: {
-     domains: ["sg.pufacomputing.live"],
+     domains: [
+         "sg.pufacomputing.live",
+         "id.pufacomputing.live",
+     ],
    },
  };
 
- module.exports = {
-     httpAgentOptions: {
-         keepAlive:false,
-     }
- }, nextConfig;
+ module.exports = nextConfig;
