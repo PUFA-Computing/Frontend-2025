@@ -11,15 +11,16 @@ const members = [
       name: "Marizky Afri Legoarto",
       position: "Head of Division",
       image: "/member/ans/marizky-arfi.jpg",
-      instagram: "",
+      instagram: "https://www.instagram.com/marizkyarfi_/",
       linkedin: "",
    },
    {
       name: "Indah Novianti Setyoningrum",
       position: "Vice of Division",
       image: "/member/ans/indah-novianti-setyoningrum.jpg",
-      instagram: "",
-      linkedin: "",
+      instagram: "https://www.instagram.com/innovsn_/",
+      linkedin:
+         "https://www.linkedin.com/in/indah-novianti-setyoningrum-66793a289/",
    },
    {
       name: "George Elver Andrew Tamba",
@@ -33,14 +34,14 @@ const members = [
       position: "Member",
       image: "/member/ans/bimasena-yudhaprawira.jpg",
       instagram: "",
-      linkedin: "",
+      linkedin: "https://www.linkedin.com/in/bimasena-yudhaprawira-488719273/",
    },
    {
       name: "Najla Rifa Nur Asjad",
       position: "Member",
       image: "/member/ans/najla-rifa-nur-asjad.jpg",
       instagram: "",
-      linkedin: "",
+      linkedin: "https://www.linkedin.com/in/najlasjad/",
    },
 ];
 

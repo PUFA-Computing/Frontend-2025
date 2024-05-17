@@ -1,3 +1,4 @@
+"use client";
 import CardNormalNewsPage from "@/components/news/CardNormalNewsPage";
 import CardSecondaryNewsPage from "@/components/news/CardSecondaryNewsPage";
 import Seperator from "@/components/Seperator";

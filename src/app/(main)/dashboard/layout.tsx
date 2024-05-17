@@ -3,11 +3,11 @@ import { access } from "fs";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
-import { FiMenu, FiX } from "react-icons/fi";
+import { FiMenu, FiX} from "react-icons/fi";
 
 export default function DashboardLayout({
-   children,
-}: {
+                                           children,
+                                        }: {
    children: React.ReactNode;
 }) {
    const router = useRouter();
@@ -15,7 +15,7 @@ export default function DashboardLayout({
    const [isMenuOpen, setIsMenuOpen] = useState(true);
    const toggleMenu = () => {
       setIsMenuOpen(!isMenuOpen);
-   };
+   }
 
    useEffect(() => {
       const userToken = localStorage.getItem("access_token");
@@ -143,15 +143,12 @@ export default function DashboardLayout({
          {/* Sidebar */}
          {isLoggedIn && (
             <aside
-               className={`overflow-w-auto fixed bottom-0 left-0 top-0 z-10 mt-[100px] h-screen w-64 min-w-[200px] bg-white shadow-lg ${
-                  isMenuOpen ? "translate-x-0" : "-translate-x-full"
-               } transition-transform duration-300 ease-in-out`}
-            >
+               className={`fixed top-0 bottom-0 left-0 h-screen mt-[100px] min-w-[200px] overflow-w-auto w-64 bg-white shadow-lg z-10 ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out`}>
                <div className="flex items-center justify-between p-3">
                   <p className="text-lg font-bold">Dashboard</p>
                   {/* Toggle button beside the title */}
                </div>
-               <div className="ml-2 mt-4 space-y-6">
+               <div className="mt-4 space-y-6 ml-2">
                   {LINKS.map((link, index) => (
                      <Link
                         key={index}
@@ -168,20 +165,16 @@ export default function DashboardLayout({
 
          {/* Main content */}
          <main
-            className={`flex-1 overflow-y-auto p-4 transition-transform duration-300 ease-in-out ${
-               isMenuOpen ? "ml-64" : "ml-0"
-            }`}
-         >
+            className={`flex-1 overflow-y-auto p-4 transition-transform duration-300 ease-in-out ${isMenuOpen ? 'ml-64' : 'ml-0'}`}>
             {children}
          </main>
 
          {/* Toggle button */}
-         <button
-            className="fixed bottom-4 left-4 z-30 rounded-full bg-sky-500 p-2 text-white shadow-md"
-            onClick={toggleMenu}
-         >
+         <button className="fixed bottom-4 left-4 bg-sky-500 text-white p-2 rounded-full shadow-md z-30"
+                 onClick={toggleMenu}>
             {isMenuOpen ? <FiX /> : <FiMenu />}
          </button>
       </div>
+
    );
 }

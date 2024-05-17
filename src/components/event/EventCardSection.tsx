@@ -26,47 +26,47 @@ import React from "react";
  */
 
 interface EventCardSectionProps {
-   title: string;
-   details: string;
-   status: string;
-   participant: string;
-   major: string;
-   image: string;
+    title: string;
+    details: string;
+    status: string;
+    participant: string;
+    major: string;
+    image: string;
 }
 
 export default function EventCardSection({
-   title,
-   details,
-   status,
-   major,
-   participant,
-   image,
+    title,
+    details,
+    status,
+    major,
+    participant,
+    image,
 }: EventCardSectionProps) {
-   return (
-      <div className="mt-5 inline-flex items-center text-left">
-         <div className="relative flex h-[17rem] w-[32rem] rounded-lg shadow-xl">
-            <div className="w-[48%]">{/* DO NOT EDIT */}</div>
-            <div className="flex w-[52%] flex-col justify-between px-2 py-4">
-               <h1 className="text-[1.4rem] font-bold">{title}</h1>
-               <h2>{participant}</h2>
-               <div className="tex text-[0.8rem] font-light">
-                  <p>{details}</p>
-               </div>
-               <div className="flex justify-between">
-                  <p className="text-[0.8rem] font-bold">{major}</p>
-                  <div className="rounded-2xl border border-[#E50D0D] px-2 text-[0.8rem] text-[#E50D0D]">
-                     <p>{status}</p>
-                  </div>
-               </div>
+    return (
+        <div className="mt-5 inline-flex items-center text-left">
+            <div className="relative flex h-[17rem] w-[32rem] rounded-lg shadow-xl">
+                <div className="w-[48%]">{/* DO NOT EDIT */}</div>
+                <div className="flex w-[52%] flex-col justify-between px-2 py-4">
+                    <h1 className="text-[1.4rem] font-bold">{title}</h1>
+                    <h2>{participant}</h2>
+                    <div className="tex text-[0.8rem] font-light">
+                        <p>{details}</p>
+                    </div>
+                    <div className="flex justify-between">
+                        <p className="text-[0.8rem] font-bold">{major}</p>
+                        <div className="rounded-2xl border border-[#E50D0D] px-2 text-[0.8rem] text-[#E50D0D]">
+                            <p>{status}</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-         </div>
-         <div className="absolute h-[19rem] w-[15rem] rounded-lg shadow-xl">
-            <img
-               className="h-full w-full rounded-lg object-cover"
-               src={`../events/${image}`}
-               alt={`${title}'s image`}
-            />
-         </div>
-      </div>
-   );
+            <div className="absolute h-[19rem] w-[15rem] rounded-lg shadow-xl">
+                <img
+                    className="h-full w-full rounded-lg object-cover"
+                    src={`../events/${image}`}
+                    alt={`${title}'s image`}
+                />
+            </div>
+        </div>
+    );
 }

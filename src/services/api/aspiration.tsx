@@ -5,8 +5,8 @@ import Aspirations from "@/models/aspiration";
 export const fetchAspirations = async (): Promise<Aspirations[]> => {
     try {
        const response = await axios.get(API_ASPIRATION);
-       // console.log("API Response:", response);
-       let aspirationData = response.data?.data || [];
+       let aspirationData = response.data.data as Aspirations[] || [];
+
        aspirationData = aspirationData.map((aspiration: Aspirations) => {
             aspiration.created_at = new Date(aspiration.created_at);
             aspiration.updated_at = new Date(aspiration.updated_at);
@@ -35,7 +35,6 @@ export const CreateAspiration = async (data: {
             "Authorization": `Bearer ${localStorage.getItem("access_token")}`,
          },
       });
-      console.log("API Response:", response);
       return response.data;
    } catch (error) {
       // Log an error message and rethrow the error.

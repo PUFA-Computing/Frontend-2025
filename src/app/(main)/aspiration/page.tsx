@@ -4,7 +4,6 @@ import React from "react";
 import AspirationForm from "./_components/Form";
 import AspirationsCards from "./_components/Aspirations";
 import { Metadata } from "next";
-import PageHeading from "@/components/PageHeading";
 
 export const revalidate = 600;
 export const dynamic = "force-dynamic";
@@ -18,7 +17,7 @@ export default function page() {
    return (
       <div>
          {/* // title */}
-         {/* <section className="bg-[#F2F2F2] p-6 md:p-10">
+         <section className="bg-[#F2F2F2] p-6 md:p-10">
             <div className="mx-auto flex max-w-7xl flex-col border-l-4 border-[#E50D0D] pl-2 md:pl-5">
                <h1 className="text-[1.5rem] font-[700] text-[#353535] md:text-[2rem]">
                   Aspirations
@@ -28,13 +27,7 @@ export default function page() {
                   suggestions with us.
                </p>
             </div>
-         </section> */}
-
-         <PageHeading
-            title="Aspirations"
-            description="A place for computizens to share their aspirations, ideas, and suggestions with us."
-            borderColor="#E50D0D"
-         />
+         </section>
 
          {/* aspirations box  */}
          <section

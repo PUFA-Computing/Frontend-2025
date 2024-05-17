@@ -20,7 +20,7 @@ const members = [
       position: "Vice of Division",
       image: "/member/bod/Aura Shafarina Salsabila.jpg",
       instagram: "",
-      linkedin: "",
+      linkedin: "https://www.linkedin.com/in/annisa-intan-rahmawati-4b5b81245/",
    },
    {
       name: "Muh. Fakhri Hisyam Bakar",
