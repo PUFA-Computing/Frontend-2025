@@ -4,7 +4,7 @@ import CardSecondaryNewsPage from "@/components/news/CardSecondaryNewsPage";
 import Seperator from "@/components/Seperator";
 import { SelectSeparator } from "@/components/ui/select";
 import React from "react";
-// import PageHeading from "@/components/PageHeading";
+import PageHeading from "@/components/PageHeading";
 import Image from "next/image";
 import { fetchNews } from "@/services/api/news";
 import CardMainNewsPage from "@/components/news/CardMainNewsPage";
@@ -24,11 +24,11 @@ export default async function NewsPage() {
                     updates.
                 </p>
             </div>
-            {/* <PageHeading
+            <PageHeading
                 title="Computing News"
                 description="The latest news about research, technology, achievements, and campus life."
                 borderColor="#FF6F22"
-            /> */}
+            />
 
             <section className="flex flex-col space-y-12 px-[2rem] py-[2rem] md:px-[10rem]">
                 <h1 className="text-[1.5rem] font-[600]">Latest</h1>
