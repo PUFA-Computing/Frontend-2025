@@ -22,6 +22,7 @@ export default function AspirationForm() {
    const [selectedOrganization, setSelectedOrganization] = useState<{ value: string } | null>(null);
    const [isLoggedIn, setIsLoggedIn] = useState<boolean>(true);
    const [userName, setUserName] = useState<string>("");
+   const [userRole, setUserRole] = useState<number | null>(null);
 
    useEffect(() => {
       const userToken = localStorage.getItem("access_token");
@@ -35,7 +36,8 @@ export default function AspirationForm() {
    async function fetchUserProfile() {
       try {
          const response = await GetUserProfile();
-            setUserName(`${response.first_name} ${response.last_name}`);
+         setUserName(`${response.first_name} ${response.last_name}`);
+         setUserRole(response.role_id)
       } catch (error) {
          console.error("Error fetching user profile", error);
       }
@@ -124,6 +126,24 @@ export default function AspirationForm() {
             >Sign In</button>
          </div>
       );
+   }
+
+   if (userRole === 8) {
+        return (
+             <div className="flex flex-col rounded-lg border bg-white px-4 py-4 opacity-90 shadow-lg md:px-8 md:py-8">
+                <h1 className=" text-[1.4rem] text-[#656565] md:text-[1.8rem]">
+                 Share Your Aspirations for Better Computing
+                </h1>
+                <hr className="my-8 border" />
+                <div>
+                 <h1 className="text-[1.3rem] ">Hello, {userName}</h1>
+                 <h1 className="text-[1.3rem] font-bold">
+                    You are not Faculty of Computing Student and you are not authorized to use this feature
+                 </h1>
+                </div>
+                <hr className="my-8 border" />
+             </div>
+        );
    }
 
    return (

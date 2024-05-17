@@ -38,9 +38,9 @@ export default function LoginForm() {
          await Swal.fire({
             icon: "error",
             title: "Login Failed",
-            text: "Invalid username or password",
+            text: "Invalid username or password or Your account is not verified yet! check your email",
             showConfirmButton: false,
-            timer: 2000,
+            timer: 5000,
          });
             setError(error.response.data.message);
       }

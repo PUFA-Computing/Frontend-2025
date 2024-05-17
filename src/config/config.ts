@@ -6,3 +6,4 @@ export const API_USER = BASE_URL + "/user";
 export const API_EVENT = BASE_URL + "/event";
 export const API_NEWS = BASE_URL + "/news";
 export const API_ASPIRATION = BASE_URL + "/aspirations";
+export const API_VERIFY_EMAIL = BASE_URL + "/auth/verify-email?token=";
