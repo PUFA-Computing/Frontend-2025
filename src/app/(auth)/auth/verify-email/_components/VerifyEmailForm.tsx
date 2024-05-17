@@ -4,8 +4,8 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { API_VERIFY_EMAIL } from "@/config/config";
 
 const VerifyEmailForm: React.FC = () => {
-    const router = useSearchParams();
-    const token = router.get('token');
+    const searchParams = useSearchParams();
+    const token = searchParams.get('token');
     const [verificationStatus, setVerificationStatus] = useState<string | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
     const nextRouter = useRouter();

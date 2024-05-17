@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from "react";
 import VerifyEmailForm from './_components/VerifyEmailForm';
 
 const VerifyEmailPage: React.FC = () => {
@@ -9,7 +9,9 @@ const VerifyEmailPage: React.FC = () => {
         >
             <div className="container mx-auto flex min-h-screen items-center justify-center px-6">
                 <div className="mx-auto max-w-md">
-                    <VerifyEmailForm />
+                    <Suspense>
+                        <VerifyEmailForm />
+                    </Suspense>
                 </div>
             </div>
         </div>

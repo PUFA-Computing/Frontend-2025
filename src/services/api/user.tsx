@@ -57,12 +57,19 @@ export async function Logout() {
 // Admin
 export async function GetUser() {
    try {
-      const response = await axios.get(`${API_USER}`);
+      const response = await axios.get(`${API_USER}/list`, {
+            headers: {
+               Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+            },
+      });
+
       return response.data.data;
-   } catch (error) {
+    }
+    catch (error) {
       console.log(error);
       throw error;
-   }
+    }
+
 }
 
 /** Fetches the events that the user has registered for from the API.
