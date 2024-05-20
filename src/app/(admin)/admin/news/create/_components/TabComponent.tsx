@@ -6,7 +6,7 @@ import UploadThumbnailForm from "@/components/admin/UploadThumbnailForm";
 import ReviewCreateForm from "@/components/admin/ReviewCreateForm";
 import Swal from "sweetalert2";
 import { createNews } from "@/services/api/news";
-import { router } from "next/client";
+import { useRouter } from "next/navigation";
 
 const steps = [
     {
@@ -50,6 +50,8 @@ export default function CreateNewsTabs() {
         thumbnail: "",
         organization_id: 1,
     });
+
+    const router = useRouter();
 
     const [thumbnail, setThumbnail] = useState<File | null>(null);
 
@@ -135,7 +137,7 @@ export default function CreateNewsTabs() {
                     text: "News created successfully",
                 }).then((r) => {
                     r.dismiss;
-                    router.push("/admin/news").then((r) => r);
+                    router.push("/admin/news");
                 });
             });
         } catch (error) {

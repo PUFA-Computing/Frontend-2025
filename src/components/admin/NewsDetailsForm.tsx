@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { UserCircleIcon } from "lucide-react";
 import Select from "react-select";
+// import ReactQuill from "react-quill";
+import Editor from "@/components/rich-text/editor";
 
 export default function NewsDetailsForm({
     onNext,
@@ -35,6 +37,13 @@ export default function NewsDetailsForm({
         onDetailsChange({
             ...formData,
             [name]: value,
+        });
+    };
+
+    const handleContentChange = (content: string) => {
+        onDetailsChange({
+            ...formData,
+            content,
         });
     };
 
@@ -109,17 +118,13 @@ export default function NewsDetailsForm({
                             >
                                 Content
                             </label>
-                            <div className="mt-2">
-                                <textarea
-                                    id="content"
-                                    name="content"
-                                    rows={4}
-                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                    defaultValue={""}
-                                    value={formData.content}
-                                    onChange={(e) => handleChange(e)}
-                                />
-                            </div>
+
+                            <Editor
+                                content={formData.content}
+                                placeholder={"Content of the news"}
+                                onChange={handleContentChange}
+                            />
+
                             <p className="mt-3 text-sm leading-6 text-gray-600">
                                 Content of the news
                             </p>

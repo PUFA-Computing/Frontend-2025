@@ -20,7 +20,7 @@ export default function EventCardCompleted({ events }: { events: Event[] }) {
                         {event.title}
                     </h1>
                     <div className="h-[5rem] text-sm md:text-base">
-                        {truncateDescription(event.description, 150)}
+                        {truncateDescription(event.description, 100)}
                     </div>
                     <div className="flex justify-between">
                         <div className="rounded-2xl border-2 border-[#E50D0D] px-4">

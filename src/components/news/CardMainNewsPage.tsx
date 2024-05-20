@@ -11,6 +11,11 @@ export default function CardMainNewsPage({ news }: { news: News[] }) {
         return description.substring(0, maxLength) + "...";
     };
 
+    // Remove html
+    const createMarkup = (htmlString: string) => {
+        return { __html: htmlString.replace(/<[^>]*>?/gm, "") };
+    };
+
     const sortedNews = news.sort((a, b) => {
         return (
             new Date(b.publish_date).getTime() -
@@ -38,12 +43,17 @@ export default function CardMainNewsPage({ news }: { news: News[] }) {
                             <h1 className="text-[1.5rem] font-[600]">
                                 {item.title}
                             </h1>
-                            <h1 className="text-justify">
-                                {truncateDescription(item.content, 200)}
-                            </h1>
+                            <h1
+                                className="text-justify"
+                                dangerouslySetInnerHTML={createMarkup(
+                                    truncateDescription(item.content, 200)
+                                )}
+                            />
                             <div className="flex justify-between">
-                                <h1>{new Date(item.publish_date).toDateString()}</h1>
-                                <div className="rounded-xl border border-[#FF6F22] px-2 text-[#FF6F22] text-sm text-center md:text-base">
+                                <h1>
+                                    {new Date(item.publish_date).toDateString()}
+                                </h1>
+                                <div className="rounded-xl border border-[#FF6F22] px-2 text-center text-sm text-[#FF6F22] md:text-base">
                                     <h1> {item.organization}</h1>
                                 </div>
                             </div>

@@ -5,16 +5,24 @@ import Link from "next/link";
 
 export default function CardSecondaryNewsPage({ news }: { news: News[] }) {
     const sortedNews = news.sort((a, b) => {
-        return new Date(b.publish_date).getTime() - new Date(a.publish_date).getTime();
+        return (
+            new Date(b.publish_date).getTime() -
+            new Date(a.publish_date).getTime()
+        );
     });
 
-    const limitedNews = sortedNews.slice(1, 2);
+    // 3 news
+    const limitedNews = sortedNews.slice(1, 3);
 
     const truncateDescription = (description: string, maxLength: number) => {
         if (description.length <= maxLength) {
             return description;
         }
         return description.substring(0, maxLength) + "...";
+    };
+
+    const createMarkup = (htmlString: string) => {
+        return { __html: htmlString.replace(/<[^>]*>?/gm, "") };
     };
 
     return (
@@ -38,9 +46,12 @@ export default function CardSecondaryNewsPage({ news }: { news: News[] }) {
                             <h1 className="text-[1.2rem] font-bold">
                                 {item.title}
                             </h1>
-                            <p className="text-justify text-[0.9rem] font-light">
-                                {truncateDescription(item.content, 147)}
-                            </p>
+                            <p
+                                className="text-justify text-[0.9rem] font-light"
+                                dangerouslySetInnerHTML={createMarkup(
+                                    truncateDescription(item.content, 147)
+                                )}
+                            />
                         </div>
                     </div>
                 </Link>
