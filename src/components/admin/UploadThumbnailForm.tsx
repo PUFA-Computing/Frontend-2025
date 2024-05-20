@@ -1,18 +1,34 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { PhotoIcon } from "@heroicons/react/24/solid";
+import Swal from "sweetalert2";
 
 export default function UploadThumbnailForm({
     onNext,
     onPrevious,
+    onThumbnailChange,
 }: {
     onNext: () => void;
     onPrevious: () => void;
+    onThumbnailChange: (file: File) => void;
 }) {
     const [thumbnail, setThumbnail] = useState<File | null>(null);
 
+    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0] || null;
+        setThumbnail(file);
+        onThumbnailChange(file as File);
+    };
+
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        // You can add form validation here
+        if (!thumbnail) {
+            Swal.fire({
+                icon: "error",
+                title: "Error",
+                text: "Please upload a thumbnail image.",
+            }).then((r) => r.isConfirmed && window.scrollTo(0, 0));
+            return;
+        }
         onNext();
     };
 
@@ -42,6 +58,7 @@ export default function UploadThumbnailForm({
                                     name="file-upload"
                                     type="file"
                                     className="sr-only"
+                                    onChange={handleFileChange}
                                 />
                             </label>
                             <p className="pl-1">or drag and drop</p>

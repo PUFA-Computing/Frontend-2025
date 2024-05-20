@@ -1,9 +1,12 @@
 "use client";
-import { useState } from "react";
+import React, { useState } from "react";
 import { CheckIcon } from "@heroicons/react/24/solid";
 import NewsDetailsForm from "@/components/admin/NewsDetailsForm";
 import UploadThumbnailForm from "@/components/admin/UploadThumbnailForm";
 import ReviewCreateForm from "@/components/admin/ReviewCreateForm";
+import Swal from "sweetalert2";
+import { createNews } from "@/services/api/news";
+import { router } from "next/client";
 
 const steps = [
     {
@@ -26,12 +29,56 @@ const steps = [
     },
 ];
 
+interface NewsCreation {
+    title: string;
+    content: string;
+    publish_date: Date;
+    thumbnail: string;
+    organization_id: number;
+}
+
 function classNames(...classes: string[]) {
     return classes.filter(Boolean).join(" ");
 }
 
 export default function CreateNewsTabs() {
     const [currentStep, setCurrentStep] = useState(0);
+    const [formData, setNewsDetails] = useState<NewsCreation>({
+        title: "",
+        content: "",
+        publish_date: new Date(),
+        thumbnail: "",
+        organization_id: 1,
+    });
+
+    const [thumbnail, setThumbnail] = useState<File | null>(null);
+
+    const organizationOptions = [
+        {
+            id: 1,
+            name: "PUFA Computing",
+        },
+        {
+            id: 2,
+            name: "PUMA IT",
+        },
+        {
+            id: 3,
+            name: "PUMA IS",
+        },
+        {
+            id: 4,
+            name: "PUMA ID",
+        },
+        {
+            id: 5,
+            name: "PUMA VCD",
+        },
+    ];
+
+    const [selectedOrganization, setSelectedOrganization] = useState(
+        organizationOptions[0]
+    );
 
     const handleNext = () => {
         setCurrentStep(currentStep + 1);
@@ -41,19 +88,96 @@ export default function CreateNewsTabs() {
         setCurrentStep(currentStep - 1);
     };
 
+    const handleNewsDetailsChange = (details: any) => {
+        setNewsDetails(details);
+    };
+
+    const handleThumbnailChange = (file: File) => {
+        setThumbnail(file);
+    };
+
+    const handleOrganizationChange = (selectedOption: any) => {
+        setSelectedOrganization(selectedOption);
+        setNewsDetails({
+            ...formData,
+            organization_id: selectedOption.id,
+        });
+    };
+
+    const handleSubmit = (e: React.FormEvent) => {
+        if (
+            !formData.title ||
+            !formData.content ||
+            !formData.publish_date ||
+            !formData.organization_id ||
+            !thumbnail
+        ) {
+            Swal.fire({
+                icon: "error",
+                title: "Error",
+                text: "Please fill all the fields",
+            }).then((r) => r.dismiss);
+            return;
+        }
+
+        const news = {
+            title: formData.title,
+            content: formData.content,
+            publish_date: formData.publish_date,
+            organization_id: formData.organization_id,
+        };
+
+        try {
+            createNews(news, thumbnail).then((response) => {
+                Swal.fire({
+                    icon: "success",
+                    title: "Success",
+                    text: "News created successfully",
+                }).then((r) => {
+                    r.dismiss;
+                    router.push("/admin/news").then((r) => r);
+                });
+            });
+        } catch (error) {
+            Swal.fire({
+                icon: "error",
+                title: "Error",
+                text: "An error occurred while creating the news",
+            }).then((r) => r.dismiss);
+        }
+    };
+
     const renderStepContent = () => {
         switch (currentStep) {
             case 0:
-                return <NewsDetailsForm onNext={handleNext} />;
+                return (
+                    <NewsDetailsForm
+                        onNext={handleNext}
+                        formData={formData}
+                        onDetailsChange={handleNewsDetailsChange}
+                        organizationOptions={organizationOptions}
+                        selectedOrganization={selectedOrganization}
+                        onOrganizationChange={handleOrganizationChange}
+                    />
+                );
             case 1:
                 return (
                     <UploadThumbnailForm
                         onNext={handleNext}
                         onPrevious={handlePrevious}
+                        onThumbnailChange={handleThumbnailChange}
                     />
                 );
             case 2:
-                return <ReviewCreateForm onPrevious={handlePrevious} />;
+                return (
+                    <ReviewCreateForm
+                        onPrevious={handlePrevious}
+                        onSubmit={handleSubmit}
+                        formData={formData}
+                        thumbnail={thumbnail}
+                        selectedOrganization={selectedOrganization}
+                    />
+                );
             default:
                 return null;
         }

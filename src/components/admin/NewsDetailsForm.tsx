@@ -1,9 +1,42 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { UserCircleIcon } from "lucide-react";
+import Select from "react-select";
 
-export default function NewsDetailsForm({ onNext }: { onNext: () => void }) {
-    const [title, setTitle] = useState("");
-    const [content, setContent] = useState("");
+export default function NewsDetailsForm({
+    onNext,
+    formData,
+    onDetailsChange,
+    organizationOptions,
+    selectedOrganization,
+    onOrganizationChange,
+}: {
+    onNext: () => void;
+    formData: {
+        title: string;
+        content: string;
+        organization_id: number;
+    };
+    onDetailsChange: (newsDetails: {
+        title: string;
+        content: string;
+        organization_id: number;
+    }) => void;
+    organizationOptions: { id: number; name: string }[];
+    selectedOrganization: { id: number; name: string };
+    onOrganizationChange: (selectedOrganization: {
+        id: number;
+        name: string;
+    }) => void;
+}) {
+    const handleChange = (
+        e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    ) => {
+        const { name, value } = e.target;
+        onDetailsChange({
+            ...formData,
+            [name]: value,
+        });
+    };
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -31,10 +64,40 @@ export default function NewsDetailsForm({ onNext }: { onNext: () => void }) {
                                     type="text"
                                     name="title"
                                     id="title"
-                                    value={title}
-                                    onChange={(e) => setTitle(e.target.value)}
+                                    value={formData.title}
+                                    onChange={(e) => handleChange(e)}
                                     className="block w-full rounded-full border-0 px-4 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                     placeholder="Title of the news"
+                                />
+                            </div>
+
+                            {/* Select Organization_ID */}
+                            <div className="mt-4">
+                                <label
+                                    htmlFor="organization"
+                                    className="block text-sm font-medium leading-6 text-gray-900"
+                                >
+                                    Organization
+                                </label>
+
+                                {/*Set Value Select is ID not the name*/}
+                                <Select
+                                    id="organization"
+                                    value={selectedOrganization}
+                                    onChange={(selectedOrganization) =>
+                                        onOrganizationChange(
+                                            selectedOrganization as {
+                                                id: number;
+                                                name: string;
+                                            }
+                                        )
+                                    }
+                                    options={organizationOptions}
+                                    getOptionLabel={(option) => option.name}
+                                    getOptionValue={(option) =>
+                                        option.id.toString()
+                                    }
+                                    placeholder="Select organization"
                                 />
                             </div>
                         </div>
@@ -53,8 +116,8 @@ export default function NewsDetailsForm({ onNext }: { onNext: () => void }) {
                                     rows={4}
                                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                     defaultValue={""}
-                                    value={content}
-                                    onChange={(e) => setContent(e.target.value)}
+                                    value={formData.content}
+                                    onChange={(e) => handleChange(e)}
                                 />
                             </div>
                             <p className="mt-3 text-sm leading-6 text-gray-600">

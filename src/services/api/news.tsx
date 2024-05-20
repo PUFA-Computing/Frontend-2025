@@ -15,7 +15,6 @@ export const fetchNews = async (): Promise<News[]> => {
         newsCache[newsData.slug] = newsData;
 
         return newsData as News[];
-
     } catch (error) {
         console.error("Error fetching news", error);
         throw error;
@@ -24,7 +23,7 @@ export const fetchNews = async (): Promise<News[]> => {
 
 export const fetchNewsBySlug = async (newsSlug: string): Promise<News> => {
     try {
-        if (newsCache[newsSlug]){
+        if (newsCache[newsSlug]) {
             return newsCache[newsSlug];
         }
 
@@ -48,23 +47,27 @@ interface NewsCreation {
     title: string;
     content: string;
     publish_date: Date;
-    thumbnail: string;
     organization_id: number;
 }
 
-export const createNews = async (news: NewsCreation, file: File): Promise<News> => {
+export const createNews = async (
+    news: NewsCreation,
+    file: File
+): Promise<News> => {
     try {
-
         const formData = new FormData();
 
         formData.append("file", file, file.name);
 
         const formattedNewsData = {
             ...news,
-            publish_date: news.publish_date.toISOString(),
+            publish_date: new Date(news.publish_date).toISOString(),
         };
 
         formData.append("data", JSON.stringify(formattedNewsData));
+
+        console.log(formattedNewsData);
+        console.log(file);
 
         const response = await axios.post(`${API_NEWS}/create`, formData, {
             headers: {
@@ -80,4 +83,4 @@ export const createNews = async (news: NewsCreation, file: File): Promise<News> 
         console.error("Error creating news", error);
         throw error;
     }
-}
+};
