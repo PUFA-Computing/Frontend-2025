@@ -84,3 +84,16 @@ export const createNews = async (
         throw error;
     }
 };
+
+export const deleteNews = async (newsID: number): Promise<void> => {
+    try {
+        await axios.delete(`${API_NEWS}/${newsID}/delete`, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+            },
+        });
+    } catch (error) {
+        console.error("Error deleting news", error);
+        throw error;
+    }
+};
