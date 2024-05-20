@@ -1,27 +1,24 @@
-"use client"
+"use client";
 import Title from "@/components/admin/Title";
 import UserTable from "@/components/admin/UserTable";
 import { GetUser } from "@/services/api/user";
 import React from "react";
 import User from "@/models/user";
 
-export default function Page() {
+export default function UsersList() {
     const [users, setUsers] = React.useState<User[]>([]);
 
     React.useEffect(() => {
-        async function fetchData() {
+        async function fetchUsers() {
             try {
-                const usersData = await GetUser();
-                if (usersData) {
-                    setUsers(usersData);
-                } else {
-                    console.error("Failed to fetch data");
-                }
+                const users = await GetUser();
+                setUsers(users);
             } catch (error) {
-                console.error("Error fetching data:", error);
+                console.log(error);
             }
         }
-        fetchData();
+
+        fetchUsers().then((r) => r);
     }, []);
 
     return (

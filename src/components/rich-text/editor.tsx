@@ -23,7 +23,7 @@ const Editor = ({ content, placeholder, onChange }: EditorProps) => {
     return (
         <div className="prose lg:prose-xl overflow-hidden rounded-lg border border-gray-300">
             <EditorToolbar editor={editor} />
-            <div className="relative cursor-text bg-white p-4">
+            <div className="relative max-h-[550px] cursor-text overflow-auto bg-white p-4">
                 <EditorContent
                     editor={editor}
                     placeholder={placeholder}
