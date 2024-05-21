@@ -1,4 +1,3 @@
-"use client";
 import CardNormalNewsPage from "@/components/news/CardNormalNewsPage";
 import CardSecondaryNewsPage from "@/components/news/CardSecondaryNewsPage";
 import Seperator from "@/components/Seperator";
@@ -33,7 +32,7 @@ export default async function NewsPage() {
             <section className="flex flex-col space-y-12 px-[2rem] py-[2rem] md:px-[10rem]">
                 <h1 className="text-[1.5rem] font-[600]">Latest</h1>
                 {/* main big news   */}
-                <CardMainNewsPage news={news}/>
+                <CardMainNewsPage news={news} />
                 {/* 2 secondary medium news  */}
                 <CardSecondaryNewsPage news={news} />
 
@@ -41,7 +40,7 @@ export default async function NewsPage() {
 
                 <div className="space-y-12">
                     <h1 className="text-[1.5rem] font-[600]">All News</h1>
-                    <CardNormalNewsPage news={news}/>
+                    <CardNormalNewsPage news={news} />
                 </div>
             </section>
         </div>

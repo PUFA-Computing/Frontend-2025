@@ -10,7 +10,11 @@ export default function NewsCard({ news }: { news: News[] }) {
         );
     });
 
-    const limitedNews = sortedNews.slice(1, 4);
+    const createMarkup = (htmlString: string) => {
+        return { __html: htmlString.replace(/<[^>]*>?/gm, "") };
+    };
+
+    const limitedNews = sortedNews.slice(1, 5);
     return (
         <section className="grid grid-cols-2 gap-8">
             {limitedNews.map((item, index) => (
@@ -31,9 +35,12 @@ export default function NewsCard({ news }: { news: News[] }) {
                                 <h3 className="mt-0.5 text-lg text-white">
                                     {item.title}
                                 </h3>
-                                <p className="mt-2 line-clamp-3 text-sm/relaxed text-white/95">
-                                    {item.content}
-                                </p>
+                                <p
+                                    className="mt-2 line-clamp-3 text-sm/relaxed text-white/95"
+                                    dangerouslySetInnerHTML={createMarkup(
+                                        item.content
+                                    )}
+                                />
                             </div>
                         </div>
                     </article>

@@ -4,7 +4,7 @@ import { fetchEvents } from "@/services/api/event";
 import Link from "next/link";
 import Button from "@/components/Button";
 
-export default async function page() {
+export default async function AdminEventsPage() {
     const events = await fetchEvents();
 
     if (!events) return <div>Failed to fetch data...</div>;
