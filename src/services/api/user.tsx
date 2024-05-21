@@ -4,72 +4,70 @@ import Event from "@/models/event";
 
 // User
 export async function GetUserProfile() {
-   try {
-      const id = localStorage.getItem("userId");
-      const response = await axios.get(`${API_USER}/${id}`, {
-         headers: {
-            Authorization: `Bearer ${localStorage.getItem("access_token")}`,
-         },
-      });
-      return response.data?.data;
-   } catch (error) {
-      console.log(error);
-      throw error;
-   }
+    try {
+        const id = localStorage.getItem("userId");
+        const response = await axios.get(`${API_USER}/${id}`, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+            },
+        });
+        return response.data?.data;
+    } catch (error) {
+        console.log(error);
+        throw error;
+    }
 }
 
 export async function UpdateUserProfile() {
     try {
-       const id = localStorage.getItem("userId");
-       const response = await axios.put(`${API_USER}/${id}`, {
-          headers: {
-             Authorization: `Bearer ${localStorage.getItem("access_token")}`,
-          },
-       });
+        const id = localStorage.getItem("userId");
+        const response = await axios.put(`${API_USER}/${id}`, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+            },
+        });
 
-       return response.data?.data;
+        return response.data?.data;
     } catch (error) {
-         console.log(error);
-         throw error;
+        console.log(error);
+        throw error;
     }
 }
 
 export async function DeleteUserProfile() {
-   try {
-      const response = await axios.delete(`${API_USER}/delete`);
-      return response.data.data;
-   } catch (error) {
-      console.log(error);
-      throw error;
-   }
+    try {
+        const response = await axios.delete(`${API_USER}/delete`);
+        return response.data.data;
+    } catch (error) {
+        console.log(error);
+        throw error;
+    }
 }
 
 export async function Logout() {
-   try {
-      const response = await axios.post(`${API_USER}`);
-      return response.data.data;
-   } catch (error) {
-      console.log(error);
-      throw error;
-   }
+    try {
+        const response = await axios.post(`${API_USER}`);
+        return response.data.data;
+    } catch (error) {
+        console.log(error);
+        throw error;
+    }
 }
 
 // Admin
 export async function GetUser() {
-   try {
-      const response = await axios.get(`${API_USER}/list`, {
+    try {
+        const response = await axios.get(`${API_USER}/list`, {
             headers: {
-               Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+                Authorization: `Bearer ${localStorage.getItem("access_token")}`,
             },
-      });
+        });
 
-      return response.data.data;
+        return response.data.data;
+    } catch (error) {
+        console.log(error);
+        throw error;
     }
-    catch (error) {
-      console.log(error);
-      throw error;
-    }
-
 }
 
 /** Fetches the events that the user has registered for from the API.
@@ -78,21 +76,50 @@ export async function GetUser() {
  * @throws {Error} If an error occurs during the API request.
  */
 export async function fetchUserEvents(userId: string): Promise<Event[]> {
-   try {
-      const token = localStorage.getItem("access_token");
-      if (!token) {
-         throw new Error("No access token found");
-      }
+    try {
+        const token = localStorage.getItem("access_token");
+        if (!token) {
+            throw new Error("No access token found");
+        }
 
-      const response = await axios.get(`${API_USER}/registered-events`, {
-         headers: {
-            Authorization: `Bearer ${token}`,
-         },
-      });
+        const response = await axios.get(`${API_USER}/registered-events`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
 
-      return response.data?.data || [];
-   } catch (error) {
-      console.error("Error fetching user events", error);
-      throw error;
-   }
+        return response.data?.data || [];
+    } catch (error) {
+        console.error("Error fetching user events", error);
+        throw error;
+    }
+}
+
+export async function adminUpdateUser(
+    userId: string,
+    roleID: number,
+    studentIDVerified: boolean
+) {
+    try {
+        // Json Body
+        const response = await axios.put(
+            `${API_USER}/${userId}/update-user`,
+            {
+                role_id: roleID,
+                student_id_verified: studentIDVerified,
+            },
+            {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+                },
+            }
+        );
+
+        console.log(response);
+
+        return response.data.data;
+    } catch (error) {
+        console.log(error);
+        throw error;
+    }
 }
