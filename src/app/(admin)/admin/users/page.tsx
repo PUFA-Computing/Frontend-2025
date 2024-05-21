@@ -1,33 +1,65 @@
-"use client"
+"use client";
 import Title from "@/components/admin/Title";
 import UserTable from "@/components/admin/UserTable";
 import { GetUser } from "@/services/api/user";
 import React from "react";
 import User from "@/models/user";
+import EditUserModal from "@/app/(admin)/admin/users/_components/EditUserModal";
+import ViewVerificationModal from "@/app/(admin)/admin/users/_components/ViewStudentVerificationModal";
 
-export default function Page() {
+export default function UsersList() {
     const [users, setUsers] = React.useState<User[]>([]);
+    const [selectedUser, setSelectedUser] = React.useState<User | null>(null);
+    const [verificationInfo, setVerificationInfo] = React.useState<any | null>(
+        null
+    );
 
     React.useEffect(() => {
-        async function fetchData() {
+        async function fetchUsers() {
             try {
-                const usersData = await GetUser();
-                if (usersData) {
-                    setUsers(usersData);
-                } else {
-                    console.error("Failed to fetch data");
-                }
+                const users = await GetUser();
+                setUsers(users);
             } catch (error) {
-                console.error("Error fetching data:", error);
+                console.log(error);
             }
         }
-        fetchData();
+
+        fetchUsers().then((r) => r);
     }, []);
+
+    const openModal = (user: User) => {
+        setSelectedUser(user);
+    };
+
+    const closeModal = () => {
+        setSelectedUser(null);
+    };
+
+    const openVerificationModal = (info: any) => {
+        setVerificationInfo(info);
+    };
+
+    const closeVerificationModal = () => {
+        setVerificationInfo(null);
+    };
 
     return (
         <div>
-            <Title title="Users" />
-            <UserTable users={users} />
+            <UserTable
+                users={users}
+                onEditClick={openModal}
+                onViewVerification={openVerificationModal}
+            />
+            {selectedUser && (
+                <EditUserModal user={selectedUser} onClose={closeModal} />
+            )}
+
+            {verificationInfo && (
+                <ViewVerificationModal
+                    verificationInfo={verificationInfo}
+                    onClose={closeVerificationModal}
+                />
+            )}
         </div>
     );
 }
