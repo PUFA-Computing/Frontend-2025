@@ -1,4 +1,4 @@
-FROM node:18-alpine AS base
+FROM node:20-alpine AS base
 
 # Set build arguments for API URL
 ARG NEXT_PUBLIC_API_URL
