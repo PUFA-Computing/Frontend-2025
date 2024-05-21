@@ -1,6 +1,11 @@
 "use client";
-import { Dialog, Transition } from "@headlessui/react";
-import React, { Fragment, useState } from "react";
+import {
+    Dialog,
+    DialogPanel,
+    Transition,
+    TransitionChild,
+} from "@headlessui/react";
+import React, { Fragment, useEffect, useState } from "react";
 import {
     CalendarIcon,
     BuildingStorefrontIcon,
@@ -12,9 +17,10 @@ import {
 } from "@heroicons/react/24/outline";
 import Sidebar from "@/components/admin/Sidebar";
 import Header from "@/components/admin/Header";
-import { usePathname } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import Image from "next/image";
 import PUFALOGO from "@/assets/logo/PUFA_Computing.png";
+import { GetUserProfile } from "@/services/api/user";
 
 export default function AdminLayout({
     children,
@@ -105,15 +111,54 @@ export default function AdminLayout({
 
     const [sidebarOpen, setSidebarOpen] = useState(false);
 
+    const [isLoggedIn, setIsLoggedIn] = useState<boolean>(true);
+    const [userName, setUserName] = useState<string>("");
+    const [userRole, setUserRole] = useState<number | null>(null);
+    const router = useRouter();
+
+    useEffect(() => {
+        const userToken = localStorage.getItem("access_token");
+        if (userToken) {
+            setIsLoggedIn(true);
+            fetchUserProfile().then((r) => r);
+        } else {
+            setIsLoggedIn(false);
+            router.push("/auth/signin");
+        }
+    }, []);
+
+    const fetchUserProfile = async () => {
+        try {
+            const response = await GetUserProfile();
+            setUserRole(response.role_id);
+            setUserName(`${response.first_name} ${response.last_name}`);
+            if (response.role_id === 2 && response.role_id === 8) {
+                // Assuming 1 is the admin role
+                router.push("/");
+            }
+        } catch (error) {
+            console.error("Error fetching user profile", error);
+            router.push("/auth/signin");
+        }
+    };
+
+    if (!isLoggedIn || userRole === null) {
+        return <div>Loading...</div>;
+    }
+
+    if (userRole === 2 || userRole === 8) {
+        return router.push("/");
+    }
+
     return (
         <div>
-            <Transition.Root show={sidebarOpen} as={Fragment}>
+            <Transition show={sidebarOpen} as={Fragment}>
                 <Dialog
                     as="div"
                     className="relative z-50 lg:hidden"
                     onClose={setSidebarOpen}
                 >
-                    <Transition.Child
+                    <TransitionChild
                         as={Fragment}
                         enter="transition-opacity ease-linear duration-300"
                         enterFrom="opacity-0"
@@ -123,10 +168,10 @@ export default function AdminLayout({
                         leaveTo="opacity-0"
                     >
                         <div className="fixed inset-0 bg-gray-900/80" />
-                    </Transition.Child>
+                    </TransitionChild>
 
                     <div className="fixed inset-0 flex">
-                        <Transition.Child
+                        <TransitionChild
                             as={Fragment}
                             enter="transition ease-in-out duration-300 transform"
                             enterFrom="-translate-x-full"
@@ -135,8 +180,8 @@ export default function AdminLayout({
                             leaveFrom="translate-x-0"
                             leaveTo="-translate-x-full"
                         >
-                            <Dialog.Panel className="relative mr-16 flex w-full max-w-xs flex-1">
-                                <Transition.Child
+                            <DialogPanel className="relative mr-16 flex w-full max-w-xs flex-1">
+                                <TransitionChild
                                     as={Fragment}
                                     enter="ease-in-out duration-300"
                                     enterFrom="opacity-0"
@@ -162,7 +207,7 @@ export default function AdminLayout({
                                             />
                                         </button>
                                     </div>
-                                </Transition.Child>
+                                </TransitionChild>
                                 {/* Sidebar component, swap this element with another sidebar if you like */}
                                 <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-gray-900 px-6 pb-4 ring-1 ring-white/10">
                                     <div className="flex h-24 shrink-0 items-center justify-center">
@@ -179,11 +224,11 @@ export default function AdminLayout({
                                         teams={teams}
                                     />
                                 </div>
-                            </Dialog.Panel>
-                        </Transition.Child>
+                            </DialogPanel>
+                        </TransitionChild>
                     </div>
                 </Dialog>
-            </Transition.Root>
+            </Transition>
 
             {/* Sidebar Desktop */}
             <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
@@ -205,7 +250,10 @@ export default function AdminLayout({
 
             {/*Content*/}
             <div className="lg:pl-72">
-                <Header userNavigation={userNavigation} setSidebarOpen={setSidebarOpen}/>
+                <Header
+                    userNavigation={userNavigation}
+                    setSidebarOpen={setSidebarOpen}
+                />
 
                 <main className="py-10">
                     <div className="px-4 sm:px-6 lg:px-8">{children}</div>

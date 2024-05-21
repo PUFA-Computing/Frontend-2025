@@ -6,8 +6,8 @@ interface User {
     middle_name?: string;
     last_name: string;
     email: string;
-    student_id?: string;
-    major?: string;
+    student_id: string;
+    major: string;
     profile_picture: string;
     date_of_birth: string;
     role_id: number;
