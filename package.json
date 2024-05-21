@@ -1,7 +1,33 @@
 {
   "name": "puma-web",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
+  "plugins": [
+    "@semantic-release/commit-analyzer",
+    "@semantic-release/release-notes-generator",
+    "@semantic-release/changelog",
+    "@semantic-release/github",
+    "@semantic-release/npm",
+    "@semantic-release/git"
+  ],
+  "release": {
+    "branches": [
+      "master"
+    ],
+    "prepare": [
+      "@semantic-release/changelog",
+      "@semantic-release/npm",
+      {
+        "path": "@semantic-release/git",
+        "assets": [
+          "package.json",
+          "package-lock.json",
+          "CHANGELOG.md"
+        ],
+        "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+      }
+    ]
+  },
   "scripts": {
     "dev": "next dev",
     "build": "prisma generate && next build",
@@ -66,9 +92,12 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/github": "^10.0.4",
     "@tailwindcss/forms": "^0.5.7",
     "prettier": "^3.2.5",
     "prettier-plugin-tailwindcss": "^0.5.7",
-    "prisma": "^5.10.2"
+    "prisma": "^5.10.2",
+    "semantic-release": "^23.1.1"
   }
 }
