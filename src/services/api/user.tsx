@@ -10,7 +10,7 @@ import User from "@/models/user";
  * @example
  * const user = await GetUserProfile();
  */
-export async function GetUserProfile(): Promise<User> {
+export async function GetUserProfile() {
     try {
         const id = localStorage.getItem("userId");
         const response = await axios.get(`${API_USER}/${id}`, {
@@ -41,7 +41,7 @@ export async function UpdateUserProfile(
     email: string,
     major: string,
     year: string
-): Promise<User> {
+) {
     try {
         const response = await axios.put(
             `${API_USER}/edit`,
@@ -68,7 +68,7 @@ export async function UpdateUserProfile(
     }
 }
 
-export async function UpdatePassword(password: string): Promise<User> {
+export async function UpdatePassword(password: string) {
     try {
         const response = await axios.put(
             `${API_USER}/edit`,
@@ -129,7 +129,7 @@ export async function Logout() {
  * @example
  * const user = await GetUser();
  */
-export async function GetUser(): Promise<User> {
+export async function GetUser() {
     try {
         const response = await axios.get(`${API_USER}/list`, {
             headers: {
@@ -149,7 +149,7 @@ export async function GetUser(): Promise<User> {
  * @returns {Promise<Event[]>} A promise that resolves to an array of Event objects.
  * @throws {Error} If an error occurs during the API request.
  */
-export async function fetchUserEvents(userId: string): Promise<Event[]> {
+export async function fetchUserEvents(userId: string) {
     try {
         const token = localStorage.getItem("access_token");
         if (!token) {
@@ -218,7 +218,7 @@ export async function adminUpdateUser(
  * const user = await uploadProfilePicture(file);
  * @see https://developer.mozilla.org/en-US/docs/Web/API/FormData
  */
-export async function uploadProfilePicture(file: File): Promise<User> {
+export async function uploadProfilePicture(file: File) {
     try {
         const formData = new FormData();
         formData.append("profile_picture", file);
