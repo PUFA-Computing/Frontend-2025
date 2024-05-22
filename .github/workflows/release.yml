@@ -33,6 +33,8 @@ jobs:
         run: npm install
       - name: Dry run to get the next release version
         id: tag_version
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
           NEXT_TAG_VERSION=$(npx semantic-release --dry-run | grep 'The next release version is' | sed -E 's/.* ([[:digit:].]+)$/\1/')
           echo "new_tag_version=${NEXT_TAG_VERSION}" >> $GITHUB_ENV
