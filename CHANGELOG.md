@@ -1,3 +1,10 @@
+## [1.0.6](https://github.com/PUFA-Computing/Frontend/compare/v1.0.5...v1.0.6) (2024-05-22)
+
+
+### Bug Fixes
+
+* adding some library ([5e41268](https://github.com/PUFA-Computing/Frontend/commit/5e41268b3aba488ad67cee8c6d18260ec9f70ce3))
+
 ## [1.0.5](https://github.com/PUFA-Computing/Frontend/compare/v1.0.4...v1.0.5) (2024-05-22)
 
 
