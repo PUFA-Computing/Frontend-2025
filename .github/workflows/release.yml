@@ -36,20 +36,17 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         run: npx semantic-release
         id: version
-      - name: Semantic Get Version
-        id: semantic
-        uses: cycjimmy/semantic-release-action@v4
-        with:
-          dry_run: false
-          extra_plugins: |
-            @semantic-release/git
-            @semantic-release/exec
+      - name: Grep the new release version
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: |
+          export NEXT_VERSION=$(npx semantic-release --dry-run | grep 'The next release version is' | sed -E 's/.* ([[:digit:].]+)$/\1/')
+          echo $NEXT_VERSION >> $GITHUB_ENV
+          echo "${{ env.NEXT_VERSION }}"
       - name: Print the new release version
-        run: echo "The new release version is ${{ steps.semantic.outputs.new_release_version }}"
+        run: echo "The new release version is ${{ env.NEXT_RELEASE_VERSION }}"
     outputs:
-        version: ${{ steps.semantic.outputs.new_release_version }}
+        version: ${{ env.NEXT_RELEASE_VERSION }}
 
   build_and_push:
     needs: publish
