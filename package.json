@@ -11,7 +11,7 @@
     "@semantic-release/git",
     ["@semantic-release/exec",
       {
-        "publishCmd": "echo ::set-output name=nextVer::${nextRelease.version}"
+        "verifyReleaseCmd": "echo \"NEXT_RELEASE_VERSION=${nextRelease.version}\" >> $GITHUB_ENV"
       }
     ]
   ],
