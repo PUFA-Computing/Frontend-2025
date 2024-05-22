@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/PUFA-Computing/Frontend/compare/v1.0.1...v1.0.2) (2024-05-22)
+
+
+### Bug Fixes
+
+* update dependency version actions workflow ([a89c8d8](https://github.com/PUFA-Computing/Frontend/commit/a89c8d89ea9494e6a7449c821f75a54492f1235c))
+
 ## [1.0.1](https://github.com/PUFA-Computing/Frontend/compare/v1.0.0...v1.0.1) (2024-05-22)
 
 
