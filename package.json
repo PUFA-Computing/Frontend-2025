@@ -47,6 +47,7 @@
     "@radix-ui/react-toolbar": "^1.0.4",
     "@radix-ui/react-tooltip": "^1.0.7",
     "@react-icons/all-files": "^4.1.0",
+    "@semantic-release/changelog": "^6.0.3",
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/line-clamp": "^0.4.4",
     "@tailwindcss/typography": "^0.5.10",
