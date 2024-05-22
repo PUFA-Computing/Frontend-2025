@@ -14,22 +14,6 @@ permissions:
   contents: read
 
 jobs:
-  get_next_release_version:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-      - run: npm install
-      - run: npx semantic-release --dry-run
-        id: get-next-version
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    outputs:
-      new-release-published: ${{ steps.get-next-version.outputs.new-release-published }}
-      new-release-version: ${{ steps.get-next-version.outputs.new-release-version }}
-
   publish:
     runs-on: ubuntu-latest
     permissions:
@@ -53,18 +37,21 @@ jobs:
         run: npx semantic-release
 
   build_and_push:
-    needs: get_next_release_version
-    if: ${{ needs.get_next_release_version.outputs.new-release-published == 'true' }}
+    needs: publish
     runs-on: ubuntu-latest
     steps:
+      - name: Get latest github release tag from api
+        id: get_latest_release
+        run: |
+          echo "::set-output name=latest_release::$(curl -s https://api.github.com/repos/PUFA-Computing/Frontend/releases/latest | jq -r '.tag_name')"
       - uses: actions/checkout@v3
       - name: Build the Docker image
         run: |
           docker login -u kizoukun -p ${{ secrets.GH_TOKEN }} ghcr.io
           docker build --build-arg NEXT_PUBLIC_API_URL=${{ secrets.NEXT_PUBLIC_API_URL }} -t ghcr.io/kizoukun/pufafrontend:${{ github.sha }} .
-          docker tag ghcr.io/kizoukun/pufafrontend:${{ github.sha }} ghcr.io/kizoukun/pufafrontend:${{ needs.get-next-version.outputs.new-release-version }}
+          docker tag ghcr.io/kizoukun/pufafrontend:${{ github.sha }} ghcr.io/kizoukun/pufafrontend:${{ steps.get_latest_release.outputs.latest_release }}
           docker push ghcr.io/kizoukun/pufafrontend:${{ github.sha }}
-          docker push ghcr.io/kizoukun/pufafrontend:${{ needs.get-next-version.outputs.new-release-version }}
+          docker push ghcr.io/kizoukun/pufafrontend:${{ steps.get_latest_release.outputs.latest_release }}
           if [ "${{ github.ref }}" == "refs/heads/master" ]; then
             docker tag ghcr.io/kizoukun/pufafrontend:${{ github.sha }} ghcr.io/kizoukun/pufafrontend:latest
             docker push ghcr.io/kizoukun/pufafrontend:latest
