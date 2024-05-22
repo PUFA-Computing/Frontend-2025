@@ -4,6 +4,11 @@ on:
   push:
     branches:
       - master
+      - main
+      - next
+      - next-major
+      - beta
+      - alpha
 
 permissions:
   contents: read
@@ -11,6 +16,8 @@ permissions:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    outputs:
+      new_tag_version: ${{ steps.tag_version.outputs.new_tag_version }}
     permissions:
       contents: write # to be able to publish a GitHub release
       issues: write # to be able to comment on released issues
@@ -24,6 +31,11 @@ jobs:
           node-version: 20
       - name: Install dependencies
         run: npm install
+      - name: Dry run to get the next release version
+        id: tag_version
+        run: |
+          NEXT_TAG_VERSION=$(npx semantic-release --dry-run | grep 'The next release version is' | sed -E 's/.* ([[:digit:].]+)$/\1/')
+          echo "new_tag_version=${NEXT_TAG_VERSION}" >> $GITHUB_ENV
       - name: Build app
         run: npm run build
       - name: Semantic release
