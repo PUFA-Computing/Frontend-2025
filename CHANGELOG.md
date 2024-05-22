@@ -1,3 +1,10 @@
+## [1.0.10](https://github.com/PUFA-Computing/Frontend/compare/v1.0.9...v1.0.10) (2024-05-22)
+
+
+### Bug Fixes
+
+* using api github get latest release ([b604537](https://github.com/PUFA-Computing/Frontend/commit/b60453758aa7addc45a962500c5cc124f6b24e71))
+
 ## [1.0.9](https://github.com/PUFA-Computing/Frontend/compare/v1.0.8...v1.0.9) (2024-05-22)
 
 
