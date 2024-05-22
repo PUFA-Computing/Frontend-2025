@@ -1,3 +1,10 @@
+## [1.0.9](https://github.com/PUFA-Computing/Frontend/compare/v1.0.8...v1.0.9) (2024-05-22)
+
+
+### Bug Fixes
+
+* npm install not ci ([8fa84e9](https://github.com/PUFA-Computing/Frontend/commit/8fa84e9b6837f94ec7eba8709cd4eaf820ab8af2))
+
 ## [1.0.8](https://github.com/PUFA-Computing/Frontend/compare/v1.0.7...v1.0.8) (2024-05-22)
 
 
