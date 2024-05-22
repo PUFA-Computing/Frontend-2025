@@ -67,6 +67,7 @@
 }
 
 
-
-
- 
+/* Hide scrollbar */
+::-webkit-scrollbar {
+   width: 0;
+ }

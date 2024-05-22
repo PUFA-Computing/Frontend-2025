@@ -8,6 +8,10 @@ interface News {
    likes: number;
    created_at: Date;
    updated_at: Date;
+   thumbnail: string;
+   slug: string;
+   organization: string;
+   author: string;
 }
 
 export default News;

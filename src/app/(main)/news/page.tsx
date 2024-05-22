@@ -1,65 +1,48 @@
-"use client";
 import CardNormalNewsPage from "@/components/news/CardNormalNewsPage";
 import CardSecondaryNewsPage from "@/components/news/CardSecondaryNewsPage";
 import Seperator from "@/components/Seperator";
 import { SelectSeparator } from "@/components/ui/select";
-import React, { useEffect, useState } from "react";
+import React from "react";
+import PageHeading from "@/components/PageHeading";
+import Image from "next/image";
+import { fetchNews } from "@/services/api/news";
+import CardMainNewsPage from "@/components/news/CardMainNewsPage";
 
-interface TimeLeft {
-    days: number;
-    hours: number;
-    minutes: number;
-    seconds: number;
-}
-
-export default function NewsPage() {
-    const calculateTimeLeft = (): TimeLeft => {
-        const difference = +new Date("2024-03-31") - +new Date();
-        let timeLeft: {} = {};
-
-        if (difference > 0) {
-            timeLeft = {
-                days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-                hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-                minutes: Math.floor((difference / 1000 / 60) % 60),
-                seconds: Math.floor((difference / 1000) % 60)
-            };
-        }
-
-        return timeLeft as TimeLeft;
-    }
-    const [timeLeft, setTimeLeft] = React.useState(calculateTimeLeft());
-
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            setTimeLeft(calculateTimeLeft());
-        }, 1000);
-
-        return () => clearTimeout(timer);
-    });
+export default async function NewsPage() {
+    const news = await fetchNews();
 
     return (
-        <div
-            className="h-screen flex justify-center items-center px-2 bg-gradient-to-tr from-gray-950 via-blue-950 to-orange-800">
-            <div className="max-w-lg mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
-
-                <div className="py-4 px-6">
-                    <h2 className="text-4xl font-bold text-gray-800 text-center">Coming Soon</h2>
-                    <p className="mt-2 text-lg text-gray-600">We are working hard to bring you the latest news. Stay
-                        tuned!</p>
-                </div>
-
-                <div className="py-4 px-6">
-                    <p className="mt-2 text-lg text-gray-600">The News will be live in</p>
-                    <div className="flex justify-center items-center space-x-4 mt-4">
-                        <div className="text-xl font-bold text-gray-800">{timeLeft.days} Days</div>
-                        <div className="text-xl font-bold text-gray-800">{timeLeft.hours} Hours</div>
-                        <div className="text-xl font-bold text-gray-800">{timeLeft.minutes} Minutes</div>
-                        <div className="text-xl font-bold text-gray-800">{timeLeft.seconds} Seconds</div>
-                    </div>
-                </div>
-
+        <div>
+            <div
+                className="border-l-4 border-yellow-500 bg-yellow-100 p-4 text-yellow-700"
+                role="alert"
+            >
+                <p className="font-bold">Under Construction!</p>
+                <p>
+                    This page is currently under construction. Stay tuned for
+                    updates.
+                </p>
             </div>
+            <PageHeading
+                title="Computing News"
+                description="The latest news about research, technology, achievements, and campus life."
+                borderColor="#FF6F22"
+            />
+
+            <section className="flex flex-col space-y-12 px-[2rem] py-[2rem] md:px-[10rem]">
+                <h1 className="text-[1.5rem] font-[600]">Latest</h1>
+                {/* main big news   */}
+                <CardMainNewsPage news={news} />
+                {/* 2 secondary medium news  */}
+                <CardSecondaryNewsPage news={news} />
+
+                <Seperator className="border-[#d0d0d0]" />
+
+                <div className="space-y-12">
+                    <h1 className="text-[1.5rem] font-[600]">All News</h1>
+                    <CardNormalNewsPage news={news} />
+                </div>
+            </section>
         </div>
     );
 }

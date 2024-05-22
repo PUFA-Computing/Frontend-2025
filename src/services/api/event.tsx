@@ -1,6 +1,8 @@
 import axios from "axios";
 import Event from "../../models/event";
 import { API_EVENT } from "@/config/config";
+import { format } from "date-fns";
+import FormData from "form-data";
 
 /**
  * An object that caches event data by slug.
@@ -14,27 +16,26 @@ const eventCache: { [key: string]: Event } = {};
  * @throws {Error} If an error occurs during the API request.
  */
 export  const fetchEvents = async (): Promise<Event[]> => {
-   try {
-      // Make a GET request to the API endpoint.
-      const response = await axios.get(API_EVENT);
-      // const response = await axios.get(`${API_EVENT}/?slug=`);
+    try {
+        // Make a GET request to the API endpoint.
+        const response = await axios.get(API_EVENT);
+        // const response = await axios.get(`${API_EVENT}/?slug=`);
 
-      // Extract event data from the response.
-      const eventData = response.data?.data || [];
-      eventData.forEach((event: Event) => {
-         event.start_date = new Date(event.start_date);
-         event.end_date = new Date(event.end_date);
-         event.created_at = new Date(event.created_at);
-         event.updated_at = new Date(event.updated_at);
-      });
-
-      // Return the array of Event objects.
-      return eventData as Event[];
-   } catch (error) {
-      // Log an error message and rethrow the error.
-      console.error("Error fetching events", error);
-      throw error;
-   }
+        // Extract event data from the response.
+        const eventData = response.data?.data || [];
+        eventData.forEach((event: Event) => {
+            event.start_date = new Date(event.start_date);
+            event.end_date = new Date(event.end_date);
+            event.created_at = new Date(event.created_at);
+            event.updated_at = new Date(event.updated_at);
+        });
+        // Return the array of Event objects.
+        return eventData as Event[];
+    } catch (error) {
+        // Log an error message and rethrow the error.
+        console.error("Error fetching events", error);
+        throw error;
+    }
 };
 
 /**
@@ -45,56 +46,84 @@ export  const fetchEvents = async (): Promise<Event[]> => {
  * @param eventSlug
  */
 export const fetchEventBySlug = async (eventSlug: string): Promise<Event> => {
-   try {
-      // Check if the event is already cached
-      if (eventCache[eventSlug]) {
-         return eventCache[eventSlug];
-      }
+    try {
+        // Check if the event is already cached
+        if (eventCache[eventSlug]) {
+            return eventCache[eventSlug];
+        }
 
-      // Make a GET request to the API endpoint
-      const response = await axios.get(`${API_EVENT}/${eventSlug}`);
+        // Make a GET request to the API endpoint
+        const response = await axios.get(`${API_EVENT}/${eventSlug}`);
 
-      // Extract the event data from the response
-      const eventData = response.data?.data;
-      eventData.start_date = new Date(eventData.start_date);
-      eventData.end_date = new Date(eventData.end_date);
-      eventData.created_at = new Date(eventData.created_at);
-      eventData.updated_at = new Date(eventData.updated_at);
+        // Extract the event data from the response
+        const eventData = response.data?.data;
+        eventData.start_date = new Date(eventData.start_date);
+        eventData.end_date = new Date(eventData.end_date);
+        eventData.created_at = new Date(eventData.created_at);
+        eventData.updated_at = new Date(eventData.updated_at);
 
-      // Cache the event data
-      eventCache[eventSlug] = eventData;
+        // Cache the event data
+        eventCache[eventSlug] = eventData;
 
-      // Return the Event object
-      return eventData as Event;
-   } catch (error) {
-      // Log an error message and rethrow the error
-      console.error(`Error fetching event with slug ${eventSlug}`, error);
-      throw error;
-   }
+        // Return the Event object
+        return eventData as Event;
+    } catch (error) {
+        // Log an error message and rethrow the error
+        console.error(`Error fetching event with slug ${eventSlug}`, error);
+        throw error;
+    }
 };
+
+interface EventCreation {
+    title: string;
+    start_date: string;
+    end_date: string;
+    organization_id: number;
+    description: string;
+    max_registration: number;
+}
 
 /**
  * Creates a new event using the specified data and sends it to the API endpoint.
  *
  * @param {Event} eventData The data for the new event.
+ * @param file
  * @returns {Promise<Event>} A promise that resolves to the newly created Event object.
  * @throws {Error} If an error occurs during the API request.
  */
-export const createEvent = async (eventData: Event): Promise<Event> => {
-   try {
-      // Make a POST request to the API endpoint.
-      const response = await axios.post(`${API_EVENT}/create`, eventData);
+export const createEvent = async (eventData: EventCreation, file: File): Promise<Event> => {
+    try {
+        const formData = new FormData();
 
-      // Extract the event data from the response.
-      const newEventData = response.data?.data;
+        formData.append("file", file, file.name);
 
-      // Return the newly created Event object.
-      return newEventData as Event;
-   } catch (error) {
-      // Log an error message and rethrow the error.
-      console.error("Error creating event", error);
-      throw error;
-   }
+        const formattedEventData = {
+            ...eventData,
+            start_date: new Date(eventData.start_date).toISOString(),
+            end_date: new Date(eventData.end_date).toISOString(),
+        };
+
+        // Convert eventData to JSON string and append it with content type application/json.
+        formData.append("data", JSON.stringify(formattedEventData));
+
+        // Make a POST request to the API endpoint.
+        const response = await axios.post(`${API_EVENT}/create`, formData, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+                "Content-Type": "multipart/form-data",
+            },
+        });
+
+        // Extract the newly created event data from the response.
+        const newEventData = response.data?.data;
+
+        // Return the newly created Event object.
+        return newEventData as Event;
+    } catch (error) {
+        // Log an error message and rethrow the error.
+        console.error("Error creating event", error);
+        throw error;
+    }
 };
 
 /**
@@ -106,26 +135,26 @@ export const createEvent = async (eventData: Event): Promise<Event> => {
  * @throws {Error} If an error occurs during the API request.
  */
 export const updateEvent = async (
-   eventId: string,
-   eventData: Event
+    eventId: string,
+    eventData: Event
 ): Promise<Event> => {
-   try {
-      // Make a PUT request to the API endpoint.
-      const response = await axios.put(
-         `${API_EVENT}/${eventId}/edit`,
-         eventData
-      );
+    try {
+        // Make a PUT request to the API endpoint.
+        const response = await axios.put(
+            `${API_EVENT}/${eventId}/edit`,
+            eventData
+        );
 
-      // Extract the updated event data from the response.
-      const updatedEventData = response.data?.data;
+        // Extract the updated event data from the response.
+        const updatedEventData = response.data?.data;
 
-      // Return the updated Event object.
-      return updatedEventData as Event;
-   } catch (error) {
-      // Log an error message and rethrow the error.
-      console.error(`Error updating event with ID ${eventId}`, error);
-      throw error;
-   }
+        // Return the updated Event object.
+        return updatedEventData as Event;
+    } catch (error) {
+        // Log an error message and rethrow the error.
+        console.error(`Error updating event with ID ${eventId}`, error);
+        throw error;
+    }
 };
 
 /**
@@ -136,12 +165,12 @@ export const updateEvent = async (
  * @throws {Error} If an error occurs during the API request.
  */
 export const deleteEvent = async (eventId: string): Promise<void> => {
-   try {
-      // Make a DELETE request to the API endpoint.
-      await axios.delete(`${API_EVENT}/${eventId}/delete`);
-   } catch (error) {
-      // Log an error message and rethrow the error.
-      console.error(`Error deleting event with ID ${eventId}`, error);
-      throw error;
-   }
+    try {
+        // Make a DELETE request to the API endpoint.
+        await axios.delete(`${API_EVENT}/${eventId}/delete`);
+    } catch (error) {
+        // Log an error message and rethrow the error.
+        console.error(`Error deleting event with ID ${eventId}`, error);
+        throw error;
+    }
 };
