@@ -8,7 +8,12 @@
     "@semantic-release/changelog",
     "@semantic-release/github",
     "@semantic-release/npm",
-    "@semantic-release/git"
+    "@semantic-release/git",
+    ["@semantic-release/exec",
+      {
+        "publishCmd": "echo ::set-output name=nextVer::${nextRelease.version}"
+      }
+    ]
   ],
   "release": {
     "branches": [
@@ -108,6 +113,7 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
+    "@semantic-release/exec": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
     "@semantic-release/github": "^10.0.4",
     "@tailwindcss/forms": "^0.5.7",
