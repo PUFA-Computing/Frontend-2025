@@ -1,3 +1,10 @@
+## [1.0.5](https://github.com/PUFA-Computing/Frontend/compare/v1.0.4...v1.0.5) (2024-05-22)
+
+
+### Bug Fixes
+
+* unified the production yaml to release.yml ([5328423](https://github.com/PUFA-Computing/Frontend/commit/5328423393ad06988fd34e86e871b46e069adee4))
+
 ## [1.0.4](https://github.com/PUFA-Computing/Frontend/compare/v1.0.3...v1.0.4) (2024-05-22)
 
 
