@@ -6,6 +6,7 @@ import { AxiosError, AxiosResponse } from "axios";
 import User from "@/models/user";
 import Seperator from "@/components/Seperator";
 import Link from "next/link";
+import user from "@/models/user";
 
 // Type for error response
 type ErrorResponse = {
@@ -134,13 +135,19 @@ export default function RegisterForm() {
                 const ErrorResponse = error?.response?.data as ErrorResponse;
                 if (!ErrorResponse.success) {
                     // Check if error message indicates email or student ID already exists
-                    if (ErrorResponse.message.includes("Email already exists")) {
+                    if (
+                        ErrorResponse.message.includes("Email already exists")
+                    ) {
                         await Swal.fire({
                             icon: "error",
                             title: "Email Exists",
                             text: "The email you entered already exists",
                         });
-                    } else if (ErrorResponse.message.includes("Student ID already exists")) {
+                    } else if (
+                        ErrorResponse.message.includes(
+                            "Student ID already exists"
+                        )
+                    ) {
                         await Swal.fire({
                             icon: "error",
                             title: "Student ID Exists",
