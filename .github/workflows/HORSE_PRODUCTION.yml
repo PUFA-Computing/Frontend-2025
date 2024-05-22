@@ -18,12 +18,13 @@ jobs:
         run: yarn install
       - name: Build the Docker image
         run: |
-          VERSION=$(npx semantic-release version --dry-run | grep "nextRelease:" -A 1 | grep "version:" | awk '{print $2}')
           docker login -u kizoukun -p ${{ secrets.GH_TOKEN }} ghcr.io
-          docker build --build-arg NEXT_PUBLIC_API_URL=${{ secrets.NEXT_PUBLIC_API_URL }} -t ghcr.io/kizoukun/pufafrontend:$VERSION .
-          docker tag ghcr.io/kizoukun/pufafrontend:$VERSION ghcr.io/kizoukun/pufafrontend:latest
-          docker push ghcr.io/kizoukun/pufafrontend:$VERSION
+          docker build --build-arg NEXT_PUBLIC_API_URL=${{ secrets.NEXT_PUBLIC_API_URL }} -t ghcr.io/kizoukun/pufafrontend:${{ github.sha }} .
+          docker tag ghcr.io/kizoukun/pufafrontend:${{ github.sha }} ghcr.io/kizoukun/pufafrontend:latest
+          docker tag ghcr.io/kizoukun/pufafrontend:${{ github.sha }} ghcr.io/kizoukun/pufafrontend:${{ needs.semantic_release.outputs.nextRelease.version }}
           docker push ghcr.io/kizoukun/pufafrontend:latest
+          docker push ghcr.io/kizoukun/pufafrontend:${{ github.sha }}
+          docker push ghcr.io/kizoukun/pufafrontend:${{ needs.semantic_release.outputs.nextRelease.version }}
 
   deployments:
     runs-on: ubuntu-latest
