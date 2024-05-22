@@ -1,46 +1,26 @@
-name: Release
+name: Build and Deploy Production
 
 on:
   push:
     branches:
       - master
 
-permissions:
-  contents: read
-
 jobs:
-  release:
-    name: Release
+  build_and_push:
+    needs: publish
+    if: ${{ needs.release.outputs.new_tag_version != '' }}
     runs-on: ubuntu-latest
-    permissions:
-      contents: write # to be able to publish a GitHub release
-      issues: write # to be able to comment on released issues
-      pull-requests: write # to be able to comment on released pull requests
-      id-token: write # to enable use of OIDC for npm provenance verification
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 20
-      - name: Install dependencies
-        run: yarn install
-      - name: Release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: yarn dlx semantic-release
-      - name: Push Docker image
+      - uses: actions/checkout@v3
+      - name: Build the Docker image
         run: |
           docker login -u kizoukun -p ${{ secrets.GH_TOKEN }} ghcr.io
           docker build --build-arg NEXT_PUBLIC_API_URL=${{ secrets.NEXT_PUBLIC_API_URL }} -t ghcr.io/kizoukun/pufafrontend:${{ github.sha }} .
           docker tag ghcr.io/kizoukun/pufafrontend:${{ github.sha }} ghcr.io/kizoukun/pufafrontend:latest
-          docker tag ghcr.io/kizoukun/pufafrontend:${{ github.sha }} ghcr.io/kizoukun/pufafrontend:${{ needs.semantic_release.outputs.nextRelease.version }}
+          docker tag ghcr.io/kizoukun/pufafrontend:${{ github.sha }} ghcr.io/kizoukun/pufafrontend:${{ needs.publish.outputs.new_tag_version }}
           docker push ghcr.io/kizoukun/pufafrontend:latest
           docker push ghcr.io/kizoukun/pufafrontend:${{ github.sha }}
-          docker push ghcr.io/kizoukun/pufafrontend:${{ needs.semantic_release.outputs.nextRelease.version }}
+          docker push ghcr.io/kizoukun/pufafrontend:${{ needs.publish.outputs.new_tag_version }}
 
   deployments:
     runs-on: ubuntu-latest
