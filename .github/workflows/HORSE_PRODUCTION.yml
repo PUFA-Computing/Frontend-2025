@@ -13,6 +13,8 @@ jobs:
     steps:
       - name: Check if there is a new release version
         id: get_version
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         run: echo "new_tag_version=${{ needs.publish.outputs.new_tag_version }}" >> $GITHUB_ENV
 
   build_and_push:
