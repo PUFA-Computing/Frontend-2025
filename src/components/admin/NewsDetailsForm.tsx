@@ -61,26 +61,7 @@ export default function NewsDetailsForm({
             >
                 <div className="px-4 py-6 sm:p-8">
                     <div className="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-8">
-                        <div>
-                            <label
-                                htmlFor="title"
-                                className="block text-sm font-medium leading-6 text-gray-900"
-                            >
-                                Title
-                            </label>
-                            <div className="mt-2">
-                                <input
-                                    type="text"
-                                    name="title"
-                                    id="title"
-                                    value={formData.title}
-                                    onChange={(e) => handleChange(e)}
-                                    className="block w-full rounded-full border-0 px-4 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                    placeholder="Title of the news"
-                                />
-                            </div>
-
-                            {/* Select Organization_ID */}
+                        <div className="col-span-full">
                             <div className="mt-4">
                                 <label
                                     htmlFor="organization"
@@ -89,7 +70,6 @@ export default function NewsDetailsForm({
                                     Organization
                                 </label>
 
-                                {/*Set Value Select is ID not the name*/}
                                 <Select
                                     id="organization"
                                     value={selectedOrganization}
@@ -109,9 +89,35 @@ export default function NewsDetailsForm({
                                     placeholder="Select organization"
                                 />
                             </div>
+                            {/*Information for users*/}
+                            <div className="mt-3 text-sm leading-6 text-gray-600">
+                                <p className="mt-3 text-sm leading-6 text-gray-600">
+                                    Select the organization for which the news
+                                    is intended
+                                </p>
+                            </div>
+
+                            <div className="mt-16">
+                                <label
+                                    htmlFor="title"
+                                    className="mt-6 block text-sm font-medium leading-6 text-gray-900"
+                                >
+                                    Title
+                                </label>
+
+                                <input
+                                    type="text"
+                                    name="title"
+                                    id="title"
+                                    value={formData.title}
+                                    onChange={(e) => handleChange(e)}
+                                    className="block w-full rounded-full border-0 px-4 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                    placeholder="Title of the news"
+                                />
+                            </div>
                         </div>
 
-                        <div className="col-span-full">
+                        <div className="col-span-full mt-8">
                             <label
                                 htmlFor="content"
                                 className="block text-sm font-medium leading-6 text-gray-900"
