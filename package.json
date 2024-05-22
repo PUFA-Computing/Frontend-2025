@@ -26,15 +26,15 @@
         ],
         "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
       },
-        {
-            "path": "@semantic-release/github",
-            "assets": [
-            {
-                "path": "CHANGELOG.md",
-                "label": "Changelog"
-            }
-            ]
-        }
+      {
+        "path": "@semantic-release/github",
+        "assets": [
+          {
+            "path": "CHANGELOG.md",
+            "label": "Changelog"
+          }
+        ]
+      }
     ]
   },
   "scripts": {
@@ -94,7 +94,6 @@
     "react-quill": "^2.0.0",
     "react-select": "^5.8.0",
     "react-spinners": "^0.13.8",
-    "semantic-release-docker": "^2.2.0",
     "sharp": "^0.33.2",
     "sweetalert2": "^11.10.4",
     "swiper": "^11.0.7",
