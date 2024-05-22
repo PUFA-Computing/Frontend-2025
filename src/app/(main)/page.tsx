@@ -21,6 +21,7 @@ export const dynamic = "force-dynamic";
 
 export default async function Index() {
     const news = await fetchNews();
+
     return (
         <div className="min-h-screen text-[#353535]">
             <div>
@@ -176,8 +177,8 @@ export default async function Index() {
                     Stay updated with the latest news and announcements.
                 </h3>
                 <div className="grid grid-cols-1 gap-8 text-justify md:grid-cols-2">
-                    <NewsCardBig news={news}/>
-                    <NewsCard news={news}/>
+                    <NewsCardBig news={news} />
+                    <NewsCard news={news} />
                 </div>
                 <div className="flex items-center justify-center">
                     <Link href="/" className="block w-max">
@@ -217,7 +218,9 @@ export default async function Index() {
             <section className="my-[10rem] flex flex-col items-center space-y-6 md:space-y-12">
                 {/*Coming Soon*/}
                 <div className="border-l-4 border-[#BA704F] pl-4">
-                    <h1 className="text-[1.5rem] font-[600]">Computing Store</h1>
+                    <h1 className="text-[1.5rem] font-[600]">
+                        Computing Store
+                    </h1>
                 </div>
 
                 <h1 className="text-center">

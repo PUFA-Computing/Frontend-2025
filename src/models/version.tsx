@@ -1,9 +1,8 @@
-export interface Version {
-    latest_version: string;
-    changelog: Changelog[];
+export interface ChangelogEntry {
+    [key: string]: string[];
 }
 
-interface Changelog {
-    version: string;
-    changes: string[];
+export interface Version {
+    latest_version: string;
+    changelog: ChangelogEntry;
 }
