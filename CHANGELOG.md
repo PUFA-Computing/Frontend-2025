@@ -1,3 +1,15 @@
+# [1.1.0](https://github.com/PUFA-Computing/Frontend/compare/v1.0.10...v1.1.0) (2024-05-22)
+
+
+### Bug Fixes
+
+* **admin:** UI bug fix where select organization collapse z index with text area content ([5c2e2dc](https://github.com/PUFA-Computing/Frontend/commit/5c2e2dc182ab0d0f7d4e5630bbaef06672d15102))
+
+
+### Features
+
+* Version feature to get information of the app version ([a949345](https://github.com/PUFA-Computing/Frontend/commit/a94934542048022581589b9ae297c113d3ee19b7))
+
 ## [1.0.10](https://github.com/PUFA-Computing/Frontend/compare/v1.0.9...v1.0.10) (2024-05-22)
 
 
