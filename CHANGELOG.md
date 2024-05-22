@@ -1,3 +1,10 @@
+## [1.0.4](https://github.com/PUFA-Computing/Frontend/compare/v1.0.3...v1.0.4) (2024-05-22)
+
+
+### Bug Fixes
+
+* put env gh token ([adc81e4](https://github.com/PUFA-Computing/Frontend/commit/adc81e4c3abcc40298160674dab3834ca9814d74))
+
 ## [1.0.3](https://github.com/PUFA-Computing/Frontend/compare/v1.0.2...v1.0.3) (2024-05-22)
 
 
