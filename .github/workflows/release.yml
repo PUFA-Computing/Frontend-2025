@@ -16,8 +16,6 @@ permissions:
 jobs:
   publish:
     runs-on: ubuntu-latest
-    outputs:
-      new_tag_version: ${{ steps.tag_version.outputs.new_tag_version }}
     permissions:
       contents: write # to be able to publish a GitHub release
       issues: write # to be able to comment on released issues
@@ -36,18 +34,21 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
-          NEXT_TAG_VERSION=$(npx semantic-release --dry-run | grep 'The next release version is' | sed -E 's/.* ([[:digit:].]+)$/\1/')
-          echo "new_tag_version=${NEXT_TAG_VERSION}" >> $GITHUB_ENV
+            npx semantic-release --dry-run --branches master,main,next,next-major,beta,alpha
       - name: Build app
         run: npm run build
       - name: Semantic release
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         run: npx semantic-release
+        id: version
+    outputs:
+      version: ${{ steps.version.outputs.nextVer }}
+
 
   build_and_push:
     needs: publish
-    if: ${{ needs.publish.outputs.new_tag_version != '' }}
+    if: ${{ needs.publish.outputs.version != '' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -55,15 +56,16 @@ jobs:
         run: |
           docker login -u kizoukun -p ${{ secrets.GH_TOKEN }} ghcr.io
           docker build --build-arg NEXT_PUBLIC_API_URL=${{ secrets.NEXT_PUBLIC_API_URL }} -t ghcr.io/kizoukun/pufafrontend:${{ github.sha }} .
-          docker tag ghcr.io/kizoukun/pufafrontend:${{ github.sha }} ghcr.io/kizoukun/pufafrontend:${{ needs.publish.outputs.new_tag_version }}
+          docker tag ghcr.io/kizoukun/pufafrontend:${{ github.sha }} ghcr.io/kizoukun/pufafrontend:${{ needs.publish.outputs.version }}
           docker push ghcr.io/kizoukun/pufafrontend:${{ github.sha }}
-          docker push ghcr.io/kizoukun/pufafrontend:${{ needs.publish.outputs.new_tag_version }}
+          docker push ghcr.io/kizoukun/pufafrontend:${{ needs.publish.outputs.version }}
           if [ "${{ github.ref }}" == "refs/heads/master" ]; then
             docker tag ghcr.io/kizoukun/pufafrontend:${{ github.sha }} ghcr.io/kizoukun/pufafrontend:latest
             docker push ghcr.io/kizoukun/pufafrontend:latest
           fi
 
   deployments:
+    if: ${{ github.ref == 'refs/heads/master' }}
     runs-on: ubuntu-latest
     needs: build_and_push
     environment: production
