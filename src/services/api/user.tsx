@@ -181,9 +181,9 @@ export async function fetchUserEvents(userId: string) {
  * const user = await adminUpdateUser();
  */
 export async function adminUpdateUser(
-    userId: string,
-    roleID: number,
-    studentIDVerified: boolean
+    userId: string | undefined,
+    roleID: number | undefined,
+    studentIDVerified: boolean | undefined
 ): Promise<User> {
     try {
         // Json Body
