@@ -1,3 +1,10 @@
+## [1.0.8](https://github.com/PUFA-Computing/Frontend/compare/v1.0.7...v1.0.8) (2024-05-22)
+
+
+### Bug Fixes
+
+* workflow run ([ff35e23](https://github.com/PUFA-Computing/Frontend/commit/ff35e2302e157d2db6cdf987fdeab6b2261ab885))
+
 ## [1.0.7](https://github.com/PUFA-Computing/Frontend/compare/v1.0.6...v1.0.7) (2024-05-22)
 
 
