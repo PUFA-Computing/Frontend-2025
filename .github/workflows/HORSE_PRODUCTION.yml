@@ -6,21 +6,30 @@ on:
       - master
 
 jobs:
+  check_release:
+    runs-on: ubuntu-latest
+    outputs:
+      new_tag_version: ${{ steps.get_version.outputs.new_tag_version }}
+    steps:
+      - name: Check if there is a new release version
+        id: get_version
+        run: echo "new_tag_version=${{ needs.publish.outputs.new_tag_version }}" >> $GITHUB_ENV
+
   build_and_push:
-    needs: publish
-    if: ${{ needs.release.outputs.new_tag_version != '' }}
+    needs: check_release
+    if: ${{ needs.check_release.outputs.new_tag_version != '' }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Build the Docker image
         run: |
           docker login -u kizoukun -p ${{ secrets.GH_TOKEN }} ghcr.io
           docker build --build-arg NEXT_PUBLIC_API_URL=${{ secrets.NEXT_PUBLIC_API_URL }} -t ghcr.io/kizoukun/pufafrontend:${{ github.sha }} .
           docker tag ghcr.io/kizoukun/pufafrontend:${{ github.sha }} ghcr.io/kizoukun/pufafrontend:latest
-          docker tag ghcr.io/kizoukun/pufafrontend:${{ github.sha }} ghcr.io/kizoukun/pufafrontend:${{ needs.publish.outputs.new_tag_version }}
+          docker tag ghcr.io/kizoukun/pufafrontend:${{ github.sha }} ghcr.io/kizoukun/pufafrontend:${{ needs.check_release.outputs.new_tag_version }}
           docker push ghcr.io/kizoukun/pufafrontend:latest
           docker push ghcr.io/kizoukun/pufafrontend:${{ github.sha }}
-          docker push ghcr.io/kizoukun/pufafrontend:${{ needs.publish.outputs.new_tag_version }}
+          docker push ghcr.io/kizoukun/pufafrontend:${{ needs.check_release.outputs.new_tag_version }}
 
   deployments:
     runs-on: ubuntu-latest
