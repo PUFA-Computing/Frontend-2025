@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/PUFA-Computing/Frontend/compare/v1.0.0...v1.0.1) (2024-05-22)
+
+
+### Bug Fixes
+
+* automated release ([929b8f7](https://github.com/PUFA-Computing/Frontend/commit/929b8f72c239cabc9d88d1acb96d3c6a16b84f0e))
+
 # 1.0.0 (2024-05-22)
 
 
