@@ -17,7 +17,7 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     outputs:
-      new_tag_version: ${{ steps.get_version.outputs.new_tag_version }}
+      new_tag_version: ${{ steps.tag_version.outputs.new_tag_version }}
     permissions:
       contents: write # to be able to publish a GitHub release
       issues: write # to be able to comment on released issues
@@ -55,11 +55,13 @@ jobs:
         run: |
           docker login -u kizoukun -p ${{ secrets.GH_TOKEN }} ghcr.io
           docker build --build-arg NEXT_PUBLIC_API_URL=${{ secrets.NEXT_PUBLIC_API_URL }} -t ghcr.io/kizoukun/pufafrontend:${{ github.sha }} .
-          docker tag ghcr.io/kizoukun/pufafrontend:${{ github.sha }} ghcr.io/kizoukun/pufafrontend:latest
           docker tag ghcr.io/kizoukun/pufafrontend:${{ github.sha }} ghcr.io/kizoukun/pufafrontend:${{ needs.publish.outputs.new_tag_version }}
-          docker push ghcr.io/kizoukun/pufafrontend:latest
           docker push ghcr.io/kizoukun/pufafrontend:${{ github.sha }}
           docker push ghcr.io/kizoukun/pufafrontend:${{ needs.publish.outputs.new_tag_version }}
+          if [ "${{ github.ref }}" == "refs/heads/master" ]; then
+            docker tag ghcr.io/kizoukun/pufafrontend:${{ github.sha }} ghcr.io/kizoukun/pufafrontend:latest
+            docker push ghcr.io/kizoukun/pufafrontend:latest
+          fi
 
   deployments:
     runs-on: ubuntu-latest
