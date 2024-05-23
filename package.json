@@ -59,6 +59,7 @@
     "@designbycode/tailwindcss-text-stroke": "^1.2.1",
     "@headlessui/react": "^2.0.3",
     "@heroicons/react": "^2.0.18",
+    "@nextui-org/spinner": "^2.0.28",
     "@prisma/client": "^5.10.2",
     "@radix-ui/react-select": "^2.0.0",
     "@radix-ui/react-slot": "^1.0.2",
@@ -87,7 +88,6 @@
     "@types/react": "^18.2.42",
     "@types/react-dom": "^18.2.17",
     "@types/uuid": "^9.0.7",
-    "autoprefixer": "^10.4.16",
     "axios": "^1.6.7",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
@@ -96,8 +96,8 @@
     "framer-motion": "^10.18.0",
     "lucide-react": "^0.344.0",
     "next": "^14.0.3",
+    "next-nprogress-bar": "^2.3.12",
     "nextjs-toploader": "^1.6.4",
-    "postcss": "^8.4.32",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.12.0",
@@ -108,7 +108,6 @@
     "sweetalert2": "^11.10.4",
     "swiper": "^11.0.7",
     "tailwind-merge": "^1.14.0",
-    "tailwindcss": "3.3.3",
     "tailwindcss-animate": "^1.0.7",
     "typescript": "5.2.2",
     "uuid": "^9.0.1",
@@ -119,10 +118,13 @@
     "@semantic-release/git": "^10.0.1",
     "@semantic-release/github": "^10.0.4",
     "@tailwindcss/forms": "^0.5.7",
+    "autoprefixer": "^10.4.19",
+    "postcss": "^8.4.38",
     "prettier": "^3.2.5",
     "prettier-plugin-tailwindcss": "^0.5.7",
     "prisma": "^5.10.2",
     "semantic-release": "^23.1.1",
-    "semantic-release-export-data": "^1.0.1"
+    "semantic-release-export-data": "^1.0.1",
+    "tailwindcss": "3.4.3"
   }
 }

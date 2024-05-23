@@ -11,6 +11,7 @@ import {
 import User from "@/models/user";
 import Image from "next/image";
 import Swal from "sweetalert2";
+import { Spinner } from "@/components/ui/Spinner";
 
 export default function DashboardProfilePage() {
     const [loading, setLoading] = React.useState(true);
@@ -111,7 +112,13 @@ export default function DashboardProfilePage() {
     };
 
     if (loading) {
-        return <div>Loading...</div>;
+        return (
+            <div className="flex h-screen items-center justify-center">
+                <Spinner className="text-sky-500">
+                    <span className="text-sky-500">Loading...</span>
+                </Spinner>
+            </div>
+        );
     }
 
     const Major = [
@@ -406,7 +413,8 @@ export default function DashboardProfilePage() {
                                             type="password"
                                             autoComplete="current-password"
                                             required
-                                            className="block w-full rounded-md border-0 p-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-500 sm:text-sm sm:leading-6"
+                                            className="block w-full rounded-md border-0 p-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-500 disabled:cursor-not-allowed disabled:opacity-50 sm:text-sm sm:leading-6"
+                                            disabled={true}
                                         />
                                     </div>
                                 </div>
@@ -424,12 +432,16 @@ export default function DashboardProfilePage() {
                                             type="password"
                                             autoComplete="current-password"
                                             required
-                                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-500 sm:text-sm sm:leading-6"
+                                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-500 disabled:cursor-not-allowed disabled:opacity-50 sm:text-sm sm:leading-6"
+                                            disabled={true}
                                         />
                                     </div>
                                 </div>
                                 <div className="mt-16 flex justify-end space-x-2">
-                                    <Button className="border-[#02ABF3] bg-[#02ABF3] px-8 py-2 text-white hover:bg-white hover:text-[#02ABF3]">
+                                    <Button
+                                        className="border-[#02ABF3] bg-[#02ABF3] px-8 py-2 text-white hover:bg-white hover:text-[#02ABF3] disabled:cursor-not-allowed disabled:opacity-50"
+                                        disabled={true}
+                                    >
                                         Save
                                     </Button>
                                 </div>

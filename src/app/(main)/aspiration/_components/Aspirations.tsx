@@ -2,25 +2,35 @@ import AspirationCard from "@/components/aspiration/AspirationCard";
 import { fetchAspirations } from "@/services/api/aspiration";
 import Aspirations from "@/models/aspiration";
 import NoData from "@/components/ui/NoData";
+import { CircularProgress } from "@/components/ui/CircularProgress";
+import { Suspense } from "react";
 
 export default async function AspirationsCards() {
-   const aspirations = await fetchAspirations();
+    const aspirations = await fetchAspirations();
 
-   if (!aspirations?.length) {
+    if (!aspirations?.length) {
         return (
             <NoData
-                message={"There are currently no aspirations available. Please check back later"}
-                title={"No Aspirations Submitted"} />
-        )
-   }
+                message={
+                    "There are currently no aspirations available. Please check back later"
+                }
+                title={"No Aspirations Submitted"}
+            />
+        );
+    }
 
-   //TODO: Handle likes based on user loggedin
+    //TODO: Handle likes based on user loggedin
 
-   return (
-       <div className="grid w-full grid-cols-1 gap-8 py-4 md:grid-cols-2">
-          {aspirations.map((aspiration) => (
-              <AspirationCard key={aspiration.id} aspiration={aspiration}/>
-          ))}
-       </div>
-   );
+    return (
+        <div className="grid w-full grid-cols-1 gap-8 py-4 md:grid-cols-2">
+            <Suspense fallback={<CircularProgress />}>
+                {aspirations.map((aspiration) => (
+                    <AspirationCard
+                        key={aspiration.id}
+                        aspiration={aspiration}
+                    />
+                ))}
+            </Suspense>
+        </div>
+    );
 }

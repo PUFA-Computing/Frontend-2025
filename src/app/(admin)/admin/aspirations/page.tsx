@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import AspirationsList from "@/app/(admin)/admin/aspirations/_components/AspirationsList";
 import { fetchAspirations } from "@/services/api/aspiration";

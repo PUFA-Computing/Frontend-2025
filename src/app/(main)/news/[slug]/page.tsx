@@ -3,7 +3,8 @@ import NewsCard from "@/components/news/NewsCard";
 import { fetchNews, fetchNewsBySlug } from "@/services/api/news";
 import Image from "next/image";
 import { redirect } from "next/navigation";
-import React from "react";
+import React, { Suspense } from "react";
+import { CircularProgress } from "@/components/ui/CircularProgress";
 
 interface NewsDetailsPageProps {
     params: { slug: string };
@@ -45,36 +46,40 @@ export default async function NewsDetailsPage({
                 </div>
 
                 <div className="flex items-center justify-center py-2">
-                    <div className="w-[1103px]">
-                        <h1 className="text-[1.875rem] font-[600] leading-normal text-[#2F2F2F]">
-                            {news.title}
-                        </h1>
-                        <div className="flex flex-col py-2 text-[0.938rem] font-[500] text-[#2F2F2F]">
-                            <p>
-                                {news.author}{" "}
-                                <span className="font-black"> | </span>From:{" "}
-                                {news.organization}
-                            </p>
-                            <p>{news.publish_date.toDateString()}</p>
-                        </div>
+                    <Suspense fallback={<CircularProgress />}>
+                        <div className="w-[1103px]">
+                            <h1 className="text-[1.875rem] font-[600] leading-normal text-[#2F2F2F]">
+                                {news.title}
+                            </h1>
+                            <div className="flex flex-col py-2 text-[0.938rem] font-[500] text-[#2F2F2F]">
+                                <p>
+                                    {news.author}{" "}
+                                    <span className="font-black"> | </span>From:{" "}
+                                    {news.organization}
+                                </p>
+                                <p>{news.publish_date.toDateString()}</p>
+                            </div>
 
-                        <div className="py-8 text-justify text-[1.25rem] font-[500] text-[#2F2F2F]">
-                            {/* Display Quill content as HTML */}
-                            <article
-                                className="prose lg:prose-xl"
-                                dangerouslySetInnerHTML={createMarkup(
-                                    news.content
-                                )}
-                            />
+                            <div className="py-8 text-justify text-[1.25rem] font-[500] text-[#2F2F2F]">
+                                {/* Display Quill content as HTML */}
+                                <article
+                                    className="prose lg:prose-xl"
+                                    dangerouslySetInnerHTML={createMarkup(
+                                        news.content
+                                    )}
+                                />
+                            </div>
                         </div>
-                    </div>
+                    </Suspense>
                 </div>
                 <div className="flex items-center justify-center py-2">
                     <div className="w-[1103px]">
                         <h1 className="py-2 text-[1.25rem] font-[500] text-[#2F2F2F]">
                             More Computing News
                         </h1>
-                        <NewsCard news={moreNews} />
+                        <Suspense fallback={<CircularProgress />}>
+                            <NewsCard news={moreNews} />
+                        </Suspense>
                     </div>
                 </div>
             </div>

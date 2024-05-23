@@ -21,6 +21,7 @@ import { useRouter, usePathname } from "next/navigation";
 import Image from "next/image";
 import PUFALOGO from "@/assets/logo/PUFA_Computing.png";
 import { GetUserProfile } from "@/services/api/user";
+import { Spinner } from "@/components/ui/Spinner";
 
 export default function AdminLayout({
     children,
@@ -114,6 +115,7 @@ export default function AdminLayout({
     const [isLoggedIn, setIsLoggedIn] = useState<boolean>(true);
     const [userName, setUserName] = useState<string>("");
     const [userRole, setUserRole] = useState<number | null>(null);
+    const [loading, setLoading] = useState<boolean>(true);
     const router = useRouter();
 
     useEffect(() => {
@@ -121,8 +123,10 @@ export default function AdminLayout({
         if (userToken) {
             setIsLoggedIn(true);
             fetchUserProfile().then((r) => r);
+            setLoading(false);
         } else {
             setIsLoggedIn(false);
+            setLoading(false);
             router.push("/auth/signin");
         }
     }, []);
@@ -131,19 +135,30 @@ export default function AdminLayout({
         try {
             const response = await GetUserProfile();
             setUserRole(response.role_id);
+            setLoading(false);
             setUserName(`${response.first_name} ${response.last_name}`);
             if (response.role_id === 2 && response.role_id === 8) {
                 // Assuming 1 is the admin role
+                setLoading(false);
                 router.push("/");
             }
         } catch (error) {
             console.error("Error fetching user profile", error);
+            setLoading(false);
             router.push("/auth/signin");
+        } finally {
+            setLoading(false);
         }
     };
 
-    if (!isLoggedIn || userRole === null) {
-        return <div>Loading...</div>;
+    if (loading) {
+        return (
+            <div className="flex h-screen items-center justify-center">
+                <Spinner className="text-sky-500">
+                    <span className="text-sky-500">Loading...</span>
+                </Spinner>
+            </div>
+        );
     }
 
     if (userRole === 2 || userRole === 8) {

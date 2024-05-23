@@ -15,6 +15,7 @@ import Logo from "@/assets/anagatalogo.svg";
 import CompreciationCards from "./_components/CompreciationCards";
 import Loading from "@/components/Loading";
 import { fetchNews } from "@/services/api/news";
+import { CircularProgress } from "@/components/ui/CircularProgress";
 
 export const revalidate = 600;
 export const dynamic = "force-dynamic";
@@ -25,14 +26,16 @@ export default async function Index() {
     return (
         <div className="min-h-screen text-[#353535]">
             <div>
-                <Image
-                    src={BGImage}
-                    alt="PUMA Photo"
-                    width="0"
-                    height="0"
-                    sizes="100vw"
-                    className="h-auto w-full"
-                />
+                <Suspense fallback={<CircularProgress />}>
+                    <Image
+                        src={BGImage}
+                        alt="PUMA Photo"
+                        width="0"
+                        height="0"
+                        sizes="100vw"
+                        className="h-auto w-full"
+                    />
+                </Suspense>
             </div>
             <section
                 id="introduction"
@@ -89,11 +92,13 @@ export default async function Index() {
                 </h1>
 
                 <div className="grid grid-cols-1 gap-12 md:grid-cols-4">
-                    {StudyProgramData.map((StudyProgram, index) => (
-                        <div key={index}>
-                            <StudyProgCard {...StudyProgram} />
-                        </div>
-                    ))}
+                    <Suspense fallback={<CircularProgress />}>
+                        {StudyProgramData.map((StudyProgram, index) => (
+                            <div key={index}>
+                                <StudyProgCard {...StudyProgram} />
+                            </div>
+                        ))}
+                    </Suspense>
                 </div>
             </section>
 
@@ -153,7 +158,9 @@ export default async function Index() {
                     Discover the latest updates on events in our faculty.
                 </h1>
 
-                <EventSection />
+                <Suspense fallback={<CircularProgress />}>
+                    <EventSection />
+                </Suspense>
 
                 <Link
                     href={"/events"}
@@ -177,8 +184,12 @@ export default async function Index() {
                     Stay updated with the latest news and announcements.
                 </h3>
                 <div className="grid grid-cols-1 gap-8 text-justify md:grid-cols-2">
-                    <NewsCardBig news={news} />
-                    <NewsCard news={news} />
+                    <Suspense fallback={<CircularProgress />}>
+                        <NewsCardBig news={news} />
+                    </Suspense>
+                    <Suspense fallback={<CircularProgress />}>
+                        <NewsCard news={news} />
+                    </Suspense>
                 </div>
                 <div className="flex items-center justify-center">
                     <Link href="/" className="block w-max">
@@ -202,9 +213,7 @@ export default async function Index() {
                 <h3 className="">
                     Appreciation to Computizen’s best projects.
                 </h3>
-                <Suspense fallback={<Loading />}>
-                    <CompreciationCards />
-                </Suspense>
+                <CompreciationCards />
                 <div className="flex items-center justify-center">
                     <Link href="/projects" className="block w-max">
                         <Button className="border-[#AF95FF] px-10 py-2 text-[#AF95FF] hover:bg-[#AF95FF] hover:text-white">

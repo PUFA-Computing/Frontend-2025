@@ -7,6 +7,7 @@ import User from "@/models/user";
 import Seperator from "@/components/Seperator";
 import Link from "next/link";
 import user from "@/models/user";
+import { Spinner } from "@nextui-org/spinner";
 
 // Type for error response
 type ErrorResponse = {
@@ -20,6 +21,9 @@ export default function RegisterForm() {
     // State variables
     const [SelectedRole, setSelectedRole] = useState("Student");
     const [error, setError] = useState("");
+    const [isEmailFocused, setIsEmailFocused] = useState(false);
+    const [isStudentIdFocused, setIsStudentIdFocused] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     // validation/regex
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -47,6 +51,7 @@ export default function RegisterForm() {
     // Event handler for registration
     const HandleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        setIsLoading(true);
 
         const formData = new FormData(e.target as HTMLFormElement);
 
@@ -86,7 +91,7 @@ export default function RegisterForm() {
 
         // Additional validation for Computizen role
         if (SelectedRole === "Student") {
-            const batchPrefix = studentId.substr(0, 3);
+            const batchPrefix = studentId.substring(0, 3);
             const allowedBatchPrefixes = ["001", "012", "013", "025"];
             if (!allowedBatchPrefixes.includes(batchPrefix)) {
                 await Swal.fire({
@@ -160,6 +165,8 @@ export default function RegisterForm() {
             } else {
                 setError("Register failed");
             }
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -217,12 +224,20 @@ export default function RegisterForm() {
 
                 {/* Email */}
                 <div className="mb-4">
+                    {isEmailFocused && (
+                        <p className="mt-2 text-sm font-medium text-[#475467]">
+                            Please enter a valid email to get verification link
+                            otherwise you can't login
+                        </p>
+                    )}
                     <input
                         type="text"
                         className="mt-2 block w-full rounded-lg border bg-white px-5 py-3 text-gray-700"
                         placeholder="Email"
                         name="email"
                         required
+                        onFocus={() => setIsEmailFocused(true)}
+                        onBlur={() => setIsEmailFocused(false)}
                     />
                 </div>
 
@@ -286,6 +301,18 @@ export default function RegisterForm() {
                     {/* Student ID */}
                     {SelectedRole === "Student" && (
                         <div className="mt-2">
+                            {isStudentIdFocused && (
+                                <p className="mt-2 text-sm font-medium text-[#475467] text-[0.875]">
+                                    If you find your student ID is used please
+                                    contact{" "}
+                                    <a
+                                        href="mailto:pufa.computing@president.ac.id"
+                                        className="hover:underline"
+                                    >
+                                        pufa.computing@president.ac.id
+                                    </a>
+                                </p>
+                            )}
                             <input
                                 type="text"
                                 inputMode="numeric"
@@ -293,6 +320,8 @@ export default function RegisterForm() {
                                 placeholder="Student ID"
                                 name="studentId"
                                 required
+                                onFocus={() => setIsStudentIdFocused(true)}
+                                onBlur={() => setIsStudentIdFocused(false)}
                             />
                         </div>
                     )}
@@ -333,8 +362,13 @@ export default function RegisterForm() {
                     <button
                         type="submit"
                         className="w-full transform rounded-lg bg-blue-500 px-6 py-3 text-sm font-medium capitalize tracking-wide text-white transition-colors duration-300 hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50"
+                        disabled={isLoading}
                     >
-                        Register
+                        {isLoading ? (
+                            <Spinner size="sm" /> // Show spinner when loading
+                        ) : (
+                            "Sign in"
+                        )}
                     </button>
                 </div>
                 <h1 className="pt-1 text-center font-[400] text-[#475467] text-[0.875] md:pt-3">

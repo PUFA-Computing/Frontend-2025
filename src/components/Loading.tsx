@@ -1,9 +1,19 @@
-import { ClockLoader } from "react-spinners";
+"use client";
 
-export default function Loading() {
-   return (
-      <div className="flex h-screen items-center justify-center">
-         <ClockLoader color="#36d7b7" size={100}/>{" "}
-      </div>
-   );
-}
+import { AppProgressBar as ProgressBar } from "next-nprogress-bar";
+
+const Providers = ({ children }: { children: React.ReactNode }) => {
+    return (
+        <>
+            {children}
+            <ProgressBar
+                height="4px"
+                color="rgb(14, 165, 233)"
+                options={{ showSpinner: true }}
+                shallowRouting
+            />
+        </>
+    );
+};
+
+export default Providers;
