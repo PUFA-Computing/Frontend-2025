@@ -2,10 +2,8 @@ import "./globals.css";
 import { Inter } from "next/font/google";
 import { Poppins } from "next/font/google";
 import Providers from "@/components/Loading";
-import { Suspense } from "react";
 import AuthProvider from "@/components/AuthProvider";
 
-const inter = Inter({ subsets: ["latin"] });
 const poppins = Poppins({ weight: "400", subsets: ["latin"] });
 
 export const metadata = {

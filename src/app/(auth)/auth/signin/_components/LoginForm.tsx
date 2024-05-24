@@ -1,12 +1,10 @@
 "use client";
 import React, { useState } from "react";
-import { Login } from "@/services/api/auth";
 import Swal from "sweetalert2";
-import Seperator from "@/components/Seperator";
 import Link from "next/link";
 import { Spinner } from "@nextui-org/spinner";
 import { useRouter } from "next/navigation";
-import { signIn, useSession } from "next-auth/react";
+import { signIn } from "next-auth/react";
 
 interface LoginFormProps {
     onLoginSuccess: (access_token: string, userId: string) => void;
@@ -19,7 +17,6 @@ type ErrorResponse = {
 };
 
 export default function LoginForm() {
-	const session = useSession();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");

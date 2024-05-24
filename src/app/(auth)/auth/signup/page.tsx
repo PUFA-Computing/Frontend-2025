@@ -1,7 +1,5 @@
-import Image from "next/image";
 import RegisterForm from "./_components/RegisterForm";
 import { Metadata } from "next";
-import PUComputing from "@/assets/PUComputing.png";
 import { getSessionServer } from "@/lib/auth";
 import { redirect } from "next/navigation";
 

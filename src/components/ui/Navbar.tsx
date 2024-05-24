@@ -13,7 +13,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import NavbarDropdown from "./NavbarDropdown";
 import Logo from "@/assets/logo.png";
 import Image from "next/image";
