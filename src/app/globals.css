@@ -71,3 +71,29 @@
 ::-webkit-scrollbar {
    width: 0;
  }
+
+
+
+ @keyframes logo-fall {
+   0% {
+       transform: translateY(-200px) scale(0);
+   }
+   100% {
+       transform: translateY(0px) scale(0);
+   }
+}
+
+@keyframes logo-rotate {
+   0% {
+       transform: translateY(0px) rotate(0deg) scale(0);
+   }
+   100% {
+       transform: translateY(0px) rotate(360deg) scale(1);
+   }
+}
+
+.animate-logo {
+   animation: logo-fall 1s ease-out forwards, logo-rotate 1s ease-out forwards 1s;
+}
+
+
