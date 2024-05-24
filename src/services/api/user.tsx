@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { API_EVENT, API_USER } from "@/config/config";
 import Event from "@/models/event";
 import User from "@/models/user";
@@ -10,17 +10,21 @@ import User from "@/models/user";
  * @example
  * const user = await GetUserProfile();
  */
-export async function GetUserProfile() {
+export async function GetUserProfile(userId?: string, token?: string) {
     try {
-        const id = localStorage.getItem("userId");
-        const response = await axios.get(`${API_USER}/${id}`, {
+      //   const id = localStorage.getItem("userId");
+        const response = await axios.get(`${API_USER}/${userId}`, {
             headers: {
-                Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+                Authorization: `Bearer ${token}`,
             },
         });
         return response.data?.data;
     } catch (error) {
-        console.log(error);
+		if(error instanceof AxiosError) {
+			console.log(error.response)
+		} else {
+			console.log(error)
+		}
         throw error;
     }
 }

@@ -6,6 +6,7 @@ import Seperator from "@/components/Seperator";
 import Link from "next/link";
 import { Spinner } from "@nextui-org/spinner";
 import { useRouter } from "next/navigation";
+import { signIn, useSession } from "next-auth/react";
 
 interface LoginFormProps {
     onLoginSuccess: (access_token: string, userId: string) => void;
@@ -18,6 +19,7 @@ type ErrorResponse = {
 };
 
 export default function LoginForm() {
+	const session = useSession();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
@@ -37,8 +39,29 @@ export default function LoginForm() {
         e.preventDefault();
         setIsLoading(true);
         try {
-            const data = await Login(username, password);
-            successLogin(data);
+            await signIn("credentials", {
+					 username: username,
+					 password: password,
+					 redirect: false,
+				}).then(async (res) => {
+					console.log(res)
+					if(res?.error) {
+						Swal.fire({
+							icon: "error",
+							title: "Login Failed",
+							text: res?.error,
+							showConfirmButton: false,
+							timer: 5000,
+					  });
+					  setError(res?.error);
+					}
+					if(res?.ok) {
+						window.location.reload();
+					}
+				}).catch((err) => {
+					console.log(err)
+				});
+				return
         } catch (error: any) {
             await Swal.fire({
                 icon: "error",

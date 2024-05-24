@@ -99,6 +99,7 @@
     "framer-motion": "^10.18.0",
     "lucide-react": "^0.344.0",
     "next": "^14.0.3",
+    "next-auth": "^4.24.7",
     "next-nprogress-bar": "^2.3.12",
     "nextjs-toploader": "^1.6.4",
     "react": "18.2.0",
