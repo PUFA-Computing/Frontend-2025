@@ -25,6 +25,10 @@ COPY . .
 # Uncomment the following line in case you want to disable telemetry during the build.
 ENV NEXT_TELEMETRY_DISABLED 1
 
+COPY .env.production.sample .env.production
+COPY .env.production.sample .env.development
+COPY .env.production.sample .env.local
+
 RUN yarn build
 
 # If using npm comment out above and use below instead
@@ -62,7 +66,7 @@ USER nextjs
 EXPOSE 3000
 
 ENV PORT 3000
-# set hostname to localhost
+
 ENV HOSTNAME "0.0.0.0"
 
 CMD ["node", "server.js"]
