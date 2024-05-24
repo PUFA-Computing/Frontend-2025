@@ -2,11 +2,12 @@ import CardNormalNewsPage from "@/components/news/CardNormalNewsPage";
 import CardSecondaryNewsPage from "@/components/news/CardSecondaryNewsPage";
 import Seperator from "@/components/Seperator";
 import { SelectSeparator } from "@/components/ui/select";
-import React from "react";
+import React, { Suspense } from "react";
 import PageHeading from "@/components/PageHeading";
 import Image from "next/image";
 import { fetchNews } from "@/services/api/news";
 import CardMainNewsPage from "@/components/news/CardMainNewsPage";
+import { CircularProgress } from "@/components/ui/CircularProgress";
 
 export default async function NewsPage() {
     const news = await fetchNews();
@@ -32,15 +33,21 @@ export default async function NewsPage() {
             <section className="flex flex-col space-y-12 px-[2rem] py-[2rem] md:px-[10rem]">
                 <h1 className="text-[1.5rem] font-[600]">Latest</h1>
                 {/* main big news   */}
-                <CardMainNewsPage news={news} />
+                <Suspense fallback={<CircularProgress />}>
+                    <CardMainNewsPage news={news} />
+                </Suspense>
                 {/* 2 secondary medium news  */}
-                <CardSecondaryNewsPage news={news} />
+                <Suspense fallback={<CircularProgress />}>
+                    <CardSecondaryNewsPage news={news} />
+                </Suspense>
 
                 <Seperator className="border-[#d0d0d0]" />
 
                 <div className="space-y-12">
                     <h1 className="text-[1.5rem] font-[600]">All News</h1>
-                    <CardNormalNewsPage news={news} />
+                    <Suspense fallback={<CircularProgress />}>
+                        <CardNormalNewsPage news={news} />
+                    </Suspense>
                 </div>
             </section>
         </div>

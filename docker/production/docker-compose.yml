@@ -1,0 +1,7 @@
+version: "3"
+
+services:
+  production:
+    build:
+      context: ../../
+      dockerfile: docker/production/Dockerfile

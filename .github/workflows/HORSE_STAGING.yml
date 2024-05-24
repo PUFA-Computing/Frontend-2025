@@ -13,7 +13,7 @@ jobs:
       - name: Build the Docker image
         run: |
           docker login -u kizoukun -p ${{ secrets.GH_TOKEN }} ghcr.io
-          docker build --build-arg NEXT_PUBLIC_API_URL=${{ secrets.NEXT_PUBLIC_API_URL }} -t ghcr.io/kizoukun/pufafrontend:beta .
+          docker build -t ghcr.io/kizoukun/pufafrontend:beta -f docker/staging/Dockerfile .
           docker push ghcr.io/kizoukun/pufafrontend:beta
 
   deployments:

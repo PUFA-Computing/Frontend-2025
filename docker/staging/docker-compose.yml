@@ -1,0 +1,7 @@
+version: "3"
+
+services:
+  staging:
+    build:
+      context: ../../
+      dockerfile: docker/staging/Dockerfile
