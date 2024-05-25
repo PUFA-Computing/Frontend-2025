@@ -10,6 +10,7 @@ import {
 import React from "react";
 import { Cog6ToothIcon } from "@heroicons/react/24/outline";
 import { usePathname } from "next/navigation";
+import Link from "next/link";
 
 interface Team {
     name: string;
@@ -66,7 +67,7 @@ const Sidebar = ({ teams }: SidebarProps) => {
                     <ul role="list" className="-mx-2 space-y-1">
                         {navigation.map((item) => (
                             <li key={item.name}>
-                                <a
+                                <Link
                                     href={item.href}
                                     className={classNames(
                                         currentPath === item.href
@@ -80,7 +81,7 @@ const Sidebar = ({ teams }: SidebarProps) => {
                                         aria-hidden="true"
                                     />
                                     {item.name}
-                                </a>
+                                </Link>
                             </li>
                         ))}
                     </ul>
@@ -113,7 +114,7 @@ const Sidebar = ({ teams }: SidebarProps) => {
                     </ul>
                 </li>
                 <li className="mt-auto">
-                    <a
+                    <Link
                         href="/admin/settings"
                         className={classNames(
                             usePathname() === "/admin/settings"
@@ -127,7 +128,7 @@ const Sidebar = ({ teams }: SidebarProps) => {
                             aria-hidden="true"
                         />
                         Settings
-                    </a>
+                    </Link>
                 </li>
             </ul>
         </nav>
