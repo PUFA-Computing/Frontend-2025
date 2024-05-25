@@ -36,6 +36,7 @@ export default function LayoutClientDashboard({
     const dashboardContext = useAdminDashboardContext();
     const [isMobile, setIsMobile] = useState(false);
     useEffect(() => {
+			//TODO: Rather than using window.innerWidth, use the event listener to detect the window size so if user resize the screen, the sidebar will be hidden
         const width = window.innerWidth;
         if (width < 1024) {
             setIsMobile(true);
