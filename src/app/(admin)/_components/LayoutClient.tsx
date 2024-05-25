@@ -11,7 +11,6 @@ import { XMarkIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import React, { Fragment } from "react";
 import PUFALOGO from "@/assets/logo/PUFA_Computing.png";
-import { usePathname } from "next/navigation";
 
 interface NavigationItem {
     name: string;
@@ -37,7 +36,6 @@ export default function LayoutClientDashboard({
     teams,
 }: LayoutClientDashboardProps) {
     const dashboardContext = useAdminDashboardContext();
-	 const currentPath = usePathname();
     return (
         <Transition show={dashboardContext.sidebar} as={Fragment}>
             <Dialog
