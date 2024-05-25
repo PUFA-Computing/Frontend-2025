@@ -9,11 +9,11 @@ import {
 } from "@heroicons/react/24/outline";
 import Sidebar from "@/components/admin/Sidebar";
 import Header from "@/components/admin/Header";
-import { usePathname, redirect } from "next/navigation";
+import { redirect } from "next/navigation";
 import Image from "next/image";
 import PUFALOGO from "@/assets/logo/PUFA_Computing.png";
 import { getSessionServer } from "@/lib/auth";
-import { DashobardContextProvider } from "@/context/DashboardContext";
+import { AdminDashboardContextProvider } from "@/context/AdminDashboardContext";
 import LayoutClientDashboard from "./_components/LayoutClient";
 
 export default async function AdminLayout({
@@ -21,45 +21,39 @@ export default async function AdminLayout({
 }: {
     children: React.ReactNode;
 }) {
-    const currentPath = usePathname();
 	 const session = await getSessionServer();
+	 if(!session) return redirect('/auth/signin')
 
     const navigation = [
         {
             name: "Dashboard",
             href: "/admin",
             icon: HomeIcon,
-            current: currentPath === "/admin",
         },
         {
             name: "Events",
             href: "/admin/events",
             icon: CalendarIcon,
-            current: currentPath === "/admin/events",
         },
         {
             name: "News",
             href: "/admin/news",
             icon: NewspaperIcon,
-            current: currentPath === "/admin/news",
         },
         {
             name: "Users",
             href: "/admin/users",
             icon: UsersIcon,
-            current: currentPath === "/admin/users",
         },
         {
             name: "Aspirations",
             href: "/admin/aspirations",
             icon: DocumentDuplicateIcon,
-            current: currentPath === "/admin/aspirations",
         },
         {
             name: "Merch",
             href: "/admin/merch",
             icon: BuildingStorefrontIcon,
-            current: currentPath === "/admin/merch",
         },
     ];
     const teams = [
@@ -110,7 +104,7 @@ export default async function AdminLayout({
 	 }
 
     return (
-		<DashobardContextProvider>
+		<AdminDashboardContextProvider>
         <div>
 
 				<LayoutClientDashboard navigation={navigation} teams={teams} />
@@ -144,6 +138,6 @@ export default async function AdminLayout({
                 </main>
             </div>
         </div>
-		  </DashobardContextProvider>
+		  </AdminDashboardContextProvider>
     );
 }

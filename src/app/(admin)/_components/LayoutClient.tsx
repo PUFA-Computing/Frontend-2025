@@ -1,6 +1,6 @@
 "use client";
 import Sidebar from "@/components/admin/Sidebar";
-import { useDashboardContext } from "@/context/DashboardContext";
+import { useAdminDashboardContext } from "@/context/AdminDashboardContext";
 import {
     Dialog,
     DialogPanel,
@@ -11,11 +11,11 @@ import { XMarkIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import React, { Fragment } from "react";
 import PUFALOGO from "@/assets/logo/PUFA_Computing.png";
+import { usePathname } from "next/navigation";
 
 interface NavigationItem {
     name: string;
     href: string;
-    current: boolean;
     icon: any;
     // icon: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
 }
@@ -36,8 +36,8 @@ export default function LayoutClientDashboard({
     navigation,
     teams,
 }: LayoutClientDashboardProps) {
-    const dashboardContext = useDashboardContext();
-
+    const dashboardContext = useAdminDashboardContext();
+	 const currentPath = usePathname();
     return (
         <Transition show={dashboardContext.sidebar} as={Fragment}>
             <Dialog

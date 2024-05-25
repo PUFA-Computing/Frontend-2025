@@ -3,13 +3,13 @@
 import { createContext, useContext, useEffect, useState } from "react";
 
 interface ContextProps {
-   sidebar: boolean;
-   toggleSidebar: (bool?: boolean) => void;
+   isMenuOpen: boolean;
+   toggleMenu: (bool?: boolean) => void;
 }
 
 const DashboardContext = createContext<ContextProps>({
-   sidebar: true,
-   toggleSidebar: (bool?: boolean) => {},
+   isMenuOpen: true,
+   toggleMenu: (bool?: boolean) => {},
 });
 
 export const DashobardContextProvider = ({
@@ -17,22 +17,22 @@ export const DashobardContextProvider = ({
 }: {
    children: React.ReactNode;
 }) => {
-   const [sidebar, setSidebar] = useState(true);
+   const [isMenuOpen, setIsMenuOpen] = useState(true);
    useEffect(() => {
       const width = window.innerWidth;
       if (width < 1024) {
-         setSidebar(false);
+         setIsMenuOpen(false);
       }
    }, []);
-   const toggleSidebar = (bool?: boolean) => {
+   const toggleMenu = (bool?: boolean) => {
 		if(bool != undefined) {
-			setSidebar(bool)
+			setIsMenuOpen(bool)
 		} else {
-			setSidebar(!sidebar);
+			setIsMenuOpen(!isMenuOpen);
 		}
    };
    return (
-      <DashboardContext.Provider value={{ sidebar, toggleSidebar }}>
+      <DashboardContext.Provider value={{ isMenuOpen, toggleMenu }}>
          {children}
       </DashboardContext.Provider>
    );
