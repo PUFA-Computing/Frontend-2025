@@ -133,11 +133,11 @@ export async function Logout() {
  * @example
  * const user = await GetUser();
  */
-export async function GetUser() {
+export async function GetUser(accessToken: string) {
     try {
         const response = await axios.get(`${API_USER}/list`, {
             headers: {
-                Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+                Authorization: `Bearer ${accessToken}`,
             },
         });
 

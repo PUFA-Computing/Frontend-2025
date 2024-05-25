@@ -43,7 +43,7 @@ export default function LayoutClientDashboard({
         } else {
             setIsMobile(false);
         }
-    }, [window.innerWidth]);
+    }, []);
     return (
         isMobile && (
             <Transition show={dashboardContext.sidebar} as={Fragment}>
