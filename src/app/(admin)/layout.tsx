@@ -1,12 +1,3 @@
-
-import {
-    CalendarIcon,
-    BuildingStorefrontIcon,
-    DocumentDuplicateIcon,
-    HomeIcon,
-    UsersIcon,
-    NewspaperIcon,
-} from "@heroicons/react/24/outline";
 import Sidebar from "@/components/admin/Sidebar";
 import Header from "@/components/admin/Header";
 import { redirect } from "next/navigation";
@@ -24,38 +15,7 @@ export default async function AdminLayout({
 	 const session = await getSessionServer();
 	 if(!session) return redirect('/auth/signin')
 
-    const navigation = [
-        {
-            name: "Dashboard",
-            href: "/admin",
-            icon: HomeIcon,
-        },
-        {
-            name: "Events",
-            href: "/admin/events",
-            icon: CalendarIcon,
-        },
-        {
-            name: "News",
-            href: "/admin/news",
-            icon: NewspaperIcon,
-        },
-        {
-            name: "Users",
-            href: "/admin/users",
-            icon: UsersIcon,
-        },
-        {
-            name: "Aspirations",
-            href: "/admin/aspirations",
-            icon: DocumentDuplicateIcon,
-        },
-        {
-            name: "Merch",
-            href: "/admin/merch",
-            icon: BuildingStorefrontIcon,
-        },
-    ];
+    
     const teams = [
         {
             id: 1,
@@ -103,11 +63,11 @@ export default async function AdminLayout({
 		 return redirect('/')
 	 }
 
+
     return (
 		<AdminDashboardContextProvider>
         <div>
-
-				<LayoutClientDashboard navigation={navigation} teams={teams} />
+				<LayoutClientDashboard teams={teams} />
 
             {/* Sidebar Desktop */}
             <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
@@ -123,7 +83,7 @@ export default async function AdminLayout({
                         />
                     </div>
 
-                    <Sidebar navigation={navigation} teams={teams} />
+                    <Sidebar teams={teams} />
                 </div>
             </div>
 

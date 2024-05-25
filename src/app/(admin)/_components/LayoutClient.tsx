@@ -27,12 +27,10 @@ interface Team {
 }
 
 interface LayoutClientDashboardProps {
-    navigation: NavigationItem[];
     teams: Team[];
 }
 
 export default function LayoutClientDashboard({
-    navigation,
     teams,
 }: LayoutClientDashboardProps) {
     const dashboardContext = useAdminDashboardContext();
@@ -107,7 +105,6 @@ export default function LayoutClientDashboard({
                                     />
                                 </div>
                                 <Sidebar
-                                    navigation={navigation}
                                     teams={teams}
                                 />
                             </div>

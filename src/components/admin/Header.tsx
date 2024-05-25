@@ -1,3 +1,4 @@
+"use client"
 import React, { Fragment } from "react";
 import { Bars3Icon, BellIcon } from "@heroicons/react/24/outline";
 import {

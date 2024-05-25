@@ -1,14 +1,15 @@
 "use client";
+import {
+	CalendarIcon,
+	BuildingStorefrontIcon,
+	DocumentDuplicateIcon,
+	HomeIcon,
+	UsersIcon,
+	NewspaperIcon,
+} from "@heroicons/react/24/outline";
 import React from "react";
 import { Cog6ToothIcon } from "@heroicons/react/24/outline";
 import { usePathname } from "next/navigation";
-
-interface NavigationItem {
-    name: string;
-    href: string;
-    icon: any;
-    // icon: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
-}
 
 interface Team {
     name: string;
@@ -17,7 +18,6 @@ interface Team {
 }
 
 interface SidebarProps {
-    navigation: NavigationItem[];
     teams: Team[];
 }
 
@@ -25,9 +25,40 @@ function classNames(...classes: any[]) {
     return classes.filter(Boolean).join(" ");
 }
 
-const Sidebar = ({ navigation, teams }: SidebarProps) => {
+const Sidebar = ({ teams }: SidebarProps) => {
     const currentPath = usePathname();
-
+    const navigation = [
+        {
+            name: "Dashboard",
+            href: "/admin",
+            icon: HomeIcon,
+        },
+        {
+            name: "Events",
+            href: "/admin/events",
+            icon: CalendarIcon,
+        },
+        {
+            name: "News",
+            href: "/admin/news",
+            icon: NewspaperIcon,
+        },
+        {
+            name: "Users",
+            href: "/admin/users",
+            icon: UsersIcon,
+        },
+        {
+            name: "Aspirations",
+            href: "/admin/aspirations",
+            icon: DocumentDuplicateIcon,
+        },
+        {
+            name: "Merch",
+            href: "/admin/merch",
+            icon: BuildingStorefrontIcon,
+        },
+    ];
     return (
         <nav className="flex flex-1 flex-col overflow-hidden">
             <ul role="list" className="flex flex-1 flex-col gap-y-7">
