@@ -8,7 +8,7 @@ interface PUMASectionProps {
 
 function PUMASection({ title, slogan, cabinet }: PUMASectionProps) {
     return (
-        <section className="flex items-center justify-center py-4 sm:py-6 lg:py-8">
+        <section className="hidden md:flex items-center justify-center py-4 sm:py-6 lg:py-8">
             <div className="mx-auto border-l-[5px] border-[#313131] text-[#353535]">
                 <div className="px-4">
                     <h1 className="text-[40px] sm:text-[50px] md:text-[60px] font-[800] uppercase">

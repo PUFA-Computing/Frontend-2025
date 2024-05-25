@@ -2,6 +2,7 @@ import Link from "next/link";
 import Event from "@/models/event";
 import NoData from "@/components/ui/NoData";
 import React from "react";
+import Image from "next/image";
 
 /**
  * PosterCardEventPage component represents a card with a poster image linked to a specific page.
@@ -44,8 +45,10 @@ export default function PosterCardEventPage({ events }: { events: Event[] }) {
             {events.map((event) => (
                <Link href={`events/${event.slug}`} className="block w-full">
                   <div className="rounded-xl transition duration-300 hover:scale-105 hover:shadow-md">
-                     <img
-                        className="h-full w-full rounded-xl bg-center object-cover"
+                     <Image
+                     height={1080}
+                     width={1920}
+                        className="h-[400pxx] w-full rounded-xl bg-center object-cover"
                         src={event.thumbnail}
                         alt={event.title}
                      />

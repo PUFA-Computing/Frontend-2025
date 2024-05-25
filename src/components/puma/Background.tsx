@@ -8,7 +8,7 @@ interface BackgroundProps {
 
 function Background({ image, logo }: BackgroundProps) {
     return (
-        <div className="relative h-[540px] w-full overflow-hidden">
+        <div className="relative h-[540px] w-full overflow-hidden hidden md:block">
             <Image
                 src={image}
                 alt="PUMA background"
