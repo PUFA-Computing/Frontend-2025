@@ -44,6 +44,12 @@ export const authOptions: NextAuthOptions = {
          if (token) {
             session.user = token;
          }
+
+			try {
+				const user = await GetUserProfile(session.user.id, session.user.access_token);
+			} catch (err) {
+				throw new Error("Invalid session token")
+			}
          return session;
       },
       // @ts-ignore
