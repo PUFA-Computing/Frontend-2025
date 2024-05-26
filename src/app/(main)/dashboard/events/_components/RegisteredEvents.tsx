@@ -4,20 +4,30 @@ import React, { useEffect, useState } from "react";
 import { fetchUserEvents } from "@/services/api/user";
 import Event from "@/models/event";
 import { Spinner } from "@nextui-org/spinner";
+import { useSession } from "next-auth/react";
 
 export default function RegisteredEvents() {
     const [events, setEvents] = useState<Event[]>([]);
     const [isLoading, setIsLoading] = useState(true);
+    const session = useSession();
 
     useEffect(() => {
-        const userId = localStorage.getItem("userId");
-        if (userId) {
-            fetchUserEvents(userId).then((events) => {
+        async function fetchEvents() {
+            if (session.data == null) {
+                return;
+            }
+
+            try {
+                const events = await fetchUserEvents(
+                    session.data.user.access_token
+                );
                 setEvents(events);
-            });
+            } catch (error) {
+                console.log(error);
+            }
         }
 
-        setIsLoading(false);
+        fetchEvents().then(() => setIsLoading(false));
     }, []);
 
     if (isLoading) {
