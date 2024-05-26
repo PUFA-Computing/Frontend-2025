@@ -104,8 +104,15 @@ export default function AspirationForm() {
         }
 
         const aspirationData = validationResult.data as Aspirations;
+        if (!session.data) {
+            setIsLoading(true);
+            return;
+        }
         try {
-            await CreateAspiration(aspirationData);
+            await CreateAspiration(
+                aspirationData,
+                session.data.user.access_token
+            );
             await Swal.fire({
                 title: "Aspiration Sent!",
                 text: "Your aspiration has been sent to the organization.",
