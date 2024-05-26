@@ -12,6 +12,7 @@ import News from "@/models/news";
 import WarningModal from "@/components/ui/WarningModal";
 import { deleteNews } from "@/services/api/news";
 import Swal from "sweetalert2";
+import { useSession } from "next-auth/react";
 
 const statuses: any = {
     "PUFA Computing": "text-gray-100 bg-black ring-gray-600/20",
@@ -28,10 +29,20 @@ function classNames(...classes: string[]): string {
 export default function NewsTable({ news }: { news: News[] }) {
     const [deleteModalOpen, setDeleteModalOpen] = useState(false);
     const [selectedNewsId, setSelectedNewsId] = useState<number | null>(null);
+    const session = useSession();
 
     const handleDelete = async (id: number) => {
+        if (!session.data) {
+            await Swal.fire({
+                icon: "error",
+                title: "Error",
+                text: "You must be logged in to delete news",
+            });
+
+            return;
+        }
         try {
-            await deleteNews(id);
+            await deleteNews(id, session.data.user.access_token);
 
             await Swal.fire({
                 icon: "success",
