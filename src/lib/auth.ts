@@ -46,7 +46,8 @@ export const authOptions: NextAuthOptions = {
          }
 
 			try {
-				const user = await GetUserProfile(session.user.id, session.user.access_token);
+				const { password, ...user} = await GetUserProfile(session.user.id, session.user.access_token);
+				session.user = { ...session.user, ...user }
 			} catch (err) {
 				throw new Error("Invalid session token")
 			}
