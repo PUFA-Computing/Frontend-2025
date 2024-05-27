@@ -13,10 +13,11 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import NavbarDropdown from "./NavbarDropdown";
 import Logo from "@/assets/logo.png";
 import Image from "next/image";
+import { signOut, useSession } from "next-auth/react";
 
 /**
  * Navbar Component
@@ -26,7 +27,7 @@ import Image from "next/image";
 export default function Navbar() {
     // State for mobile menu and user authentication
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    const [isLoggedIn, setIsLogggedIn] = useState(false);
+	 const session = useSession();
 
     // Navigation links for PUMA and Others sections
     const NavbarOthers = [
@@ -77,22 +78,13 @@ export default function Navbar() {
         },
     ];
 
-    useEffect(() => {
-        // Check user authentication on component mount
-        const userToken = localStorage.getItem("access_token");
-        setIsLogggedIn(!!userToken);
-    }, []);
-
     /**
      * Handle Logout
      *
      * Function to handle user logout.
      */
     const handleLogout = () => {
-        localStorage.removeItem("access_token");
-        localStorage.removeItem("userId");
-        window.location.href = "/";
-        setIsLogggedIn(false);
+        signOut();
     };
 
     const dashboard = () => {
@@ -179,7 +171,7 @@ export default function Navbar() {
                                         items={NavbarOthers[0].items}
                                     />
                                     <div>
-                                        {isLoggedIn ? (
+                                        {session.status == "authenticated" ? (
                                             <>
                                                 <button
                                                     onClick={dashboard} // Change onClick to dashboard function
@@ -243,8 +235,8 @@ export default function Navbar() {
                                     key={item.title}
                                 />
                             ))}
-                            <li>
-                                {isLoggedIn ? (
+                            <li className="flex">
+                                {session.status == "authenticated" ? (
                                     <>
                                         <button
                                             onClick={dashboard} // Change onClick to dashboard function

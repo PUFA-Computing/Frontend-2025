@@ -12,8 +12,11 @@ import User from "@/models/user";
 import Image from "next/image";
 import Swal from "sweetalert2";
 import { Spinner } from "@/components/ui/Spinner";
+import { useSession } from "next-auth/react";
 
 export default function DashboardProfilePage() {
+    const session = useSession();
+
     const [loading, setLoading] = React.useState(true);
     const [userData, setUserData] = React.useState<User>();
     const [username, setUsername] = React.useState<string>("");
@@ -26,12 +29,17 @@ export default function DashboardProfilePage() {
     const [profilePicture, setProfilePicture] = React.useState<File | null>(
         null
     );
-
     // Fetch user data
     React.useEffect(() => {
         const fetchData = async () => {
+            if (session.data == null) {
+                return;
+            }
             try {
-                const userData = await GetUserProfile();
+                const userData = await GetUserProfile(
+                    session.data.user.id,
+                    session.data.user.access_token
+                );
                 setUserData(userData);
                 setUsername(userData.username);
                 setFirstName(userData.first_name);
@@ -47,7 +55,7 @@ export default function DashboardProfilePage() {
         };
 
         fetchData().then((r) => r);
-    }, []);
+    }, [session.data]);
 
     const handleProfilePictureChange = (
         e: React.ChangeEvent<HTMLInputElement>
@@ -60,8 +68,14 @@ export default function DashboardProfilePage() {
 
     const handleProfilePictureUpload = async () => {
         if (profilePicture) {
+            if (!session.data) {
+                return;
+            }
             try {
-                const updatedUser = await uploadProfilePicture(profilePicture);
+                const updatedUser = await uploadProfilePicture(
+                    profilePicture,
+                    session.data.user.access_token
+                );
                 setUserData(updatedUser);
                 setProfilePicture(null);
 
@@ -85,6 +99,9 @@ export default function DashboardProfilePage() {
     };
 
     const handleSave = async () => {
+        if (!session.data) {
+            return;
+        }
         try {
             const updatedUser = await UpdateUserProfile(
                 username,
@@ -93,7 +110,8 @@ export default function DashboardProfilePage() {
                 lastName,
                 email,
                 major,
-                batch
+                batch,
+                session.data.user.access_token
             );
 
             setUserData(updatedUser);
