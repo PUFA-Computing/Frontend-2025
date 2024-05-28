@@ -19,7 +19,7 @@ export default function EventCardUpcoming({ events }: { events: Event[] }) {
                     key={index}
                     className="border-animation flex max-w-[35rem] gap-4 rounded-lg border  shadow-lg duration-300 hover:border-transparent"
                 >
-                    <div className="relative h-[300px] w-[250px] scale-110 overflow-hidden rounded-lg bg-[#E50D0D]">
+                    <div className="relative h-[340px] w-[250px] scale-110 overflow-hidden rounded-lg bg-[#E50D0D]">
                         <Image
                             src={event.thumbnail}
                             alt={`${event.title}'s poster`}
