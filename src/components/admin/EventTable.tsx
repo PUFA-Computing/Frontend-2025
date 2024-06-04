@@ -8,32 +8,6 @@ import { createEvent } from "@/services/api/event";
 import { ChevronRightIcon } from "@heroicons/react/24/outline";
 
 function EventTable({ events }: { events: Event[] }) {
-    const deleteEvent = async (eventId: number): Promise<void> => {
-        try {
-            const token = localStorage.getItem("access_token");
-
-            if (!token) {
-                console.error(
-                    "Authentication token not found in local storage."
-                );
-                return;
-            }
-
-            await axios.delete(`${API_EVENT}/${eventId}/delete`, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            });
-        } catch (error: any) {
-            if (error.response && error.response.status === 401) {
-                console.error("Authentication error. Please log in again.");
-            } else {
-                console.error(`Error deleting event with ID ${eventId}`, error);
-                throw error;
-            }
-        }
-    };
-
     // Sort events by Alphanumeric order
     const sortedEvents = events.sort((a, b) => {
         return a.title.localeCompare(b.title);
@@ -44,77 +18,6 @@ function EventTable({ events }: { events: Event[] }) {
             return description;
         }
         return description.substring(0, maxLength) + "...";
-    };
-
-    const handleView = (event: Event) => {
-        Swal.fire({
-            title: "View Event",
-            html: `
-                <b>ID:</b> ${event.id}<br>
-                <b>Title:</b> ${event.title}<br>
-                <b>Description:</b> ${event.description}<br>
-            `,
-            icon: "info",
-            confirmButtonText: "Close",
-        });
-    };
-
-    const handleDelete = (event: Event) => {
-        Swal.fire({
-            title: "Delete Event",
-            text: `Are you sure you want to delete ${event.title}?`,
-            icon: "error",
-            showCancelButton: true,
-            confirmButtonText: "Delete",
-            cancelButtonText: "Cancel",
-        }).then(async (result) => {
-            if (result.isConfirmed) {
-                try {
-                    await deleteEvent(event.id);
-                    Swal.fire(
-                        "Deleted!",
-                        `${event.title} has been deleted.`,
-                        "success"
-                    );
-                    window.location.reload();
-                } catch (error) {
-                    Swal.fire(
-                        "Error",
-                        `Failed to delete ${event.title}. Please try again later.`,
-                        "error"
-                    );
-                }
-            }
-        });
-    };
-
-    const handleCreate = (event: Event) => {
-        Swal.fire({
-            title: "Delete Event",
-            text: `Are you sure you want to delete ${event.title}?`,
-            icon: "error",
-            showCancelButton: true,
-            confirmButtonText: "Delete",
-            cancelButtonText: "Cancel",
-        }).then(async (result) => {
-            if (result.isConfirmed) {
-                try {
-                    await deleteEvent(event.id);
-                    Swal.fire(
-                        "Deleted!",
-                        `${event.title} has been deleted.`,
-                        "success"
-                    );
-                    window.location.reload();
-                } catch (error) {
-                    Swal.fire(
-                        "Error",
-                        `Failed to delete ${event.title}. Please try again later.`,
-                        "error"
-                    );
-                }
-            }
-        });
     };
 
     return (

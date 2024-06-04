@@ -1,7 +1,6 @@
 import axios from "axios";
 import Event from "../../models/event";
 import { API_EVENT } from "@/config/config";
-import { format } from "date-fns";
 import FormData from "form-data";
 
 /**
@@ -191,6 +190,34 @@ export const deleteEvent = async (
     } catch (error) {
         // Log an error message and rethrow the error.
         console.error(`Error deleting event with ID ${eventId}`, error);
+        throw error;
+    }
+};
+
+// Get All users registered for an event
+export const fetchUsersRegistered = async (
+    eventId: number,
+    accessToken: string
+) => {
+    try {
+        // Make a GET request to the API endpoint
+        const response = await axios.get(
+            `${API_EVENT}/${eventId}/registered-users`,
+            {
+                headers: {
+                    Authorization: `Bearer ${accessToken}`,
+                },
+            }
+        );
+
+        // Extract the event data from the response
+        return response.data?.data;
+    } catch (error) {
+        // Log an error message and rethrow the error
+        console.error(
+            `Error fetching users registered for event with ID ${eventId}`,
+            error
+        );
         throw error;
     }
 };

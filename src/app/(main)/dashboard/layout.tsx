@@ -1,5 +1,5 @@
 import { redirect, useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { getSessionServer } from "@/lib/auth";
 import ToggleButton from "./_components/ToggleButton";
 import DashboardSidebar from "./_components/DashboardSidebar";
@@ -21,8 +21,8 @@ export default async function DashboardLayout({
                 {session.user && <DashboardSidebar />}
 
                 {/* Main content */}
-                
-					 <DashboardContent>{children}</DashboardContent>
+
+                <DashboardContent>{children}</DashboardContent>
 
                 {/* Toggle button */}
                 <ToggleButton />
