@@ -12,10 +12,9 @@ export default async function AdminLayout({
 }: {
     children: React.ReactNode;
 }) {
-	 const session = await getSessionServer();
-	 if(!session) return redirect('/auth/signin')
+    const session = await getSessionServer();
+    if (!session) return redirect("/auth/signin");
 
-    
     const teams = [
         {
             id: 1,
@@ -54,50 +53,45 @@ export default async function AdminLayout({
         },
     ];
     const userNavigation = [
-        { name: "Your profile", href: "#" },
-        { name: "Sign out", href: "#" },
+        { name: "Your profile", href: "/../dashboard/profile" },
     ];
 
-
-	 if(session?.user.role_id === 2 || session?.user.role_id === 8) {
-		 return redirect('/')
-	 }
-
+    if (session?.user.role_id === 2 || session?.user.role_id === 8) {
+        return redirect("/");
+    }
 
     return (
-		<AdminDashboardContextProvider>
-        <div>
-				<LayoutClientDashboard teams={teams} />
+        <AdminDashboardContextProvider>
+            <div>
+                <LayoutClientDashboard teams={teams} />
 
-            {/* Sidebar Desktop */}
-            <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
-                {/* Sidebar component, swap this element with another sidebar if you like */}
-                <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-gray-900 px-6 pb-4">
-                    <div className="flex h-24 shrink-0 items-center justify-center">
-                        <Image
-                            className="h-16 w-auto"
-                            src={PUFALOGO}
-                            width={200}
-                            height={200}
-                            alt="Your Company"
-                        />
+                {/* Sidebar Desktop */}
+                <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
+                    {/* Sidebar component, swap this element with another sidebar if you like */}
+                    <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-gray-900 px-6 pb-4">
+                        <div className="flex h-24 shrink-0 items-center justify-center">
+                            <Image
+                                className="h-16 w-auto"
+                                src={PUFALOGO}
+                                width={200}
+                                height={200}
+                                alt="Your Company"
+                            />
+                        </div>
+
+                        <Sidebar teams={teams} />
                     </div>
+                </div>
 
-                    <Sidebar teams={teams} />
+                {/*Content*/}
+                <div className="lg:pl-72">
+                    <Header userNavigation={userNavigation} />
+
+                    <main className="py-10">
+                        <div className="px-4 sm:px-6 lg:px-8">{children}</div>
+                    </main>
                 </div>
             </div>
-
-            {/*Content*/}
-            <div className="lg:pl-72">
-                <Header
-                    userNavigation={userNavigation}
-                />
-
-                <main className="py-10">
-                    <div className="px-4 sm:px-6 lg:px-8">{children}</div>
-                </main>
-            </div>
-        </div>
-		  </AdminDashboardContextProvider>
+        </AdminDashboardContextProvider>
     );
 }
