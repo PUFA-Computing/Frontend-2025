@@ -15,6 +15,7 @@ interface Event {
   organization: string;
   author: string;
   max_registration: number;
+  total_registered: number;
 }
 
 export default Event;

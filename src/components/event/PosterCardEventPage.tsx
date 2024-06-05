@@ -48,7 +48,7 @@ export default function PosterCardEventPage({ events }: { events: Event[] }) {
                      <Image
                      height={1080}
                      width={1920}
-                        className="h-[400pxx] w-full rounded-xl bg-center object-cover"
+                        className="h-[400px] w-full rounded-xl bg-center object-cover"
                         src={event.thumbnail}
                         alt={event.title}
                      />

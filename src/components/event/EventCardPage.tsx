@@ -31,7 +31,7 @@ export default function EventCardPage({ events }: { events: Event[] }) {
          {events.map((event) => (
             <Link key={event.id} href={`/events/${event.slug}`}>
                <div className="flex cursor-pointer gap-4 rounded-[15px] border-[0.5px] border-[#E50D0D] md:gap-8">
-                  <div className="relative w-[40rem] h-[16rem]">
+                  <div className="relative w-[15rem] h-[16rem]">
                      <Image
                         src={event.thumbnail}
                         className="h-full w-full rounded-[15px] scale-110"

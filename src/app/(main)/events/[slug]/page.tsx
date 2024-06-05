@@ -31,6 +31,16 @@ export default async function EventDetailsPage({ params }: EventPageProps) {
         return redirect("/404");
     }
 
+    const registrationPercentage = (event.total_registered / event.max_registration) * 100;
+
+    let registrationColor = 'text-green-500'; 
+    if (registrationPercentage >= 80) {
+        registrationColor = 'text-red-500';
+    } else if (registrationPercentage >= 50) {
+        registrationColor = 'text-yellow-500';
+    }
+
+
     return (
         <div>
             <section className="bg-[#F2F2F2] p-10">
@@ -52,7 +62,7 @@ export default async function EventDetailsPage({ params }: EventPageProps) {
             </section>
 
             <div className="mx-auto grid max-w-7xl items-start gap-6 py-6 md:grid-cols-2 lg:gap-12">
-                <div className="w-full md:w-auto px-2">
+                <div className="w-full px-2 md:w-auto">
                     <div className="w-full scale-100 overflow-hidden rounded-lg border border-gray-200 dark:border-gray-800">
                         <Image
                             alt={`${event.title}'s poster`}
@@ -67,9 +77,14 @@ export default async function EventDetailsPage({ params }: EventPageProps) {
 
                 {/* card details event  */}
                 <div className="max-h-4xl w-full rounded-lg border border-[#CBCBCB] text-[#353535] md:w-auto">
-                    <h1 className="px-5 py-2 text-[1.5rem] font-[600]">
-                        {event.title}
-                    </h1>
+                    <div className="flex justify-between px-5 py-2 text-[1.5rem] font-[600]">
+                        <h1>
+                            {event.title}
+                        </h1>
+                        <div>
+                            <p className={registrationColor}>{event.total_registered} <span className="text-[#353535]"> / {event.max_registration} </span></p>
+                        </div>
+                    </div>
                     <Seperator className="border-[#CBCBCB]" />
                     {/*Overflow for scroll if long*/}
                     <div className="max-h-[39rem] overflow-y-auto px-5 py-2">
