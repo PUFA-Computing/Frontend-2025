@@ -3,11 +3,14 @@ import React, { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Input from "@/components/Input";
 import Button from "@/components/Button";
-import { fetchEventBySlug, updateEvent } from "@/services/api/event";
+import {
+    deleteEvent,
+    fetchEventBySlug,
+    updateEvent,
+} from "@/services/api/event";
 import Event from "@/models/event";
 import Swal from "sweetalert2";
 import { useSession } from "next-auth/react";
-import { router } from "next/client";
 import Seperator from "@/components/Seperator";
 import Image from "next/image";
 import ListUserRegistered from "./ListUserRegistered";
@@ -26,6 +29,7 @@ function classNames(...classes: string[]) {
 
 export default function EventDetails() {
     const pathname = usePathname();
+    const router = useRouter();
     // get the slug from the pathname
     const slug = pathname.split("/").pop();
     const [event, setEvent] = useState<Event | null>(null);
@@ -81,6 +85,45 @@ export default function EventDetails() {
         );
     };
 
+    const handleDelete = async () => {
+        if (!session.data) {
+            return null;
+        }
+        if (event) {
+            const result = await Swal.fire({
+                title: "Are you sure?",
+                text: "Do you really want to delete this event? This action cannot be undone.",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonText: "Yes, delete it!",
+                cancelButtonText: "Cancel",
+            });
+
+            if (result.isConfirmed) {
+                try {
+                    setSaving(true);
+                    await deleteEvent(event.id, session.data.user.access_token);
+                    await Swal.fire({
+                        icon: "success",
+                        title: "Event Deleted",
+                        showConfirmButton: false,
+                        timer: 1500,
+                    });
+                    router.push("/admin/events");
+                } catch (error) {
+                    console.error("Error deleting event:", error);
+                    await Swal.fire({
+                        icon: "error",
+                        title: "Error",
+                        text: "Error deleting event",
+                    });
+                } finally {
+                    setSaving(false);
+                }
+            }
+        }
+    };
+
     const handleSave = async () => {
         if (!session.data) {
             return null;
@@ -99,7 +142,7 @@ export default function EventDetails() {
                     showConfirmButton: false,
                     timer: 1500,
                 });
-                await router.push("/admin/events");
+                router.push("/admin/events");
             } catch (error) {
                 console.error("Error updating event:", error);
                 await Swal.fire({
@@ -197,6 +240,16 @@ export default function EventDetails() {
                             This page is currently under maintenance. Please be
                             patients for the updates.
                         </p>
+                    </div>
+
+                    {/*Button Delete Event*/}
+                    <div className="flex justify-end px-4">
+                        <Button
+                            onClick={handleDelete}
+                            className="border-[#FF0000] bg-[#FF0000] px-8 py-2 text-white hover:bg-white hover:text-[#FF0000]"
+                        >
+                            Delete Event
+                        </Button>
                     </div>
 
                     <div className="grid grid-cols-1 gap-5 p-4 lg:grid-cols-2">

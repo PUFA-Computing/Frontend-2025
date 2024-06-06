@@ -171,13 +171,13 @@ export const updateEvent = async (
 /**
  * Deletes an existing event with the specified ID from the API endpoint.
  *
- * @param {string} eventId The ID of the event to delete.
+ * @param {number} eventId The ID of the event to delete.
  * @param accessToken The access token for the user.
  * @returns {Promise<void>} A promise that resolves when the event has been deleted.
  * @throws {Error} If an error occurs during the API request.
  */
 export const deleteEvent = async (
-    eventId: string,
+    eventId: number,
     accessToken: string
 ): Promise<void> => {
     try {
