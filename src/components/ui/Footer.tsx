@@ -9,7 +9,7 @@ export default function Footer({ version }: { version: Version }) {
             <div className="container mx-auto px-6 py-12">
                 <hr className="my-4 border-gray-200 dark:border-gray-700" />
                 <div className="md:-mx-3 md:flex md:items-center md:justify-between">
-                    <div className="dark:text-white md:mx-3 xl:text-sm">
+                    <div className="md:mx-3 xl:text-sm dark:text-white">
                         <div className="text-sm font-semibold tracking-widest text-[#0C8CE9]">
                             SUBSCRIBE TO OUR NEWSLETTER
                         </div>
@@ -39,7 +39,7 @@ export default function Footer({ version }: { version: Version }) {
                 </div>
                 <hr className="my-4" />
                 <div className="md:-mx-3 md:flex md:items-center md:justify-between">
-                    <div className="dark:text-white md:mx-3 xl:text-sm">
+                    <div className="md:mx-3 xl:text-sm dark:text-white">
                         <div className="text-sm font-normal tracking-widest text-[#9CA3AF]">
                             © {new Date().getFullYear()} PUMA Computing. All
                             rights reserved.
@@ -47,16 +47,12 @@ export default function Footer({ version }: { version: Version }) {
                             Made by Research & Technology PUFA Computing
                         </div>
                         {/*Version Info*/}
-                        <div className="mt-2 justify-center text-sm font-normal tracking-widest text-[#9CA3AF]">
-                            App Version:{" "}
-                            <a
-                                href=""
-                                target={"_blank"}
-                                className="border-blue-600 bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent hover:border-b-2 hover:border-b-blue-600"
-                            >
-                                {version.latest_version}
-                            </a>
-                        </div>
+                            <div className="mt-2 justify-center text-sm font-normal tracking-widest text-[#9CA3AF]">
+                                App Version: <span className="border-blue-600 bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent hover:border-b-2 hover:border-b-blue-600">{version.latest_version}</span>
+                            </div>
+                                {/* <p className="border-blue-600 bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent hover:border-b-2 hover:border-b-blue-600">
+                                    {version.latest_version}
+                                </p> */}
                     </div>
 
                     <div className="mt-6 flex flex-row items-center justify-center space-x-4 md:ml-auto md:flex-row md:space-y-0">
