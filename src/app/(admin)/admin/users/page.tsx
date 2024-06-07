@@ -6,8 +6,10 @@ import React from "react";
 import User from "@/models/user";
 import EditUserModal from "@/app/(admin)/admin/users/_components/EditUserModal";
 import ViewVerificationModal from "@/app/(admin)/admin/users/_components/ViewStudentVerificationModal";
+import { useSession } from "next-auth/react";
 
 export default function UsersList() {
+	const session = useSession();
     const [users, setUsers] = React.useState<User[]>([]);
     const [selectedUser, setSelectedUser] = React.useState<User | null>(null);
     const [verificationInfo, setVerificationInfo] = React.useState<any | null>(
@@ -15,9 +17,12 @@ export default function UsersList() {
     );
 
     React.useEffect(() => {
-        async function fetchUsers() {
+		 async function fetchUsers() {
+			  if(session.data == null) {
+				 return;
+			  }
             try {
-                const users = await GetUser();
+                const users = await GetUser(session.data.user.access_token);
                 setUsers(users);
             } catch (error) {
                 console.log(error);
@@ -25,7 +30,7 @@ export default function UsersList() {
         }
 
         fetchUsers().then((r) => r);
-    }, []);
+    }, [session.data]);
 
     const openModal = (user: User) => {
         setSelectedUser(user);

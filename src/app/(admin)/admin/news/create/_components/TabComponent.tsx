@@ -7,6 +7,7 @@ import ReviewCreateForm from "@/components/admin/ReviewCreateForm";
 import Swal from "sweetalert2";
 import { createNews } from "@/services/api/news";
 import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 const steps = [
     {
@@ -42,6 +43,7 @@ function classNames(...classes: string[]) {
 }
 
 export default function CreateNewsTabs() {
+    const session = useSession();
     const [currentStep, setCurrentStep] = useState(0);
     const [formData, setNewsDetails] = useState<NewsCreation>({
         title: "",
@@ -130,16 +132,26 @@ export default function CreateNewsTabs() {
         };
 
         try {
-            createNews(news, thumbnail).then((response) => {
+            if (!session.data) {
                 Swal.fire({
-                    icon: "success",
-                    title: "Success",
-                    text: "News created successfully",
-                }).then((r) => {
-                    r.dismiss;
-                    router.push("/admin/news");
-                });
-            });
+                    icon: "error",
+                    title: "Error",
+                    text: "You are not authorized to create news",
+                }).then((r) => r.dismiss);
+                return;
+            }
+            createNews(news, thumbnail, session.data.user.access_token).then(
+                (response) => {
+                    Swal.fire({
+                        icon: "success",
+                        title: "Success",
+                        text: "News created successfully",
+                    }).then((r) => {
+                        r.dismiss;
+                        router.push("/admin/news");
+                    });
+                }
+            );
         } catch (error) {
             Swal.fire({
                 icon: "error",

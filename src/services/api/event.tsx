@@ -1,7 +1,6 @@
 import axios from "axios";
 import Event from "../../models/event";
 import { API_EVENT } from "@/config/config";
-import { format } from "date-fns";
 import FormData from "form-data";
 
 /**
@@ -15,7 +14,7 @@ const eventCache: { [key: string]: Event } = {};
  * @returns {Promise<Event[]>} A promise that resolves to an array of Event objects.
  * @throws {Error} If an error occurs during the API request.
  */
-export  const fetchEvents = async (): Promise<Event[]> => {
+export const fetchEvents = async (): Promise<Event[]> => {
     try {
         // Make a GET request to the API endpoint.
         const response = await axios.get(API_EVENT);
@@ -87,11 +86,16 @@ interface EventCreation {
  * Creates a new event using the specified data and sends it to the API endpoint.
  *
  * @param {Event} eventData The data for the new event.
- * @param file
+ * @param file The image file for the event.
+ * @param accessToken The access token for the user.
  * @returns {Promise<Event>} A promise that resolves to the newly created Event object.
  * @throws {Error} If an error occurs during the API request.
  */
-export const createEvent = async (eventData: EventCreation, file: File): Promise<Event> => {
+export const createEvent = async (
+    eventData: EventCreation,
+    file: File,
+    accessToken: string
+): Promise<Event> => {
     try {
         const formData = new FormData();
 
@@ -109,7 +113,7 @@ export const createEvent = async (eventData: EventCreation, file: File): Promise
         // Make a POST request to the API endpoint.
         const response = await axios.post(`${API_EVENT}/create`, formData, {
             headers: {
-                Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+                Authorization: `Bearer ${accessToken}`,
                 "Content-Type": "multipart/form-data",
             },
         });
@@ -131,18 +135,25 @@ export const createEvent = async (eventData: EventCreation, file: File): Promise
  *
  * @param {string} eventId The ID of the event to update.
  * @param {Event} eventData The updated data for the event.
+ * @param accessToken The access token for the user.
  * @returns {Promise<Event>} A promise that resolves to the updated Event object.
  * @throws {Error} If an error occurs during the API request.
  */
 export const updateEvent = async (
     eventId: string,
-    eventData: Event
+    eventData: Event,
+    accessToken: string
 ): Promise<Event> => {
     try {
         // Make a PUT request to the API endpoint.
         const response = await axios.put(
             `${API_EVENT}/${eventId}/edit`,
-            eventData
+            eventData,
+            {
+                headers: {
+                    Authorization: `Bearer ${accessToken}`,
+                },
+            }
         );
 
         // Extract the updated event data from the response.
@@ -160,17 +171,53 @@ export const updateEvent = async (
 /**
  * Deletes an existing event with the specified ID from the API endpoint.
  *
- * @param {string} eventId The ID of the event to delete.
+ * @param {number} eventId The ID of the event to delete.
+ * @param accessToken The access token for the user.
  * @returns {Promise<void>} A promise that resolves when the event has been deleted.
  * @throws {Error} If an error occurs during the API request.
  */
-export const deleteEvent = async (eventId: string): Promise<void> => {
+export const deleteEvent = async (
+    eventId: number,
+    accessToken: string
+): Promise<void> => {
     try {
         // Make a DELETE request to the API endpoint.
-        await axios.delete(`${API_EVENT}/${eventId}/delete`);
+        await axios.delete(`${API_EVENT}/${eventId}/delete`, {
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+            },
+        });
     } catch (error) {
         // Log an error message and rethrow the error.
         console.error(`Error deleting event with ID ${eventId}`, error);
+        throw error;
+    }
+};
+
+// Get All users registered for an event
+export const fetchUsersRegistered = async (
+    eventId: number,
+    accessToken: string
+) => {
+    try {
+        // Make a GET request to the API endpoint
+        const response = await axios.get(
+            `${API_EVENT}/${eventId}/registered-users`,
+            {
+                headers: {
+                    Authorization: `Bearer ${accessToken}`,
+                },
+            }
+        );
+
+        // Extract the event data from the response
+        return response.data?.data;
+    } catch (error) {
+        // Log an error message and rethrow the error
+        console.error(
+            `Error fetching users registered for event with ID ${eventId}`,
+            error
+        );
         throw error;
     }
 };

@@ -19,6 +19,7 @@ import {
 } from "@headlessui/react";
 import Aspirations from "@/models/aspiration";
 import { AdminReplyAspiration } from "@/services/api/aspiration";
+import { useSession } from "next-auth/react";
 
 const moods = [
     {
@@ -80,12 +81,18 @@ export default function ReplyAspirationsPage({
     const updateDate = new Date(aspiration.updated_at);
 
     const [commentText, setCommentText] = useState("");
+    const session = useSession();
 
     const handleCommentSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        if (!session.data) return;
 
         try {
-            await AdminReplyAspiration(aspiration.id, commentText);
+            await AdminReplyAspiration(
+                aspiration.id,
+                commentText,
+                session.data.user.access_token
+            );
 
             setCommentText("");
             window.location.reload();

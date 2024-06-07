@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import User from "@/models/user";
 import { adminUpdateUser } from "@/services/api/user";
 import Swal from "sweetalert2";
+import { getSessionServer } from "@/lib/auth";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 function EditUserModal({ user, onClose }: { user: User; onClose: () => void }) {
     const [role, setRole] = useState(user.role_id);
@@ -10,24 +13,36 @@ function EditUserModal({ user, onClose }: { user: User; onClose: () => void }) {
     const handleRoleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         setRole(Number(event.target.value));
     };
-
     const handleStatusChange = (
         event: React.ChangeEvent<HTMLSelectElement>
     ) => {
         setStatus(event.target.value === "true");
     };
+    const router = useRouter();
+
+    const session = useSession();
 
     const handleSave = async () => {
+        if (!session.data) {
+            return;
+        }
         try {
-            await adminUpdateUser(user.id, role, status);
+            await adminUpdateUser(
+                user.id,
+                role,
+                status,
+                session.data.user.access_token
+            );
 
             await Swal.fire({
                 icon: "success",
                 title: "User updated successfully",
                 showConfirmButton: false,
+                timerProgressBar: true,
+                timer: 1500,
             });
-
             onClose();
+            window.location.reload();
         } catch (error) {
             await Swal.fire({
                 icon: "error",

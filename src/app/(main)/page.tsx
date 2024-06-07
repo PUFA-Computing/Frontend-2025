@@ -16,6 +16,8 @@ import CompreciationCards from "./_components/CompreciationCards";
 import Loading from "@/components/Loading";
 import { fetchNews } from "@/services/api/news";
 import { CircularProgress } from "@/components/ui/CircularProgress";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
 
 export const revalidate = 600;
 export const dynamic = "force-dynamic";

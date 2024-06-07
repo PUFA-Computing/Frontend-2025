@@ -21,18 +21,21 @@ export const fetchAspirations = async (): Promise<Aspirations[]> => {
     }
 };
 
-export const CreateAspiration = async (data: {
-    subject: string;
-    organization_id: number;
-    anonymous: boolean;
-    closed: boolean;
-    message: string;
-}) => {
+export const CreateAspiration = async (
+    data: {
+        subject: string;
+        organization_id: number;
+        anonymous: boolean;
+        closed: boolean;
+        message: string;
+    },
+    accessToken: string
+) => {
     try {
         const response = await axios.post(`${API_ASPIRATION}/create`, data, {
             headers: {
                 "Content-Type": "application/json",
-                Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+                Authorization: `Bearer ${accessToken}`,
             },
         });
         return response.data;
@@ -55,7 +58,11 @@ export const GetAspirationById = async (id: number) => {
     }
 };
 
-export const AdminReplyAspiration = async (id: number, admin_reply: string) => {
+export const AdminReplyAspiration = async (
+    id: number,
+    admin_reply: string,
+    accessToken: string
+) => {
     try {
         const response = await axios.post(
             `${API_ASPIRATION}/${id}/admin_reply`,
@@ -63,7 +70,7 @@ export const AdminReplyAspiration = async (id: number, admin_reply: string) => {
             {
                 headers: {
                     "Content-Type": "application/json",
-                    Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+                    Authorization: `Bearer ${accessToken}`,
                 },
             }
         );

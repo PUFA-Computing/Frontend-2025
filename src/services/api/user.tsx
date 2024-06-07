@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { API_EVENT, API_USER } from "@/config/config";
 import Event from "@/models/event";
 import User from "@/models/user";
@@ -10,17 +10,20 @@ import User from "@/models/user";
  * @example
  * const user = await GetUserProfile();
  */
-export async function GetUserProfile() {
+export async function GetUserProfile(userId: string, token: string) {
     try {
-        const id = localStorage.getItem("userId");
-        const response = await axios.get(`${API_USER}/${id}`, {
+        const response = await axios.get(`${API_USER}/${userId}`, {
             headers: {
-                Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+                Authorization: `Bearer ${token}`,
             },
         });
         return response.data?.data;
     } catch (error) {
-        console.log(error);
+        if (error instanceof AxiosError) {
+            console.log(error.response);
+        } else {
+            console.log(error);
+        }
         throw error;
     }
 }
@@ -40,7 +43,8 @@ export async function UpdateUserProfile(
     last_name: string,
     email: string,
     major: string,
-    year: string
+    year: string,
+    accessToken: string
 ) {
     try {
         const response = await axios.put(
@@ -56,7 +60,7 @@ export async function UpdateUserProfile(
             },
             {
                 headers: {
-                    Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+                    Authorization: `Bearer ${accessToken}`,
                 },
             }
         );
@@ -68,7 +72,7 @@ export async function UpdateUserProfile(
     }
 }
 
-export async function UpdatePassword(password: string) {
+export async function UpdatePassword(password: string, accessToken: string) {
     try {
         const response = await axios.put(
             `${API_USER}/edit`,
@@ -77,7 +81,7 @@ export async function UpdatePassword(password: string) {
             },
             {
                 headers: {
-                    Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+                    Authorization: `Bearer ${accessToken}`,
                 },
             }
         );
@@ -129,11 +133,11 @@ export async function Logout() {
  * @example
  * const user = await GetUser();
  */
-export async function GetUser() {
+export async function GetUser(accessToken: string) {
     try {
         const response = await axios.get(`${API_USER}/list`, {
             headers: {
-                Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+                Authorization: `Bearer ${accessToken}`,
             },
         });
 
@@ -145,20 +149,15 @@ export async function GetUser() {
 }
 
 /** Fetches the events that the user has registered for from the API.
- * @param {string} userId The ID of the user to fetch events for.
  * @returns {Promise<Event[]>} A promise that resolves to an array of Event objects.
  * @throws {Error} If an error occurs during the API request.
+ * @param accessToken The access token to authenticate the request.
  */
-export async function fetchUserEvents(userId: string) {
+export async function fetchUserEvents(accessToken: string) {
     try {
-        const token = localStorage.getItem("access_token");
-        if (!token) {
-            throw new Error("No access token found");
-        }
-
         const response = await axios.get(`${API_USER}/registered-events`, {
             headers: {
-                Authorization: `Bearer ${token}`,
+                Authorization: `Bearer ${accessToken}`,
             },
         });
 
@@ -174,6 +173,7 @@ export async function fetchUserEvents(userId: string) {
  * @param userId The ID of the user to fetch.
  * @param roleID The ID of the role to update the user to.
  * @param studentIDVerified Whether the student ID is verified.
+ * @param accessToken The access token to authenticate the request.
  *
  * @returns {Promise<User>} A promise that resolves to a User object.
  * @throws {Error} If an error occurs during the API request.
@@ -183,7 +183,8 @@ export async function fetchUserEvents(userId: string) {
 export async function adminUpdateUser(
     userId: string | undefined,
     roleID: number | undefined,
-    studentIDVerified: boolean | undefined
+    studentIDVerified: boolean | undefined,
+    accessToken: string | undefined
 ): Promise<User> {
     try {
         // Json Body
@@ -195,7 +196,7 @@ export async function adminUpdateUser(
             },
             {
                 headers: {
-                    Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+                    Authorization: `Bearer ${accessToken}`,
                 },
             }
         );
@@ -212,13 +213,14 @@ export async function adminUpdateUser(
 /**
  * @uploadProfilePicture Uploads a profile picture for the current user.
  * @param file The file to upload.
+ * @param accessToken The access token to authenticate the request.
  * @returns {Promise<User>} A promise that resolves to a User object.
  * @throws {Error} If an error occurs during the API request.
  * @example
  * const user = await uploadProfilePicture(file);
  * @see https://developer.mozilla.org/en-US/docs/Web/API/FormData
  */
-export async function uploadProfilePicture(file: File) {
+export async function uploadProfilePicture(file: File, accessToken: string) {
     try {
         const formData = new FormData();
         formData.append("profile_picture", file);
@@ -229,7 +231,7 @@ export async function uploadProfilePicture(file: File) {
             {
                 headers: {
                     "Content-Type": "multipart/form-data",
-                    Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+                    Authorization: `Bearer ${accessToken}`,
                 },
             }
         );

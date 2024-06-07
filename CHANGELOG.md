@@ -1,3 +1,12 @@
+# [1.2.0](https://github.com/PUFA-Computing/Frontend/compare/v1.1.0...v1.2.0) (2024-05-24)
+
+
+### Features
+
+* adding dependency @nextui-org/theme ([0ed6d91](https://github.com/PUFA-Computing/Frontend/commit/0ed6d912b3416450471ff33d9bc31513227164b3))
+* Enhance UX with adding spinner ([83a7e5d](https://github.com/PUFA-Computing/Frontend/commit/83a7e5d7aa8b3c3af54609acb56f460e364ce89f))
+* Enhance UX with adding spinner ([89d1acc](https://github.com/PUFA-Computing/Frontend/commit/89d1accae011f9d7d8189f6a60df4d1c3613c8ec))
+
 # [1.1.0](https://github.com/PUFA-Computing/Frontend/compare/v1.0.10...v1.1.0) (2024-05-22)
 
 
