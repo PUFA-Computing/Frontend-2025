@@ -1,3 +1,10 @@
+## [1.3.6](https://github.com/PUFA-Computing/Frontend/compare/v1.3.5...v1.3.6) (2024-06-10)
+
+
+### Bug Fixes
+
+* touch the env ([c298581](https://github.com/PUFA-Computing/Frontend/commit/c2985814c3afabbfb05acd4708af517a4c0a226e))
+
 ## [1.3.5](https://github.com/PUFA-Computing/Frontend/compare/v1.3.4...v1.3.5) (2024-06-10)
 
 
