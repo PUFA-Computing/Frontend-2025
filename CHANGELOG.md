@@ -1,3 +1,10 @@
+## [1.3.7](https://github.com/PUFA-Computing/Frontend/compare/v1.3.6...v1.3.7) (2024-06-10)
+
+
+### Bug Fixes
+
+* environtments build ([1496fdf](https://github.com/PUFA-Computing/Frontend/commit/1496fdff5f8aa14c11474c24a6335cafc4ff5000))
+
 ## [1.3.6](https://github.com/PUFA-Computing/Frontend/compare/v1.3.5...v1.3.6) (2024-06-10)
 
 
