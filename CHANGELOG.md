@@ -1,3 +1,10 @@
+## [1.3.5](https://github.com/PUFA-Computing/Frontend/compare/v1.3.4...v1.3.5) (2024-06-10)
+
+
+### Bug Fixes
+
+* command of actions ([566bf05](https://github.com/PUFA-Computing/Frontend/commit/566bf0506629ff6edecaa7ec44a1a1a86cfdca3f))
+
 ## [1.3.4](https://github.com/PUFA-Computing/Frontend/compare/v1.3.3...v1.3.4) (2024-06-10)
 
 
