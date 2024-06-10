@@ -42,7 +42,6 @@ export default function LoginForm() {
                 redirect: false,
             })
                 .then(async (res) => {
-                    console.log(res);
                     if (res?.error) {
                         Swal.fire({
                             icon: "error",
@@ -83,9 +82,6 @@ export default function LoginForm() {
             showConfirmButton: false,
             timer: 2000,
         }).then(() => {
-            console.log(access.data);
-            localStorage.setItem("access_token", access.data.access_token);
-            localStorage.setItem("userId", access.data.user_id);
             router.push("/dashboard");
         });
     };
@@ -126,7 +122,7 @@ export default function LoginForm() {
                         <input
                             type="text"
                             className="block w-full rounded-lg border bg-white px-6 py-3 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring-blue-300 md:px-10"
-                            placeholder="Email or Username"
+                            placeholder="Username or Email"
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}
                         />
