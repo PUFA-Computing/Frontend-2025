@@ -14,16 +14,16 @@ export default async function NewsPage() {
 
     return (
         <div>
-            <div
-                className="border-l-4 border-yellow-500 bg-yellow-100 p-4 text-yellow-700"
-                role="alert"
-            >
-                <p className="font-bold">Under Construction!</p>
-                <p>
-                    This page is currently under construction. Stay tuned for
-                    updates.
-                </p>
-            </div>
+            {/*<div*/}
+            {/*    className="border-l-4 border-yellow-500 bg-yellow-100 p-4 text-yellow-700"*/}
+            {/*    role="alert"*/}
+            {/*>*/}
+            {/*    <p className="font-bold">Under Construction!</p>*/}
+            {/*    <p>*/}
+            {/*        This page is currently under construction. Stay tuned for*/}
+            {/*        updates.*/}
+            {/*    </p>*/}
+            {/*</div>*/}
             <PageHeading
                 title="Computing News"
                 description="The latest news about research, technology, achievements, and campus life."

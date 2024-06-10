@@ -32,7 +32,7 @@ export default function CardMainNewsPage({ news }: { news: News[] }) {
                     <div className="flex w-full flex-col gap-4 rounded-lg border-2 md:flex-row">
                         <div className="rounded bg-[#000000] md:w-1/2">
                             <Image
-                                className="w-full rounded bg-cover bg-center"
+                                className="h-full w-full rounded bg-cover bg-center"
                                 src={item.thumbnail}
                                 height={1080}
                                 width={1920}
