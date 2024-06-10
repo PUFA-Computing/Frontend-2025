@@ -1,3 +1,10 @@
+## [1.3.10](https://github.com/PUFA-Computing/Frontend/compare/v1.3.9...v1.3.10) (2024-06-10)
+
+
+### Bug Fixes
+
+* env run docker ([9b247e7](https://github.com/PUFA-Computing/Frontend/commit/9b247e7b454200fb4f7ef40215d0203954797e49))
+
 ## [1.3.9](https://github.com/PUFA-Computing/Frontend/compare/v1.3.8...v1.3.9) (2024-06-10)
 
 
