@@ -3,7 +3,6 @@ import Button from "@/components/Button";
 import { Metadata } from "next";
 import { Suspense } from "react";
 import ProjectsCard from "./_components/ProjectsCard";
-import Loading from "@/components/Loading";
 import { Spinner } from "@/components/ui/Spinner";
 
 export const revalidate = 600;

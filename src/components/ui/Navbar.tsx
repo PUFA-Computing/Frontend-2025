@@ -27,7 +27,7 @@ import { signOut, useSession } from "next-auth/react";
 export default function Navbar() {
     // State for mobile menu and user authentication
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-	 const session = useSession();
+    const session = useSession();
 
     // Navigation links for PUMA and Others sections
     const NavbarOthers = [
@@ -253,14 +253,17 @@ export default function Navbar() {
                                     </>
                                 ) : (
                                     <>
+                                        {/*Animate the LogIn if hover appear from the right to left*/}
                                         <Link
-                                            className="mr-2 rounded-md border-2 border-[#0C8CE9] bg-white px-2 py-2.5 text-sm font-medium text-black duration-300 hover:bg-[#0C8CE9] hover:text-white md:px-5"
+                                            className="mr-3 rounded-md bg-white px-2 py-2.5 text-sm font-medium text-[#02ABF3] duration-300 hover:bg-[#02ABF3] hover:text-white md:px-5"
                                             href="/auth/signin"
                                         >
                                             Log in
                                         </Link>
+
+                                        {/*Animat the SignUp if hover rounded border disappear from the right to left*/}
                                         <Link
-                                            className={`rounded-md border-2 border-[#0C8CE9] bg-[#0C8CE9] px-5 py-2.5 text-sm font-medium text-white duration-300 hover:bg-white hover:text-black`}
+                                            className={`rounded-md border-[1px] border-[#02ABF3] px-5 py-2.5 text-sm font-medium text-[#02ABF3] duration-300 hover:bg-[#02ABF3] hover:text-white`}
                                             href="/auth/signup"
                                         >
                                             Sign up

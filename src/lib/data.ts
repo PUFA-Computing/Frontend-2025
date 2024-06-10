@@ -50,5 +50,4 @@ export const FaqData = [
 ];
 
 //content PUMA IT
-export const aboutContentInformatics = `President University Major Association of Informatics (PUMA Informatics) is an organizations that brings together every student enrolled in the informatics study programs at President University. President University Major Association of Informatics (PUMA Informatics) is an organizations that brings together every student enrolled in the informatics study programs at President University. `;
-
+export const aboutContentInformatics = `PUMA Informatics (HIMA) is an organization that unites all students in the informatics programs at President University, aiming to develop both soft and hard skills. Our vision is to be a hub of independent aspirations and creativity, characterized by autonomy, quality, and achievement, with a focus on science and technology. We strive to create a positive image, support skill enhancement, and foster strong relationships among students, faculty, and external institutions. Additionally, we provide a platform for IT students to share ideas and express their aspirations. `;

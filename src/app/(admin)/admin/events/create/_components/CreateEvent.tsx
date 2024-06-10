@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 import { createEvent } from "@/services/api/event";
 import { useSession } from "next-auth/react";
 
-interface EventCreation {
+export interface EventCreation {
     title: string;
     start_date: string;
     end_date: string;
@@ -46,6 +46,7 @@ export default function CreateEvent() {
     ) => {
         const { name, value } = e.target;
 
+        // Update the form data with the new value
         setFormData((prevFormData) => ({
             ...prevFormData,
             [name]: name === "max_registration" ? Number(value) : value,
