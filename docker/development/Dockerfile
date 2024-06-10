@@ -18,6 +18,7 @@ FROM base AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
+ENV NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}
 # This will do the trick, use the corresponding env file for each environment.
 RUN pnpm run build
 
