@@ -1,3 +1,10 @@
+## [1.3.8](https://github.com/PUFA-Computing/Frontend/compare/v1.3.7...v1.3.8) (2024-06-10)
+
+
+### Bug Fixes
+
+* release workflows ([03ba46c](https://github.com/PUFA-Computing/Frontend/commit/03ba46cfcb35cdd13dee37d1e583f0bda8bce299))
+
 ## [1.3.7](https://github.com/PUFA-Computing/Frontend/compare/v1.3.6...v1.3.7) (2024-06-10)
 
 
