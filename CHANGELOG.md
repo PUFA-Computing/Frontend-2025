@@ -1,3 +1,10 @@
+## [1.3.9](https://github.com/PUFA-Computing/Frontend/compare/v1.3.8...v1.3.9) (2024-06-10)
+
+
+### Bug Fixes
+
+* save-state ([cbbe57d](https://github.com/PUFA-Computing/Frontend/commit/cbbe57d74535a776dd01761ed993b96625fa1cf4))
+
 ## [1.3.8](https://github.com/PUFA-Computing/Frontend/compare/v1.3.7...v1.3.8) (2024-06-10)
 
 
