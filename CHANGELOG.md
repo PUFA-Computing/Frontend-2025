@@ -1,3 +1,10 @@
+## [1.3.4](https://github.com/PUFA-Computing/Frontend/compare/v1.3.3...v1.3.4) (2024-06-10)
+
+
+### Bug Fixes
+
+* dockerfile rewrite ([52d899e](https://github.com/PUFA-Computing/Frontend/commit/52d899eb4c882927eab8b287a864620079ad6128))
+
 ## [1.3.3](https://github.com/PUFA-Computing/Frontend/compare/v1.3.2...v1.3.3) (2024-06-10)
 
 
