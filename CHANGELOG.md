@@ -1,3 +1,34 @@
+# [1.3.0](https://github.com/PUFA-Computing/Frontend/compare/v1.2.0...v1.3.0) (2024-06-10)
+
+
+### Bug Fixes
+
+* **admin:** delete events now integrated ([788a5eb](https://github.com/PUFA-Computing/Frontend/commit/788a5eb82fd79fb4620543ee0c92c0436e767e63))
+* getting user data ([c5a3f3b](https://github.com/PUFA-Computing/Frontend/commit/c5a3f3b1385bedc0dc1388565632a329ba52004a))
+* have to click problem ([0c6b9d2](https://github.com/PUFA-Computing/Frontend/commit/0c6b9d226988b511c0c45283179c26bd6f9b7ad1))
+* invalidate session if token is not valid ([2163842](https://github.com/PUFA-Computing/Frontend/commit/2163842b5db27e49da0ab9be531ee0c2510c250a))
+* layout admin ([b41636d](https://github.com/PUFA-Computing/Frontend/commit/b41636d14a617447c2f57abf9b282b25e10237b4))
+* layout, dashboard context, admin context ([ee4b5f2](https://github.com/PUFA-Computing/Frontend/commit/ee4b5f2409612c04df62fb16217748112e9bdd98))
+* on reload has to click ([3c69cde](https://github.com/PUFA-Computing/Frontend/commit/3c69cde23914fb5e9ef8b295428af1fd0347307d))
+* UI and UX references by our design ([de2fcb4](https://github.com/PUFA-Computing/Frontend/commit/de2fcb4ee2b0fdc5e00bcb85b046116cada61fc6))
+
+
+### Features
+
+* add next auth for better authentication ([f67409e](https://github.com/PUFA-Computing/Frontend/commit/f67409e03324516148320eb12e27ef9f15b52b60))
+* **admin/events:** redesign the UI of event list and new way of update & delete events ([2a4a2dc](https://github.com/PUFA-Computing/Frontend/commit/2a4a2dc540552224b5d49a99317ec6ea5a0573e2))
+* **admin:** fetch header user profiles ([9daa0ee](https://github.com/PUFA-Computing/Frontend/commit/9daa0eeec6419d6873e3d3a37879ec05ae8d5607))
+* **admin:** list registered users on the event ([f6242af](https://github.com/PUFA-Computing/Frontend/commit/f6242af52248b306bfc1a5f28236faf59a86c2c3))
+* **aspiration:** rework method tu use new approach with session storage ([bd6f79d](https://github.com/PUFA-Computing/Frontend/commit/bd6f79d68ad63a6e64b39ff7cd9c7e035e0e2475))
+* auto update user profile ([2efdfca](https://github.com/PUFA-Computing/Frontend/commit/2efdfca099bf5eac13a50239fc77fee0b2a6d5d4))
+* background image at puma section ([df15cc6](https://github.com/PUFA-Computing/Frontend/commit/df15cc616e1ab16052d31b571ffec219f03a6f97))
+* **events:** rework using session storage ([d22618b](https://github.com/PUFA-Computing/Frontend/commit/d22618b128991532ce2d485b31592bf0fe40b953))
+* **news:** rework news to use session storage ([4c6addb](https://github.com/PUFA-Computing/Frontend/commit/4c6addbac39dc57d7801eeec861469f99fe33947))
+* puma page update ([7f83600](https://github.com/PUFA-Computing/Frontend/commit/7f8360036bcb6fb4b2a0e97a1d3486c761e26efe))
+* **role permissions:** using session storage all complete ([0ebba89](https://github.com/PUFA-Computing/Frontend/commit/0ebba89c094f35992ff7d55ab82b3469256c09be))
+* update puma page ([04e485c](https://github.com/PUFA-Computing/Frontend/commit/04e485c9b5fcc891f6193a830ec14462f5e54241))
+* **users:** rework users from localstorage to session ([00cbd38](https://github.com/PUFA-Computing/Frontend/commit/00cbd38ff367b16e16dd15321402733c48d6e899))
+
 # [1.2.0](https://github.com/PUFA-Computing/Frontend/compare/v1.1.0...v1.2.0) (2024-05-24)
 
 
