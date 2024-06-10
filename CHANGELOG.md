@@ -1,3 +1,10 @@
+## [1.3.1](https://github.com/PUFA-Computing/Frontend/compare/v1.3.0...v1.3.1) (2024-06-10)
+
+
+### Bug Fixes
+
+* main page on the news ([f39c505](https://github.com/PUFA-Computing/Frontend/commit/f39c505f611c68c34c5fb34aaa4ec6f8ee8619cc))
+
 # [1.3.0](https://github.com/PUFA-Computing/Frontend/compare/v1.2.0...v1.3.0) (2024-06-10)
 
 
