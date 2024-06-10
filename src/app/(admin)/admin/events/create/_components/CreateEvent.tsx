@@ -3,10 +3,10 @@ import Event from "@/models/event";
 import React, { useState } from "react";
 import Select from "react-select";
 import Swal from "sweetalert2";
-import { date, number, undefined } from "zod";
 import { createEvent } from "@/services/api/event";
+import { useSession } from "next-auth/react";
 
-interface EventCreation {
+export interface EventCreation {
     title: string;
     start_date: string;
     end_date: string;
@@ -38,12 +38,15 @@ export default function CreateEvent() {
 
     const [poster, setPoster] = useState<File | undefined>();
     const [posterName, setPosterName] = useState<string | undefined>();
+    const session = useSession();
+    const [isLoading, setIsLoading] = useState(false);
 
     const handleInputChange = (
         e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
     ) => {
         const { name, value } = e.target;
 
+        // Update the form data with the new value
         setFormData((prevFormData) => ({
             ...prevFormData,
             [name]: name === "max_registration" ? Number(value) : value,
@@ -66,6 +69,7 @@ export default function CreateEvent() {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        setIsLoading(true);
 
         if (
             !formData.title ||
@@ -89,13 +93,22 @@ export default function CreateEvent() {
         };
 
         try {
-            const newEvent = await createEvent(event, poster as File);
+            if (!session.data) {
+                return null;
+            }
+            const newEvent = await createEvent(
+                event,
+                poster as File,
+                session.data.user.access_token
+            );
             Swal.fire({
                 icon: "success",
                 title: "Event Created",
                 text: `The event ${newEvent.title} has been successfully created.`,
                 confirmButtonText: "OK",
             });
+
+            window.location.reload();
         } catch (error) {
             Swal.fire({
                 icon: "error",
@@ -103,6 +116,8 @@ export default function CreateEvent() {
                 text: "An error occurred while creating the event. Please try again later.",
                 confirmButtonText: "OK",
             });
+        } finally {
+            setIsLoading(false);
         }
     };
     return (

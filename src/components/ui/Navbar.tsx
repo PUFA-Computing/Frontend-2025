@@ -13,10 +13,11 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import NavbarDropdown from "./NavbarDropdown";
 import Logo from "@/assets/logo.png";
 import Image from "next/image";
+import { signOut, useSession } from "next-auth/react";
 
 /**
  * Navbar Component
@@ -26,7 +27,7 @@ import Image from "next/image";
 export default function Navbar() {
     // State for mobile menu and user authentication
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    const [isLoggedIn, setIsLogggedIn] = useState(false);
+    const session = useSession();
 
     // Navigation links for PUMA and Others sections
     const NavbarOthers = [
@@ -77,22 +78,13 @@ export default function Navbar() {
         },
     ];
 
-    useEffect(() => {
-        // Check user authentication on component mount
-        const userToken = localStorage.getItem("access_token");
-        setIsLogggedIn(!!userToken);
-    }, []);
-
     /**
      * Handle Logout
      *
      * Function to handle user logout.
      */
     const handleLogout = () => {
-        localStorage.removeItem("access_token");
-        localStorage.removeItem("userId");
-        window.location.href = "/";
-        setIsLogggedIn(false);
+        signOut();
     };
 
     const dashboard = () => {
@@ -179,7 +171,7 @@ export default function Navbar() {
                                         items={NavbarOthers[0].items}
                                     />
                                     <div>
-                                        {isLoggedIn ? (
+                                        {session.status == "authenticated" ? (
                                             <>
                                                 <button
                                                     onClick={dashboard} // Change onClick to dashboard function
@@ -243,8 +235,8 @@ export default function Navbar() {
                                     key={item.title}
                                 />
                             ))}
-                            <li>
-                                {isLoggedIn ? (
+                            <li className="flex">
+                                {session.status == "authenticated" ? (
                                     <>
                                         <button
                                             onClick={dashboard} // Change onClick to dashboard function
@@ -261,14 +253,17 @@ export default function Navbar() {
                                     </>
                                 ) : (
                                     <>
+                                        {/*Animate the LogIn if hover appear from the right to left*/}
                                         <Link
-                                            className="mr-2 rounded-md border-2 border-[#0C8CE9] bg-white px-2 py-2.5 text-sm font-medium text-black duration-300 hover:bg-[#0C8CE9] hover:text-white md:px-5"
+                                            className="mr-3 rounded-md bg-white px-2 py-2.5 text-sm font-medium text-[#02ABF3] duration-300 hover:bg-[#02ABF3] hover:text-white md:px-5"
                                             href="/auth/signin"
                                         >
                                             Log in
                                         </Link>
+
+                                        {/*Animat the SignUp if hover rounded border disappear from the right to left*/}
                                         <Link
-                                            className={`rounded-md border-2 border-[#0C8CE9] bg-[#0C8CE9] px-5 py-2.5 text-sm font-medium text-white duration-300 hover:bg-white hover:text-black`}
+                                            className={`rounded-md border-[1px] border-[#02ABF3] px-5 py-2.5 text-sm font-medium text-[#02ABF3] duration-300 hover:bg-[#02ABF3] hover:text-white`}
                                             href="/auth/signup"
                                         >
                                             Sign up

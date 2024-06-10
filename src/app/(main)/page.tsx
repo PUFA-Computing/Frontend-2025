@@ -1,5 +1,5 @@
 import Image from "next/image";
-import BGImage from "@/assets/backgroundimg.png";
+import BGImage from "@/assets/backgroundimg.svg";
 import bghomepage from "@/assets/bghomepage.jpg";
 import Link from "next/link";
 import Button from "@/components/Button";
@@ -13,9 +13,10 @@ import { Suspense } from "react";
 import { FaqData, StudyProgramData } from "@/lib/data";
 import Logo from "@/assets/anagatalogo.svg";
 import CompreciationCards from "./_components/CompreciationCards";
-import Loading from "@/components/Loading";
 import { fetchNews } from "@/services/api/news";
 import { CircularProgress } from "@/components/ui/CircularProgress";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
 
 export const revalidate = 600;
 export const dynamic = "force-dynamic";

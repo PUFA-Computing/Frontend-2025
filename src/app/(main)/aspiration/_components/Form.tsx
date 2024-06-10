@@ -9,6 +9,7 @@ import z from "zod";
 import React, { useEffect, useRef, useState } from "react";
 import { Spinner } from "@nextui-org/spinner";
 import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 // zod
 const AspirationSchema = z.object({
@@ -38,19 +39,26 @@ export default function AspirationForm() {
     const [userRole, setUserRole] = useState<number | null>(null);
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const router = useRouter();
+    const session = useSession();
 
     useEffect(() => {
-        const userToken = localStorage.getItem("access_token");
-        setIsLoggedIn(!!userToken);
-
-        if (userToken) {
-            fetchUserProfile().then((r) => r);
+        if (!session.data) {
+            setIsLoggedIn(false);
+        } else {
+            setIsLoggedIn(true);
         }
-    }, []);
 
-    async function fetchUserProfile() {
+        if (session.data) {
+            fetchUserProfile(
+                session.data.user.id as string,
+                session.data.user.access_token as string
+            ).then((r) => r);
+        }
+    }, [session.data]);
+
+    async function fetchUserProfile(userID: string, accessToken: string) {
         try {
-            const response = await GetUserProfile();
+            const response = await GetUserProfile(userID, accessToken);
             setUserName(`${response.first_name} ${response.last_name}`);
             setUserRole(response.role_id);
         } catch (error) {
@@ -97,8 +105,15 @@ export default function AspirationForm() {
         }
 
         const aspirationData = validationResult.data as Aspirations;
+        if (!session.data) {
+            setIsLoading(true);
+            return;
+        }
         try {
-            await CreateAspiration(aspirationData);
+            await CreateAspiration(
+                aspirationData,
+                session.data.user.access_token
+            );
             await Swal.fire({
                 title: "Aspiration Sent!",
                 text: "Your aspiration has been sent to the organization.",

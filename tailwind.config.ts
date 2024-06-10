@@ -1,12 +1,12 @@
-import type {Config} from "tailwindcss"
+import type { Config } from "tailwindcss";
 
 const config = {
     darkMode: ["class"],
     content: [
-        './pages/**/*.{ts,tsx}',
-        './components/**/*.{ts,tsx}',
-        './app/**/*.{ts,tsx}',
-        './src/**/*.{ts,tsx}',
+        "./pages/**/*.{ts,tsx}",
+        "./components/**/*.{ts,tsx}",
+        "./app/**/*.{ts,tsx}",
+        "./src/**/*.{ts,tsx}",
     ],
     prefix: "",
     theme: {
@@ -60,17 +60,22 @@ const config = {
             },
             keyframes: {
                 "accordion-down": {
-                    from: {height: "0"},
-                    to: {height: "var(--radix-accordion-content-height)"},
+                    from: { height: "0" },
+                    to: { height: "var(--radix-accordion-content-height)" },
                 },
                 "accordion-up": {
-                    from: {height: "var(--radix-accordion-content-height)"},
-                    to: {height: "0"},
+                    from: { height: "var(--radix-accordion-content-height)" },
+                    to: { height: "0" },
+                },
+                "gradient-move": {
+                    "0%": { "background-position": "bottom" },
+                    "100%": { "background-position": "top" },
                 },
             },
             animation: {
                 "accordion-down": "accordion-down 0.2s ease-out",
                 "accordion-up": "accordion-up 0.2s ease-out",
+                "gradient-move": "gradient-move 0.3s ease-in-out forwards",
             },
         },
     },
@@ -80,6 +85,6 @@ const config = {
         require("@tailwindcss/forms"),
         require("@tailwindcss/line-clamp"),
     ],
-} satisfies Config
+} satisfies Config;
 
-export default config
+export default config;

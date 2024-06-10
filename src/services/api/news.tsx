@@ -52,7 +52,8 @@ interface NewsCreation {
 
 export const createNews = async (
     news: NewsCreation,
-    file: File
+    file: File,
+    accessToken: string
 ): Promise<News> => {
     try {
         const formData = new FormData();
@@ -72,7 +73,7 @@ export const createNews = async (
         const response = await axios.post(`${API_NEWS}/create`, formData, {
             headers: {
                 "Content-Type": "multipart/form-data",
-                Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+                Authorization: `Bearer ${accessToken}`,
             },
         });
 
@@ -85,11 +86,14 @@ export const createNews = async (
     }
 };
 
-export const deleteNews = async (newsID: number): Promise<void> => {
+export const deleteNews = async (
+    newsID: number,
+    accessToken: string
+): Promise<void> => {
     try {
         await axios.delete(`${API_NEWS}/${newsID}/delete`, {
             headers: {
-                Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+                Authorization: `Bearer ${accessToken}`,
             },
         });
     } catch (error) {
