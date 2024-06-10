@@ -54,7 +54,7 @@ export default async function Index() {
                src="../member.jpg"
                alt="PUMA Photo"
             /> */}
-                <div className="space-y-6 px-8 text-justify text-base md:px-24 md:text-xl">
+                <div className="md:px-22 space-y-6 px-8 text-justify text-base md:text-xl">
                     <p>
                         PUFA Computing stands for President University's Faculty
                         Association of Computing, serving as a dynamic platform
