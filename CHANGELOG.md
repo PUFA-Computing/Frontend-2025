@@ -1,3 +1,11 @@
+## [1.3.11](https://github.com/PUFA-Computing/Frontend/compare/v1.3.10...v1.3.11) (2024-06-10)
+
+
+### Bug Fixes
+
+* build jobs ([bd8fc41](https://github.com/PUFA-Computing/Frontend/commit/bd8fc4137ccaaefcd4e9b29172b4678d00282ab1))
+* env run docker ([4dc029d](https://github.com/PUFA-Computing/Frontend/commit/4dc029daba511d42943109c1f704c9b1a2dec762))
+
 ## [1.3.10](https://github.com/PUFA-Computing/Frontend/compare/v1.3.9...v1.3.10) (2024-06-10)
 
 
