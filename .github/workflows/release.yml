@@ -43,6 +43,11 @@ jobs:
         run: |
           echo "::set-output name=latest_release::$(curl -s https://api.github.com/repos/PUFA-Computing/Frontend/releases/latest | jq -r '.tag_name')"
       - uses: actions/checkout@v3
+      - name: Generate .env file
+        run: |
+          echo "NEXTAUTH_SECRET=${{ secrets.NEXTAUTH_SECRET }}" > .env.production
+          echo "NEXTAUTH_URL=${{ secrets.NEXTAUTH_URL }}" >> .env.production
+          echo "NEXT_PUBLIC_API_URL=${{ secrets.NEXT_PUBLIC_API_URL }}" >> .env.production
       - name: Build the Docker image
         run: |
           docker login -u kizoukun -p ${{ secrets.GH_TOKEN }} ghcr.io
