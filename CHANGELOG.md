@@ -1,3 +1,10 @@
+## [1.3.16](https://github.com/PUFA-Computing/Frontend/compare/v1.3.15...v1.3.16) (2024-06-10)
+
+
+### Bug Fixes
+
+* bg header ([6d8b396](https://github.com/PUFA-Computing/Frontend/commit/6d8b39617ae4b0ba9e57b87c43cad8e233082e30))
+
 ## [1.3.15](https://github.com/PUFA-Computing/Frontend/compare/v1.3.14...v1.3.15) (2024-06-10)
 
 
