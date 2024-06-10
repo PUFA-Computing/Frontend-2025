@@ -1,3 +1,10 @@
+## [1.3.2](https://github.com/PUFA-Computing/Frontend/compare/v1.3.1...v1.3.2) (2024-06-10)
+
+
+### Bug Fixes
+
+* digest data leak ([4bdeea7](https://github.com/PUFA-Computing/Frontend/commit/4bdeea761ff3920ca7ba833d64542bf073d0eee6))
+
 ## [1.3.1](https://github.com/PUFA-Computing/Frontend/compare/v1.3.0...v1.3.1) (2024-06-10)
 
 
