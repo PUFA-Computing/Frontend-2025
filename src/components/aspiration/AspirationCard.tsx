@@ -105,7 +105,8 @@ const AspirationCard: React.FC<AspirationCardProps> = ({ aspiration }) => {
                     <div className="flex flex-row gap-4">
                         <button
                             onClick={toggleLike}
-                            className="flex items-center gap-1 text-2xl text-[#6B7280] hover:text-[#E50D0D]"
+                            className="flex items-center gap-1 text-2xl text-[#6B7280] disabled:cursor-not-allowed disabled:opacity-50"
+                            disabled
                         >
                             {liked ? (
                                 <IoIosHeart className="text-3xl" />

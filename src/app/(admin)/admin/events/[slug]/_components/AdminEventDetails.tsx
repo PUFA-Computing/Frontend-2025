@@ -17,6 +17,8 @@ import ListUserRegistered from "./ListUserRegistered";
 import { CircularProgress } from "@/components/ui/CircularProgress";
 import Select from "react-select";
 import { Spinner } from "@nextui-org/spinner";
+import { EventCreation } from "@/app/(admin)/admin/events/create/_components/CreateEvent";
+import Picker from "react-datepicker";
 
 const tabs = [
     { name: "Event Details", key: "eventDetails" },
@@ -38,7 +40,17 @@ export default function EventDetails() {
     const session = useSession();
     const [newPoster, setNewPoster] = useState<File | null>(null);
     const [activeTab, setActiveTab] = useState<string>(tabs[0].key);
+    const [max_registration, setMaxRegistration] = useState<number>(0);
+    const [formData, setFormData] = useState<EventCreation>({
+        title: "",
+        start_date: "",
+        end_date: "",
+        organization_id: 0,
+        description: "",
+        max_registration: 0,
+    });
 
+    // Props for the organization select component
     const organizationOptions = [
         { value: 1, label: "PUFA Computing" },
         { value: 2, label: "PUMA IT" },
@@ -66,9 +78,11 @@ export default function EventDetails() {
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
-        setEvent((prevEvent) =>
-            prevEvent ? { ...prevEvent, [name]: value } : null
-        );
+        if (event) {
+            setEvent((prevEvent) =>
+                prevEvent ? { ...prevEvent, [name]: value } : null
+            );
+        }
     };
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -131,11 +145,31 @@ export default function EventDetails() {
         if (event) {
             try {
                 setSaving(true);
+
+                // Create a FormData object to handle the event data and poster image
+                const formData = new FormData();
+                if (newPoster) {
+                    formData.append("file", newPoster, newPoster.name);
+                }
+
+                const eventData: EventCreation = {
+                    title: event.title,
+                    start_date: new Date(event.start_date).toISOString(),
+                    end_date: new Date(event.end_date).toISOString(),
+                    organization_id: event.organization_id,
+                    description: event.description,
+                    max_registration: event.max_registration,
+                };
+
+                formData.append("data", JSON.stringify(eventData));
+
                 await updateEvent(
-                    event.slug,
-                    event,
+                    event.id.toString(),
+                    eventData,
+                    newPoster!,
                     session.data.user.access_token
                 );
+
                 await Swal.fire({
                     icon: "success",
                     title: "Event Updated",
@@ -161,7 +195,7 @@ export default function EventDetails() {
     }
 
     if (!event) {
-        return <div>Event not found</div>;
+        return <CircularProgress />;
     }
 
     const selectedOrganization = organizationOptions.find(
@@ -262,27 +296,34 @@ export default function EventDetails() {
                                 </div>
                                 <Seperator className="border-gray-100" />
                                 <div className="mt-2 space-y-6 px-6 py-10 pb-6">
-                                    <div>
-                                        <Input
-                                            htmlFor="title"
-                                            label="Title"
+                                    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                                        <input
                                             type="text"
                                             name="title"
+                                            id="title"
+                                            className="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-10 w-full rounded-md border px-3 py-2 text-sm file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                                            placeholder="Title"
                                             value={event.title}
-                                            placeholder={event.title}
+                                            onChange={handleInputChange}
+                                        />
+                                        <input
+                                            name="Slug"
+                                            type="text"
+                                            value={event.slug}
+                                            placeholder={event.slug}
                                             onChange={handleInputChange}
                                             disabled
                                         />
                                     </div>
                                     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                                        <Input
-                                            htmlFor="description"
-                                            label="Description"
+                                        <input
                                             type="text"
+                                            name="description"
+                                            id="description"
+                                            className="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-10 w-full rounded-md border px-3 py-2 text-sm file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                                            placeholder="Description"
                                             value={event.description}
-                                            placeholder={event.description}
                                             onChange={handleInputChange}
-                                            disabled
                                         />
                                         <div>
                                             <label
@@ -298,49 +339,50 @@ export default function EventDetails() {
                                                 onChange={handleSelectChange}
                                                 options={organizationOptions}
                                                 className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-sky-500 focus:ring-sky-500 sm:text-sm"
-                                                isDisabled={true}
                                             />
                                         </div>
                                     </div>
                                     <div>
-                                        <Input
-                                            htmlFor="start_date"
-                                            label="Start Date"
+                                        {/*    React DatePicker*/}
+                                        <input
                                             type="date"
                                             name="start_date"
+                                            id="start_date"
+                                            className="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-10 w-full rounded-md border px-3 py-2 text-sm file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                                            placeholder="Start Date"
                                             value={
                                                 new Date(event.start_date)
                                                     .toISOString()
                                                     .split("T")[0]
                                             }
                                             onChange={handleInputChange}
-                                            disabled
                                         />
                                     </div>
                                     <div>
-                                        <Input
-                                            htmlFor="end_date"
-                                            label="End Date"
+                                        <input
                                             type="date"
                                             name="end_date"
+                                            id="end_date"
+                                            className="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-10 w-full rounded-md border px-3 py-2 text-sm file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                                            placeholder="End Date"
                                             value={
                                                 new Date(event.end_date)
                                                     .toISOString()
                                                     .split("T")[0]
                                             }
                                             onChange={handleInputChange}
-                                            disabled
                                         />
                                     </div>
-                                    <div className="mt-16 flex justify-end space-x-2 py-5">
-                                        <Button
-                                            onClick={handleSave}
-                                            className="border-[#02ABF3] bg-[#02ABF3] px-8 py-2 text-white hover:bg-white hover:text-[#02ABF3] disabled:cursor-not-allowed"
-                                            disabled={true}
-                                            aria-disabled={true}
-                                        >
-                                            Save
-                                        </Button>
+                                    <div>
+                                        <input
+                                            type="number"
+                                            name="max_registration"
+                                            id="max_registration"
+                                            className="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-10 w-full rounded-md border px-3 py-2 text-sm file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                                            placeholder="Max Registration"
+                                            value={event.max_registration}
+                                            onChange={handleInputChange}
+                                        />
                                     </div>
                                 </div>
                             </div>
@@ -405,27 +447,20 @@ export default function EventDetails() {
                                                 type="file"
                                                 className="hidden"
                                                 onChange={handleFileChange}
-                                                disabled
                                             />
                                         </label>
-                                    </div>
-                                    <div className="mt-16 flex justify-end space-x-2 py-5">
-                                        <Button
-                                            onClick={handleSave}
-                                            className="border-[#02ABF3] bg-[#02ABF3] px-8 py-2 text-white hover:bg-white hover:text-[#02ABF3] disabled:cursor-not-allowed"
-                                            disabled={true}
-                                            aria-disabled={true}
-                                        >
-                                            {saving ? (
-                                                <Spinner size="sm" />
-                                            ) : (
-                                                "Save"
-                                            )}
-                                        </Button>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div className="mt-16 flex justify-end space-x-2 py-5">
+                        <Button
+                            onClick={handleSave}
+                            className="border-[#02ABF3] bg-[#02ABF3] px-8 py-2 text-white hover:bg-white hover:text-[#02ABF3] disabled:cursor-not-allowed"
+                        >
+                            {saving ? <Spinner size="sm" /> : "Save"}
+                        </Button>
                     </div>
                 </div>
             )}

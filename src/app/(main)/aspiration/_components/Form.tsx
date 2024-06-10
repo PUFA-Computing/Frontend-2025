@@ -42,10 +42,11 @@ export default function AspirationForm() {
     const session = useSession();
 
     useEffect(() => {
-        if (session.data == null) {
-            return;
+        if (!session.data) {
+            setIsLoggedIn(false);
+        } else {
+            setIsLoggedIn(true);
         }
-        setIsLoggedIn(!!session.data);
 
         if (session.data) {
             fetchUserProfile(

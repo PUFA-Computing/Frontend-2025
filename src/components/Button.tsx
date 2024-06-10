@@ -15,7 +15,7 @@ export default function Button({
     return (
         <button
             className={cn(
-                `rounded-lg border-2 border-[#0C8CE9] bg-white px-4 py-2 text-black duration-300 hover:bg-[#0C8CE9] hover:text-white`,
+                `rounded-lg px-4 py-2 text-black duration-300 ease-in-out hover:bg-opacity-90 hover:text-blue-500`,
                 className
             )}
             disabled={disabled}

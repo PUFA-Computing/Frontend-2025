@@ -35,7 +35,8 @@ export default function StudyProgCard({
     link,
 }: StudyProgramDataProps) {
     return (
-        <div className=" max-w-[16rem] select-none rounded-lg border border-[#3C99DC] bg-white p-3 text-center shadow-lg transition-all duration-300 hover:scale-105">
+        // Hover effect for the card gradient from bottom to top
+        <div className="max-w-[16rem] translate-y-0 transform select-none rounded-xl border border-[#3C99DC] bg-white p-3 text-center shadow-lg transition-all duration-300 ease-in-out hover:-translate-y-2 hover:bg-gradient-to-t hover:from-sky-50 hover:via-sky-300/10 hover:to-white">
             {/* Display the title of the study program */}
             <p className="text-2xl md:text-base">{title}</p>
             {/* Horizontal line for separation */}

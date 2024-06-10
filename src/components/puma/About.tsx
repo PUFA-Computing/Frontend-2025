@@ -7,9 +7,11 @@ interface AboutProps {
 function About({ content }: AboutProps) {
     return (
         <section className="flex flex-col items-center justify-center px-4 py-8 sm:py-12 lg:py-16">
-            <h1 className="text-[40px] sm:text-[50px] font-[700] text-[#353535] text-center">About</h1>
-            <div className="max-w-7xl w-full">
-                <article className="py-6 sm:py-8 md:py-10 text-justify text-[18px] sm:text-[20px] md:text-[22px] lg:text-[25px] font-[600] text-[#376853]">
+            <h1 className="text-center text-[40px] font-[700] text-[#353535] sm:text-[50px]">
+                About
+            </h1>
+            <div className="w-full max-w-7xl">
+                <article className="py-6 text-justify text-[18px] font-[600] text-[#353535] sm:py-8 sm:text-[20px] md:py-10 md:text-[22px] lg:text-[25px]">
                     {content}
                 </article>
             </div>

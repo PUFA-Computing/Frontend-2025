@@ -37,28 +37,30 @@ export default function LoginForm() {
         setIsLoading(true);
         try {
             await signIn("credentials", {
-					 username: username,
-					 password: password,
-					 redirect: false,
-				}).then(async (res) => {
-					console.log(res)
-					if(res?.error) {
-						Swal.fire({
-							icon: "error",
-							title: "Login Failed",
-							text: res?.error,
-							showConfirmButton: false,
-							timer: 5000,
-					  });
-					  setError(res?.error);
-					}
-					if(res?.ok) {
-						window.location.reload();
-					}
-				}).catch((err) => {
-					console.log(err)
-				});
-				return
+                username: username,
+                password: password,
+                redirect: false,
+            })
+                .then(async (res) => {
+                    console.log(res);
+                    if (res?.error) {
+                        Swal.fire({
+                            icon: "error",
+                            title: "Login Failed",
+                            text: res?.error,
+                            showConfirmButton: false,
+                            timer: 5000,
+                        });
+                        setError(res?.error);
+                    }
+                    if (res?.ok) {
+                        window.location.reload();
+                    }
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+            return;
         } catch (error: any) {
             await Swal.fire({
                 icon: "error",

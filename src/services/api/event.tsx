@@ -135,23 +135,39 @@ export const createEvent = async (
  *
  * @param {string} eventId The ID of the event to update.
  * @param {Event} eventData The updated data for the event.
+ * @param file The image file for the event.
  * @param accessToken The access token for the user.
  * @returns {Promise<Event>} A promise that resolves to the updated Event object.
  * @throws {Error} If an error occurs during the API request.
  */
 export const updateEvent = async (
     eventId: string,
-    eventData: Event,
+    eventData: EventCreation,
+    file: File,
     accessToken: string
 ): Promise<Event> => {
     try {
+        const formData = new FormData();
+
+        formData.append("file", file, file.name);
+
+        const formattedEventData = {
+            ...eventData,
+            start_date: new Date(eventData.start_date).toISOString(),
+            end_date: new Date(eventData.end_date).toISOString(),
+        };
+
+        // Convert eventData to JSON string and append it with content type application/json.
+        formData.append("data", JSON.stringify(formattedEventData));
+
         // Make a PUT request to the API endpoint.
         const response = await axios.put(
-            `${API_EVENT}/${eventId}/edit`,
-            eventData,
+            `${API_EVENT}/${eventId}/update`,
+            formData,
             {
                 headers: {
                     Authorization: `Bearer ${accessToken}`,
+                    "Content-Type": "multipart/form-data",
                 },
             }
         );

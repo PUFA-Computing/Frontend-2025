@@ -1,5 +1,4 @@
 import "./globals.css";
-import { Inter } from "next/font/google";
 import { Poppins } from "next/font/google";
 import Providers from "@/components/Loading";
 import AuthProvider from "@/components/AuthProvider";
@@ -22,9 +21,9 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body className={poppins.className}>
-					<AuthProvider>
-                <Providers children={children} />
-					</AuthProvider>
+                <AuthProvider>
+                    <Providers children={children} />
+                </AuthProvider>
             </body>
         </html>
     );
