@@ -1,3 +1,10 @@
+## [1.3.13](https://github.com/PUFA-Computing/Frontend/compare/v1.3.12...v1.3.13) (2024-06-10)
+
+
+### Bug Fixes
+
+* Dockerfile ([37b23f0](https://github.com/PUFA-Computing/Frontend/commit/37b23f041853f6cdff409bfab1a1a07cc2bf93d7))
+
 ## [1.3.12](https://github.com/PUFA-Computing/Frontend/compare/v1.3.11...v1.3.12) (2024-06-10)
 
 
