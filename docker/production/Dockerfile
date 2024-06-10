@@ -1,5 +1,7 @@
 FROM node:18-alpine AS base
 
+ARG NEXT_PUBLIC_API_URL=""
+
 RUN npm install -g pnpm
 
 # 1. Install dependencies only when needed
