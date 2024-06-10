@@ -36,7 +36,7 @@ jobs:
 
   build_and_push:
     needs: publish
-    environment: productiong
+    environment: production
     runs-on: ubuntu-latest
     steps:
       - name: Get latest github release tag from api
