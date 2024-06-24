@@ -16,7 +16,7 @@ export default function EventsAndWorkplan({ buttons }: EventsAndWorkplanProps) {
                     {buttons.map((button, index) => (
                         <Button
                             key={index}
-                            className="rounded-full border-[#1FA820] hover:text-[#FBFBFB] md:px-5 text-sm uppercase text-[#1FA820] hover:bg-[#1FA820] md:text-[1.563]"
+                            className="rounded-full border border-[#1FA820] hover:text-[#FBFBFB] text-sm uppercase text-[#1FA820] hover:bg-[#1FA820] md:text-[1.563]"
                         >
                             {button}
                         </Button>
