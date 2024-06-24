@@ -6,19 +6,20 @@ import "swiper/css";
 import "swiper/css/pagination";
 import MemberCard from "@/components/cabinet/MemberCard";
 import { Pagination } from "swiper/modules";
+import { SWAImages } from "@/lib/cabinet";
 
 const members = [
    {
       name: "Deby Ayu Putri Butar-Butar",
       position: "Head of Division",
-      image: "/member/bod/Aura Shafarina Salsabila.jpg",
+      image: SWAImages.DEBY_SWA.src,
       instagram: "https://www.instagram.com/de__byy/",
       linkedin: "https://www.linkedin.com/in/debybutar/",
    },
    {
       name: "Muhammad Hanif Insan Rabbani",
       position: "Vice of Division",
-      image: "/member/bod/Aura Shafarina Salsabila.jpg",
+      image: SWAImages.HANIF_SWA.src,
       instagram: "",
       linkedin:
          "https://www.linkedin.com/in/muhammad-hanif-insan-rabbani-4b17282b2/",
@@ -26,14 +27,14 @@ const members = [
    {
       name: "Najwa Ratu Aini Alamsyah",
       position: "Member",
-      image: "/member/bod/Aura Shafarina Salsabila.jpg",
+      image: SWAImages.NAJWA_SWA.src,
       instagram: "https://www.instagram.com/najwaalamsyah/",
       linkedin: "https://www.linkedin.com/in/najwa-ratu-aini-alamsyah/",
    },
    {
       name: "Hafizh Cexarian",
       position: "Member",
-      image: "/member/bod/Aura Shafarina Salsabila.jpg",
+      image: SWAImages.HAFIZH_SWA.src,
       instagram: "",
       linkedin: "https://www.linkedin.com/in/hafizh-cexarian-95a10528b/",
    },

@@ -5,26 +5,27 @@ import "swiper/css";
 import "swiper/css/pagination";
 import MemberCard from "@/components/cabinet/MemberCard";
 import { Pagination } from "swiper/modules";
+import { SDCImages } from "@/lib/cabinet";
 
 const members = [
    {
       name: "Muhammad Yusuf",
       position: "Head of Division",
-      image: "/member/sdc/muhammad-yusuf.jpg",
+      image: SDCImages.YUSUF_SDC.src,
       instagram: "http://Instagram.com/muhayuf",
       linkedin: "http://linkedin.com/in/muhayuf",
    },
    {
       name: "Bilqis Nabila Mukhtar",
       position: "Vice of Division",
-      image: "/member/sdc/bilqis-nabila-mukhtar.jpg",
+      image:  SDCImages.BILQIS_SDC.src,
       instagram: "http://instagram.com/bilqiss.n",
    },
 
    {
       name: "Muhammad Arrizky Adhita Azizi",
       position: "Member",
-      image: "/member/sdc/muhammad-arrizky-adhita-azizi.jpg",
+      image:  SDCImages.ARRIZKY_SDC.src,
       instagram: "https://instagram.com/arrizkyadhita.a",
       linkedin:
          "https://www.linkedin.com/in/muhammad-firman-hidayat-786561286?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
@@ -32,14 +33,14 @@ const members = [
    {
       name: "Violetta Scarlet Adeline Roeroe",
       position: "Member",
-      image: "/member/sdc/violetta-scarlet-adeline-roeroe.jpg",
+      image:  SDCImages.SCARLET_SDC.src,
       instagram: "http://instagram.com/violettaroeroe",
       linkedin: "http://linkedin.com/in/violettascarlet",
    },
    {
       name: "Muhammad Firman Hidayat",
       position: "Member",
-      image: "/member/sdc/firman.jpg",
+      image:  SDCImages.FIRMAN_SDC.src,
       instagram: "https://www.instagram.com/frmaanhdyt__",
       linkedin:
          "https://www.linkedin.com/in/muhammad-firman-hidayat-786561286?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",

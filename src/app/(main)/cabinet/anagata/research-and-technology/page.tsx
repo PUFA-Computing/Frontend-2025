@@ -5,19 +5,20 @@ import "swiper/css";
 import "swiper/css/pagination";
 import MemberCard from "@/components/cabinet/MemberCard";
 import { Pagination } from "swiper/modules";
+import { RNTImages } from "@/lib/cabinet";
 
 const members = [
    {
       name: "Muhammad Ilham Pratama",
       position: "Head of Division",
-      image: "/member/rnt/muhammad-ilham-pratama.jpg",
+      image: RNTImages.ILHAM_RNT.src,
       instagram: "http://Instagram.com/ilhamajha15",
       linkedin: "http://linkedin.com/in/muhammadilhampratama0809",
    },
    {
       name: "Devita Annisa",
       position: "Vice of Division",
-      image: "/member/rnt/devita-annisa.jpg",
+      image: RNTImages.DEVITA_RNT.src,
       instagram: "https://www.instagram.com/devitaann_",
       linkedin: "https://www.linkedin.com/in/devita-annisa",
    },
@@ -25,14 +26,14 @@ const members = [
    {
       name: "Muhammad Aldi Apriansyah",
       position: "Research",
-      image: "/member/rnt/muhamad-aldi-apriansyah.jpg",
+      image: RNTImages.ALDI_RNT.src,
       instagram: "https://www.instagram.com/aldiaprnsyh._/",
       linkedin: "linkedin.com",
    },
    {
       name: "Adelia Zhafira Puspasari",
       position: "Research",
-      image: "/member/rnt/adelia-zhafira-puspasari.jpg",
+      image: RNTImages.ADELIA_RNT.src,
       instagram: "https://www.instagram.com/adeliazzh/",
       linkedin:
          "https://www.linkedin.com/in/adelia-zhafira-puspasari-55a26428b/",
@@ -40,21 +41,21 @@ const members = [
    {
       name: "Alden Sayidina Radjab",
       position: "Web Development",
-      image: "/member/rnt/alden-sayidina-radjab.jpg",
+      image: RNTImages.ALDEN_RNT.src,
       instagram: "https://www.instagram.com/aldensydnr/",
       linkedin: "https://www.linkedin.com/in/aldensayidina/",
    },
    {
       name: "Rafael Josh Isaac",
       position: "Web Development",
-      image: "/member/rnt/rafael-josh.jpg",
+      image: RNTImages.JOSH_RNT.src,
       instagram: "instagram.com",
       linkedin: "linkedin.com",
    },
    {
       name: "Yudhistira Fauzy Achmadarel",
       position: "Web Development",
-      image: "/member/rnt/yudhistira-fauzy-achmadarel.jpg",
+      image: RNTImages.YUDHISTIRA_RNT.src,
       instagram: "https://www.instagram.com/yueluels/",
       linkedin: "https://www.linkedin.com/in/yudhistira-fauzy-achmadarel/",
    },
@@ -62,13 +63,13 @@ const members = [
       name: "Irfan Saifullah AL Fakih",
       position: "Web Development",
       image: "/member/rnt/irfan-saf.jpg",
-      instagram: "https://www.instagram.com/irfansafx/",
+      instagram: RNTImages.IRFAN_RNT.src,
       linkedin: "https://www.linkedin.com/in/irfansaf/",
    },
    {
       name: "Muhammad Alief Firmanda",
       position: "Web Development",
-      image: "/member/rnt/m-alief-firmanda.jpg",
+      image: RNTImages.ALIEF_RNT.src,
       instagram: "https://www.instagram.com/alieffirmanda/",
       linkedin: "https://www.linkedin.com/in/muhammad-alief-firmanda/",
    },

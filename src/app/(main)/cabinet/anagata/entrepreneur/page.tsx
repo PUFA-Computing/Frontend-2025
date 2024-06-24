@@ -5,6 +5,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import MemberCard from "@/components/cabinet/MemberCard";
 import { Pagination } from "swiper/modules";
+import { ENTREImages } from "@/lib/cabinet";
 
 const members = [
    {
@@ -17,21 +18,21 @@ const members = [
    {
       name: "Gavin Abhinaya",
       position: "Vice of Division",
-      image: "",
+      image: ENTREImages.GAVIN_ENTRE.src,
       instagram: "https://www.instagram.com/gavin_abhinaya/",
       linkedin: "https://www.linkedin.com/in/gavin-abhinaya-15276524b/",
    },
    {
       name: "Angel Kusuma Ajinata",
       position: "Member",
-      image: "",
+      image: ENTREImages.ANGEL_ENTRE.src,
       instagram: "https://www.instagram.com/na.taa__/",
       linkedin: "https://www.linkedin.com/in/angel-kusuma-ajinata-86001028b/",
    },
    {
       name: "Belva Tabitha",
       position: "Member",
-      image: "",
+      image: ENTREImages.BELVA_ENTRE.src,
       instagram: "https://www.instagram.com/zheaazee/",
       linkedin: "https://www.linkedin.com/in/belva-tabitha-b5132028b/",
    },

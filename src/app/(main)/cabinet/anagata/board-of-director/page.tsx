@@ -5,19 +5,20 @@ import "swiper/css";
 import "swiper/css/pagination";
 import MemberCard from "@/components/cabinet/MemberCard";
 import { Pagination } from "swiper/modules";
+import { BODImages } from "@/lib/cabinet";
 
 const members = [
    {
       name: "Aura Shafarina Salsabila",
       position: "Chairperson",
-      image: "/member/bod/aura-shafarina-salsabila.jpg",
+      image: BODImages.AURA_BOD.src,
       instagram: "https://www.instagram.com/aura.shasal/",
       linkedin: "",
    },
    {
       name: "Bintang Wira Gemilang",
       position: "Vice Chairperson 1",
-      image: "/member/bod/bintang-wira-gemilang.jpg",
+      image: BODImages.BINTANG_BOD.src,
       instagram: "https://www.instagram.com/bin____tang/",
       linkedin: "https://www.linkedin.com/in/bintang-wira-gemilang/",
    },
@@ -25,7 +26,7 @@ const members = [
    {
       name: "Zioneza Auxiliadora Lou Jeronimo Martins",
       position: "Vice Chairperson 2",
-      image: "/member/bod/zioneza-auxiliadora-lou-jeronimo-martins.jpg",
+      image: BODImages.ZIONEZA_BOD.src,
       instagram: "https://www.instagram.com/zioneza.jm/",
       linkedin:
          "https://www.linkedin.com/in/zioneza-auxiliadora-lou-jeronimo-martins-b23ab9281/",
@@ -33,21 +34,21 @@ const members = [
    {
       name: "Irene Putri Sihite",
       position: "Secretary 1",
-      image: "/member/bod/irene-putri-sihite.jpg",
+      image: BODImages.IRENE_BOD.src,
       instagram: "https://www.instagram.com/irnesht/",
       linkedin: "https://www.linkedin.com/in/irene-putri-sihite-0a45a8258/",
    },
    {
       name: "Gita Olfa Hidayah",
       position: "Secretary 2",
-      image: "/member/bod/gita-olfa-hidayah.jpg",
+      image: BODImages.GITA_BOD.src,
       instagram: "https://www.instagram.com/gitaaolfaa_/",
       linkedin: "https://www.linkedin.com/in/gita-olfa-hidayah-1ba01328b/",
    },
    {
       name: "Gabriela Imanuel Setiawan",
       position: "Secretary 3",
-      image: "/member/bod/gabriela-Imanuel-setiawan.jpg",
+      image: BODImages.GABRIELA_BOD.src,
       instagram: "https://www.instagram.com/gabrielaimanuels/",
       linkedin:
          "https://www.linkedin.com/in/gabriela-imanuel-setiawan-9191b2283/",
@@ -55,21 +56,21 @@ const members = [
    {
       name: "Alexandra Verencia Poluakan",
       position: "Treasure 1",
-      image: "/member/bod/alexandra-verencia-poluakan.jpg",
+      image: BODImages.ALEX_BOD.src,
       instagram: "https://www.instagram.com/alexandraverencia/",
       linkedin: "https://www.linkedin.com/in/alexandra-verencia/",
    },
    {
       name: "Dian Vania Jessicha Rondonuwu",
       position: "Treasure 2",
-      image: "/member/bod/dian-vania-jessicha-rondonuwu.jpg",
+      image: BODImages.DIAN_BOD.src,
       instagram: "",
       linkedin: "",
    },
    {
       name: "Dinda Ayu Maulina",
       position: "Treasure 3",
-      image: "/member/bod/dinda-ayu-maulina.jpg",
+      image: BODImages.DINDA_BOD.src,
       instagram: "https://www.instagram.com/dindaaalina/",
       linkedin: "https://www.linkedin.com/in/dinda-ayu-maulina-20328926a/",
    },

@@ -5,19 +5,20 @@ import "swiper/css";
 import "swiper/css/pagination";
 import MemberCard from "@/components/cabinet/MemberCard";
 import { Pagination } from "swiper/modules";
+import { ERImages } from "@/lib/cabinet";
 
 const members = [
    {
       name: "Dena Dwi Nagita",
       position: "Head of Division",
-      image: "/member/er/dena-dwi-nagita.jpg",
+      image: ERImages.DENA_ER.src,
       instagram: "https://www.instagram.com/dnagitaa/",
       linkedin: "https://www.linkedin.com/in/denadwinagita",
    },
    {
       name: "Dicho Dermawan",
       position: "Vice of Division",
-      image: "/member/er/dicho-dermawan.jpg",
+      image: ERImages.DICHO_ER.src,
       instagram: "https://www.instagram.com/dichodermawan_/",
       linkedin: "https://id.linkedin.com/in/dicho-dermawan-b53839286",
    },
@@ -25,7 +26,7 @@ const members = [
    {
       name: "Daffa Athallah Hade",
       position: "Member",
-      image: "/member/er/daffa-athallah-hade.jpg",
+      image: ERImages.DAFFA_ER.src,
       instagram:
          "https://www.instagram.com/daffathd?igsh=ZzNoeGo3Z3h5MmRv&utm_source=qr",
       linkedin: "https://www.linkedin.com/in/daffa-athallah-954425276",
@@ -33,21 +34,21 @@ const members = [
    {
       name: "Nindhita Akmalia Putri",
       position: "Member",
-      image: "/member/er/nindhita-akmalia.jpg",
+      image: ERImages.NINDHITA_ER.src,
       instagram: "https://www.instagram.com/nindhita.ap/",
       linkedin: "https://id.linkedin.com/in/nindhitaakmalia",
    },
    {
       name: "Reysa Amelia Gehan",
       position: "Member",
-      image: "/member/er/reysa-amelia-gehan.jpg",
+      image: ERImages.REYSA_ER.src,
       instagram: "https://www.instagram.com/reysaamlg/",
       linkedin: "https://www.linkedin.com/in/reysa-amelia-gehan-70a038276/",
    },
    {
       name: "Samuel Junio Sambuaga",
       position: "member",
-      image: "/member/er/samuel-junio-sambuaga.jpg",
+      image: ERImages.SAMUEL_ER.src,
       instagram: "https://www.instagram.com/samuel_js12?igsh=NWxtam51bWVqc203",
       linkedin: "https://www.linkedin.com/in/samuel-junio-sambuaga-a380ba27a/",
    },

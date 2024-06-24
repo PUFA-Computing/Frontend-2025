@@ -6,12 +6,13 @@ import "swiper/css";
 import "swiper/css/pagination";
 import MemberCard from "@/components/cabinet/MemberCard";
 import { Pagination } from "swiper/modules";
+import { COMMImages } from "@/lib/cabinet";
 
 const members = [
    {
       name: "Annisa Delicia Yansaf",
       position: "Head of Division (Communication)",
-      image: "/member/comm/annisa-delicia-yansaf.jpg",
+      image: COMMImages.YANSAF_COMM.src,
       instagram: "",
       linkedin: "https://www.linkedin.com/in/annisa-yansaf04/",
    },
@@ -25,14 +26,14 @@ const members = [
    {
       name: "Nailah Septiani Putri",
       position: "Member (Communication)",
-      image: "/member/bod/Bintang Wira Gemilang.png",
+      image: COMMImages.NAILAH_COMM.src,
       instagram: "https://www.instagram.com/nailahesp/",
       linkedin: "https://www.linkedin.com/in/nailah-septiani-putri-248b2328a/",
    },
    {
       name: "Ricarda Sebastian Hutagalung",
       position: "Member (Communication)",
-      image: "/member/bod/Bintang Wira Gemilang.png",
+      image: COMMImages.RICARDA_COMM.src,
       instagram: "",
       linkedin:
          "https://www.linkedin.com/in/ricarda-sebastian-hutagalung-2b503b2b6/",
@@ -40,7 +41,7 @@ const members = [
    {
       name: "Aqeel Fazlemawla Faslah",
       position: "Member (Communication)",
-      image: "/member/bod/Bintang Wira Gemilang.png",
+      image: COMMImages.AQEEL_COMM.src,
       instagram: "",
       linkedin:
          "https://www.linkedin.com/in/aqeel-fazlemawla-faslah-bba439288/",

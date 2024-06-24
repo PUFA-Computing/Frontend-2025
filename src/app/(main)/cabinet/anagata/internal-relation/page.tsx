@@ -6,40 +6,41 @@ import "swiper/css";
 import "swiper/css/pagination";
 import MemberCard from "@/components/cabinet/MemberCard";
 import { Pagination } from "swiper/modules";
+import { IRImages } from "@/lib/cabinet";
 
 const members = [
    {
       name: "Chaesha Fairixa",
       position: "Head of Division",
-      image: "/member/bod/Aura Shafarina Salsabila.jpg",
+      image: IRImages.CHAESA_IR.src,
       instagram: "",
       linkedin: "",
    },
    {
       name: "Anissa Intan Rahmawati",
       position: "Vice of Division",
-      image: "/member/bod/Aura Shafarina Salsabila.jpg",
+      image: IRImages.CHAESA_IR.src,
       instagram: "",
       linkedin: "https://www.linkedin.com/in/annisa-intan-rahmawati-4b5b81245/",
    },
    {
       name: "Muh. Fakhri Hisyam Bakar",
       position: "Member",
-      image: "/member/bod/Aura Shafarina Salsabila.jpg",
+      image: IRImages.CHAESA_IR.src,
       instagram: "",
       linkedin: "",
    },
    {
       name: "Crisceline Abella Ranggen",
       position: "Member",
-      image: "/member/bod/Aura Shafarina Salsabila.jpg",
+      image: IRImages.CHAESA_IR.src,
       instagram: "",
       linkedin: "",
    },
    {
       name: "Samuel Christofel Owen",
       position: "Member",
-      image: "/member/bod/Aura Shafarina Salsabila.jpg",
+      image: IRImages.CHAESA_IR.src,
       instagram: "",
       linkedin: "",
    },

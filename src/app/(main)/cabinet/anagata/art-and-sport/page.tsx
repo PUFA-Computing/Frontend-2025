@@ -5,19 +5,20 @@ import "swiper/css";
 import "swiper/css/pagination";
 import MemberCard from "@/components/cabinet/MemberCard";
 import { Pagination } from "swiper/modules";
+import { ANSImages } from "@/lib/cabinet";
 
 const members = [
    {
       name: "Marizky Afri Legoarto",
       position: "Head of Division",
-      image: "/member/ans/marizky-arfi.jpg",
+      image: ANSImages.MARIZKY_ANS.src,
       instagram: "https://www.instagram.com/marizkyarfi_/",
       linkedin: "",
    },
    {
       name: "Indah Novianti Setyoningrum",
       position: "Vice of Division",
-      image: "/member/ans/indah-novianti-setyoningrum.jpg",
+      image: ANSImages.INDAH_ANS.src,
       instagram: "https://www.instagram.com/innovsn_/",
       linkedin:
          "https://www.linkedin.com/in/indah-novianti-setyoningrum-66793a289/",
@@ -25,21 +26,21 @@ const members = [
    {
       name: "George Elver Andrew Tamba",
       position: "Member",
-      image: "/member/ans/george-elver-andrew-tamba.jpg",
+      image: ANSImages.GEORGE_ANS.src,
       instagram: "",
       linkedin: "",
    },
    {
       name: "Bimasena Yudhaprawira",
       position: "Member",
-      image: "/member/ans/bimasena-yudhaprawira.jpg",
+      image: ANSImages.BIMASENA_ANS.src,
       instagram: "",
       linkedin: "https://www.linkedin.com/in/bimasena-yudhaprawira-488719273/",
    },
    {
       name: "Najla Rifa Nur Asjad",
       position: "Member",
-      image: "/member/ans/najla-rifa-nur-asjad.jpg",
+      image: ANSImages.NAJLA_ANS.src,
       instagram: "",
       linkedin: "https://www.linkedin.com/in/najlasjad/",
    },
