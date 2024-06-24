@@ -367,7 +367,7 @@ export default function RegisterForm() {
                         {isLoading ? (
                             <Spinner size="sm" /> // Show spinner when loading
                         ) : (
-                            "Sign in"
+                            "Register"
                         )}
                     </button>
                 </div>
