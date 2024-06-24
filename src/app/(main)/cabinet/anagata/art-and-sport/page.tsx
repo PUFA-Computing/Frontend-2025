@@ -48,7 +48,7 @@ const members = [
       linkedin: "https://www.linkedin.com/in/najlasjad/",
    },
 ];
-const buttons = ["legislator", "annual event", "review & report", "computing cash"];
+const buttons = ["CSGO", "SOPU PREP", "COMPHEALTH", "COMPUTING SOUND"];
 
 
 export default function page() {

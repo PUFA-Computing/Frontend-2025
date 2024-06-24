@@ -79,7 +79,7 @@ const members = [
    },
 ];
 
-const buttons = ["legislator", "annual event", "review & report", "computing cash"];
+const buttons = ["COMINFO", "MINI ARTICLE", "FUNFACT", "COMPUTING CAREER","COMPSPHERE", "WEB DEVELOPMENT"];
 
 
 export default function page() {

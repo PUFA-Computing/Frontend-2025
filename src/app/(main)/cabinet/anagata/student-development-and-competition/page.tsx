@@ -51,7 +51,7 @@ const members = [
    },
 ];
 
-const buttons = ["legislator", "annual event", "review & report", "computing cash"];
+const buttons = ["COMPCRUSADER", "COMPSPHERE", "PROJECT APPRECIATION", "COMPUTING NIGHT"];
 
 
 export default function page() {

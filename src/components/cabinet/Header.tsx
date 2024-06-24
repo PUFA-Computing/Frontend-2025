@@ -1,5 +1,7 @@
 import Image from 'next/image';
 import React from 'react'
+import VECTOR1 from "@/assets/icon/Vector 1.png"
+import VECTOR2 from "@/assets/icon/Vector 2.png"
 
 interface HeaderProps {
     title: string;
@@ -10,7 +12,7 @@ interface HeaderProps {
 export default function Header({ title, description, image }: HeaderProps) {
     return (
         <section>
-            <div className="flex flex-col space-y-12 px-4 py-[2rem] md:px-[10rem]">
+            <div className="flex flex-col space-y-12 px-4 py-[2rem] md:px-[10rem] bg-[#E5E7EB]">
                 {/* text logo nya  */}
                 <div className="flex flex-col border-l-4 border-[#1FA820] pl-4 md:pl-8">
                     <h1 className="text-[2rem] font-[900] uppercase tracking-widest md:text-[3rem]">
@@ -28,7 +30,6 @@ export default function Header({ title, description, image }: HeaderProps) {
 
                 {/* gambarnya  */}
                 <Image src={image} alt={`${title}'s Image`} width={1080} height={720} className='h-[200px] w-full rounded-lg md:h-[363px] md:w-[645px]' />
-                {/* <div className="h-[200px] w-full rounded-lg bg-[#1FA820] md:h-[363px] md:w-[645px]"></div> */}
             </div>
         </section>
     )

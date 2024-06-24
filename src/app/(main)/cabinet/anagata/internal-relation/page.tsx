@@ -50,7 +50,7 @@ const members = [
    },
 ];
 
-const buttons = ["legislator", "annual event", "review & report", "computing cash"];
+const buttons = ["COMPUTING NIGHT", "COMPSHADOW", "COMPAST", "COMPUTING REGEN","COMPBRAINTS"];
 
 
 export default function page() {

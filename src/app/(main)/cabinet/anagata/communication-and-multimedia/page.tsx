@@ -82,7 +82,7 @@ const members = [
       linkedin: "https://www.linkedin.com/in/riswaldy-pakpahan-321b74252/",
    },
 ];
-const buttons = ["legislator", "annual event", "review & report", "computing cash"];
+const buttons = ["SOSIAL MEDIA", "MOMO", "VAL’S DAY", "COMINFO","COMPUTING NIGHT","COMPBRAINST"];
 
 
 export default function page() {

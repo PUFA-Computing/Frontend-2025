@@ -41,7 +41,7 @@ const members = [
    },
 ];
 
-const buttons = ["legislator", "annual event", "review & report", "computing cash"];
+const buttons = ["COMPUTING STORE", "SPONSORSHIP", "EVENT COLLAB", "BIZINFO"];
 
 
 export default function page() {
