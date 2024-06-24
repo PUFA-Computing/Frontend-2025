@@ -82,6 +82,8 @@ const members = [
       linkedin: "https://www.linkedin.com/in/riswaldy-pakpahan-321b74252/",
    },
 ];
+const buttons = ["legislator", "annual event", "review & report", "computing cash"];
+
 
 export default function page() {
    return (

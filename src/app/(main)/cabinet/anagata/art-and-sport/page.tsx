@@ -6,6 +6,9 @@ import "swiper/css/pagination";
 import MemberCard from "@/components/cabinet/MemberCard";
 import { Pagination } from "swiper/modules";
 import { ANSImages } from "@/lib/cabinet";
+import Header from "@/components/cabinet/Header";
+import BG from "@/assets/coming_soon.jpg"
+import EventsAndWorkplan from "@/components/cabinet/EventsAndWorkplan";
 
 const members = [
    {
@@ -45,50 +48,16 @@ const members = [
       linkedin: "https://www.linkedin.com/in/najlasjad/",
    },
 ];
+const buttons = ["legislator", "annual event", "review & report", "computing cash"];
+
 
 export default function page() {
    return (
       <section>
-         <div className="flex flex-col space-y-12 px-4 py-[2rem] md:px-[10rem]">
-            {/* text logo nya  */}
-            <div className="flex flex-col border-l-4 border-[#1FA820] pl-4 md:pl-8">
-               <h1 className="text-[2rem] font-[900] uppercase tracking-widest md:text-[3rem]">
-                  Art and Sport
-               </h1>
-               <div className="flex flex-col items-start gap-2 md:flex-row md:items-center">
-                  <h1 className="text-[2rem] font-thin uppercase tracking-widest text-stroke-1 text-stroke-black text-stroke-fill-white md:text-[3rem]">
-                     Division
-                  </h1>
-                  <h1 className="text-justify text-[0.8rem] md:max-w-[20rem]">
-                     Division that focuses on developing interest and burning
-                     the arts and sports in the computing sphere.
-                  </h1>
-               </div>
-            </div>
+         <Header title=" Art and Sport" description=" Division that focuses on developing interest and burning the arts and sports in the computing sphere." image={BG.src} />
 
-            {/* gambarnya  */}
-            <div className="h-[200px] w-full rounded-lg bg-[#1FA820] md:h-[363px] md:w-[645px]"></div>
-         </div>
+         <EventsAndWorkplan buttons={buttons} />
 
-         <div className="px-4 py-[3rem] md:px-[10rem]">
-            <h1 className="text-center font-[700] text-[#353535] md:text-[2.25rem]">
-               Events and Workplan
-            </h1>
-            <div className="mx-auto grid grid-cols-1 gap-4 py-4 md:grid-cols-3 md:gap-10 md:py-[2rem]">
-               <Button className="rounded-full border-[#1FA820] text-sm uppercase text-[#1FA820] hover:bg-[#1FA820] md:text-[1.563]">
-                  legislator
-               </Button>
-               <Button className="rounded-full border-[#1FA820] text-sm uppercase text-[#1FA820] hover:bg-[#1FA820] md:text-[1.563]">
-                  annual event
-               </Button>
-               <Button className="rounded-full border-[#1FA820] text-sm uppercase text-[#1FA820] hover:bg-[#1FA820] md:text-[1.563]">
-                  review & report
-               </Button>
-               <Button className="rounded-full border-[#1FA820] text-sm uppercase text-[#1FA820] hover:bg-[#1FA820] md:text-[1.563]">
-                  computing cash
-               </Button>
-            </div>
-         </div>
 
          {/* member */}
          <div className="bg-[#F2F2F2] px-4 py-4 md:px-[10rem] md:py-[1rem]">
