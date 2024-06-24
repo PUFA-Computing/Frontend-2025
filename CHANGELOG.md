@@ -1,3 +1,10 @@
+## [1.3.17](https://github.com/PUFA-Computing/Frontend/compare/v1.3.16...v1.3.17) (2024-06-24)
+
+
+### Bug Fixes
+
+* fixing the port ([c00a7cf](https://github.com/PUFA-Computing/Frontend/commit/c00a7cf7edc4f25c8440f4552ea6dc6ad8066329))
+
 ## [1.3.16](https://github.com/PUFA-Computing/Frontend/compare/v1.3.15...v1.3.16) (2024-06-10)
 
 
