@@ -9,6 +9,7 @@ import PUMASectionMobile from "@/components/puma/PUMASectionMobile";
 import LogoSection from "@/components/puma/LogoSection";
 import PUMAStructure from "@/components/puma/PUMAStructure";
 import { PUMAInformatics } from "@/lib/pumaStructure";
+import { PUMAInformaticsVnM } from "@/lib/pumaVisionMission";
 
 function Page() {
     return (
@@ -37,13 +38,8 @@ function Page() {
             />
             <PUMAStructure divisions={PUMAInformatics} />{" "}
             <VisionAndMission
-                visi="To become a PUMA Informatics that is able to develop soft skills and hard skills, as well as a forum for independent aspirations and creativity, characterized by autonomy, aspiration, quality, and achievement, with a focus on science and technology, and forming strong relationships among students, lecturers, faculty, and other institutions, both within President University and outside."
-                misi={[
-                    "Creating a positive image of PUMA Informatics among students, faculty, and other organizations at President University.",
-                    "Support IT students in enhancing their academic and non-academic soft skills and hard skills development.",
-                    "Forming good relationships between students, lecturers, faculty, and other institutions both inside and outside President University.",
-                    "Create a platform for IT students that serves as a forum for sharing ideas and expressing aspirations",
-                ]}
+                visi= {PUMAInformaticsVnM.vision}
+                misi={PUMAInformaticsVnM.mission}
             />
         </section>
     );
