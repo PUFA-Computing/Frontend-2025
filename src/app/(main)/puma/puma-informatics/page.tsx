@@ -7,6 +7,8 @@ import { aboutContentInformatics } from "@/lib/data";
 import VisionAndMission from "@/components/puma/VisionAndMission";
 import PUMASectionMobile from "@/components/puma/PUMASectionMobile";
 import LogoSection from "@/components/puma/LogoSection";
+import PUMAStructure from "@/components/puma/PUMAStructure";
+import { PUMAInformatics } from "@/lib/pumaStructure";
 
 function Page() {
     return (
@@ -23,7 +25,6 @@ function Page() {
                 slogan="“TOGETHER WE THRIVE, UNITED WE THRIVE”"
                 cabinet="FRAGNATIOUS CABINET PERIOD 2023/2024"
             />
-
             <About content={aboutContentInformatics} />
             <LogoSection
                 title="Letter C, IT, and Circuits"
@@ -34,6 +35,7 @@ function Page() {
                             circuits, this logo depicts the attachment,
                             diversity, and unity within PUMA Informatics."
             />
+            <PUMAStructure divisions={PUMAInformatics} />{" "}
             <VisionAndMission
                 visi="To become a PUMA Informatics that is able to develop soft skills and hard skills, as well as a forum for independent aspirations and creativity, characterized by autonomy, aspiration, quality, and achievement, with a focus on science and technology, and forming strong relationships among students, lecturers, faculty, and other institutions, both within President University and outside."
                 misi={[
