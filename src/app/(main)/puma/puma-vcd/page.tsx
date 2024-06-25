@@ -7,6 +7,7 @@ import { aboutContentInformatics } from "@/lib/data";
 import PUMAStructure from "@/components/puma/PUMAStructure";
 import { PUMAVisualCommunicationDesign } from "@/lib/pumaStructure";
 import VisionAndMission from "@/components/puma/VisionAndMission";
+import { PUMAVisualCommunicationDesignVnM } from "@/lib/pumaVisionMission";
 
 function Page() {
     return (
@@ -21,13 +22,8 @@ function Page() {
             <About content={aboutContentInformatics} />
             <PUMAStructure divisions={PUMAVisualCommunicationDesign}/>
             <VisionAndMission
-                visi="To become a PUMA Informatics that is able to develop soft skills and hard skills, as well as a forum for independent aspirations and creativity, characterized by autonomy, aspiration, quality, and achievement, with a focus on science and technology, and forming strong relationships among students, lecturers, faculty, and other institutions, both within President University and outside."
-                misi={[
-                    "Creating a positive image of PUMA Informatics among students, faculty, and other organizations at President University.",
-                    "Support IT students in enhancing their academic and non-academic soft skills and hard skills development.",
-                    "Forming good relationships between students, lecturers, faculty, and other institutions both inside and outside President University.",
-                    "Create a platform for IT students that serves as a forum for sharing ideas and expressing aspirations",
-                ]}
+                visi={PUMAVisualCommunicationDesignVnM.vision}
+                misi={PUMAVisualCommunicationDesignVnM.mission}
             />
         </section>
     );
