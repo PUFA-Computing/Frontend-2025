@@ -40,8 +40,8 @@ function Page() {
             />
             <PUMAStructure
                 divisions={PUMAInformatics}
-                color1="slate-50"
-                color2="slate-400"
+                color1="#FFFFFF"
+                color2="#353535"
             />{" "}
             <VisionAndMission
                 visi={PUMAInformaticsVnM.vision}

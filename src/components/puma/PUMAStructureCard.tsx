@@ -13,13 +13,15 @@ export default function PUMAStructureCard({
     color1,
     color2,
 }: PUMAStructureCardProps) {
+    const gradientStyle = {
+        backgroundImage: `linear-gradient(to right, ${color1}, ${color2})`,
+    };
     return (
-        <div
-            className={`rounded-xl bg-white px-4 py-2 shadow-lg duration-300 hover:shadow-xl hover:shadow-${color2}`}
-        >
+        <div className="rounded-xl bg-white px-4 py-2 shadow-lg duration-300 hover:shadow-xl">
             <div className="flex items-center gap-2">
                 <div
-                    className={`h-[20px] w-[20px] rounded-full bg-gradient-to-br from-${color1} to-${color2}`}
+                    className="h-[20px] w-[20px] rounded-full"
+                    style={gradientStyle}
                 ></div>
                 <h1 className="py-2 text-[1.2rem] font-[600] uppercase text-[#353535]">
                     {division}

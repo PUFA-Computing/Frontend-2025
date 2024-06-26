@@ -22,8 +22,8 @@ function Page() {
             <About content={aboutContentInformatics} />
             <PUMAStructure
                 divisions={PUMAInformationSystem}
-                color1="slate-50"
-                color2="slate-400"
+                color1="#f97316"
+                color2="#99f6e4"
             />
             <VisionAndMission
                 visi={PUMAInformationSystemVnM.vision}
