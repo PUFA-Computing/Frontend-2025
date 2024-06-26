@@ -6,9 +6,11 @@ interface PUMAStructureProps {
     division: string;
     description: string;
   }[];
+  color1?: string;
+  color2?: string;
 }
 
-export default function PUMAStructure({ divisions }: PUMAStructureProps) {
+export default function PUMAStructure({ divisions,color1,color2 }: PUMAStructureProps) {
   return (
     <section className="mx-auto max-w-7xl pb-16">
       <h1 className="flex justify-center py-6 text-[40px] font-[700] text-[#353535]">
@@ -20,6 +22,8 @@ export default function PUMAStructure({ divisions }: PUMAStructureProps) {
             key={index}
             division={division.division}
             description={division.description}
+            color1={color1}
+            color2={color2}
           />
         ))}
       </div>

@@ -3,11 +3,13 @@ import LOGO from "@/assets/logo/PUMA_VCD.png";
 import PUMASection from "@/components/puma/PUMASection";
 import About from "@/components/puma/About";
 import Background from "@/components/puma/Background";
-import { aboutContentInformatics } from "@/lib/data";
 import PUMAStructure from "@/components/puma/PUMAStructure";
-import { PUMAVisualCommunicationDesign } from "@/lib/pumaStructure";
+import {
+    PUMAVisualCommunicationDesign,
+    PUMAVisualCommunicationDesignVnM,
+    aboutContentInformatics,
+} from "@/lib/data";
 import VisionAndMission from "@/components/puma/VisionAndMission";
-import { PUMAVisualCommunicationDesignVnM } from "@/lib/pumaVisionMission";
 
 function Page() {
     return (
@@ -20,7 +22,11 @@ function Page() {
             />
 
             <About content={aboutContentInformatics} />
-            <PUMAStructure divisions={PUMAVisualCommunicationDesign}/>
+            <PUMAStructure
+                divisions={PUMAVisualCommunicationDesign}
+                color1="slate-50"
+                color2="slate-400"
+            />
             <VisionAndMission
                 visi={PUMAVisualCommunicationDesignVnM.vision}
                 misi={PUMAVisualCommunicationDesignVnM.mission}

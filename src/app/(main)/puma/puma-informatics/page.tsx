@@ -3,13 +3,15 @@ import LOGO from "@/assets/logo/PUMA_IT.png";
 import PUMASection from "@/components/puma/PUMASection";
 import About from "@/components/puma/About";
 import Background from "@/components/puma/Background";
-import { aboutContentInformatics } from "@/lib/data";
+import {
+    PUMAInformaticsVnM,
+    PUMAInformatics,
+    aboutContentInformatics,
+} from "@/lib/data";
 import VisionAndMission from "@/components/puma/VisionAndMission";
 import PUMASectionMobile from "@/components/puma/PUMASectionMobile";
 import LogoSection from "@/components/puma/LogoSection";
 import PUMAStructure from "@/components/puma/PUMAStructure";
-import { PUMAInformatics } from "@/lib/pumaStructure";
-import { PUMAInformaticsVnM } from "@/lib/pumaVisionMission";
 
 function Page() {
     return (
@@ -36,9 +38,13 @@ function Page() {
                             circuits, this logo depicts the attachment,
                             diversity, and unity within PUMA Informatics."
             />
-            <PUMAStructure divisions={PUMAInformatics} />{" "}
+            <PUMAStructure
+                divisions={PUMAInformatics}
+                color1="slate-50"
+                color2="slate-400"
+            />{" "}
             <VisionAndMission
-                visi= {PUMAInformaticsVnM.vision}
+                visi={PUMAInformaticsVnM.vision}
                 misi={PUMAInformaticsVnM.mission}
             />
         </section>

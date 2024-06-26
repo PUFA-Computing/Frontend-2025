@@ -5,9 +5,9 @@ import About from "@/components/puma/About";
 import Background from "@/components/puma/Background";
 import { aboutContentInformatics } from "@/lib/data";
 import VisionAndMission from "@/components/puma/VisionAndMission";
-import { PUMAInformationSystem } from "@/lib/pumaStructure";
+import { PUMAInformationSystem } from "@/lib/data";
 import PUMAStructure from "@/components/puma/PUMAStructure";
-import { PUMAInformationSystemVnM } from "@/lib/pumaVisionMission";
+import { PUMAInformationSystemVnM } from "@/lib/data";
 
 function Page() {
     return (
@@ -20,7 +20,11 @@ function Page() {
             />
 
             <About content={aboutContentInformatics} />
-            <PUMAStructure divisions={PUMAInformationSystem} />
+            <PUMAStructure
+                divisions={PUMAInformationSystem}
+                color1="slate-50"
+                color2="slate-400"
+            />
             <VisionAndMission
                 visi={PUMAInformationSystemVnM.vision}
                 misi={PUMAInformationSystemVnM.mission}

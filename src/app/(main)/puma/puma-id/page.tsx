@@ -5,9 +5,9 @@ import About from "@/components/puma/About";
 import Background from "@/components/puma/Background";
 import { aboutContentInformatics } from "@/lib/data";
 import PUMAStructure from "@/components/puma/PUMAStructure";
-import { PUMAInteriorDesign } from "@/lib/pumaStructure";
+import { PUMAInteriorDesign } from "@/lib/data";
 import VisionAndMission from "@/components/puma/VisionAndMission";
-import { PUMAInteriorDesignVnM } from "@/lib/pumaVisionMission";
+import { PUMAInteriorDesignVnM } from "@/lib/data";
 
 function Page() {
     return (
@@ -20,7 +20,11 @@ function Page() {
             />
 
             <About content={aboutContentInformatics} />
-            <PUMAStructure divisions={PUMAInteriorDesign} />
+            <PUMAStructure
+                divisions={PUMAInteriorDesign}
+                color1="slate-50"
+                color2="slate-400"
+            />
             <VisionAndMission
                 visi={PUMAInteriorDesignVnM.vision}
                 misi={PUMAInteriorDesignVnM.mission}

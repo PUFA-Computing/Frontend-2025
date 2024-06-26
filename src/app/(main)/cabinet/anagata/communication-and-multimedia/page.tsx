@@ -6,7 +6,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import MemberCard from "@/components/cabinet/MemberCard";
 import { Pagination } from "swiper/modules";
-import { COMMImages } from "@/lib/cabinet";
+import { COMMImages } from "@/lib/data";
 
 const members = [
    {

@@ -5,7 +5,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import MemberCard from "@/components/cabinet/MemberCard";
 import { Pagination } from "swiper/modules";
-import { ANSImages } from "@/lib/cabinet";
+import { ANSImages } from "@/lib/data";
 import Header from "@/components/cabinet/Header";
 import BG from "@/assets/coming_soon.jpg"
 import EventsAndWorkplan from "@/components/cabinet/EventsAndWorkplan";
