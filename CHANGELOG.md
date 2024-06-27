@@ -1,3 +1,10 @@
+## [1.3.19](https://github.com/PUFA-Computing/Frontend/compare/v1.3.18...v1.3.19) (2024-06-27)
+
+
+### Bug Fixes
+
+* remove session accessToken on ssr ([6652be3](https://github.com/PUFA-Computing/Frontend/commit/6652be34bfc75466a65448aec26d44df6156c1cf))
+
 ## [1.3.18](https://github.com/PUFA-Computing/Frontend/compare/v1.3.17...v1.3.18) (2024-06-27)
 
 
