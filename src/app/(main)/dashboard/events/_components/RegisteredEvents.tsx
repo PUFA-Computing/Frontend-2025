@@ -61,23 +61,23 @@ export default function RegisteredEvents() {
                 </thead>
                 <tbody className="divide-y divide-gray-200">
                     {events.map((event) => (
-                        <tr key={event.id}>
-                            <td className="whitespace-nowrap px-4 py-3.5 text-center">
-                                {event.title}
+                        <tr key={event.id} className="text-center">
+                            <td className="whitespace-nowrap px-4 py-4">
+                                <div className="text-sm font-[400] text-[#353535]">
+                                    {event.title}
+                                </div>
                             </td>
-                            <td className="whitespace-nowrap py-3.5 text-center">
-                                {event.organization_id}
+                            <td className="whitespace-nowrap px-12 py-4">
+                                <div className="text-sm font-[400] text-[#353535]">
+                                    {event.organization}
+                                </div>
                             </td>
-                            <td className="whitespace-nowrap py-3.5 text-center">
+                            <td className="whitespace-nowrap py-4">
                                 <EventStatusDashboard status={event.status} />
                             </td>
-                            <td className="whitespace-nowrap py-3.5 text-center">
-                                <button
-                                    className="cursor-not-allowed font-normal text-[#02ABF3] disabled:text-gray-500"
-                                    disabled
-                                    title="Coming Soon"
-                                >
-                                    Edit
+                            <td className="whitespace-nowrap py-4">
+                                <button className="text-[#FF6F22] hover:underline">
+                                    View
                                 </button>
                             </td>
                         </tr>

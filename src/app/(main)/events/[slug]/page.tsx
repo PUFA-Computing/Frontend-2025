@@ -23,9 +23,6 @@ interface EventPageProps {
 }
 
 export default async function EventDetailsPage({ params }: EventPageProps) {
-    const session = await getSessionServer();
-    if (!session) return redirect("/auth/signin");
-
     if (!params.slug || params.slug.length < 1) {
         return redirect("/404");
     }

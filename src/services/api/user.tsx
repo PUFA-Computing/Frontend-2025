@@ -154,19 +154,13 @@ export async function GetUser(accessToken: string) {
  * @param accessToken The access token to authenticate the request.
  * @param eventId The ID of the event to fetch.
  */
-export async function fetchUserEvents(
-    accessToken: string | undefined,
-    eventId: number
-): Promise<Event[]> {
+export async function fetchUserEvents(accessToken: string): Promise<Event[]> {
     try {
-        const response = await axios.get(
-            `${API_EVENT}/${eventId}/registered-users`,
-            {
-                headers: {
-                    Authorization: `Bearer ${accessToken}`,
-                },
-            }
-        );
+        const response = await axios.get(`${API_USER}/registered-event`, {
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+            },
+        });
 
         return response.data?.data || [];
     } catch (error) {
