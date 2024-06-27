@@ -152,14 +152,21 @@ export async function GetUser(accessToken: string) {
  * @returns {Promise<Event[]>} A promise that resolves to an array of Event objects.
  * @throws {Error} If an error occurs during the API request.
  * @param accessToken The access token to authenticate the request.
+ * @param eventId The ID of the event to fetch.
  */
-export async function fetchUserEvents(accessToken: string) {
+export async function fetchUserEvents(
+    accessToken: string,
+    eventId: number
+): Promise<Event[]> {
     try {
-        const response = await axios.get(`${API_USER}/registered-events`, {
-            headers: {
-                Authorization: `Bearer ${accessToken}`,
-            },
-        });
+        const response = await axios.get(
+            `${API_EVENT}/${eventId}/registered-users`,
+            {
+                headers: {
+                    Authorization: `Bearer ${accessToken}`,
+                },
+            }
+        );
 
         return response.data?.data || [];
     } catch (error) {

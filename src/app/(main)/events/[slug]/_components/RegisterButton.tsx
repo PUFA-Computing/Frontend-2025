@@ -14,9 +14,13 @@ interface RegisterButtonProps {
     eventTitle: string;
     eventSlug: string;
     eventStatus: string;
+    userId: string;
+    accessToken: string;
 }
 
 export default function RegisterButton({
+    userId,
+    accessToken,
     eventId,
     eventTitle,
     eventSlug,
@@ -28,7 +32,6 @@ export default function RegisterButton({
     useEffect(() => {
         const userEvents = async () => {
             try {
-                const userId = localStorage.getItem("userId");
                 if (!userId) {
                     await Swal.fire({
                         icon: "error",
@@ -37,11 +40,11 @@ export default function RegisterButton({
                     });
 
                     setButtonRegisterText("You need to login");
-                    // router.push("/auth/signin");
+                    setregisterDisabled(true);
                     return;
                 }
 
-                const response = await fetchUserEvents(userId);
+                const response = await fetchUserEvents(accessToken, eventId);
 
                 for (const event of response) {
                     if (event.slug == eventSlug) {
@@ -55,7 +58,7 @@ export default function RegisterButton({
                     setregisterDisabled(true);
                 } else {
                     setButtonRegisterText("Register");
-                    setregisterDisabled(false)
+                    setregisterDisabled(false);
                 }
             } catch (error) {
                 console.log(error);
@@ -77,8 +80,8 @@ export default function RegisterButton({
                 title: "Registration failed",
                 text: "Event registration is closed.",
             });
-            setButtonRegisterText("Registration Closed")
-            setregisterDisabled(true)
+            setButtonRegisterText("Registration Closed");
+            setregisterDisabled(true);
             return;
         }
 
@@ -97,8 +100,6 @@ export default function RegisterButton({
             }).then(async (result) => {
                 try {
                     if (result.isConfirmed) {
-                        const accessToken =
-                            localStorage.getItem("access_token");
                         const response = await axios.post(
                             `${API_EVENT}/${eventId}/register`,
                             {},

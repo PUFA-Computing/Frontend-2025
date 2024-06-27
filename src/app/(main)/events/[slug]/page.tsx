@@ -6,6 +6,7 @@ import Link from "next/link";
 import { IoIosArrowForward } from "react-icons/io";
 import Seperator from "@/components/Seperator";
 import RegisterButton from "./_components/RegisterButton";
+import { getSessionServer } from "@/lib/auth";
 
 const description = (description: string) => {
     const lines = description.split("\n");
@@ -22,6 +23,9 @@ interface EventPageProps {
 }
 
 export default async function EventDetailsPage({ params }: EventPageProps) {
+    const session = await getSessionServer();
+    if (!session) return redirect("/auth/signin");
+
     if (!params.slug || params.slug.length < 1) {
         return redirect("/404");
     }
@@ -31,15 +35,15 @@ export default async function EventDetailsPage({ params }: EventPageProps) {
         return redirect("/404");
     }
 
-    const registrationPercentage = (event.total_registered / event.max_registration) * 100;
+    const registrationPercentage =
+        (event.total_registered / event.max_registration) * 100;
 
-    let registrationColor = 'text-green-500'; 
+    let registrationColor = "text-green-500";
     if (registrationPercentage >= 80) {
-        registrationColor = 'text-red-500';
+        registrationColor = "text-red-500";
     } else if (registrationPercentage >= 50) {
-        registrationColor = 'text-yellow-500';
+        registrationColor = "text-yellow-500";
     }
-
 
     return (
         <div>
@@ -78,11 +82,15 @@ export default async function EventDetailsPage({ params }: EventPageProps) {
                 {/* card details event  */}
                 <div className="max-h-4xl w-full rounded-lg border border-[#CBCBCB] text-[#353535] md:w-auto">
                     <div className="flex justify-between px-5 py-2 text-[1.5rem] font-[600]">
-                        <h1>
-                            {event.title}
-                        </h1>
+                        <h1>{event.title}</h1>
                         <div>
-                            <p className={registrationColor}>{event.total_registered} <span className="text-[#353535]"> / {event.max_registration} </span></p>
+                            <p className={registrationColor}>
+                                {event.total_registered}{" "}
+                                <span className="text-[#353535]">
+                                    {" "}
+                                    / {event.max_registration}{" "}
+                                </span>
+                            </p>
                         </div>
                     </div>
                     <Seperator className="border-[#CBCBCB]" />
@@ -99,6 +107,8 @@ export default async function EventDetailsPage({ params }: EventPageProps) {
                             eventId={event.id}
                             eventTitle={event.title}
                             eventStatus={event.status}
+                            userId={session?.user.id}
+                            accessToken={session?.user.access_token}
                         />
                     </div>
                 </div>
