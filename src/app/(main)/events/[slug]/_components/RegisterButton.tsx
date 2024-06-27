@@ -8,19 +8,16 @@ import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { fetchEvents } from "@/services/api/event";
+import { useSession } from "next-auth/react";
 
 interface RegisterButtonProps {
     eventId: number;
     eventTitle: string;
     eventSlug: string;
     eventStatus: string;
-    userId: string;
-    accessToken: string;
 }
 
 export default function RegisterButton({
-    userId,
-    accessToken,
     eventId,
     eventTitle,
     eventSlug,
@@ -28,11 +25,13 @@ export default function RegisterButton({
 }: RegisterButtonProps) {
     const [registerDisabled, setregisterDisabled] = useState(false);
     const [buttonRegisterText, setButtonRegisterText] = useState("Loading...");
+    const session = useSession();
+    const accessToken = session.data?.user.access_token;
 
     useEffect(() => {
         const userEvents = async () => {
             try {
-                if (!userId) {
+                if (!accessToken) {
                     await Swal.fire({
                         icon: "error",
                         title: "Oops...",

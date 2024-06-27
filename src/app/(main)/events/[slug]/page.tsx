@@ -107,8 +107,6 @@ export default async function EventDetailsPage({ params }: EventPageProps) {
                             eventId={event.id}
                             eventTitle={event.title}
                             eventStatus={event.status}
-                            userId={session?.user.id}
-                            accessToken={session?.user.access_token}
                         />
                     </div>
                 </div>

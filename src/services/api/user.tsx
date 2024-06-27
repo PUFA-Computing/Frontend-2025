@@ -155,7 +155,7 @@ export async function GetUser(accessToken: string) {
  * @param eventId The ID of the event to fetch.
  */
 export async function fetchUserEvents(
-    accessToken: string,
+    accessToken: string | undefined,
     eventId: number
 ): Promise<Event[]> {
     try {
