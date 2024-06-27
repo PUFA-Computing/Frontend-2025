@@ -1,3 +1,10 @@
+## [1.3.20](https://github.com/PUFA-Computing/Frontend/compare/v1.3.19...v1.3.20) (2024-06-27)
+
+
+### Bug Fixes
+
+* register event to make some adjustment ([41cf917](https://github.com/PUFA-Computing/Frontend/commit/41cf91715c5853796ae9f9999de2f1612ceb2516))
+
 ## [1.3.19](https://github.com/PUFA-Computing/Frontend/compare/v1.3.18...v1.3.19) (2024-06-27)
 
 
