@@ -1,3 +1,10 @@
+## [1.3.18](https://github.com/PUFA-Computing/Frontend/compare/v1.3.17...v1.3.18) (2024-06-27)
+
+
+### Bug Fixes
+
+* Register to the events error due to switching session storage ([a212d6c](https://github.com/PUFA-Computing/Frontend/commit/a212d6cbd796802523c5b4bc763d63b8cb3e6f99))
+
 ## [1.3.17](https://github.com/PUFA-Computing/Frontend/compare/v1.3.16...v1.3.17) (2024-06-24)
 
 
