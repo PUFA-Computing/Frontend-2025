@@ -1,14 +1,12 @@
 "use client";
 import Button from "@/components/Button";
 import { API_EVENT } from "@/config/config";
-import { fetchUserEvents } from "@/services/api/user";
 import axios from "axios";
-import { access } from "fs";
-import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
-import { fetchEvents } from "@/services/api/event";
+import { fetchUsersRegistered } from "@/services/api/event";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 interface RegisterButtonProps {
     eventId: number;
@@ -23,55 +21,65 @@ export default function RegisterButton({
     eventSlug,
     eventStatus,
 }: RegisterButtonProps) {
-    const [registerDisabled, setregisterDisabled] = useState(false);
+    const [registerDisabled, setRegisterDisabled] = useState(false);
     const [buttonRegisterText, setButtonRegisterText] = useState("Loading...");
-    const session = useSession();
-    const accessToken = session.data?.user.access_token;
+    const { data: session, status } = useSession();
+    const router = useRouter();
 
     useEffect(() => {
         const userEvents = async () => {
-            try {
-                if (!accessToken) {
-                    await Swal.fire({
-                        icon: "error",
-                        title: "Oops...",
-                        text: "You havent logged in yet",
-                    });
+            if (status === "loading") {
+                setButtonRegisterText("Loading...");
+                return;
+            }
 
-                    setButtonRegisterText("You need to login");
-                    setregisterDisabled(true);
+            if (!session) {
+                setButtonRegisterText("Login to Register");
+                setRegisterDisabled(true);
+                return;
+            }
+
+            try {
+                const accessToken = session.user.access_token;
+                const response = await fetchUsersRegistered(
+                    eventId,
+                    accessToken
+                );
+
+                if (!response) {
+                    setButtonRegisterText("Register");
+                    setRegisterDisabled(false);
                     return;
                 }
 
-                const response = await fetchUserEvents(accessToken, eventId);
-
                 for (const event of response) {
-                    if (event.slug == eventSlug) {
-                        setregisterDisabled(true);
+                    if (event.slug === eventSlug) {
+                        setRegisterDisabled(true);
                         setButtonRegisterText("Registered");
                         return;
                     }
                 }
+
                 if (eventStatus !== "Open") {
                     setButtonRegisterText("Registration Closed");
-                    setregisterDisabled(true);
+                    setRegisterDisabled(true);
                 } else {
                     setButtonRegisterText("Register");
-                    setregisterDisabled(false);
+                    setRegisterDisabled(false);
                 }
             } catch (error) {
                 console.log(error);
                 await Swal.fire({
                     icon: "error",
                     title: "Oops...",
-                    text: "Cant fetch users event, please try again later",
+                    text: "Can't fetch user's events, please try again later",
                 });
             }
         };
-        userEvents().then((r) => r);
-    }, []);
 
-    const router = useRouter();
+        userEvents();
+    }, [status, session]);
+
     const handleRegister = async () => {
         if (eventStatus !== "Open") {
             await Swal.fire({
@@ -80,7 +88,7 @@ export default function RegisterButton({
                 text: "Event registration is closed.",
             });
             setButtonRegisterText("Registration Closed");
-            setregisterDisabled(true);
+            setRegisterDisabled(true);
             return;
         }
 
@@ -88,6 +96,7 @@ export default function RegisterButton({
             router.push("/auth/signin");
             return;
         }
+
         try {
             Swal.fire({
                 title: "Register for Event",
@@ -97,8 +106,9 @@ export default function RegisterButton({
                 confirmButtonText: "Yes",
                 cancelButtonText: "No",
             }).then(async (result) => {
-                try {
-                    if (result.isConfirmed) {
+                if (result.isConfirmed) {
+                    try {
+                        const accessToken = session?.user.access_token;
                         const response = await axios.post(
                             `${API_EVENT}/${eventId}/register`,
                             {},
@@ -114,7 +124,7 @@ export default function RegisterButton({
                             Swal.fire({
                                 icon: "success",
                                 title: "Registered successfully!",
-                                text: "Redirect to dashboard...",
+                                text: "Redirecting to dashboard...",
                                 showConfirmButton: false,
                                 timer: 3000,
                             }).then(() => {
@@ -127,29 +137,26 @@ export default function RegisterButton({
                                 text: "There was an error while registering for the event.",
                             });
                         }
-                    }
-                } catch (error: any) {
-                    console.error("Error registering for event:", error);
-                    if (
-                        error.response &&
-                        error.response.status === 500 &&
-                        error.response.data &&
-                        error.response.data.message &&
-                        error.response.data.message.includes(
-                            "Request failed with status code 500"
-                        )
-                    ) {
-                        Swal.fire({
-                            icon: "error",
-                            title: "Registration failed",
-                            text: "Maximum registration limit reached for this event.",
-                        });
-                    } else {
-                        await Swal.fire({
-                            icon: "error",
-                            title: "Registration failed",
-                            text: `There was an error while registering event ${eventTitle}`,
-                        });
+                    } catch (error: any) {
+                        console.error("Error registering for event:", error);
+                        if (
+                            error.response?.status === 500 &&
+                            error.response.data?.message?.includes(
+                                "Request failed with status code 500"
+                            )
+                        ) {
+                            Swal.fire({
+                                icon: "error",
+                                title: "Registration failed",
+                                text: "Maximum registration limit reached for this event.",
+                            });
+                        } else {
+                            await Swal.fire({
+                                icon: "error",
+                                title: "Registration failed",
+                                text: `There was an error while registering for the event ${eventTitle}.`,
+                            });
+                        }
                     }
                 }
             });
@@ -162,7 +169,7 @@ export default function RegisterButton({
         <Button
             className="w-5/6 border-[#353535] py-2 text-[#353535] hover:bg-[#353535] hover:text-white"
             onClick={handleRegister}
-            disabled={buttonRegisterText.toLowerCase().includes("registered")}
+            disabled={registerDisabled}
         >
             {buttonRegisterText}
         </Button>
