@@ -1,3 +1,10 @@
+## [1.3.21](https://github.com/PUFA-Computing/Frontend/compare/v1.3.20...v1.3.21) (2024-06-28)
+
+
+### Bug Fixes
+
+* dashboard register events, causing error ([be2e75b](https://github.com/PUFA-Computing/Frontend/commit/be2e75b867ec86b3005f5934f0b394291462a828))
+
 ## [1.3.20](https://github.com/PUFA-Computing/Frontend/compare/v1.3.19...v1.3.20) (2024-06-27)
 
 
