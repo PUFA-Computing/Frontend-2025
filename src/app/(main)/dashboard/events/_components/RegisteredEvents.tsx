@@ -9,26 +9,40 @@ import { useSession } from "next-auth/react";
 export default function RegisteredEvents() {
     const [events, setEvents] = useState<Event[]>([]);
     const [isLoading, setIsLoading] = useState(true);
-    const session = useSession();
+    const { data: session, status } = useSession();
 
     useEffect(() => {
         async function fetchEvents() {
-            if (session.data == null) {
+            if (status === "loading") {
+                return;
+            }
+
+            if (!session) {
+                setIsLoading(false);
                 return;
             }
 
             try {
-                const events = await fetchUserEvents(
-                    session.data.user.access_token
-                );
-                setEvents(events);
+                const events = await fetchUserEvents(session.user.access_token);
+                console.log("Fetched events:", events); // Debugging statement
+                if (Array.isArray(events)) {
+                    setEvents(events);
+                } else {
+                    console.error("Fetched events is not an array:", events);
+                }
             } catch (error) {
                 console.log(error);
+            } finally {
+                setIsLoading(false);
             }
         }
 
-        fetchEvents().then(() => setIsLoading(false));
-    }, []);
+        fetchEvents();
+    }, [session, status]);
+
+    useEffect(() => {
+        console.log("Updated events state:", events); // Debugging statement
+    }, [events]);
 
     if (isLoading) {
         return (
@@ -54,34 +68,36 @@ export default function RegisteredEvents() {
                         <th scope="col" className="py-3.5">
                             Status
                         </th>
-                        <th scope="col" className="py-3.5">
-                            Action
-                        </th>
                     </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-200">
-                    {events.map((event) => (
-                        <tr key={event.id} className="text-center">
-                            <td className="whitespace-nowrap px-4 py-4">
-                                <div className="text-sm font-[400] text-[#353535]">
-                                    {event.title}
-                                </div>
-                            </td>
-                            <td className="whitespace-nowrap px-12 py-4">
-                                <div className="text-sm font-[400] text-[#353535]">
-                                    {event.organization}
-                                </div>
-                            </td>
-                            <td className="whitespace-nowrap py-4">
-                                <EventStatusDashboard status={event.status} />
-                            </td>
-                            <td className="whitespace-nowrap py-4">
-                                <button className="text-[#FF6F22] hover:underline">
-                                    View
-                                </button>
+                    {Array.isArray(events) && events.length > 0 ? (
+                        events.map((event) => (
+                            <tr key={event.id} className="text-center">
+                                <td className="whitespace-nowrap px-4 py-4">
+                                    <div className="text-sm font-[400] text-[#353535]">
+                                        {event.title}
+                                    </div>
+                                </td>
+                                <td className="whitespace-nowrap px-12 py-4">
+                                    <div className="text-sm font-[400] text-[#353535]">
+                                        {event.organization}
+                                    </div>
+                                </td>
+                                <td className="whitespace-nowrap py-4">
+                                    <EventStatusDashboard
+                                        status={event.status}
+                                    />
+                                </td>
+                            </tr>
+                        ))
+                    ) : (
+                        <tr>
+                            <td colSpan={4} className="py-4 text-center">
+                                No events found.
                             </td>
                         </tr>
-                    ))}
+                    )}
                 </tbody>
             </table>
         </div>
