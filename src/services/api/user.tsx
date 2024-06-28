@@ -156,13 +156,20 @@ export async function GetUser(accessToken: string) {
  */
 export async function fetchUserEvents(accessToken: string): Promise<Event[]> {
     try {
-        const response = await axios.get(`${API_USER}/registered-event`, {
+        const response = await axios.get(`${API_USER}/registered-events`, {
             headers: {
                 Authorization: `Bearer ${accessToken}`,
             },
         });
 
-        return response.data?.data || [];
+        console.log("API Response:", response.data); // Debugging statement
+
+        if (Array.isArray(response.data?.data)) {
+            return response.data.data;
+        } else {
+            console.error("Unexpected response structure:", response.data);
+            return [];
+        }
     } catch (error) {
         console.error("Error fetching user events", error);
         throw error;
