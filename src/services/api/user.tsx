@@ -162,8 +162,6 @@ export async function fetchUserEvents(accessToken: string): Promise<Event[]> {
             },
         });
 
-        console.log("API Response:", response.data); // Debugging statement
-
         if (Array.isArray(response.data?.data)) {
             return response.data.data;
         } else {

@@ -24,14 +24,13 @@ export default function RegisteredEvents() {
 
             try {
                 const events = await fetchUserEvents(session.user.access_token);
-                console.log("Fetched events:", events); // Debugging statement
                 if (Array.isArray(events)) {
                     setEvents(events);
                 } else {
-                    console.error("Fetched events is not an array:", events);
+                    console.error("Invalid events data");
                 }
             } catch (error) {
-                console.log(error);
+                console.error(error);
             } finally {
                 setIsLoading(false);
             }
@@ -39,10 +38,6 @@ export default function RegisteredEvents() {
 
         fetchEvents();
     }, [session, status]);
-
-    useEffect(() => {
-        console.log("Updated events state:", events); // Debugging statement
-    }, [events]);
 
     if (isLoading) {
         return (
