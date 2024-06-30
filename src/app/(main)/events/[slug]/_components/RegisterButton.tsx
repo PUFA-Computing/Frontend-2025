@@ -4,12 +4,10 @@ import { API_EVENT } from "@/config/config";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
-import {
-    fetchUsersRegistered,
-    totalRegisteredUsers,
-} from "@/services/api/event";
+import { totalRegisteredUsers } from "@/services/api/event";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { fetchUserEvents } from "@/services/api/user";
 
 interface RegisterButtonProps {
     eventId: number;
@@ -43,33 +41,21 @@ export default function RegisterButton({
             }
 
             try {
-                const response = await totalRegisteredUsers(eventId);
+                const userEvents = await fetchUserEvents(
+                    session.user.access_token
+                );
 
-                if (!response) {
-                    setButtonRegisterText("Register");
-                    setRegisterDisabled(false);
-                    return;
-                }
-
-                if (Array.isArray(response)) {
-                    for (const event of response) {
-                        if (event.slug === eventSlug) {
-                            setRegisterDisabled(true);
-                            setButtonRegisterText("Registered");
-                            return;
-                        }
-                    }
-                } else {
-                    console.warn(
-                        "Unexpected response format from totalRegisteredUsers"
-                    );
-                    // Set button text and disabled state appropriately (e.g., "Error fetching data")
-
-                    setButtonRegisterText("Error fetching data");
+                if (
+                    userEvents.some(
+                        (event: { slug: string }) => event.slug === eventSlug
+                    )
+                ) {
                     setRegisterDisabled(true);
-
+                    setButtonRegisterText("Registered");
                     return;
                 }
+
+                const totalParticipants = await totalRegisteredUsers(eventId);
 
                 if (eventStatus !== "Open") {
                     setButtonRegisterText("Registration Closed");

@@ -246,7 +246,7 @@ export const totalRegisteredUsers = async (eventId: number) => {
         );
 
         // Extract the event data from the response
-        return response.data?.data;
+        return response.data?.data; // This should be a number based on the provided API response example
     } catch (error) {
         // Log an error message and rethrow the error
         console.error(
