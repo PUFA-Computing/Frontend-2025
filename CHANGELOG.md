@@ -1,3 +1,10 @@
+## [1.3.24](https://github.com/PUFA-Computing/Frontend/compare/v1.3.23...v1.3.24) (2024-06-30)
+
+
+### Bug Fixes
+
+* registered state, and delete event with delete fk ([43b208b](https://github.com/PUFA-Computing/Frontend/commit/43b208b74c90936e4cd5360cfc6606d09dc81eb8))
+
 ## [1.3.23](https://github.com/PUFA-Computing/Frontend/compare/v1.3.22...v1.3.23) (2024-06-30)
 
 
