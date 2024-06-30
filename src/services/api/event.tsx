@@ -237,3 +237,22 @@ export const fetchUsersRegistered = async (
         throw error;
     }
 };
+
+export const totalRegisteredUsers = async (eventId: number) => {
+    try {
+        // Make a GET request to the API endpoint
+        const response = await axios.get(
+            `${API_EVENT}/${eventId}/total-participant`
+        );
+
+        // Extract the event data from the response
+        return response.data?.data;
+    } catch (error) {
+        // Log an error message and rethrow the error
+        console.error(
+            `Error fetching total registered users for event with ID ${eventId}`,
+            error
+        );
+        throw error;
+    }
+};

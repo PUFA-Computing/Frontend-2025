@@ -4,7 +4,10 @@ import { API_EVENT } from "@/config/config";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
-import { fetchUsersRegistered } from "@/services/api/event";
+import {
+    fetchUsersRegistered,
+    totalRegisteredUsers,
+} from "@/services/api/event";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
@@ -40,11 +43,7 @@ export default function RegisterButton({
             }
 
             try {
-                const accessToken = session.user.access_token;
-                const response = await fetchUsersRegistered(
-                    eventId,
-                    accessToken
-                );
+                const response = await totalRegisteredUsers(eventId);
 
                 if (!response) {
                     setButtonRegisterText("Register");
