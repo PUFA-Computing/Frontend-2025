@@ -1,3 +1,10 @@
+## [1.3.25](https://github.com/PUFA-Computing/Frontend/compare/v1.3.24...v1.3.25) (2024-06-30)
+
+
+### Bug Fixes
+
+* notes for support any special treat for events ([5c36b91](https://github.com/PUFA-Computing/Frontend/commit/5c36b919252dbb14da87cef1a2ba8c2b98b06dc2))
+
 ## [1.3.24](https://github.com/PUFA-Computing/Frontend/compare/v1.3.23...v1.3.24) (2024-06-30)
 
 
