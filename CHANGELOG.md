@@ -1,3 +1,10 @@
+## [1.3.23](https://github.com/PUFA-Computing/Frontend/compare/v1.3.22...v1.3.23) (2024-06-30)
+
+
+### Bug Fixes
+
+* TypeError: t is not iterable with use non array response2 ([c244110](https://github.com/PUFA-Computing/Frontend/commit/c2441108415dcd602c142f5180395528bf3ad89b))
+
 ## [1.3.22](https://github.com/PUFA-Computing/Frontend/compare/v1.3.21...v1.3.22) (2024-06-30)
 
 
