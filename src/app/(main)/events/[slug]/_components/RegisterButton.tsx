@@ -24,6 +24,7 @@ export default function RegisterButton({
 }: RegisterButtonProps) {
     const [registerDisabled, setRegisterDisabled] = useState(false);
     const [buttonRegisterText, setButtonRegisterText] = useState("Loading...");
+    const [additionalNotes, setAdditionalNotes] = useState("");
     const { data: session, status } = useSession();
     const router = useRouter();
 
@@ -78,6 +79,7 @@ export default function RegisterButton({
     }, [status, session]);
 
     const handleRegister = async () => {
+        console.log("Additional Notes:", additionalNotes);
         if (eventStatus !== "Open") {
             await Swal.fire({
                 icon: "error",
@@ -91,6 +93,15 @@ export default function RegisterButton({
 
         if (buttonRegisterText.toLowerCase().includes("login")) {
             router.push("/auth/signin");
+            return;
+        }
+
+        if (!additionalNotes) {
+            await Swal.fire({
+                icon: "warning",
+                title: "Additional Notes Required",
+                text: "Please provide additional notes to register for the event.",
+            });
             return;
         }
 
@@ -108,7 +119,9 @@ export default function RegisterButton({
                         const accessToken = session?.user.access_token;
                         const response = await axios.post(
                             `${API_EVENT}/${eventId}/register`,
-                            {},
+                            {
+                                additional_notes: additionalNotes,
+                            },
                             {
                                 headers: {
                                     "Content-Type": "application/json",
@@ -123,7 +136,7 @@ export default function RegisterButton({
                                 title: "Registered successfully!",
                                 text: "Redirecting to dashboard...",
                                 showConfirmButton: false,
-                                timer: 3000,
+                                timer: 2000,
                             }).then(() => {
                                 router.push("/dashboard/events");
                             });
@@ -163,12 +176,25 @@ export default function RegisterButton({
     };
 
     return (
-        <Button
-            className="w-5/6 border-[#353535] py-2 text-[#353535] hover:bg-[#353535] hover:text-white"
-            onClick={handleRegister}
-            disabled={registerDisabled}
-        >
-            {buttonRegisterText}
-        </Button>
+        <div className="flex w-full flex-col items-center space-y-4 rounded-lg bg-white p-4 shadow-md">
+            {!registerDisabled && (
+                <textarea
+                    placeholder="Additional Notes"
+                    className="w-5/6 rounded-lg border-[#353535] bg-white px-4 py-2 text-[#353535] focus:border-y-gray-800 focus:outline-none"
+                    onChange={(e) => setAdditionalNotes(e.target.value)}
+                />
+            )}
+            <Button
+                className={`w-5/6 rounded-lg py-2 text-white hover:text-gray-200 ${
+                    registerDisabled
+                        ? "cursor-not-allowed bg-gray-500"
+                        : "bg-gray-500 hover:bg-gray-600"
+                }`}
+                onClick={handleRegister}
+                disabled={registerDisabled}
+            >
+                {buttonRegisterText}
+            </Button>
+        </div>
     );
 }

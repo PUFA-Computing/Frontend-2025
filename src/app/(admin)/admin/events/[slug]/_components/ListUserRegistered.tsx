@@ -53,17 +53,16 @@ export default function ListUserRegistered({
                         key={user.id}
                         className="relative flex items-center space-x-3 rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:border-gray-400"
                     >
-                        <div className="flex shrink-0">
+                        <div className="flex-shrink-0">
                             <Image
                                 src={
-                                    user.profile_picture
-                                        ? user.profile_picture
-                                        : "https://sg.pufacomputing.live/Assets/male.jpegg"
+                                    user.profile_picture ||
+                                    "https://sg.pufacomputing.live/Assets/male.jpegg"
                                 }
                                 alt={`${user.first_name} Avatar`}
                                 className="h-12 w-12 rounded-full"
-                                width={480}
-                                height={240}
+                                width={48}
+                                height={48}
                             />
                         </div>
                         <div className="min-w-0 flex-1">
@@ -76,6 +75,7 @@ export default function ListUserRegistered({
                                     {user.first_name} {user.last_name}
                                     {user.major && (
                                         <span className="text-gray-500">
+                                            {" "}
                                             -{" "}
                                             {user.major.charAt(0).toUpperCase()}
                                             {user.major.slice(1)} {user.year}
@@ -86,6 +86,14 @@ export default function ListUserRegistered({
                                     {user.email}
                                 </p>
                             </div>
+                            {user.additional_notes && (
+                                <div className="mt-1 text-sm text-gray-500">
+                                    <span className="font-medium">
+                                        Additional Notes:
+                                    </span>{" "}
+                                    {user.additional_notes}
+                                </div>
+                            )}
                         </div>
                     </div>
                 ))}
