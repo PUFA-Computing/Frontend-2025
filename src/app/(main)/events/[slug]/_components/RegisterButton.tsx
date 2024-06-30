@@ -51,12 +51,24 @@ export default function RegisterButton({
                     return;
                 }
 
-                for (const event of response) {
-                    if (event.slug === eventSlug) {
-                        setRegisterDisabled(true);
-                        setButtonRegisterText("Registered");
-                        return;
+                if (Array.isArray(response)) {
+                    for (const event of response) {
+                        if (event.slug === eventSlug) {
+                            setRegisterDisabled(true);
+                            setButtonRegisterText("Registered");
+                            return;
+                        }
                     }
+                } else {
+                    console.warn(
+                        "Unexpected response format from totalRegisteredUsers"
+                    );
+                    // Set button text and disabled state appropriately (e.g., "Error fetching data")
+
+                    setButtonRegisterText("Error fetching data");
+                    setRegisterDisabled(true);
+
+                    return;
                 }
 
                 if (eventStatus !== "Open") {
