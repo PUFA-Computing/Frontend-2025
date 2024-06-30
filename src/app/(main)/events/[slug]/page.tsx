@@ -6,7 +6,6 @@ import Link from "next/link";
 import { IoIosArrowForward } from "react-icons/io";
 import Seperator from "@/components/Seperator";
 import RegisterButton from "./_components/RegisterButton";
-import { getSessionServer } from "@/lib/auth";
 
 const description = (description: string) => {
     const lines = description.split("\n");

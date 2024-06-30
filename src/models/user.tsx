@@ -19,6 +19,7 @@ interface User {
     student_id_verification?: string;
     institution_name?: string;
     gender?: string;
+    additional_notes?: string;
 }
 
 export default User;
