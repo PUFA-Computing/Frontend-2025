@@ -1,3 +1,10 @@
+## [1.3.22](https://github.com/PUFA-Computing/Frontend/compare/v1.3.21...v1.3.22) (2024-06-30)
+
+
+### Bug Fixes
+
+* can't fetch users event by migrate to our new endpoint ([ba6d483](https://github.com/PUFA-Computing/Frontend/commit/ba6d4832517bdb9eb8a3f5cc4e1d48cc5d0a171b))
+
 ## [1.3.21](https://github.com/PUFA-Computing/Frontend/compare/v1.3.20...v1.3.21) (2024-06-28)
 
 
