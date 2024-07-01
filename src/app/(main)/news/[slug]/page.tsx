@@ -34,47 +34,45 @@ export default async function NewsDetailsPage({
                 description="The latest news about research, technology, achievements, and campus life."
                 borderColor="black"
             />
-            <div className="mx-auto grid max-w-7xl">
-                <div className="flex items-center justify-center py-2">
-                    <Image
-                        className="h-[575px] w-[1103px] rounded-[15px] shadow"
-                        src={news.thumbnail}
-                        height={1080}
-                        width={1920}
-                        alt={`${news.title}'s Photo`}
-                    />
-                </div>
-
-                <div className="flex items-center justify-center py-2">
-                    <Suspense fallback={<CircularProgress />}>
-                        <div className="w-[1103px]">
-                            <h1 className="text-[1.875rem] font-[600] leading-normal text-[#2F2F2F]">
-                                {news.title}
-                            </h1>
-                            <div className="flex flex-col py-2 text-[0.938rem] font-[500] text-[#2F2F2F]">
-                                <p>
-                                    {news.author}{" "}
-                                    <span className="font-black"> | </span>From:{" "}
-                                    {news.organization}
-                                </p>
-                                <p>{news.publish_date.toDateString()}</p>
-                            </div>
-
-                            <div className="py-8 text-justify text-[1.25rem] font-[500] text-[#2F2F2F]">
-                                {/* Display Quill content as HTML */}
-                                <article
-                                    className="prose lg:prose-xl"
-                                    dangerouslySetInnerHTML={createMarkup(
-                                        news.content
-                                    )}
-                                />
-                            </div>
+            <div className="mx-auto max-w-7xl px-4 py-8">
+                <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
+                    <div className="col-span-1 lg:col-span-2">
+                    <div className="w-full h-64 md:h-96 lg:h-550 relative">
+                            <Image
+                                className="rounded-lg shadow-lg object-fit"
+                                src={news.thumbnail}
+                                layout="fill"
+                                alt={`${news.title}'s Photo`}
+                            />
                         </div>
-                    </Suspense>
-                </div>
-                <div className="flex items-center justify-center py-2">
-                    <div className="w-[1103px]">
-                        <h1 className="py-2 text-[1.25rem] font-[500] text-[#2F2F2F]">
+                    </div>
+
+                    <div className="col-span-1 py-2 lg:col-span-2">
+                        <h1 className="mb-4 text-3xl font-semibold leading-tight text-gray-800 lg:text-4xl">
+                            {news.title}
+                        </h1>
+                        <div className="mb-4 flex flex-col text-sm text-gray-600 lg:text-base">
+                            <p>
+                                {news.author}{" "}
+                                <span className="font-semibold"> | </span>From:{" "}
+                                {news.organization}
+                            </p>
+                            <p>{new Date(news.publish_date).toDateString()}</p>
+                        </div>
+
+                        <div className="text-justify text-base text-gray-700 lg:text-lg">
+                            {/* Display Quill content as HTML */}
+                            <article
+                                className="prose lg:prose-xl lg:max-w-none"
+                                dangerouslySetInnerHTML={createMarkup(
+                                    news.content
+                                )}
+                            />
+                        </div>
+                    </div>
+
+                    <div className="col-span-1 lg:col-span-2">
+                        <h1 className="mb-4 text-xl font-semibold text-gray-800 lg:text-2xl">
                             More Computing News
                         </h1>
                         <Suspense fallback={<CircularProgress />}>

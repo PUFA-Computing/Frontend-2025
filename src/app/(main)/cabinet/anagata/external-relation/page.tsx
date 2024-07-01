@@ -5,19 +5,24 @@ import "swiper/css";
 import "swiper/css/pagination";
 import MemberCard from "@/components/cabinet/MemberCard";
 import { Pagination } from "swiper/modules";
+import { ERImages } from "@/lib/data";
+import Header from "@/components/cabinet/Header";
+import EventsAndWorkplan from "@/components/cabinet/EventsAndWorkplan";
+import BG from "@/assets/coming_soon.jpg"
+
 
 const members = [
    {
       name: "Dena Dwi Nagita",
       position: "Head of Division",
-      image: "/member/er/dena-dwi-nagita.jpg",
+      image: ERImages.DENA_ER.src,
       instagram: "https://www.instagram.com/dnagitaa/",
       linkedin: "https://www.linkedin.com/in/denadwinagita",
    },
    {
       name: "Dicho Dermawan",
       position: "Vice of Division",
-      image: "/member/er/dicho-dermawan.jpg",
+      image: ERImages.DICHO_ER.src,
       instagram: "https://www.instagram.com/dichodermawan_/",
       linkedin: "https://id.linkedin.com/in/dicho-dermawan-b53839286",
    },
@@ -25,7 +30,7 @@ const members = [
    {
       name: "Daffa Athallah Hade",
       position: "Member",
-      image: "/member/er/daffa-athallah-hade.jpg",
+      image: ERImages.DAFFA_ER.src,
       instagram:
          "https://www.instagram.com/daffathd?igsh=ZzNoeGo3Z3h5MmRv&utm_source=qr",
       linkedin: "https://www.linkedin.com/in/daffa-athallah-954425276",
@@ -33,66 +38,36 @@ const members = [
    {
       name: "Nindhita Akmalia Putri",
       position: "Member",
-      image: "/member/er/nindhita-akmalia.jpg",
+      image: ERImages.NINDHITA_ER.src,
       instagram: "https://www.instagram.com/nindhita.ap/",
       linkedin: "https://id.linkedin.com/in/nindhitaakmalia",
    },
    {
       name: "Reysa Amelia Gehan",
       position: "Member",
-      image: "/member/er/reysa-amelia-gehan.jpg",
+      image: ERImages.REYSA_ER.src,
       instagram: "https://www.instagram.com/reysaamlg/",
       linkedin: "https://www.linkedin.com/in/reysa-amelia-gehan-70a038276/",
    },
    {
       name: "Samuel Junio Sambuaga",
       position: "member",
-      image: "/member/er/samuel-junio-sambuaga.jpg",
+      image: ERImages.SAMUEL_ER.src,
       instagram: "https://www.instagram.com/samuel_js12?igsh=NWxtam51bWVqc203",
       linkedin: "https://www.linkedin.com/in/samuel-junio-sambuaga-a380ba27a/",
    },
 ];
 
+const buttons = ["COMPUTING CAREER", "SOSIAL PROJECT", "COMPARATIVE STUDY", "EVENT COLLAB"];
+
+
 export default function page() {
    return (
       <section>
-         <div className="flex flex-col space-y-12 px-4 py-[2rem] md:px-[10rem]">
-            {/* text logo nya  */}
-            <div className="flex flex-col border-l-4 border-[#1FA820] pl-4 md:pl-8">
-               <h1 className="text-[2rem] font-[800] uppercase tracking-widest md:text-[3rem]">
-                  External Relations
-               </h1>
-               <div className="flex flex-col items-start gap-2 md:flex-row md:items-center">
-                  <h1 className="text-[3rem] uppercase tracking-widest text-stroke-1 text-stroke-black text-stroke-fill-white md:text-[3rem]">
-                     Division
-                  </h1>
-                  <h1 className="text-justify text-[0.8rem] md:max-w-[20rem]">
-                     This division organize activities or events related to
-                     parties outside the campus.
-                  </h1>
-               </div>
-            </div>
+         <Header title="External Relations" description=" Division that focuses on developing interest and burning the arts and sports in the computing sphere." image={BG.src} />
 
-            {/* gambarnya  */}
-            <div className="h-[200px] w-full rounded-lg bg-[#1FA820] md:h-[363px] md:w-[645px]"></div>
-         </div>
+         <EventsAndWorkplan buttons={buttons} />
 
-         <div className="px-4 py-[3rem] md:px-[10rem]">
-            <h1 className="text-center font-[700] text-[#353535] md:text-[2.25rem]">
-               Events and Workplan
-            </h1>
-            <div className="mx-auto grid grid-cols-1 gap-4 py-4 md:grid-cols-3 md:gap-10 md:py-[2rem]">
-               <Button className="rounded-full border-[#1FA820] text-sm uppercase text-[#1FA820] hover:bg-[#1FA820] md:text-[1.563]">
-                  Computing Career
-               </Button>
-               <Button className="rounded-full border-[#1FA820] text-sm uppercase text-[#1FA820] hover:bg-[#1FA820] md:text-[1.563]">
-                  Social Project
-               </Button>
-               <Button className="rounded-full border-[#1FA820] text-sm uppercase text-[#1FA820] hover:bg-[#1FA820] md:text-[1.563]">
-                  Comparative Study
-               </Button>
-            </div>
-         </div>
 
          {/* member */}
          <div className="bg-[#F2F2F2] px-4 py-4 md:px-[10rem] md:py-[1rem]">
