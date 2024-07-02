@@ -32,4 +32,8 @@ jobs:
             whoami
             docker stop ${{ vars.CONTAINER_NAME }} || true && docker rm ${{ vars.CONTAINER_NAME }} || true
             docker pull ${{ vars.IMAGE_NAME}}
-            docker run -d -p ${{ secrets.API_PORT }}:3000 --name ${{ vars.CONTAINER_NAME }} ${{ vars.IMAGE_NAME}}
+            docker run -d -p ${{ secrets.API_PORT }}:3000 --name ${{ vars.CONTAINER_NAME }} \
+            -e NEXTAUTH_SECRET=${{ secrets.NEXTAUTH_SECRET }} \
+            -e NEXTAUTH_URL=${{ secrets.NEXTAUTH_URL }} \
+            -e NEXT_PUBLIC_API_URL=${{ secrets.NEXT_PUBLIC_API_URL }} \
+            ${{ vars.IMAGE_NAME }}
