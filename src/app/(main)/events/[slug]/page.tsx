@@ -44,9 +44,9 @@ export default async function EventDetailsPage({ params }: EventPageProps) {
     return (
         <div>
             <section className="bg-[#F2F2F2] p-10">
-                <div className="mx-auto flex max-w-7xl flex-col border-l-4 border-[#FF6F22] pl-5 ">
-                    <h1 className="font-extrabold text-[2rem] text-black">
-                        <div className="flex items-center font-[700] text-[#353535]">
+                <div className="mx-auto flex max-w-7xl flex-col border-l-4 border-[#FF6F22] pl-5">
+                    <h1 className="font-extrabold text-2xl text-black md:text-3xl lg:text-4xl">
+                        <div className="flex items-center font-bold text-[#353535]">
                             <Link href="../events" className="hover:underline">
                                 Computing Events
                             </Link>
@@ -54,7 +54,7 @@ export default async function EventDetailsPage({ params }: EventPageProps) {
                             {event.organization}
                         </div>
                     </h1>
-                    <p className="text-[0.8rem] font-[400]">
+                    <p className="text-xs font-normal md:text-sm lg:text-base">
                         The latest news about research, technology,
                         achievements, and campus life.
                     </p>
@@ -77,14 +77,18 @@ export default async function EventDetailsPage({ params }: EventPageProps) {
 
                 {/* card details event  */}
                 <div className="max-h-4xl w-full rounded-lg border border-[#CBCBCB] text-[#353535] md:w-auto">
-                    <div className="flex justify-between px-5 py-2 text-[1.5rem] font-[600]">
-                        <h1>{event.title}</h1>
-                        <div>
-                            <p className={registrationColor}>
-                                {event.total_registered}{" "}
-                                <span className="text-[#353535]">
+                    <div className="flex flex-col items-center justify-between rounded-lg bg-white px-5 py-4 text-lg font-semibold md:flex-row md:text-xl lg:text-2xl">
+                        <h1 className="text-center md:text-left">
+                            {event.title}
+                        </h1>
+                        <div className="mt-2 md:mt-0">
+                            <p
+                                className={`${registrationColor} text-center md:text-right`}
+                            >
+                                {event.total_registered}
+                                <span className="text-gray-800">
                                     {" "}
-                                    / {event.max_registration}{" "}
+                                    / {event.max_registration}
                                 </span>
                             </p>
                         </div>
