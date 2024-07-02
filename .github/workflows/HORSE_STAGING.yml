@@ -9,16 +9,11 @@ jobs:
   build_and_push:
     runs-on: ubuntu-latest
     steps:
-      - name: Generate .env file
-        run: |
-          echo "NEXTAUTH_SECRET=${{ secrets.NEXTAUTH_SECRET }}" > .env.production
-          echo "NEXTAUTH_URL=${{ secrets.NEXTAUTH_URL }}" >> .env.production
-          echo "NEXT_PUBLIC_API_URL=${{ secrets.NEXT_PUBLIC_API_URL }}" >> .env.production
       - uses: actions/checkout@v4
       - name: Build the Docker image
         run: |
           docker login -u kizoukun -p ${{ secrets.GH_TOKEN }} ghcr.io
-          docker build -t ghcr.io/kizoukun/pufafrontend:beta -f docker/staging/Dockerfile .
+          docker build --build-arg NEXT_PUBLIC_API_URL=${{ secrets.NEXT_PUBLIC_API_URL }} -t ghcr.io/kizoukun/pufafrontend:beta -f docker/staging/Dockerfile .
           docker push ghcr.io/kizoukun/pufafrontend:beta
 
   deployments:

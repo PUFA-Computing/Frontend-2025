@@ -1,5 +1,7 @@
 FROM node:18-alpine AS base
 
+ARG NEXT_PUBLIC_API_URL=""
+
 RUN npm install -g pnpm
 
 # 1. Install dependencies only when needed
@@ -18,7 +20,7 @@ FROM base AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
-# COPY env.production generate from github actions
+# This will do the trick, use the corresponding env file for each environment.
 ENV NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}
 RUN pnpm run build
 
