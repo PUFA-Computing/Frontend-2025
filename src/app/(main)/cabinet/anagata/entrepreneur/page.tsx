@@ -1,10 +1,14 @@
 "use client";
-import Button from "@/components/Button";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import MemberCard from "@/components/cabinet/MemberCard";
 import { Pagination } from "swiper/modules";
+import { ENTREImages } from "@/lib/data";
+import Header from "@/components/cabinet/Header";
+import EventsAndWorkplan from "@/components/cabinet/EventsAndWorkplan";
+import BG from "@/assets/coming_soon.jpg"
+
 
 const members = [
    {
@@ -17,69 +21,34 @@ const members = [
    {
       name: "Gavin Abhinaya",
       position: "Vice of Division",
-      image: "",
+      image: ENTREImages.GAVIN_ENTRE.src,
       instagram: "https://www.instagram.com/gavin_abhinaya/",
       linkedin: "https://www.linkedin.com/in/gavin-abhinaya-15276524b/",
    },
    {
       name: "Angel Kusuma Ajinata",
       position: "Member",
-      image: "",
+      image: ENTREImages.ANGEL_ENTRE.src,
       instagram: "https://www.instagram.com/na.taa__/",
       linkedin: "https://www.linkedin.com/in/angel-kusuma-ajinata-86001028b/",
    },
    {
       name: "Belva Tabitha",
       position: "Member",
-      image: "",
+      image: ENTREImages.BELVA_ENTRE.src,
       instagram: "https://www.instagram.com/zheaazee/",
       linkedin: "https://www.linkedin.com/in/belva-tabitha-b5132028b/",
    },
 ];
 
+const buttons = ["COMPUTING STORE", "SPONSORSHIP", "EVENT COLLAB", "BIZINFO"];
+
+
 export default function page() {
    return (
       <section>
-         <div className="flex flex-col space-y-12 px-4 py-[2rem] md:px-[10rem]">
-            {/* text logo nya  */}
-            <div className="flex flex-col border-l-4 border-[#1FA820] pl-4 md:pl-8">
-               <h1 className="text-[2rem] font-[900] uppercase tracking-widest md:text-[3rem]">
-                  Entreprenuer
-               </h1>
-               <div className="flex flex-col items-start gap-2 md:flex-row md:items-center">
-                  <h1 className="text-[2rem] font-thin uppercase tracking-widest text-stroke-1 text-stroke-black text-stroke-fill-white md:text-[3rem]">
-                     Division
-                  </h1>
-                  <h1 className="text-justify text-[0.8rem] md:max-w-[20rem]">
-                     is a representative of the highest division consisting of
-                     Chairperson, Vice Chairperson, Secretary, and Treasurer.
-                  </h1>
-               </div>
-            </div>
-
-            {/* gambarnya  */}
-            <div className="h-[200px] w-full rounded-lg bg-[#1FA820] md:h-[363px] md:w-[645px]"></div>
-         </div>
-
-         <div className="px-4 py-[3rem] md:px-[10rem]">
-            <h1 className="text-center font-[700] text-[#353535] md:text-[2.25rem]">
-               Events and Workplan
-            </h1>
-            <div className="mx-auto grid grid-cols-1 gap-4 py-4 md:grid-cols-3 md:gap-10 md:py-[2rem]">
-               <Button className="rounded-full border-[#1FA820] text-sm uppercase text-[#1FA820] hover:bg-[#1FA820] md:text-[1.563]">
-                  legislator
-               </Button>
-               <Button className="rounded-full border-[#1FA820] text-sm uppercase text-[#1FA820] hover:bg-[#1FA820] md:text-[1.563]">
-                  annual event
-               </Button>
-               <Button className="rounded-full border-[#1FA820] text-sm uppercase text-[#1FA820] hover:bg-[#1FA820] md:text-[1.563]">
-                  review & report
-               </Button>
-               <Button className="rounded-full border-[#1FA820] text-sm uppercase text-[#1FA820] hover:bg-[#1FA820] md:text-[1.563]">
-                  computing cash
-               </Button>
-            </div>
-         </div>
+         <Header title="Entreprenuer" description=" is a representative of the highest division consisting of Chairperson, Vice Chairperson, Secretary, and Treasurer." image={BG.src} />
+         <EventsAndWorkplan buttons={buttons} />
 
          {/* member */}
          <div className="bg-[#F2F2F2] px-4 py-4 md:px-[10rem] md:py-[1rem]">

@@ -18,7 +18,7 @@ export default function NewsCard({ news }: { news: News[] }) {
     return (
         <section className="grid grid-cols-2 gap-8">
             {limitedNews.map((item, index) => (
-                <Link href={`news/${item.slug}`} key={index}>
+                <Link href={`/news/${item.slug}`} key={index}>
                     <article className="relative h-full overflow-hidden rounded-lg shadow transition hover:shadow-lg">
                         <Image
                             alt={`${item.title}'s Photo`}

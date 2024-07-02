@@ -79,7 +79,6 @@ export default function RegisterButton({
     }, [status, session]);
 
     const handleRegister = async () => {
-        console.log("Additional Notes:", additionalNotes);
         if (eventStatus !== "Open") {
             await Swal.fire({
                 icon: "error",

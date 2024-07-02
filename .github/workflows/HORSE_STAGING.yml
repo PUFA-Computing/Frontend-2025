@@ -5,26 +5,25 @@ on:
     branches:
       - development
 
+permissions:
+  contents: read
+
 jobs:
   build_and_push:
     runs-on: ubuntu-latest
+    environment: staging
     steps:
-      - name: Generate .env file
-        run: |
-          echo "NEXTAUTH_SECRET=${{ secrets.NEXTAUTH_SECRET }}" > .env.production
-          echo "NEXTAUTH_URL=${{ secrets.NEXTAUTH_URL }}" >> .env.production
-          echo "NEXT_PUBLIC_API_URL=${{ secrets.NEXT_PUBLIC_API_URL }}" >> .env.production
       - uses: actions/checkout@v4
       - name: Build the Docker image
         run: |
           docker login -u kizoukun -p ${{ secrets.GH_TOKEN }} ghcr.io
-          docker build -t ghcr.io/kizoukun/pufafrontend:beta -f docker/staging/Dockerfile .
+          docker build --build-arg NEXT_PUBLIC_API_URL=${{ secrets.NEXT_PUBLIC_API_URL }} -t ghcr.io/kizoukun/pufafrontend:beta -f docker/staging/Dockerfile .
           docker push ghcr.io/kizoukun/pufafrontend:beta
 
   deployments:
     runs-on: ubuntu-latest
     needs: build_and_push
-    environment: production
+    environment: staging
     steps:
       - name: Deploy to Production
         uses: appleboy/ssh-action@master
@@ -37,4 +36,8 @@ jobs:
             whoami
             docker stop ${{ vars.CONTAINER_NAME }} || true && docker rm ${{ vars.CONTAINER_NAME }} || true
             docker pull ${{ vars.IMAGE_NAME}}
-            docker run -d -p ${{ secrets.API_PORT }}:3000 --name ${{ vars.CONTAINER_NAME }} ${{ vars.IMAGE_NAME}}
+            docker run -d -p ${{ secrets.API_PORT }}:3000 --name ${{ vars.CONTAINER_NAME }} \
+            -e NEXTAUTH_SECRET=${{ secrets.NEXTAUTH_SECRET }} \
+            -e NEXTAUTH_URL=${{ secrets.NEXTAUTH_URL }} \
+            -e NEXT_PUBLIC_API_URL=${{ secrets.NEXT_PUBLIC_API_URL }} \
+            ${{ vars.IMAGE_NAME }}

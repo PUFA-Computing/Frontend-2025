@@ -48,7 +48,6 @@ const MemberCard: React.FC<MemberCardProps> = ({
                   alt={`${name}'s Photo`}
                   width={720}
                   height={1280}
-                  loading="lazy"
                   className="relative z-10 mx-auto h-72 w-48 rounded-xl object-cover object-center opacity-100 transition-all hover:opacity-20"
                />
             </div>

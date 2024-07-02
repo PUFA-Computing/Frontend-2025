@@ -34,13 +34,13 @@ export default function EventCardPage({ events }: { events: Event[] }) {
             {events.map((event) => (
                 <Link key={event.id} href={`/events/${event.slug}`}>
                     <div className="flex cursor-pointer gap-4 rounded-[15px] border-[0.5px] border-[#E50D0D] md:gap-8">
-                        <div className="relative h-[16rem] w-[20rem]">
+                        <div className="relative h-[16rem] w-[40rem]">
                             <Image
                                 src={event.thumbnail}
-                                className="h-[340px] w-[250px] scale-110 overflow-hidden rounded-lg border-[0.5px] border-[#E50D0D] bg-[#E50D0D]"
+                                className="h-[340px] w-[300px] scale-110 overflow-hidden rounded-lg border-[0.5px] border-[#E50D0D]"
                                 alt={`${event.title}'s poster`}
                                 layout="fixed"
-                                width={2800}
+                                width={1920}
                                 height={1080}
                             />
                         </div>

@@ -5,6 +5,9 @@ import About from "@/components/puma/About";
 import Background from "@/components/puma/Background";
 import { aboutContentInformatics } from "@/lib/data";
 import VisionAndMission from "@/components/puma/VisionAndMission";
+import { PUMAInformationSystem } from "@/lib/data";
+import PUMAStructure from "@/components/puma/PUMAStructure";
+import { PUMAInformationSystemVnM } from "@/lib/data";
 
 function Page() {
     return (
@@ -17,15 +20,14 @@ function Page() {
             />
 
             <About content={aboutContentInformatics} />
+            <PUMAStructure
+                divisions={PUMAInformationSystem}
+                color1="#f97316"
+                color2="#99f6e4"
+            />
             <VisionAndMission
-                visi="To make PUMA IS a platform for self-development, enabling students to compete and excel in both soft skills and hard skills, creating independent, innovative, and responsible PUMA and students in the fields of information technology and business, and to have a positive impact on President University and the community."
-                misi="Prioritizing and committing to supporting the aspirations, inspirations, interests, and talents of Information System students.
-
-                Promoting the implementation of activities that contribute positively and sustainably to information technology and its applications.
-                Emphasizing the importance of ethics, integrity, and responsibility in every Information System student at President University.
-                Building strong and close collaborative relationships with PUSC, PUSB, PUFA, all PUMAs, and CnC.
-                Assisting and facilitating Information System students and providing opportunities for their participation in competitions and innovative projects, so they are prepared to become future leaders in the field of Information Systems
-"
+                visi={PUMAInformationSystemVnM.vision}
+                misi={PUMAInformationSystemVnM.mission}
             />
         </section>
     );
