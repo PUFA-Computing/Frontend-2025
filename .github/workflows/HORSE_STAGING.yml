@@ -5,9 +5,13 @@ on:
     branches:
       - development
 
+permissions:
+  contents: read
+
 jobs:
   build_and_push:
     runs-on: ubuntu-latest
+    environment: staging
     steps:
       - uses: actions/checkout@v4
       - name: Build the Docker image
@@ -19,7 +23,7 @@ jobs:
   deployments:
     runs-on: ubuntu-latest
     needs: build_and_push
-    environment: production
+    environment: staging
     steps:
       - name: Deploy to Production
         uses: appleboy/ssh-action@master
