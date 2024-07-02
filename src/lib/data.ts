@@ -315,7 +315,7 @@ import YUSUF_SDC from "@/assets/member/sdc/muhammad-yusuf.jpg";
 import SCARLET_SDC from "@/assets/member/sdc/violetta-scarlet-adeline-roeroe.jpg";
 
 // SWA Images
-import DEBY_SWA from "@/assets/member/swa/deby-ayu-putri-b.jpg";
+import DEBY_SWA from "@/assets/member/swa/deby-Ayu-putri-b.jpg";
 import HAFIZH_SWA from "@/assets/member/swa/hafizh-cexarian.jpg";
 import HANIF_SWA from "@/assets/member/swa/muhammad-hanif-insan-rabbani.jpg";
 import NAJWA_SWA from "@/assets/member/swa/najwa-ratu-aini-alamsyah.jpg";
