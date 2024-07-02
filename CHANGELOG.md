@@ -1,3 +1,12 @@
+# [1.4.0](https://github.com/PUFA-Computing/Frontend/compare/v1.3.25...v1.4.0) (2024-07-02)
+
+
+### Features
+
+* event page ([4881bce](https://github.com/PUFA-Computing/Frontend/commit/4881bce989536a68864e54696cd35116d32fe2af))
+* PUMA Section ([cf7eb05](https://github.com/PUFA-Computing/Frontend/commit/cf7eb0510546f6d2f5f8fdac9c8dda58a989177f))
+* PUMA Section ([c66d46a](https://github.com/PUFA-Computing/Frontend/commit/c66d46a23e7eb34598d0332db1019508aa9acdc7))
+
 ## [1.3.25](https://github.com/PUFA-Computing/Frontend/compare/v1.3.24...v1.3.25) (2024-06-30)
 
 
