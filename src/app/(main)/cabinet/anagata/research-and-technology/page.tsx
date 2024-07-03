@@ -66,8 +66,8 @@ const members = [
    {
       name: "Irfan Saifullah AL Fakih",
       position: "Web Development",
-      image: "/member/rnt/irfan-saf.jpg",
-      instagram: RNTImages.IRFAN_RNT.src,
+      image: RNTImages.IRFAN_RNT.src,
+      instagram: "https://www.instagram.com/irfansafx/",
       linkedin: "https://www.linkedin.com/in/irfansaf/",
    },
    {
