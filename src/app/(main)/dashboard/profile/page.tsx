@@ -1,34 +1,40 @@
 "use client";
 import Button from "@/components/Button";
 import Input from "@/components/Input";
-import React from "react";
+import React, { useState } from "react";
 import Seperator from "@/components/Seperator";
 import {
     GetUserProfile,
     UpdateUserProfile,
     uploadProfilePicture,
+    Disable2FA,
 } from "@/services/api/user";
 import User from "@/models/user";
 import Image from "next/image";
 import Swal from "sweetalert2";
 import { Spinner } from "@/components/ui/Spinner";
 import { useSession } from "next-auth/react";
+import Link from "next/link";
 
 export default function DashboardProfilePage() {
     const session = useSession();
 
-    const [loading, setLoading] = React.useState(true);
-    const [userData, setUserData] = React.useState<User>();
-    const [username, setUsername] = React.useState<string>("");
-    const [firstName, setFirstName] = React.useState<string>("");
-    const [middleName, setMiddleName] = React.useState<string>("");
-    const [lastName, setLastName] = React.useState<string>("");
-    const [email, setEmail] = React.useState<string>("");
-    const [major, setMajor] = React.useState<string>("");
-    const [batch, setBatch] = React.useState<string>("");
-    const [profilePicture, setProfilePicture] = React.useState<File | null>(
+    const [loading, setLoading] = useState(true);
+    const [userData, setUserData] = useState<User>();
+    const [username, setUsername] = useState<string>("");
+    const [firstName, setFirstName] = useState<string>("");
+    const [middleName, setMiddleName] = useState<string>("");
+    const [lastName, setLastName] = useState<string>("");
+    const [email, setEmail] = useState<string>("");
+    const [major, setMajor] = useState<string>("");
+    const [batch, setBatch] = useState<string>("");
+    const [is2FAEnable, setIs2FAEnable] = useState(true);
+        const [profilePicture, setProfilePicture] = useState<File | null>(
         null
     );
+
+    console.log(is2FAEnable)
+
     // Fetch user data
     React.useEffect(() => {
         const fetchData = async () => {
@@ -48,6 +54,7 @@ export default function DashboardProfilePage() {
                 setEmail(userData.email);
                 setMajor(userData.major);
                 setBatch(userData.year);
+                setIs2FAEnable(userData.twofa_enabled);
                 setLoading(false);
             } catch (error) {
                 console.error("Error fetching user data:", error);
@@ -128,6 +135,53 @@ export default function DashboardProfilePage() {
             console.error("Error updating user profile:", error);
         }
     };
+
+    const handleDisable2FA = async () => {
+        if (!session) {
+            return;
+        }
+    
+        const accessToken = session.data?.user.access_token;
+    
+        if (!accessToken) {
+            Swal.fire(
+                "Error!",
+                "Access token is missing. Please log in again.",
+                "error"
+            );
+            return;
+        }
+    
+        Swal.fire({
+            title: "Are you sure?",
+            text: "Do you really want to disable 2FA?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#d33",
+            cancelButtonColor: "#3085d6",
+            confirmButtonText: "Yes, disable it!",
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                try {
+                    await Disable2FA(accessToken);
+                    setIs2FAEnable(false);
+                    Swal.fire(
+                        "Disabled!",
+                        "Your 2FA has been disabled.",
+                        "success"
+                    );
+                } catch (error) {
+                    Swal.fire(
+                        "Error!",
+                        "Failed to disable 2FA. Please try again later.",
+                        "error"
+                    );
+                    console.error("Error disabling 2FA:", error);
+                }
+            }
+        });
+    };
+    
 
     if (loading) {
         return (
@@ -455,9 +509,46 @@ export default function DashboardProfilePage() {
                                         />
                                     </div>
                                 </div>
-                                <div className="mt-16 flex justify-end space-x-2">
+                                <div className="mt-16 flex flex-col items-center justify-between space-y-4 md:flex-row md:space-x-2 md:space-y-0">
+                                    <div className="flex items-center gap-2">
+                                        {is2FAEnable ? (
+                                            <>
+                                                <Button
+                                                    className="border border-[#02ABF3] bg-white px-8 py-2 text-[#02ABF3] hover:bg-[#02ABF3] hover:text-white disabled:cursor-not-allowed disabled:opacity-50"
+                                                    type="button"
+                                                    onClick={handleDisable2FA}
+                                                >
+                                                    Disable 2FA
+                                                </Button>
+                                                <div className="flex items-center gap-2">
+                                                    <p className="text-[0.875rem] font-[500]">
+                                                        Secure Your Account
+                                                    </p>
+                                                    <p className="rounded-xl border border-[#7ED8FF] bg-[#E1F3FF] px-2 py-0.5 text-[#02ABF3]">
+                                                        Active
+                                                    </p>
+                                                </div>
+                                            </>
+                                        ) : (
+                                            <>
+                                                <Link href="2fa/setup">
+                                                    <Button className="border border-[#02ABF3] bg-white px-8 py-2 text-[#02ABF3] hover:bg-[#02ABF3] hover:text-white disabled:cursor-not-allowed disabled:opacity-50">
+                                                        Enable 2FA
+                                                    </Button>
+                                                </Link>
+                                                <div className="flex items-center gap-2">
+                                                    <p className="text-[0.875rem] font-[500]">
+                                                        Secure Your Account
+                                                    </p>
+                                                    <p className="rounded-xl border border-[#e03939] bg-[#fa8a8a] px-2 py-0.5 text-[#e03939]">
+                                                        Inactive
+                                                    </p>
+                                                </div>
+                                            </>
+                                        )}
+                                    </div>
                                     <Button
-                                        className="border-[#02ABF3] bg-[#02ABF3] px-8 py-2 text-white hover:bg-white hover:text-[#02ABF3] disabled:cursor-not-allowed disabled:opacity-50"
+                                        className="mt-4 border-[#02ABF3] bg-[#02ABF3] px-8 py-2 text-white hover:bg-white hover:text-[#02ABF3] disabled:cursor-not-allowed disabled:opacity-50 md:mt-0"
                                         disabled={true}
                                     >
                                         Save

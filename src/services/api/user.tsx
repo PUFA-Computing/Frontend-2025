@@ -2,6 +2,7 @@ import axios, { AxiosError } from "axios";
 import { API_EVENT, API_USER } from "@/config/config";
 import Event from "@/models/event";
 import User from "@/models/user";
+import { useSession } from "next-auth/react";
 
 /**
  * Fetches the user profile data from the API.
@@ -245,6 +246,44 @@ export async function uploadProfilePicture(file: File, accessToken: string) {
         return response.data.data;
     } catch (error) {
         console.error("Error uploading profile picture", error);
+        throw error;
+    }
+}
+
+export async function Enable2FA() {
+    try {
+        const response = await axios.post(`${API_USER}/2fa/enable`);
+        return response.data.data;
+    } catch (error) {
+        console.log(error);
+        throw error;
+    }
+}
+
+export async function Verify2FA() {
+    try {
+        const response = await axios.post(`${API_USER}/2fa/verify`);
+        return response.data.data;
+    } catch (error) {
+        console.log(error);
+        throw error;
+    }
+}
+
+export async function Disable2FA(accessToken: string) {
+    try {
+        const response = await axios.post(
+            `${API_USER}/2fa/disable`,
+            {},
+            {
+                headers: {
+                    Authorization: "Bearer " + accessToken,
+                },
+            }
+        );
+        return response.data.data;
+    } catch (error) {
+        console.log(error);
         throw error;
     }
 }
