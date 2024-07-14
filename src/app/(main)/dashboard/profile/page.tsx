@@ -180,6 +180,7 @@ export default function DashboardProfilePage() {
         });
     };
     
+    
 
     if (loading) {
         return (
@@ -538,7 +539,7 @@ export default function DashboardProfilePage() {
                                                     <p className="text-[0.875rem] font-[500]">
                                                         Secure Your Account
                                                     </p>
-                                                    <p className="rounded-xl border border-[#e03939] bg-[#fa8a8a] px-2 py-0.5 text-[#e03939]">
+                                                    <p className="rounded-xl border border-[#e03939] bg-[#fa8a8a] px-2 py-0.5 text-white">
                                                         Inactive
                                                     </p>
                                                 </div>

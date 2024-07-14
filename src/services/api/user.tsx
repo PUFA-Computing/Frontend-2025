@@ -268,15 +268,20 @@ export async function Enable2FA(session: string) {
     }
 }
 
+interface Verify2FAProps {
+    passcode: string;
+    accessToken: string;
+}
 
-export async function Verify2FA(passcode : string) {
+export async function Verify2FA({ passcode, accessToken }: Verify2FAProps) {
     try {
         const response = await axios.post(`${API_USER}/2fa/verify`, {
-            passcode,
+            code: passcode,
         }, {
             headers: {
-                'Content-Type': 'application/json', 
-            }
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${accessToken}`,
+            },
         });
         return response.data;
     } catch (error) {
@@ -292,7 +297,7 @@ export async function Disable2FA(accessToken: string) {
             {},
             {
                 headers: {
-                    Authorization: "Bearer " + accessToken,
+                    Authorization: `Bearer ${accessToken}`,
                 },
             }
         );

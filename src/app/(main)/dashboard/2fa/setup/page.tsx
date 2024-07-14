@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import QRCODE from "@/assets/icon/qr_code.png";
 import { Enable2FA, GetUserProfile, Verify2FA } from "@/services/api/user";
 import { signIn, useSession } from "next-auth/react";
@@ -20,23 +20,23 @@ export default function Page() {
     const [secretKey, setSecretKey] = useState<string>("");
     const [qrImage, setQrImage] = useState<string>("");
 
-    React.useEffect(() => {
-        const fetchData = async () => {
-            if (!session || !session.data || !session.data.user) {
-                return;
-            }
-            try {
-                const userData = await Enable2FA(session.data.user.access_token);
-                setUserData(userData);
-                setSecretKey(userData.twofa_secret);
-                setQrImage(userData.twofa_image);
-            } catch (error) {
-                console.error('Error fetching user data:', error);
-            }
-        };
+    const fetchData = async () => {
+        if (!session || !session.data || !session.data.user) {
+            return;
+        }
+        try {
+            const userData = await Enable2FA(session.data.user.access_token);
+            setUserData(userData);
+            setSecretKey(userData.twofa_secret);
+            setQrImage(userData.twofa_image);
+        } catch (error) {
+            console.error('Error fetching user data:', error);
+        }
+    };
 
-        fetchData().then((r) => r);
-    }, [session.data]);
+    if (!userData) {
+        fetchData();
+    }
 
     const handleCopyToClipboard = async () => {
         try {
@@ -65,8 +65,22 @@ export default function Page() {
     const handleVerify2FA = async (e: React.FormEvent) => {
         e.preventDefault();
         setIsLoading(true);
+        
+        const accessToken = session?.data?.user?.access_token;
+        if (!accessToken) {
+            Swal.fire({
+                icon: "error",
+                title: "Session Error",
+                text: "Session data is not available",
+                showConfirmButton: false,
+                timer: 5000,
+            });
+            setIsLoading(false);
+            return;
+        }
+    
         try {
-            const res = await Verify2FA(passcode);
+            const res = await Verify2FA({ passcode, accessToken });
     
             if (res?.error) {
                 Swal.fire({
@@ -78,7 +92,15 @@ export default function Page() {
                 });
                 setError(res.error);
             } else if (res?.ok) {
-                window.location.assign("/dashboard");
+                Swal.fire({
+                    icon: "success",
+                    title: "Verification Successful",
+                    text: "You will be redirected to the dashboard",
+                    showConfirmButton: false,
+                    timer: 2000,
+                }).then(() => {
+                    window.location.assign("/dashboard");
+                });
             }
         } catch (error: any) {
             Swal.fire({
@@ -154,9 +176,8 @@ export default function Page() {
                                             <InputOTP
                                                 maxLength={8}
                                                 onChange={onOtpChange}
-                                                className="max-w-md"
                                             >
-                                                <InputOTPGroup>
+                                                <InputOTPGroup >
                                                     <InputOTPSlot index={0} />
                                                     <InputOTPSlot index={1} />
                                                     <InputOTPSlot index={2} />
@@ -164,7 +185,7 @@ export default function Page() {
 
                                                 </InputOTPGroup>
                                                 <InputOTPSeparator />
-                                                <InputOTPGroup>
+                                                <InputOTPGroup >
                                                     <InputOTPSlot index={4} />
                                                     <InputOTPSlot index={5} />
                                                     <InputOTPSlot index={6} />
