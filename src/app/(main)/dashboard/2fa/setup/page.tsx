@@ -1,23 +1,117 @@
+"use client";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import QRCODE from "@/assets/icon/qr_code.png";
+import { Enable2FA, GetUserProfile, Verify2FA } from "@/services/api/user";
+import { signIn, useSession } from "next-auth/react";
+import { FaRegCopy } from "react-icons/fa6";
+import Swal from "sweetalert2";
+import { Spinner } from "@nextui-org/spinner";
+import {
+    InputOTP,
+    InputOTPGroup,
+    InputOTPSeparator,
+    InputOTPSlot,
+} from "@/components/ui/input-otp";
 
-export default function page() {
+export default function Page() {
+    const session = useSession();
+    const [userData, setUserData] = useState<string>("");
+    const [secretKey, setSecretKey] = useState<string>("");
+    const [qrImage, setQrImage] = useState<string>("");
+
+    React.useEffect(() => {
+        const fetchData = async () => {
+            if (!session || !session.data || !session.data.user) {
+                return;
+            }
+            try {
+                const userData = await Enable2FA(session.data.user.access_token);
+                setUserData(userData);
+                setSecretKey(userData.twofa_secret);
+                setQrImage(userData.twofa_image);
+            } catch (error) {
+                console.error('Error fetching user data:', error);
+            }
+        };
+
+        fetchData().then((r) => r);
+    }, [session.data]);
+
+    const handleCopyToClipboard = async () => {
+        try {
+            await navigator.clipboard.writeText(secretKey);
+            Swal.fire({
+                icon: "success",
+                title: "Copied!",
+                text: "Secret key copied to clipboard.",
+                timer: 1500,
+            });
+        } catch (error) {
+            console.error("Failed to copy secret key:", error);
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Failed to copy secret key.",
+                timer: 1500,
+            });
+        }
+    };
+
+    const [passcode, setPasscode] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState("");
+
+    const handleVerify2FA = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setIsLoading(true);
+        try {
+            const res = await Verify2FA(passcode);
+    
+            if (res?.error) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Login Failed",
+                    text: res.error,
+                    showConfirmButton: false,
+                    timer: 5000,
+                });
+                setError(res.error);
+            } else if (res?.ok) {
+                window.location.assign("/dashboard");
+            }
+        } catch (error: any) {
+            Swal.fire({
+                icon: "error",
+                title: "Verification Failed",
+                text: "Invalid passcode",
+                showConfirmButton: false,
+                timer: 5000,
+            });
+            setError(error.response?.data?.message || 'An error occurred');
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    const onOtpChange = (otp: string) => {
+        setPasscode(otp);
+    };
+
     return (
         <section className="bg-white font-[500] text-[#353535]">
-            <div>
-                <p className="p-4 text-[24px] capitalize">
+            <div className="p-4">
+                <p className="mb-4 text-[24px] capitalize">
                     Connect with your authenticator apps
                 </p>
                 <hr />
-                <div className="flex flex-row justify-between p-4">
-                    <div>
-                        <h1 className="text-[32px] capitalize">
-                            {" "}
+                <div className="flex flex-col justify-between p-4 lg:flex-row">
+                    <div className="flex-1 lg:pr-8">
+                        <h1 className="mb-4 text-[32px] capitalize">
                             Multi-Factor Authentication
                         </h1>
-                        <div className="font-[400] ">
-                            <ol className="list-decimal gap-2 pl-6">
+                        <div className="text-justify font-[400]">
+                            <ol className="list-decimal gap-2 space-y-4 pl-6">
                                 <li>
                                     You will need an authenticator mobile app to
                                     complete this process, such as one of the
@@ -30,27 +124,81 @@ export default function page() {
                                 <li>
                                     Scan the QR code with your authenticator
                                 </li>
-                                <p className="text-[#6B7280]">
-                                    {" "}
+                                <p className="mt-2 text-[#6B7280]">
                                     If you can’t scan the code, you can enter
                                     this secret key into your authentication app
                                 </p>
+                                <div className="flex w-auto items-center justify-between gap-2 border border-[#9CA3AF] p-2 md:w-96">
+                                    <p className="md:break-all-0 break-all font-bold text-[#353535]">
+                                        {secretKey}
+                                    </p>
+                                    <FaRegCopy
+                                        className="cursor-pointer text-2xl md:text-xl"
+                                        onClick={handleCopyToClipboard}
+                                    />
+                                </div>
                                 <li>
-                                    After scanning the QR code above, enter the
-                                    six-digit code generated by your
+                                    After scanning the QR code
+                                    <span className="inline lg:hidden">
+                                        {" "}
+                                        below
+                                    </span>
+                                    <span className="hidden lg:inline">
+                                        {" "}
+                                        beside
+                                    </span>
+                                    , enter the six-digit code generated by your
                                     authenticator
+                                    <form onSubmit={handleVerify2FA} className="mt-2">
+                                        <div className="flex flex-col items-center justify-between">
+                                            <InputOTP
+                                                maxLength={8}
+                                                onChange={onOtpChange}
+                                                className="max-w-md"
+                                            >
+                                                <InputOTPGroup>
+                                                    <InputOTPSlot index={0} />
+                                                    <InputOTPSlot index={1} />
+                                                    <InputOTPSlot index={2} />
+                                                    <InputOTPSlot index={3} />
+
+                                                </InputOTPGroup>
+                                                <InputOTPSeparator />
+                                                <InputOTPGroup>
+                                                    <InputOTPSlot index={4} />
+                                                    <InputOTPSlot index={5} />
+                                                    <InputOTPSlot index={6} />
+                                                    <InputOTPSlot index={7} />
+                                                </InputOTPGroup>
+                                            </InputOTP>
+                                        </div>
+                                        <div className="mt-6 w-full">
+                                            <button
+                                                type="submit"
+                                                className="focus:shadow-outline w-full rounded bg-gray-500 px-4 py-2 font-bold text-white hover:bg-gray-700 focus:outline-none"
+                                            >
+                                                {isLoading ? (
+                                                    <Spinner />
+                                                ) : (
+                                                    "Verify"
+                                                )}
+                                            </button>
+                                        </div>
+                                    </form>
                                 </li>
                             </ol>
                         </div>
                     </div>
-                    <div>
-                        <Image
-                            src={QRCODE}
-                            height={1080}
-                            width={1920}
-                            alt="QR Code"
-                            className="h-[300px] w-[300px]"
-                        />
+                    <div className="mx-auto mt-4 hidden md:flex justify-center lg:mt-0 lg:justify-end lg:flex-1">
+                        {qrImage && (
+                            <Image
+                                src={`data:image/png;base64,${qrImage}`}
+                                height={300}
+                                width={300}
+                                alt="QR Code"
+                                className="h-[300px] w-[300px]"
+                            />
+                        )}
                     </div>
                 </div>
             </div>

@@ -33,8 +33,6 @@ export default function DashboardProfilePage() {
         null
     );
 
-    console.log(is2FAEnable)
-
     // Fetch user data
     React.useEffect(() => {
         const fetchData = async () => {

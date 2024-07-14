@@ -250,22 +250,37 @@ export async function uploadProfilePicture(file: File, accessToken: string) {
     }
 }
 
-export async function Enable2FA() {
+export async function Enable2FA(session: string) {
     try {
-        const response = await axios.post(`${API_USER}/2fa/enable`);
+        const response = await axios.post(
+            `${API_USER}/2fa/enable`,
+            {},
+            {
+                headers: {
+                    Authorization: `Bearer ${session}`,
+                },
+            }
+        );
         return response.data.data;
     } catch (error) {
-        console.log(error);
+        console.log('Error enabling 2FA:', error);
         throw error;
     }
 }
 
-export async function Verify2FA() {
+
+export async function Verify2FA(passcode : string) {
     try {
-        const response = await axios.post(`${API_USER}/2fa/verify`);
-        return response.data.data;
+        const response = await axios.post(`${API_USER}/2fa/verify`, {
+            passcode,
+        }, {
+            headers: {
+                'Content-Type': 'application/json', 
+            }
+        });
+        return response.data;
     } catch (error) {
-        console.log(error);
+        console.error('Error:', error);
         throw error;
     }
 }
