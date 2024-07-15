@@ -96,7 +96,7 @@ export default function Page() {
                         title: "2FA Enabled",
                         text: "Multi-Factor Authentication has been enabled",
                         showConfirmButton: false,
-                        timer: 5000,
+                        timer: 1500,
                     });
                     window.location.assign("/dashboard");
                 }
@@ -106,7 +106,7 @@ export default function Page() {
                     title: "Verification Failed",
                     text: res.error,
                     showConfirmButton: false,
-                    timer: 5000,
+                    timer: 1500,
                 });
                 setError(res.error);
             }
@@ -218,7 +218,7 @@ export default function Page() {
                             </ol>
                         </div>
                     </div>
-                    <div className="mx-auto mt-4 hidden justify-center md:flex lg:mt-0 lg:flex-1 lg:justify-end">
+                    <div className="mx-auto mt-4 hidden justify-center lg:mt-0 md:flex-1 lg:justify-end">
                         {qrImage && (
                             <Image
                                 src={`data:image/png;base64,${qrImage}`}

@@ -531,12 +531,19 @@ export default function DashboardProfilePage() {
                                                         Enable 2FA
                                                     </Button>
                                                 </Link>
-                                                <div className="flex items-center gap-2">
-                                                    <p className="text-[0.875rem] font-[500]">
-                                                        Secure Your Account
-                                                    </p>
-                                                    <p className="rounded-xl border border-[#e03939] bg-[#fa8a8a] px-2 py-0.5 text-white">
-                                                        Inactive
+                                                <div className="flex flex-col gap-2 p-4">
+                                                    <div className="flex flex-col items-start gap-2 sm:flex-row sm:items-center">
+                                                        <p className="text-[0.875rem] font-[500]">
+                                                            Secure Your Account
+                                                        </p>
+                                                        <p className="rounded-xl border border-[#FE8A8A] bg-[#FFD7D7] px-2 py-0.5 text-[#FD4747]">
+                                                            Inactive
+                                                        </p>
+                                                    </div>
+                                                    <p className="text-[14px] font-[400] text-[#6B7280]">
+                                                        Enable multi-factor
+                                                        authentication to add an
+                                                        extra account security
                                                     </p>
                                                 </div>
                                             </>

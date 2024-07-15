@@ -36,6 +36,7 @@ export default async function EventsPage() {
         return description;
     };
 
+
     return (
         <div>
             {/* title */}

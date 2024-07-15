@@ -1,15 +1,16 @@
 import axios, { AxiosError } from "axios";
-import { API_EVENT, API_USER } from "@/config/config";
+import { API_USER } from "@/config/config";
 import Event from "@/models/event";
 import User from "@/models/user";
-import { useSession } from "next-auth/react";
 
 /**
  * Fetches the user profile data from the API.
+ * @param {string} userId - The ID of the user to fetch.
+ * @param {string} token - The access token to authenticate the request.
  * @returns {Promise<User>} A promise that resolves to a User object.
  * @throws {Error} If an error occurs during the API request.
  * @example
- * const user = await GetUserProfile();
+ * const user = await GetUserProfile('userId', 'token');
  */
 export async function GetUserProfile(userId: string, token: string) {
     try {
@@ -30,12 +31,19 @@ export async function GetUserProfile(userId: string, token: string) {
 }
 
 /**
- * @UpdateUserProfile
  * Updates the user profile data in the API.
+ * @param {string} username - The username of the user.
+ * @param {string} first_name - The first name of the user.
+ * @param {string} middle_name - The middle name of the user.
+ * @param {string} last_name - The last name of the user.
+ * @param {string} email - The email of the user.
+ * @param {string} major - The major of the user.
+ * @param {string} year - The year of the user.
+ * @param {string} accessToken - The access token to authenticate the request.
  * @returns {Promise<User>} A promise that resolves to a User object.
  * @throws {Error} If an error occurs during the API request.
  * @example
- * const user = await UpdateUserProfile();
+ * const user = await UpdateUserProfile('username', 'first_name', 'middle_name', 'last_name', 'email', 'major', 'year', 'accessToken');
  */
 export async function UpdateUserProfile(
     username: string,
@@ -73,6 +81,15 @@ export async function UpdateUserProfile(
     }
 }
 
+/**
+ * Updates the user password in the API.
+ * @param {string} password - The new password for the user.
+ * @param {string} accessToken - The access token to authenticate the request.
+ * @returns {Promise<User>} A promise that resolves to a User object.
+ * @throws {Error} If an error occurs during the API request.
+ * @example
+ * const user = await UpdatePassword('newPassword', 'accessToken');
+ */
 export async function UpdatePassword(password: string, accessToken: string) {
     try {
         const response = await axios.put(
@@ -94,9 +111,9 @@ export async function UpdatePassword(password: string, accessToken: string) {
 }
 
 /**
- * @DeleteUserProfile Deletes the user profile data in the API.
+ * Deletes the user profile data in the API.
  * @returns {Promise<User>} A promise that resolves to a User object.
- * @throws {Error} If an error occurs during the API request
+ * @throws {Error} If an error occurs during the API request.
  * @example
  * const user = await DeleteUserProfile();
  */
@@ -111,7 +128,7 @@ export async function DeleteUserProfile() {
 }
 
 /**
- * @Logout Logs the user out of the API.
+ * Logs the user out of the API.
  * @returns {Promise<User>} A promise that resolves to a User object.
  * @throws {Error} If an error occurs during the API request.
  * @example
@@ -119,7 +136,7 @@ export async function DeleteUserProfile() {
  */
 export async function Logout() {
     try {
-        const response = await axios.post(`${API_USER}`);
+        const response = await axios.post(`${API_USER}/logout`);
         return response.data.data;
     } catch (error) {
         console.log(error);
@@ -129,10 +146,11 @@ export async function Logout() {
 
 /**
  * Fetches the user data from the API.
+ * @param {string} accessToken - The access token to authenticate the request.
  * @returns {Promise<User>} A promise that resolves to a User object.
  * @throws {Error} If an error occurs during the API request.
  * @example
- * const user = await GetUser();
+ * const user = await GetUser('accessToken');
  */
 export async function GetUser(accessToken: string) {
     try {
@@ -149,11 +167,13 @@ export async function GetUser(accessToken: string) {
     }
 }
 
-/** Fetches the events that the user has registered for from the API.
+/**
+ * Fetches the events that the user has registered for from the API.
+ * @param {string} accessToken - The access token to authenticate the request.
  * @returns {Promise<Event[]>} A promise that resolves to an array of Event objects.
  * @throws {Error} If an error occurs during the API request.
- * @param accessToken The access token to authenticate the request.
- * @param eventId The ID of the event to fetch.
+ * @example
+ * const events = await fetchUserEvents('accessToken');
  */
 export async function fetchUserEvents(accessToken: string): Promise<Event[]> {
     try {
@@ -176,16 +196,15 @@ export async function fetchUserEvents(accessToken: string): Promise<Event[]> {
 }
 
 /**
- * Fetches the user data from the API.
- * @param userId The ID of the user to fetch.
- * @param roleID The ID of the role to update the user to.
- * @param studentIDVerified Whether the student ID is verified.
- * @param accessToken The access token to authenticate the request.
- *
+ * Updates the user data as an admin in the API.
+ * @param {string} userId - The ID of the user to update.
+ * @param {number} roleID - The ID of the role to update the user to.
+ * @param {boolean} studentIDVerified - Whether the student ID is verified.
+ * @param {string} accessToken - The access token to authenticate the request.
  * @returns {Promise<User>} A promise that resolves to a User object.
  * @throws {Error} If an error occurs during the API request.
  * @example
- * const user = await adminUpdateUser();
+ * const user = await adminUpdateUser('userId', 1, true, 'accessToken');
  */
 export async function adminUpdateUser(
     userId: string | undefined,
@@ -194,7 +213,6 @@ export async function adminUpdateUser(
     accessToken: string | undefined
 ): Promise<User> {
     try {
-        // Json Body
         const response = await axios.put(
             `${API_USER}/${userId}/update-user`,
             {
@@ -218,13 +236,13 @@ export async function adminUpdateUser(
 }
 
 /**
- * @uploadProfilePicture Uploads a profile picture for the current user.
- * @param file The file to upload.
- * @param accessToken The access token to authenticate the request.
+ * Uploads a profile picture for the current user.
+ * @param {File} file - The file to upload.
+ * @param {string} accessToken - The access token to authenticate the request.
  * @returns {Promise<User>} A promise that resolves to a User object.
  * @throws {Error} If an error occurs during the API request.
  * @example
- * const user = await uploadProfilePicture(file);
+ * const user = await uploadProfilePicture(file, 'accessToken');
  * @see https://developer.mozilla.org/en-US/docs/Web/API/FormData
  */
 export async function uploadProfilePicture(file: File, accessToken: string) {
@@ -250,6 +268,14 @@ export async function uploadProfilePicture(file: File, accessToken: string) {
     }
 }
 
+/**
+ * Enables 2FA for the user.
+ * @param {string} session - The session token to authenticate the request.
+ * @returns {Promise<User>} A promise that resolves to a User object.
+ * @throws {Error} If an error occurs during the API request.
+ * @example
+ * const user = await Enable2FA('sessionToken');
+ */
 export async function Enable2FA(session: string) {
     try {
         const response = await axios.post(
@@ -267,6 +293,17 @@ export async function Enable2FA(session: string) {
         throw error;
     }
 }
+
+/**
+ * Verifies the 2FA code for the user.
+ * @param {Verify2FAProps} props - The properties for verification.
+ * @param {string} props.passcode - The 2FA code to verify.
+ * @param {string} props.accessToken - The access token to authenticate the request.
+ * @returns {Promise<User>} A promise that resolves to a User object.
+ * @throws {Error} If an error occurs during the API request.
+ * @example
+ * const user = await Verify2FA({ passcode: '123456', accessToken: 'token' });
+ */
 
 interface Verify2FAProps {
     passcode: string;
@@ -293,6 +330,16 @@ export async function Verify2FA({ passcode, accessToken }: Verify2FAProps) {
         throw error;
     }
 }
+
+/**
+ * Toggles the 2FA status for the user.
+ * @param {string} accessToken - The access token to authenticate the request.
+ * @param {boolean} enable - Whether to enable or disable 2FA.
+ * @returns {Promise<User>} A promise that resolves to a User object.
+ * @throws {Error} If an error occurs during the API request.
+ * @example
+ * const user = await Toggle2FA('accessToken', true);
+ */
 
 export async function Toggle2FA(accessToken: string, enable: boolean) {
     try {
