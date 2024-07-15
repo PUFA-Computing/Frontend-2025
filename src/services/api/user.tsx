@@ -263,7 +263,7 @@ export async function Enable2FA(session: string) {
         );
         return response.data.data;
     } catch (error) {
-        console.log('Error enabling 2FA:', error);
+        console.log("Error enabling 2FA:", error);
         throw error;
     }
 }
@@ -275,33 +275,39 @@ interface Verify2FAProps {
 
 export async function Verify2FA({ passcode, accessToken }: Verify2FAProps) {
     try {
-        const response = await axios.post(`${API_USER}/2fa/verify`, {
-            code: passcode,
-        }, {
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${accessToken}`,
+        const response = await axios.post(
+            `${API_USER}/2fa/verify`,
+            {
+                code: passcode,
             },
-        });
+            {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${accessToken}`,
+                },
+            }
+        );
         return response.data;
     } catch (error) {
-        console.error('Error:', error);
+        console.error("Error:", error);
         throw error;
     }
 }
 
-export async function Disable2FA(accessToken: string) {
+export async function Toggle2FA(accessToken: string, enable: boolean) {
     try {
         const response = await axios.post(
-            `${API_USER}/2fa/disable`,
-            {},
+            `${API_USER}/2fa/toggle`,
+            {
+                enable: enable,
+            },
             {
                 headers: {
                     Authorization: `Bearer ${accessToken}`,
                 },
             }
         );
-        return response.data.data;
+        return response.data;
     } catch (error) {
         console.log(error);
         throw error;

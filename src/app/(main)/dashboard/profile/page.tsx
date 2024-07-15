@@ -7,7 +7,7 @@ import {
     GetUserProfile,
     UpdateUserProfile,
     uploadProfilePicture,
-    Disable2FA,
+    Toggle2FA,
 } from "@/services/api/user";
 import User from "@/models/user";
 import Image from "next/image";
@@ -29,9 +29,7 @@ export default function DashboardProfilePage() {
     const [major, setMajor] = useState<string>("");
     const [batch, setBatch] = useState<string>("");
     const [is2FAEnable, setIs2FAEnable] = useState(true);
-        const [profilePicture, setProfilePicture] = useState<File | null>(
-        null
-    );
+    const [profilePicture, setProfilePicture] = useState<File | null>(null);
 
     // Fetch user data
     React.useEffect(() => {
@@ -138,9 +136,9 @@ export default function DashboardProfilePage() {
         if (!session) {
             return;
         }
-    
+
         const accessToken = session.data?.user.access_token;
-    
+
         if (!accessToken) {
             Swal.fire(
                 "Error!",
@@ -149,7 +147,7 @@ export default function DashboardProfilePage() {
             );
             return;
         }
-    
+
         Swal.fire({
             title: "Are you sure?",
             text: "Do you really want to disable 2FA?",
@@ -161,7 +159,7 @@ export default function DashboardProfilePage() {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 try {
-                    await Disable2FA(accessToken);
+                    await Toggle2FA(accessToken, false);
                     setIs2FAEnable(false);
                     Swal.fire(
                         "Disabled!",
@@ -179,8 +177,6 @@ export default function DashboardProfilePage() {
             }
         });
     };
-    
-    
 
     if (loading) {
         return (

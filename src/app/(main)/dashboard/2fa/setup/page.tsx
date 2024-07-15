@@ -2,7 +2,12 @@
 import Image from "next/image";
 import React, { useState } from "react";
 import QRCODE from "@/assets/icon/qr_code.png";
-import { Enable2FA, GetUserProfile, Verify2FA } from "@/services/api/user";
+import {
+    Enable2FA,
+    GetUserProfile,
+    Toggle2FA,
+    Verify2FA,
+} from "@/services/api/user";
 import { signIn, useSession } from "next-auth/react";
 import { FaRegCopy } from "react-icons/fa6";
 import Swal from "sweetalert2";
@@ -83,15 +88,18 @@ export default function Page() {
             const res = await Verify2FA({ passcode, accessToken });
 
             if (res?.success) {
-                Swal.fire({
-                    icon: "success",
-                    title: "Verification Successful",
-                    text: "Two-factor authentication has been enabled.",
-                    showConfirmButton: false,
-                    timer: 5000,
-                });
-
-                // Redirect to dashboard
+                const response = await Toggle2FA(accessToken, true);
+                console.log("2FA Enabled", response);
+                if (response.success) {
+                    await Swal.fire({
+                        icon: "success",
+                        title: "2FA Enabled",
+                        text: "Multi-Factor Authentication has been enabled",
+                        showConfirmButton: false,
+                        timer: 5000,
+                    });
+                    window.location.assign("/dashboard");
+                }
             } else {
                 Swal.fire({
                     icon: "error",
@@ -102,8 +110,6 @@ export default function Page() {
                 });
                 setError(res.error);
             }
-
-            window.location.assign("/dashboard");
         } catch (error: any) {
             Swal.fire({
                 icon: "error",
@@ -186,14 +192,12 @@ export default function Page() {
                                                     <InputOTPSlot index={0} />
                                                     <InputOTPSlot index={1} />
                                                     <InputOTPSlot index={2} />
-                                                    <InputOTPSlot index={3} />
                                                 </InputOTPGroup>
                                                 <InputOTPSeparator />
                                                 <InputOTPGroup>
+                                                    <InputOTPSlot index={3} />
                                                     <InputOTPSlot index={4} />
                                                     <InputOTPSlot index={5} />
-                                                    <InputOTPSlot index={6} />
-                                                    <InputOTPSlot index={7} />
                                                 </InputOTPGroup>
                                             </InputOTP>
                                         </div>
