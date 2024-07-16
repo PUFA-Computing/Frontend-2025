@@ -15,16 +15,21 @@ export default function Verify2FA() {
     const [passcode, setPasscode] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState("");
+    const [username, setUsername] = useState<string | null>(null);
+    const [password, setPassword] = useState<string | null>(null);
     const router = useRouter();
 
-    const username = sessionStorage.getItem("username");
-    const password = sessionStorage.getItem("password");
-
     useEffect(() => {
-        if (!username || !password) {
+        const storedUsername = sessionStorage.getItem("username");
+        const storedPassword = sessionStorage.getItem("password");
+
+        setUsername(storedUsername);
+        setPassword(storedPassword);
+
+        if (!storedUsername || !storedPassword) {
             router.push("/auth/signin"); // Redirect back to login if credentials are missing
         }
-    }, [username, password, router]);
+    }, [router]);
 
     const handleVerify2FA = async (e: React.FormEvent) => {
         e.preventDefault();
