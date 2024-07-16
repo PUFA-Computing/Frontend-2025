@@ -54,7 +54,7 @@ export async function UpdateUserProfile(
     major: string,
     year: string,
     gender: string,
-    date_of_birth: string,
+    date_of_birth: Date,
     accessToken: string
 ) {
     try {

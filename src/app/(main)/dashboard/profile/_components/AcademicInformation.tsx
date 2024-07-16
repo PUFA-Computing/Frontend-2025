@@ -121,6 +121,7 @@ export default function AcademicInformation() {
                                             label="Major"
                                             type="text"
                                             value={major}
+                                            disabled
                                             placeholder={userData?.major}
                                             onChange={(e) =>
                                                 setMajor(e.target.value)
@@ -133,6 +134,7 @@ export default function AcademicInformation() {
                                             label="Batch"
                                             type="text"
                                             value={batch}
+                                            disabled
                                             placeholder={userData?.year}
                                             onChange={(e) =>
                                                 setBatch(e.target.value)
@@ -145,6 +147,7 @@ export default function AcademicInformation() {
                                             label="Student ID"
                                             type="text"
                                             value={studentId}
+                                            disabled
                                             placeholder={userData?.student_id}
                                             onChange={(e) =>
                                                 setBatch(e.target.value)
@@ -174,6 +177,7 @@ export default function AcademicInformation() {
                                             label="Major"
                                             type="text"
                                             value={major}
+                                            disabled
                                             placeholder={userData?.major}
                                             onChange={(e) =>
                                                 setMajor(e.target.value)
@@ -186,6 +190,7 @@ export default function AcademicInformation() {
                                             label="Batch"
                                             type="text"
                                             value={batch}
+                                            disabled
                                             placeholder={userData?.year}
                                             onChange={(e) =>
                                                 setBatch(e.target.value)
@@ -198,6 +203,7 @@ export default function AcademicInformation() {
                                             label="Student ID"
                                             type="text"
                                             value={studentId}
+                                            disabled
                                             placeholder={userData?.student_id}
                                             onChange={(e) =>
                                                 setBatch(e.target.value)

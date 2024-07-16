@@ -15,6 +15,26 @@ import Swal from "sweetalert2";
 import User from "@/models/user";
 import Select from "react-select";
 
+interface Props {
+    userData?: {
+        date_of_birth?: Date;
+    };
+}
+
+const formatDate = (date: Date | undefined): string => {
+    if (!date) return "";
+    const d = new Date(date);
+    const month = ("0" + (d.getMonth() + 1)).slice(-2);
+    const day = ("0" + d.getDate()).slice(-2);
+    const year = d.getFullYear();
+    return `${year}-${month}-${day}`;
+};
+
+const parseDate = (dateString: string): Date => {
+    const [year, month, day] = dateString.split("-");
+    return new Date(parseInt(year), parseInt(month) - 1, parseInt(day));
+};
+
 export default function MyAccount() {
     const session = useSession();
 
@@ -25,7 +45,9 @@ export default function MyAccount() {
     const [middleName, setMiddleName] = useState<string>("");
     const [lastName, setLastName] = useState<string>("");
     const [email, setEmail] = useState<string>("");
-    const [dateOfBirth, setDateOfBirth] = useState<string>("");
+    const [dateOfBirth, setDateOfBirth] = useState<Date | undefined>(
+        userData?.date_of_birth
+    );
     const [major, setMajor] = useState<string>("");
     const [batch, setBatch] = useState<string>("");
     const [profilePicture, setProfilePicture] = useState<File | null>(null);
@@ -112,6 +134,10 @@ export default function MyAccount() {
         if (!session.data) {
             return;
         }
+        if (!dateOfBirth) {
+          console.error("Date of birth is required");
+          return;
+      }
         try {
             const updatedUser = await UpdateUserProfile(
                 username,
@@ -225,15 +251,30 @@ export default function MyAccount() {
                                 />
                             </div>
                             <div>
-                                <Input
+                                <label
                                     htmlFor="date-of-birth"
-                                    label="Date of Birth"
-                                    type="text"
-                                    value={email}
-                                    placeholder={userData?.email}
-                                    onChange={(e) => setEmail(e.target.value)}
+                                    className="block text-sm font-medium text-gray-700"
+                                >
+                                    Date of Birth
+                                </label>
+                                <input
+                                    id="date-of-birth"
+                                    type="date"
+                                    value={formatDate(dateOfBirth)}
+                                    placeholder={
+                                        userData?.date_of_birth
+                                            ? formatDate(userData.date_of_birth)
+                                            : ""
+                                    }
+                                    onChange={(e) =>
+                                        setDateOfBirth(
+                                            parseDate(e.target.value)
+                                        )
+                                    }
+                                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                 />
                             </div>
+
                             <div>
                                 <label
                                     htmlFor="gender"
