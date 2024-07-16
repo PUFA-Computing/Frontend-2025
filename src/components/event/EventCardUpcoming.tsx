@@ -10,6 +10,12 @@ export default function EventCardUpcoming({ events }: { events: Event[] }) {
         }
         return description.substring(0, maxLength) + "...";
     };
+    const truncatedTitle = (title: string, maxLength: number) => {
+        if (title.length <= maxLength) {
+            return title;
+        }
+        return title.substring(0, maxLength) + "...";
+    };
 
     return (
         // Upcoming Max Events is 2
@@ -32,7 +38,7 @@ export default function EventCardUpcoming({ events }: { events: Event[] }) {
 
                     <div className="max-w-[20rem] space-y-8 p-6">
                         <h1 className="text-[1.0rem] font-[600] ">
-                            {event.title}
+                            {truncatedTitle(event.title, 58)}
                         </h1>
                         <h1 className="text-[0.8rem] text-[#353535]">
                             {event.start_date.toDateString()}
