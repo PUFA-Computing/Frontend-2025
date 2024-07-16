@@ -10,9 +10,10 @@ import {
 } from "@/services/api/user";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import User from "@/models/user";
+import Select from "react-select";
 
 export default function MyAccount() {
     const session = useSession();
@@ -24,13 +25,20 @@ export default function MyAccount() {
     const [middleName, setMiddleName] = useState<string>("");
     const [lastName, setLastName] = useState<string>("");
     const [email, setEmail] = useState<string>("");
+    const [dateOfBirth, setDateOfBirth] = useState<string>("");
     const [major, setMajor] = useState<string>("");
     const [batch, setBatch] = useState<string>("");
     const [profilePicture, setProfilePicture] = useState<File | null>(null);
-    const [activeTab, setActiveTab] = useState("My Account");
+    const [gender, setGender] = useState<string>("");
+
+    const genderOptions = [
+        { value: "male", label: "Male" },
+        { value: "female", label: "Female" },
+        { value: "other", label: "Other" },
+    ];
 
     // Fetch user data
-    React.useEffect(() => {
+    useEffect(() => {
         const fetchData = async () => {
             if (session.data == null) {
                 return;
@@ -48,6 +56,8 @@ export default function MyAccount() {
                 setEmail(userData.email);
                 setMajor(userData.major);
                 setBatch(userData.year);
+                setGender(userData.gender);
+                setDateOfBirth(userData.date_of_birth);
                 setLoading(false);
             } catch (error) {
                 console.error("Error fetching user data:", error);
@@ -55,7 +65,7 @@ export default function MyAccount() {
         };
 
         fetchData().then((r) => r);
-    }, [session.data]);
+    }, [session]);
 
     const handleProfilePictureChange = (
         e: React.ChangeEvent<HTMLInputElement>
@@ -111,6 +121,8 @@ export default function MyAccount() {
                 email,
                 major,
                 batch,
+                gender,
+                dateOfBirth,
                 session.data.user.access_token
             );
 
@@ -127,6 +139,10 @@ export default function MyAccount() {
         } catch (error) {
             console.error("Error updating user profile:", error);
         }
+    };
+
+    const handleGenderChange = (selectedOption: any) => {
+        setGender(selectedOption ? selectedOption.value : "");
     };
 
     if (loading) {
@@ -206,6 +222,34 @@ export default function MyAccount() {
                                     value={email}
                                     placeholder={userData?.email}
                                     onChange={(e) => setEmail(e.target.value)}
+                                />
+                            </div>
+                            <div>
+                                <Input
+                                    htmlFor="date-of-birth"
+                                    label="Date of Birth"
+                                    type="text"
+                                    value={email}
+                                    placeholder={userData?.email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                />
+                            </div>
+                            <div>
+                                <label
+                                    htmlFor="gender"
+                                    className="block text-sm font-medium text-gray-700"
+                                >
+                                    Gender
+                                </label>
+                                <Select
+                                    id="gender"
+                                    value={genderOptions.find(
+                                        (option) => option.value === gender
+                                    )}
+                                    onChange={handleGenderChange}
+                                    options={genderOptions}
+                                    placeholder={userData?.gender}
+                                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                                 />
                             </div>
                             <div className="mt-16 flex justify-end space-x-2 py-5">

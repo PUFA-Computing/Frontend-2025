@@ -53,6 +53,8 @@ export async function UpdateUserProfile(
     email: string,
     major: string,
     year: string,
+    gender: string,
+    date_of_birth: string,
     accessToken: string
 ) {
     try {
@@ -65,7 +67,9 @@ export async function UpdateUserProfile(
                 last_name,
                 email,
                 major,
+                gender,
                 year,
+                date_of_birth,
             },
             {
                 headers: {
@@ -357,6 +361,29 @@ export async function Toggle2FA(accessToken: string, enable: boolean) {
         return response.data;
     } catch (error) {
         console.log(error);
+        throw error;
+    }
+}
+
+export async function VerifyStudentID(file: File, accessToken: string) {
+    try {
+        const formData = new FormData();
+        formData.append("student_id", file);
+
+        const response = await axios.post(
+            `${API_USER}/upload-student-id`,
+            formData,
+            {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                    Authorization: `Bearer ${accessToken}`,
+                },
+            }
+        );
+
+        return response.data.data;
+    } catch (error) {
+        console.error("Error uploading profile picture", error);
         throw error;
     }
 }
