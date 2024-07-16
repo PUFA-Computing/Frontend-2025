@@ -128,6 +128,8 @@ export default function Page() {
         setPasscode(otp);
     };
 
+    console.log(qrImage);
+
     return (
         <section className="bg-white font-[500] text-[#353535]">
             <div className="p-4">
@@ -218,7 +220,7 @@ export default function Page() {
                             </ol>
                         </div>
                     </div>
-                    <div className="mx-auto mt-4 hidden justify-center lg:mt-0 md:flex-1 lg:justify-end">
+                    <div className="mx-auto mt-4 hidden justify-center sm:flex lg:mt-0 lg:justify-end">
                         {qrImage && (
                             <Image
                                 src={`data:image/png;base64,${qrImage}`}
