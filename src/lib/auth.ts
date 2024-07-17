@@ -36,6 +36,7 @@ export const authOptions: NextAuthOptions = {
                         credentials.password,
                         credentials.passcode
                     );
+                    console.log(response);
                     const user = await GetUserProfile(
                         response.data.user_id,
                         response.data.access_token
