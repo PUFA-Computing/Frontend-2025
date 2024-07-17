@@ -1,6 +1,9 @@
 FROM node:18-alpine AS base
 
 ARG NEXT_PUBLIC_API_URL=""
+ARG NEXTAUTH_URL=""
+ARG NEXTAUTH_SECRET=""
+ARG DATABASE_URL=""
 
 RUN npm install -g pnpm
 
@@ -22,6 +25,9 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 # This will do the trick, use the corresponding env file for each environment.
 ENV NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}
+ENV NEXTAUTH_URL=${NEXTAUTH_URL}
+ENV NEXTAUTH_SECRET=${NEXTAUTH_SECRET}
+ENV DATABASE_URL=${DATABASE_URL}
 RUN pnpm run build
 
 # 3. Production image, copy all the files and run next
@@ -39,6 +45,8 @@ COPY --from=builder /app/public ./public
 # https://nextjs.org/docs/advanced-features/output-file-tracing
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+
+COPY --from=builder /app/.env.production ./.env
 
 
 USER nextjs
