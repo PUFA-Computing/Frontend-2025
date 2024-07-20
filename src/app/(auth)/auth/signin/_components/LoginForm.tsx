@@ -164,11 +164,11 @@ export default function LoginForm() {
                             <Link href={"/auth/signup"}> Sign Up</Link>{" "}
                         </span>
                     </h1>
-                    <h1 className="pt-1 text-center font-[400] text-[#475467] text-[0.875] md:pt-3">
-                        Forgot Password ?
-                        <span className="text-[#e85c5c] hover:underline">
-                            <Link href={"/auth/forgot-password"}> Forgot Password</Link>{" "}
-                        </span>
+                    <h1 className="pt-1 text-center font-[400] text-[#ef5151] text-[0.875] md:pt-3">
+                        <Link href="/auth/forgot-password">
+                            {" "}
+                            Forgot password?
+                        </Link>
                     </h1>
                 </div>
             </form>
