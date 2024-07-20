@@ -10,3 +10,4 @@ export const API_VERIFY_EMAIL = BASE_URL + "/auth/verify-email?token=";
 export const API_ROLE = BASE_URL + "/roles";
 export const API_PERMISSION = BASE_URL + "/permissions";
 export const API_VERSION = BASE_URL + "/version";
+export const API_FORGOT_PASSWORD = BASE_URL + "/auth/forgot-password"

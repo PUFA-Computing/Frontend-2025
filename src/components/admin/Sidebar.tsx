@@ -6,6 +6,7 @@ import {
 	HomeIcon,
 	UsersIcon,
 	NewspaperIcon,
+    EnvelopeIcon
 } from "@heroicons/react/24/outline";
 import React from "react";
 import { Cog6ToothIcon } from "@heroicons/react/24/outline";
@@ -58,6 +59,11 @@ const Sidebar = ({ teams }: SidebarProps) => {
             name: "Merch",
             href: "/admin/merch",
             icon: BuildingStorefrontIcon,
+        },
+        {
+            name: "Email",
+            href: "/admin/email",
+            icon: EnvelopeIcon,
         },
     ];
     return (
