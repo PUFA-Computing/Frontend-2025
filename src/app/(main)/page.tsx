@@ -148,7 +148,7 @@ export default async function Index() {
             </section>
 
             {/* event section */}
-            <section className="flex select-none flex-col items-center space-y-8 md:space-y-8 md:px-[5rem]">
+            <section className="my-[10rem] flex select-none flex-col items-center space-y-8 md:space-y-8 md:px-[5rem]">
                 <div className="border-l-4 border-[#E50D0D] pl-4">
                     <h1 className="text-[1.5rem] font-[600]">
                         Computing Events
@@ -174,7 +174,7 @@ export default async function Index() {
             {/* news */}
             <section
                 id="news"
-                className="max-h-xl mx-auto max-w-7xl space-y-12 p-5 text-center md:px-[5rem]"
+                className="max-h-xl mx-auto max-w-7xl space-y-8 my-[10rem] p-5 text-center md:px-[5rem]"
             >
                 {/*Coming Soon*/}
                 <h2 className="text-2xl font-bold">
@@ -205,7 +205,7 @@ export default async function Index() {
 
             <section
                 id="compreciacion"
-                className="max-h-xl mx-auto my-32 max-w-7xl space-y-8 p-5 text-center"
+                className="max-h-xl mx-auto my-[10rem] max-w-7xl space-y-8 p-5 text-center"
             >
                 <h2 className="text-2xl font-bold">
                     <span className="mr-4 border-l-4 border-l-[#AF95FF]"></span>
