@@ -1,46 +1,11 @@
-/**
- * Study Program Page Component
- *
- * This component represents the page for the study program, including information about the program,
- * future fields and careers, and details about the lecturers.
- *
- * @component
- * @example
- * // Usage of the StudyProgramPage component in another React component or page
- * import StudyProgramPage from 'path/to/StudyProgramPage';
- * // Render the component
- * <StudyProgramPage />;
- */
-"use client";
 import Image from "next/image";
 import Banner from "@/assets/banner/informatics.svg";
-import React, { useState } from "react";
 import ListCard from "@/components/major/ListCard";
-import ListVisionAndMissionCard from "@/components/major/ListVisionAndMissionCard";
 import LectureCard from "@/components/major/LectureCard";
-import ToggleSwitch from "@/components/ToggleSwitch";
+import { ITLecture } from "@/lib/data";
+import VnMSection from "@/components/major/VnMSection";
 
-/**
- * Study Program Page Component
- *
- * @returns {JSX.Element} - React element representing the Study Program Page.
- */
 export default function StudyProgramPage() {
-    // State for toggling between Vision and Mission content
-    const [selectedContent, setSelectedContent] = useState("vision");
-
-    /**
-     * Handle Toggle Change
-     *
-     * Function to handle the toggle switch change between Vision and Mission content.
-     */
-    const handleToggleChange = () => {
-        setSelectedContent((prevContent) =>
-            prevContent === "vision" ? "mission" : "vision"
-        );
-    };
-
-    // Vision and Mission content
     const visionContent: string[] = [
         "Becoming the center of excellence for informatics higher education and research in Indonesia, able to compete globally, and play an active role in supporting the industry.",
     ];
@@ -53,7 +18,6 @@ export default function StudyProgramPage() {
         "To promote the spirit of entrepreneurship for students focusing on Startup Business related to and supported by information technology.",
     ];
 
-    // List of professions
     const professions: string[] = [
         "Professional IT",
         "Professional Programmer",
@@ -65,48 +29,21 @@ export default function StudyProgramPage() {
         "Researcher and Scientist",
     ];
 
-    const lectures = [
-        {
-            image: "/lecture/informatics/ghofir.png",
-            name: "Abdul Ghofir, S.Kom., M.Kom",
-        },
-        {
-            image: "/lecture/informatics/naswir.png",
-            name: "Ahmad Fadhil Naswir, B.Sc IT., M.Sc., Ph.D",
-        },
-        {
-            image: "/lecture/informatics/andika.png",
-            name: "Andika Candra Jaya, B.Sc.IT, M.Kom ",
-        },
-        {
-            image: "/lecture/informatics/cutifa.png",
-            name: "Cutifa Safitri, Ph.D",
-        },
-        {
-            image: "/lecture/informatics/genta.png",
-            name: "Genta Sahuri, S.Kom., M.Kom",
-        },
-        {
-            image: "/lecture/informatics/rila.png",
-            name: "Ir. Rila Mandala, M.Eng., Ph.D",
-        },
-        {
-            image: "/lecture/informatics/nurhadi.png",
-            name: "Nur Hadisukmana, M.Sc.",
-        },
-        {
-            image: "/lecture/informatics/rosalina.png",
-            name: "Rosalina, S.Kom., M. Kom",
-        },
-        {
-            image: "/lecture/informatics/williem.png",
-            name: "Williem, M.Sc",
-        },
-    ];
+    const deanAndHead = ITLecture.filter(
+        (lecture) =>
+            lecture.position === "Head of Study Program" ||
+            lecture.position === "Dean Faculty of Computing"
+    );
+
+    const otherLecturers = ITLecture.filter(
+        (lecture) =>
+            lecture.position !== "Dean Faculty of Computing" &&
+            lecture.position !== "Head of Study Program"
+    );
 
     return (
         <>
-            <section className="flex flex-col items-center space-y-12 p-[5rem] md:px-[10rem]">
+            <section className="flex flex-col items-center space-y-12 p-6 md:px-[10rem]">
                 <Image
                     width={1280}
                     height={500}
@@ -140,45 +77,34 @@ export default function StudyProgramPage() {
                         <ListCard content={professions} />
                     </div>
 
-                    <div className="flex flex-col">
-                        {/* Toggle switch for Vision and Mission */}
-                        <ToggleSwitch
-                            selectedContent={selectedContent}
-                            handleToggleChange={handleToggleChange}
-                        />
-
-                        {/* Content based on the selected toggle */}
-                        <ListVisionAndMissionCard
-                            selectedContent={selectedContent}
-                            visionContent={visionContent}
-                            missionContent={missionContent}
-                        />
-                    </div>
+                    <VnMSection
+                        missionContent={missionContent}
+                        visionContent={visionContent}
+                    />
                 </div>
                 {/* big lecturers */}
                 <div className="flex flex-col gap-8">
                     <h1 className="font-[600]">Lecturers</h1>
-                    <div className="">
+                    <div>
                         <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
-                            <LectureCard
-                                image="/lecture/informatics/rila.png"
-                                name="Ir. Rila Mandala, M.Eng., Ph.D."
-                                position="Dean School of Computing"
-                            />
-                            <LectureCard
-                                image="/lecture/informatics/cutifa.png"
-                                name="Cutifa Safitri, Ph.D."
-                                position="Head of Study Programme"
-                            />
+                            {deanAndHead.map((lecture, index) => (
+                                <LectureCard
+                                    key={index}
+                                    image={lecture.image.src}
+                                    name={lecture.name}
+                                    position={lecture.position}
+                                />
+                            ))}
                         </div>
                     </div>
                 </div>
                 <div className="grid grid-cols-1 gap-8 md:grid-cols-5">
-                    {lectures.map((lecture, index) => (
+                    {otherLecturers.map((lecture, index) => (
                         <LectureCard
                             key={index}
-                            image={lecture.image}
+                            image={lecture.image.src}
                             name={lecture.name}
+                            position={lecture.position}
                         />
                     ))}
                 </div>{" "}
