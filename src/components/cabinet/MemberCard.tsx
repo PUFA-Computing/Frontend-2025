@@ -1,11 +1,11 @@
 import Link from "next/link";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import { FaInstagram } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
 import { UrlObject } from "url";
 
 interface MemberCardProps {
-   image: string;
+   image: string | StaticImageData;
    name: string;
    position: string;
    instagram?: string | UrlObject;

@@ -182,7 +182,7 @@ export default function MyAccount() {
     }
 
     return (
-        <section className="px-4">
+        <section>
             <div className="grid grid-cols-1 gap-5 p-4 lg:grid-cols-2">
                 <div>
                     <div className="rounded-lg border border-[#CBCBCB] bg-white shadow-lg">
