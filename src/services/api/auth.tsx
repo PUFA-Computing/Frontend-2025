@@ -1,6 +1,12 @@
 import axios from "axios";
-import { API_LOGIN, API_LOGOUT, API_REGISTER } from "@/config/config";
+import {
+    API_FORGOT_PASSWORD,
+    API_LOGIN,
+    API_LOGOUT,
+    API_REGISTER,
+} from "@/config/config";
 import User from "@/models/user";
+import { string } from "zod";
 
 /**
  * Logs the user into the system.
@@ -109,3 +115,38 @@ export const Register = async (user: User) => {
 };
 
 export default Login;
+
+export const ForgotPassword = async (
+    email: string,
+    otp: string,
+    password?: string
+) => {
+    const data: { email: string; otp: string; password?: string } = {
+        "email": email,
+        "otp": otp,
+        "password": password
+    };
+
+    try {
+        const response = await axios.post(API_FORGOT_PASSWORD, data, {
+            withCredentials: true,
+        });
+        return response.data;
+    } catch (error) {
+        console.log("Failed to Change the Password: ", error);
+        throw error;
+    }
+};
+
+export const ForgotPasswordRequest = async (email : string) => {
+    try {
+        const response = await axios.post(`${API_FORGOT_PASSWORD}/request`, {
+            "email": email, 
+        });
+        return response.data;
+    } catch (error) {
+        console.error("Error requesting password reset:", error);
+        throw error;
+    }
+};
+

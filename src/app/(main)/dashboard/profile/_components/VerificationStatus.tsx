@@ -1,7 +1,7 @@
 import { GetUserProfile } from "@/services/api/user";
 import { useSession } from "next-auth/react";
 import React, { useEffect, useState } from "react";
-import { FaCheckCircle, FaTimesCircle } from "react-icons/fa";
+import { FaCheckCircle, FaHourglassHalf, FaTimesCircle } from "react-icons/fa";
 
 export default function VerificationStatus() {
     const session = useSession();
@@ -9,6 +9,7 @@ export default function VerificationStatus() {
     const [emailIsVerified, setEmailIsVerified] = useState(true);
     const [twoFactorVerified, setTwoFactorVerified] = useState(true);
     const [studentIdVerified, setStudentIdVerified] = useState(true);
+    const [studentIdImage, setStudentIdImage] = useState(null);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -24,6 +25,7 @@ export default function VerificationStatus() {
                 setEmailIsVerified(userData.email_verified);
                 setTwoFactorVerified(userData.twofa_enabled);
                 setStudentIdVerified(userData.student_id_verified);
+                setStudentIdImage(userData.student_id_verification);
             } catch (error) {
                 console.error("Error fetching user data:", error);
             }
@@ -31,6 +33,37 @@ export default function VerificationStatus() {
 
         fetchData().then((r) => r);
     }, [session]);
+
+    const renderStudentIdStatus = () => {
+        if (studentIdVerified) {
+            return (
+                <div className="flex flex-col items-center">
+                    <FaCheckCircle className="mb-4 text-6xl text-green-500" />
+                    <p className="text-lg text-gray-600">
+                        Your student ID is already verified.
+                    </p>
+                </div>
+            );
+        } else if (!studentIdVerified && studentIdImage) {
+            return (
+                <div className="flex flex-col items-center">
+                    <FaHourglassHalf className="mb-4 text-6xl text-yellow-500" />
+                    <p className="text-lg text-gray-600">
+                        Your student ID verification is pending.
+                    </p>
+                </div>
+            );
+        } else {
+            return (
+                <div className="flex flex-col items-center">
+                    <FaTimesCircle className="mb-4 text-6xl text-red-500" />
+                    <p className="text-lg text-gray-600">
+                        Your student ID is still not verified, please verify it.
+                    </p>
+                </div>
+            );
+        }
+    };
 
     return (
         <section className="p-4 grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
@@ -61,21 +94,7 @@ export default function VerificationStatus() {
                     <h1 className="mb-6 text-3xl font-bold text-gray-800">
                         Student ID Verification Status
                     </h1>
-                    {studentIdVerified ? (
-                        <div className="flex flex-col items-center">
-                            <FaCheckCircle className="mb-4 text-6xl text-green-500" />
-                            <p className="text-lg text-gray-600">
-                                Your student ID is already verified.
-                            </p>
-                        </div>
-                    ) : (
-                        <div className="flex flex-col items-center">
-                            <FaTimesCircle className="mb-4 text-6xl text-red-500" />
-                            <p className="text-lg text-gray-600">
-                                Your student ID is still not verified, please verify it.
-                            </p>
-                        </div>
-                    )}
+                    {renderStudentIdStatus()}
                 </div>
             </div>
             <div className="flex items-center justify-center bg-gray-50">

@@ -41,11 +41,10 @@ const LectureCard: React.FC<LectureCardProps> = ({ image, name, position }) => {
         <div className="rounded-xl duration-300 hover:scale-110 hover:shadow-xl">
             <div className="relative aspect-[3/4] w-full rounded-lg overflow-hidden">
                 <Image
-                    className="object-cover"
+                    className="object-fit"
                     src={image}
                     alt={`${name}'s photo`}
                     layout="fill"
-                    objectFit="cover"
                 />
             </div>
             <div className="p-2">

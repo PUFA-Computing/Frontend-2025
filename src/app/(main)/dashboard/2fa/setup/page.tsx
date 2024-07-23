@@ -1,14 +1,12 @@
 "use client";
 import Image from "next/image";
 import React, { useState } from "react";
-import QRCODE from "@/assets/icon/qr_code.png";
 import {
     Enable2FA,
-    GetUserProfile,
     Toggle2FA,
     Verify2FA,
 } from "@/services/api/user";
-import { signIn, useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import { FaRegCopy } from "react-icons/fa6";
 import Swal from "sweetalert2";
 import { Spinner } from "@nextui-org/spinner";
@@ -127,8 +125,6 @@ export default function Page() {
     const onOtpChange = (otp: string) => {
         setPasscode(otp);
     };
-
-    console.log(qrImage);
 
     return (
         <section className="bg-white font-[500] text-[#353535]">
