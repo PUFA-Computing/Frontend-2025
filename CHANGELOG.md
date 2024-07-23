@@ -1,3 +1,75 @@
+# [1.4.0](https://github.com/PUFA-Computing/Frontend/compare/v1.3.25...v1.4.0) (2024-07-02)
+
+
+### Features
+
+* event page ([4881bce](https://github.com/PUFA-Computing/Frontend/commit/4881bce989536a68864e54696cd35116d32fe2af))
+* PUMA Section ([cf7eb05](https://github.com/PUFA-Computing/Frontend/commit/cf7eb0510546f6d2f5f8fdac9c8dda58a989177f))
+* PUMA Section ([c66d46a](https://github.com/PUFA-Computing/Frontend/commit/c66d46a23e7eb34598d0332db1019508aa9acdc7))
+
+## [1.3.25](https://github.com/PUFA-Computing/Frontend/compare/v1.3.24...v1.3.25) (2024-06-30)
+
+
+### Bug Fixes
+
+* notes for support any special treat for events ([5c36b91](https://github.com/PUFA-Computing/Frontend/commit/5c36b919252dbb14da87cef1a2ba8c2b98b06dc2))
+
+## [1.3.24](https://github.com/PUFA-Computing/Frontend/compare/v1.3.23...v1.3.24) (2024-06-30)
+
+
+### Bug Fixes
+
+* registered state, and delete event with delete fk ([43b208b](https://github.com/PUFA-Computing/Frontend/commit/43b208b74c90936e4cd5360cfc6606d09dc81eb8))
+
+## [1.3.23](https://github.com/PUFA-Computing/Frontend/compare/v1.3.22...v1.3.23) (2024-06-30)
+
+
+### Bug Fixes
+
+* TypeError: t is not iterable with use non array response2 ([c244110](https://github.com/PUFA-Computing/Frontend/commit/c2441108415dcd602c142f5180395528bf3ad89b))
+
+## [1.3.22](https://github.com/PUFA-Computing/Frontend/compare/v1.3.21...v1.3.22) (2024-06-30)
+
+
+### Bug Fixes
+
+* can't fetch users event by migrate to our new endpoint ([ba6d483](https://github.com/PUFA-Computing/Frontend/commit/ba6d4832517bdb9eb8a3f5cc4e1d48cc5d0a171b))
+
+## [1.3.21](https://github.com/PUFA-Computing/Frontend/compare/v1.3.20...v1.3.21) (2024-06-28)
+
+
+### Bug Fixes
+
+* dashboard register events, causing error ([be2e75b](https://github.com/PUFA-Computing/Frontend/commit/be2e75b867ec86b3005f5934f0b394291462a828))
+
+## [1.3.20](https://github.com/PUFA-Computing/Frontend/compare/v1.3.19...v1.3.20) (2024-06-27)
+
+
+### Bug Fixes
+
+* register event to make some adjustment ([41cf917](https://github.com/PUFA-Computing/Frontend/commit/41cf91715c5853796ae9f9999de2f1612ceb2516))
+
+## [1.3.19](https://github.com/PUFA-Computing/Frontend/compare/v1.3.18...v1.3.19) (2024-06-27)
+
+
+### Bug Fixes
+
+* remove session accessToken on ssr ([6652be3](https://github.com/PUFA-Computing/Frontend/commit/6652be34bfc75466a65448aec26d44df6156c1cf))
+
+## [1.3.18](https://github.com/PUFA-Computing/Frontend/compare/v1.3.17...v1.3.18) (2024-06-27)
+
+
+### Bug Fixes
+
+* Register to the events error due to switching session storage ([a212d6c](https://github.com/PUFA-Computing/Frontend/commit/a212d6cbd796802523c5b4bc763d63b8cb3e6f99))
+
+## [1.3.17](https://github.com/PUFA-Computing/Frontend/compare/v1.3.16...v1.3.17) (2024-06-24)
+
+
+### Bug Fixes
+
+* fixing the port ([c00a7cf](https://github.com/PUFA-Computing/Frontend/commit/c00a7cf7edc4f25c8440f4552ea6dc6ad8066329))
+
 ## [1.3.16](https://github.com/PUFA-Computing/Frontend/compare/v1.3.15...v1.3.16) (2024-06-10)
 
 
