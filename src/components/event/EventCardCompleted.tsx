@@ -9,6 +9,12 @@ export default function EventCardCompleted({ events }: { events: Event[] }) {
         }
         return description.substring(0, maxLength) + "...";
     };
+    const truncateTitle = (title: string, maxLength: number) => {
+        if (title.length <= maxLength) {
+            return title;
+        }
+        return title.substring(0, maxLength) + "...";
+    };
     return (
         <div className="grid grid-cols-1 gap-6 md:scale-100 md:grid-cols-3">
             {events.map((event, index) => (
@@ -17,9 +23,9 @@ export default function EventCardCompleted({ events }: { events: Event[] }) {
                     className="flex max-w-[23rem] flex-col justify-between space-y-4 rounded-lg border border-[#E50D0D] px-6 py-4"
                 >
                     <h1 className="h-[3rem] text-[1.2rem] font-[600]">
-                        {event.title}
+                        {truncateTitle(event.title, 58)}
                     </h1>
-                    <div className="h-[5rem] text-sm md:text-base">
+                    <div className="h-[5rem] text-sm md:text-base text-justify">
                         {truncateDescription(event.description, 100)}
                     </div>
                     <div className="flex justify-between">

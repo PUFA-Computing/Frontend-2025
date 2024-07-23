@@ -25,7 +25,7 @@ yarn-debug.log*
 yarn-error.log*
 
 # local env files
-.env.development
+.env
 .env
 
 # vercel
@@ -39,4 +39,5 @@ next-env.d.ts
 public/uploads/*
 .env.local
 .env.production
+.env
 

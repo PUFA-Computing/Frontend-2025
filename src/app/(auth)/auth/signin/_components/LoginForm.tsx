@@ -19,6 +19,7 @@ type ErrorResponse = {
 export default function LoginForm() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [passcode, setPasscode] = useState("");
     const [error, setError] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const router = useRouter();
@@ -36,30 +37,30 @@ export default function LoginForm() {
         e.preventDefault();
         setIsLoading(true);
         try {
-            await signIn("credentials", {
+            const res = await signIn("credentials", {
                 username: username,
                 password: password,
                 redirect: false,
-            })
-                .then(async (res) => {
-                    if (res?.error) {
-                        Swal.fire({
-                            icon: "error",
-                            title: "Login Failed",
-                            text: res?.error,
-                            showConfirmButton: false,
-                            timer: 5000,
-                        });
-                        setError(res?.error);
-                    }
-                    if (res?.ok) {
-                        window.location.reload();
-                    }
-                })
-                .catch((err) => {
-                    console.log(err);
-                });
-            return;
+            });
+            if (res?.error) {
+                if (res.error.includes("Two Factor Authentication Required")) {
+                    // Store username and password in session storage
+                    sessionStorage.setItem("username", username);
+                    sessionStorage.setItem("password", password);
+                    router.push("/auth/verify-2fa"); // Redirect to 2FA verification page
+                } else {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Login Failed",
+                        text: res.error,
+                        showConfirmButton: false,
+                        timer: 5000,
+                    });
+                    setError(res.error);
+                }
+            } else if (res?.ok) {
+                window.location.reload();
+            }
         } catch (error: any) {
             await Swal.fire({
                 icon: "error",
@@ -162,6 +163,12 @@ export default function LoginForm() {
                         <span className="text-[#02ABF3] hover:underline">
                             <Link href={"/auth/signup"}> Sign Up</Link>{" "}
                         </span>
+                    </h1>
+                    <h1 className="pt-1 text-center font-[400] text-[#ef5151] text-[0.875] md:pt-3">
+                        <Link href="/auth/forgot-password">
+                            {" "}
+                            Forgot password?
+                        </Link>
                     </h1>
                 </div>
             </form>
