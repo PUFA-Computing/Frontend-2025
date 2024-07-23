@@ -1,3 +1,23 @@
+# [1.5.0](https://github.com/PUFA-Computing/Frontend/compare/v1.4.0...v1.5.0) (2024-07-23)
+
+
+### Bug Fixes
+
+* 2fa different behaviour between qr and setup key ([b75b2a7](https://github.com/PUFA-Computing/Frontend/commit/b75b2a74638ed07f7f10f837a2fe28aac8031c95))
+* 2fa on login ([c2969b4](https://github.com/PUFA-Computing/Frontend/commit/c2969b4f2e2e45eeb00fb099f8b0818e7a4ccd13))
+* alerts notification ([7f21ba5](https://github.com/PUFA-Computing/Frontend/commit/7f21ba5079c1be1e2ad53aa34d44c0bbaf6ba9f1))
+* error ([0a3b664](https://github.com/PUFA-Computing/Frontend/commit/0a3b6647131ed96083f5e6837d01f356a3f0a841))
+* sessionStorage on ssr behaviour ([020e61b](https://github.com/PUFA-Computing/Frontend/commit/020e61b1a8557e791f896d18c7ae53b2fa7dff72))
+
+
+### Features
+
+* 2fa TOTP ([5782457](https://github.com/PUFA-Computing/Frontend/commit/578245721bb789815b34b6744e3296eaa1e779e9))
+* change cabinet and studyprogram page structure, convert to slug ([0c674bf](https://github.com/PUFA-Computing/Frontend/commit/0c674bfe341949bc2061263f96aaa8f3cff0029e))
+* Dashboard User ([1b526c6](https://github.com/PUFA-Computing/Frontend/commit/1b526c621206b7d8253dd2e3159775bb43fafd5f))
+* majorPage ([ce8d18b](https://github.com/PUFA-Computing/Frontend/commit/ce8d18b8a10b8efd36403bd6d1acb4daa864ce87))
+* TOTP code, Event Card Title Truncated ([23cdb3a](https://github.com/PUFA-Computing/Frontend/commit/23cdb3ab09520de6b2dd56da16366476a0a09b9d))
+
 # [1.4.0](https://github.com/PUFA-Computing/Frontend/compare/v1.3.25...v1.4.0) (2024-07-02)
 
 
