@@ -2,12 +2,15 @@ import { ForgotPassword } from "@/services/api/auth";
 import { Spinner } from "@nextui-org/spinner";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 
 export default function InputNewPassword() {
     const [error, setError] = useState("");
     const [password, setPassword] = useState("");
     const [newPassword, setNewPassword] = useState("");
     const [isLoading, setIsLoading] = useState(false);
+    const [passwordVisible, setPasswordVisible] = useState(false);
+    const [newPasswordVisible, setNewPasswordVisible] = useState(false);
     const router = useRouter();
 
     const HandleNewPassword = async (e: React.FormEvent) => {
@@ -24,16 +27,23 @@ export default function InputNewPassword() {
         const email = sessionStorage.getItem("email") || "";
         const otp = sessionStorage.getItem("otp") || "";
         try {
-            await ForgotPassword(email,otp,password);
+            await ForgotPassword(email, otp, password);
             router.push("/auth/signin");
             sessionStorage.removeItem("email");
             sessionStorage.removeItem("otp");
-            } catch (error) {
+        } catch (error) {
             setError("Failed to request password reset. Please try again.");
         } finally {
             setIsLoading(false);
         }
+    };
 
+    const togglePasswordVisibility = () => {
+        setPasswordVisible(!passwordVisible);
+    };
+
+    const toggleNewPasswordVisibility = () => {
+        setNewPasswordVisible(!newPasswordVisible);
     };
 
     return (
@@ -69,26 +79,46 @@ export default function InputNewPassword() {
                 <form onSubmit={HandleNewPassword}>
                     <div className="mt-8">
                         <div className="relative flex items-center">
-                            <span className="absolute"></span>
                             <input
-                                type="text"
+                                type={passwordVisible ? "text" : "password"}
                                 className="block w-full rounded-lg border bg-white px-6 py-3 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring-blue-300 md:px-10"
                                 placeholder="New Password"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                             />
+                            <button
+                                type="button"
+                                className="absolute right-3"
+                                onClick={togglePasswordVisibility}
+                            >
+                                {passwordVisible ? (
+                                    <AiFillEyeInvisible size={20} />
+                                ) : (
+                                    <AiFillEye size={20} />
+                                )}
+                            </button>
                         </div>
                     </div>
                     <div className="mt-8">
                         <div className="relative flex items-center">
-                            <span className="absolute"></span>
                             <input
-                                type="text"
+                                type={newPasswordVisible ? "text" : "password"}
                                 className="block w-full rounded-lg border bg-white px-6 py-3 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring-blue-300 md:px-10"
                                 placeholder="New Password Validate"
                                 value={newPassword}
                                 onChange={(e) => setNewPassword(e.target.value)}
                             />
+                            <button
+                                type="button"
+                                className="absolute right-3"
+                                onClick={toggleNewPasswordVisibility}
+                            >
+                                {newPasswordVisible ? (
+                                    <AiFillEyeInvisible size={20} />
+                                ) : (
+                                    <AiFillEye size={20} />
+                                )}
+                            </button>
                         </div>
                     </div>
                     <div className="mt-6">

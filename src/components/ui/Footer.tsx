@@ -48,11 +48,9 @@ export default function Footer({ version }: { version: Version }) {
                         </div>
                         {/*Version Info*/}
                             <div className="mt-2 justify-center text-sm font-normal tracking-widest text-[#9CA3AF]">
-                                App Version: <span className="border-blue-600 bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent hover:border-b-2 hover:border-b-blue-600">{version.latest_version}</span>
+                                App Version: <Link href="/change-log" className="border-blue-600 bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent hover:border-b-2 hover:border-b-blue-600">{version.latest_version}</Link>
                             </div>
-                                {/* <p className="border-blue-600 bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent hover:border-b-2 hover:border-b-blue-600">
-                                    {version.latest_version}
-                                </p> */}
+                               
                     </div>
 
                     <div className="mt-6 flex flex-row items-center justify-center space-x-4 md:ml-auto md:flex-row md:space-y-0">

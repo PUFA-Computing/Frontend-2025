@@ -10,6 +10,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Spinner } from "@nextui-org/spinner";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
+import { wordBlacklist } from "@/lib/wordBlaclist";
 
 // zod
 const AspirationSchema = z.object({
@@ -25,6 +26,7 @@ const AspirationSchema = z.object({
         .string({ required_error: "Message is required" })
         .min(10, { message: "Message must be at least 10 characters long" }),
 });
+
 
 export default function AspirationForm() {
     const formHtml = useRef<HTMLFormElement>(null);
@@ -64,6 +66,65 @@ export default function AspirationForm() {
         } catch (error) {
             console.error("Error fetching user profile", error);
         }
+    }
+
+    function containsBlacklistedWords(text: string): string[] {
+        return wordBlacklist.filter((word) =>
+            text.toLowerCase().includes(word.toLowerCase())
+        );
+    }
+
+    function handleChangeSubject(event: React.ChangeEvent<HTMLInputElement>) {
+        const value = event.target.value;
+        setSubject(value);
+    
+        const blacklistedWords = containsBlacklistedWords(value);
+        if (blacklistedWords.length > 0) {
+            const sanitizedValue = removeBlacklistedWords(value, blacklistedWords);
+            Swal.fire({
+                icon: "error",
+                title: "Error",
+                text: `Subject contains blacklisted words: ${blacklistedWords.join(", ")}.`,
+                showCancelButton: true,
+                confirmButtonText: "OK",
+                cancelButtonText: "Clear",
+            }).then((result) => {
+                if (result.isDismissed) {
+                    setSubject(sanitizedValue);
+                }
+            });
+        }
+    }
+    
+    function handleChangeMessage(event: React.ChangeEvent<HTMLTextAreaElement>) {
+        const value = event.target.value;
+        setMessage(value);
+    
+        const blacklistedWords = containsBlacklistedWords(value);
+        if (blacklistedWords.length > 0) {
+            const sanitizedValue = removeBlacklistedWords(value, blacklistedWords);
+            Swal.fire({
+                icon: "error",
+                title: "Error",
+                text: `Message contains blacklisted words: ${blacklistedWords.join(", ")}.`,
+                showCancelButton: true,
+                confirmButtonText: "OK",
+                cancelButtonText: "Clear",
+            }).then((result) => {
+                if (result.isDismissed) {
+                    setMessage(sanitizedValue);
+                }
+            });
+        }
+    }
+    
+    function removeBlacklistedWords(text: string, blacklistedWords: string[]): string {
+        let sanitizedText = text;
+        blacklistedWords.forEach((word) => {
+            const regex = new RegExp(`\\b${word}\\b`, 'gi'); 
+            sanitizedText = sanitizedText.replace(regex, ''); 
+        });
+        return sanitizedText.trim();
     }
 
     async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -255,13 +316,15 @@ export default function AspirationForm() {
 
                 <div className="mb-6 flex flex-col gap-2">
                     <h1 className="text-[1.1rem] font-bold">Subject:</h1>
-                    <p className="text-[0.9rem]">Your email etc.</p>
+                    <p className="text-[0.9rem]">
+                        Specific topic you want to discuss
+                    </p>
                     <input
                         type="text"
                         name="subject"
                         className="w-[100%] rounded-lg border-2 p-2"
                         value={subject}
-                        onChange={(e) => setSubject(e.target.value)}
+                        onChange={handleChangeSubject}
                     />
                 </div>
 
@@ -276,7 +339,7 @@ export default function AspirationForm() {
                         rows={10}
                         className="resize-none rounded-lg border-2 p-2"
                         value={message}
-                        onChange={(e) => setMessage(e.target.value)}
+                        onChange={handleChangeMessage}
                     ></textarea>
                 </div>
 

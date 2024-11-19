@@ -2,15 +2,18 @@
 import React, { useState } from "react";
 import { GetUserProfile, Toggle2FA } from "@/services/api/user";
 import Swal from "sweetalert2";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import Button from "@/components/Button";
 import Seperator from "@/components/Seperator";
+import { UpdatePassword } from "@/services/api/auth";
 
 export default function SecurityPage() {
     const session = useSession();
     const [userData, setUserData] = useState<string>("");
     const [is2FAEnable, setIs2FAEnable] = useState(true);
+    const [newPassword, setNewPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
 
     const fetchData = async () => {
         if (!session || !session.data || !session.data.user) {
@@ -78,6 +81,48 @@ export default function SecurityPage() {
         });
     };
 
+    const handleUpdatePassword = async (
+        event: React.FormEvent<HTMLFormElement>
+    ) => {
+        event.preventDefault();
+        const accessToken = session.data?.user?.access_token;
+
+        if (!accessToken) {
+            Swal.fire(
+                "Error!",
+                "Access token is missing. Please log in again.",
+                "error"
+            );
+            return;
+        }
+
+        if (newPassword !== confirmPassword) {
+            Swal.fire("Error!", "Passwords do not match.", "error");
+            return;
+        }
+
+        try {
+            await UpdatePassword(newPassword, accessToken);
+
+            Swal.fire(
+                "Success!",
+                "Password updated successfully.",
+                "success"
+            ).then(() => {
+                signOut({ callbackUrl: '/auth/signin' });
+            });
+        } catch (error: any) {
+            console.error(
+                "Update Password Error:",
+                error.response?.data || error
+            );
+            Swal.fire(
+                "Error!",
+                "Failed to update password. Please try again later.",
+                "error"
+            );
+        }
+    };
     return (
         <section className="px-4">
             <div className="grid grid-cols-1 gap-5 p-4 lg:grid-cols-2">
@@ -188,7 +233,10 @@ export default function SecurityPage() {
                             </p>
                         </div>
                         <Seperator className="border-gray-100" />
-                        <div className="mt-2 space-y-6 px-6 py-3 pb-6">
+                        <form
+                            onSubmit={handleUpdatePassword}
+                            className="mt-2 space-y-6 px-6 py-3 pb-6"
+                        >
                             <div>
                                 <label
                                     htmlFor="new-password"
@@ -201,10 +249,13 @@ export default function SecurityPage() {
                                         id="new-password"
                                         name="new-password"
                                         type="password"
-                                        autoComplete="current-password"
+                                        autoComplete="new-password"
                                         required
+                                        value={newPassword}
+                                        onChange={(e) =>
+                                            setNewPassword(e.target.value)
+                                        }
                                         className="block w-full rounded-md border-0 p-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-500 disabled:cursor-not-allowed disabled:opacity-50 sm:text-sm sm:leading-6"
-                                        disabled={true}
                                     />
                                 </div>
                             </div>
@@ -220,22 +271,25 @@ export default function SecurityPage() {
                                         id="confirm-password"
                                         name="confirm-password"
                                         type="password"
-                                        autoComplete="current-password"
+                                        autoComplete="new-password"
                                         required
+                                        value={confirmPassword}
+                                        onChange={(e) =>
+                                            setConfirmPassword(e.target.value)
+                                        }
                                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-500 disabled:cursor-not-allowed disabled:opacity-50 sm:text-sm sm:leading-6"
-                                        disabled={true}
                                     />
                                 </div>
                             </div>
                             <div className="mt-16 flex flex-col items-center justify-between space-y-4 md:flex-row md:space-x-2 md:space-y-0">
                                 <Button
                                     className="mt-4 border-[#02ABF3] bg-[#02ABF3] px-8 py-2 text-white hover:bg-white hover:text-[#02ABF3] disabled:cursor-not-allowed disabled:opacity-50 md:mt-0"
-                                    disabled={true}
+                                    type="submit"
                                 >
                                     Save
                                 </Button>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>

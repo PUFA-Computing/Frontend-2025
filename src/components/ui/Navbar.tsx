@@ -48,7 +48,15 @@ export default function Navbar() {
                 },
                 {
                     title: "Projects",
-                    href: "/",
+                    href: "/projects",
+                },
+                {
+                    title: "History",
+                    href: "/history",
+                },
+                {
+                    title: "Change Log",
+                    href: "/change-log",
                 },
             ],
         },

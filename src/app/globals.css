@@ -1,8 +1,8 @@
 @tailwind base;
-  @tailwind components;
-  @tailwind utilities;
-  
-  /* Hide scrollbar */
+@tailwind components;
+@tailwind utilities;
+
+/* Hide scrollbar */
 ::-webkit-scrollbar {
   width: 0;
 }

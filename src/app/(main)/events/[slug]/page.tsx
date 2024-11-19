@@ -101,7 +101,7 @@ export default async function EventDetailsPage({ params }: EventPageProps) {
                         </p>
                     </div>
                     <Seperator className="border-[#CBCBCB]" />
-                    <div className="flex items-center justify-center pb-5 pt-3 ">
+                    <div className="flex items-center justify-center">
                         <RegisterButton
                             eventSlug={event.slug}
                             eventId={event.id}

@@ -192,14 +192,16 @@ export const majorPage = [
             "To promote the spirit of entrepreneurship for students focusing on Startup Business related to and supported by information technology.",
         ],
         profession: [
-            "Professional IT",
-            "Professional Programmer",
-            "Database Engineer",
-            "Network and Security Specialist",
-            "Multimedia Designer and Animator",
-            "IT Manager",
-            "Technopreneur",
-            "Researcher and Scientist",
+            "Interior Designers",
+            "Interior Contractors",
+            "Furniture Designers",
+            "Product Designers",
+            "Environmental designers",
+            "Interior Design Lecturers",
+            "Interior Researchers",
+            "Interior Writers",
+            "Interior Design Trainers",
+            "Interior 3D Visualizers",
         ],
         description:
             "The Interior Design Study Program aims to educate students to create a positive influence through both the creative process and the engineering process. On how to produce technical design in a space based on the principles of robustness, usability, and beauty. The scope of learning interior design science covers the scale of a single simple building to a high-complexity building. President University's Interior Design Study Program is designed to instill the values of global competitiveness, interdisciplinary thinking, entrepreneurial spirit, and to also impart information technology skills in its students.",
@@ -889,3 +891,19 @@ export const divisionPage = [
         ],
     },
 ];
+
+// Content of PUMA Page
+
+export const PUMAPage = [
+    {
+        name: "PUMA Informatics",
+        slug: "puma-informatics",
+        logo: "",
+        banner: "",
+        vision: "",
+        mission: [{
+
+        }],
+        description: "",
+    }
+]

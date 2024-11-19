@@ -4,6 +4,7 @@ import {
     API_LOGIN,
     API_LOGOUT,
     API_REGISTER,
+    API_UPDATE_PASSWORD,
 } from "@/config/config";
 import User from "@/models/user";
 import { string } from "zod";
@@ -122,9 +123,9 @@ export const ForgotPassword = async (
     password?: string
 ) => {
     const data: { email: string; otp: string; password?: string } = {
-        "email": email,
-        "otp": otp,
-        "password": password
+        email: email,
+        otp: otp,
+        password: password,
     };
 
     try {
@@ -138,10 +139,10 @@ export const ForgotPassword = async (
     }
 };
 
-export const ForgotPasswordRequest = async (email : string) => {
+export const ForgotPasswordRequest = async (email: string) => {
     try {
         const response = await axios.post(`${API_FORGOT_PASSWORD}/request`, {
-            "email": email, 
+            email: email,
         });
         return response.data;
     } catch (error) {
@@ -150,3 +151,22 @@ export const ForgotPasswordRequest = async (email : string) => {
     }
 };
 
+export async function UpdatePassword(password: string, accessToken: string) {
+    try {
+        const response = await axios.put(
+            API_UPDATE_PASSWORD,
+            {
+                "password": password,
+            },
+            {
+                headers: {
+                    Authorization: "Bearer " + accessToken,
+                },
+            }
+        );
+        return response.data.data;
+    } catch (error) {
+        console.log(error);
+        throw error;
+    }
+}

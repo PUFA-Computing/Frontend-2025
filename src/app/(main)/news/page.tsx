@@ -9,6 +9,9 @@ import { fetchNews } from "@/services/api/news";
 import CardMainNewsPage from "@/components/news/CardMainNewsPage";
 import { CircularProgress } from "@/components/ui/CircularProgress";
 
+export const revalidate = 60;
+export const dynamic = "force-dynamic";
+
 export default async function NewsPage() {
     const news = await fetchNews();
 

@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { IoIosHeartEmpty, IoIosHeart } from "react-icons/io";
 import Aspiration from "@/models/aspiration";
+import { AiFillCheckCircle, AiOutlineCloseCircle } from "react-icons/ai";
 
 type AspirationCardProps = {
     aspiration: Aspiration;
@@ -44,7 +45,7 @@ const AspirationCard: React.FC<AspirationCardProps> = ({ aspiration }) => {
     return (
         <div className="flex flex-col gap-4 rounded-lg border-2 border-gray-300 p-4 md:p-6">
             <div className="flex flex-row justify-between">
-                <h1 className="text-lg font-bold capitalize md:text-xl">
+                <h1 className="break-words text-lg font-bold capitalize md:text-xl">
                     {aspiration.subject}
                 </h1>
                 {aspiration.admin_reply && (
@@ -72,7 +73,7 @@ const AspirationCard: React.FC<AspirationCardProps> = ({ aspiration }) => {
                     </button>
                 )}
             </div>
-            <p className="text-[16px] font-[400] text-[#6B7280]">
+            <p className="break-words text-justify text-[16px] font-[400] text-[#6B7280]">
                 {aspiration.message}
             </p>
             {showAdminReply && (
@@ -86,12 +87,26 @@ const AspirationCard: React.FC<AspirationCardProps> = ({ aspiration }) => {
                 </p>
             )}
             <div className="flex flex-col">
-                {/*Author if anonymous show anonymous if its false show user_id*/}
-                <p className="text-[14px] font-semibold text-[#111827]">
+                <p className="flex items-center text-[14px] font-semibold text-[#111827]">
                     From:{" "}
-                    {aspiration.anonymous
-                        ? "Anonymous"
-                        : aspiration.author.name}
+                    {aspiration.anonymous ? (
+                        "Anonymous"
+                    ) : (
+                        <>
+                            {aspiration.author.name}
+                            {aspiration.author.verified ? (
+                                <AiFillCheckCircle
+                                    className="ml-2 text-blue-500"
+                                    title="Student ID Verified"
+                                />
+                            ) : (
+                                <AiOutlineCloseCircle
+                                    className="ml-2 text-red-500"
+                                    title="Student ID Still Not Verified"
+                                />
+                            )}
+                        </>
+                    )}
                 </p>
                 <div className="flex flex-col gap-2 text-sm md:flex-row md:justify-between">
                     <div className="text-[#6B7280]">
@@ -101,21 +116,20 @@ const AspirationCard: React.FC<AspirationCardProps> = ({ aspiration }) => {
                         </p>
                     </div>
 
-                    {/*Like and Like Count*/}
+                    {/* Like and Like Count TODO
                     <div className="flex flex-row gap-4">
                         <button
                             onClick={toggleLike}
                             className="flex items-center gap-1 text-2xl text-[#6B7280] disabled:cursor-not-allowed disabled:opacity-50"
-                            disabled
                         >
                             {liked ? (
-                                <IoIosHeart className="text-3xl" />
+                                <IoIosHeart className="text-3xl text-red-500" />
                             ) : (
                                 <IoIosHeartEmpty className="text-3xl" />
                             )}
                             <span className="text-xl">{aspiration.upvote}</span>
                         </button>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </div>

@@ -44,7 +44,8 @@ const LectureCard: React.FC<LectureCardProps> = ({ image, name, position }) => {
                     className="object-fit"
                     src={image}
                     alt={`${name}'s photo`}
-                    layout="fill"
+                    height={1280}
+                    width={720}
                 />
             </div>
             <div className="p-2">

@@ -21,6 +21,7 @@ interface AspirationOrganization {
 interface AspirationAuthor {
     name: string;
     profile_picture: string;
+    verified: boolean;
 }
 
 export default Aspirations;
