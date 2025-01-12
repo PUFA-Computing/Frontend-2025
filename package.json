@@ -49,9 +49,7 @@
   },
   "scripts": {
     "dev": "next dev",
-    "build": "prisma generate && next build",
-    "build:production": "prisma generate && env-cmd -f .env.production next build",
-    "build:staging": "prisma generate && env-cmd -f .env.staging next build",
+    
     "start": "next start",
     "lint": "next lint",
     "prettier": "prettier --config .prettierrc.json --check '**/*.{js,jsx,ts,tsx,json,css,scss,md}'",
@@ -63,7 +61,6 @@
     "@heroicons/react": "^2.0.18",
     "@nextui-org/spinner": "^2.0.28",
     "@nextui-org/theme": "^2.2.3",
-    "@prisma/client": "^5.10.2",
     "@radix-ui/react-select": "^2.0.0",
     "@radix-ui/react-slot": "^1.0.2",
     "@radix-ui/react-toggle": "^1.0.3",
@@ -133,7 +130,6 @@
     "postcss": "^8.4.38",
     "prettier": "^3.2.5",
     "prettier-plugin-tailwindcss": "^0.5.7",
-    "prisma": "^5.10.2",
     "semantic-release": "^23.1.1",
     "semantic-release-export-data": "^1.0.1",
     "tailwindcss": "3.4.3"

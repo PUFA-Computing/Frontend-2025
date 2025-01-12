@@ -126,7 +126,7 @@ export default function Navbar() {
                                         className="text-center text-[19px] font-[700]"
                                         style={{ letterSpacing: "0.33em" }}
                                     >
-                                        COMPUTING
+                                        Computer Science
                                     </div>
                                 </div>
                             </div>

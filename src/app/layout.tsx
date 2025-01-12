@@ -7,10 +7,10 @@ const poppins = Poppins({ weight: "400", subsets: ["latin"] });
 
 export const metadata = {
     title: {
-        template: "%s | PUFA Computing",
-        default: "PUFA Computing",
+        template: "%s | PUFA Computer Science",
+        default: "PUFA Computer Science",
     },
-    description: "PUFA Computing is a organization in President University",
+    description: "PUFA Computer Science is a organization in President University",
 };
 
 export default function RootLayout({
