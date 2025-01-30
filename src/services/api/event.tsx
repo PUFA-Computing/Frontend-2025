@@ -16,24 +16,26 @@ const eventCache: { [key: string]: Event } = {};
  */
 export const fetchEvents = async (): Promise<Event[]> => {
     try {
-        // Make a GET request to the API endpoint.
         const response = await axios.get(API_EVENT);
-        // const response = await axios.get(`${API_EVENT}/?slug=`);
-
-        // Extract event data from the response.
+        
+        // Pastikan response.data ada dan memiliki properti data
         const eventData = response.data?.data || [];
-        eventData.forEach((event: Event) => {
-            event.start_date = new Date(event.start_date);
-            event.end_date = new Date(event.end_date);
-            event.created_at = new Date(event.created_at);
-            event.updated_at = new Date(event.updated_at);
-        });
-        // Return the array of Event objects.
-        return eventData as Event[];
+
+        // Pastikan eventData adalah array sebelum mapping
+        if (Array.isArray(eventData)) {
+            return eventData.map(event => ({
+                ...event,
+                start_date: new Date(event.start_date),
+                end_date: new Date(event.end_date),
+                created_at: new Date(event.created_at),
+                updated_at: new Date(event.updated_at || event.created_at)
+            }));
+        }
+
+        return [];
     } catch (error) {
-        // Log an error message and rethrow the error.
-        console.error("Error fetching events", error);
-        throw error;
+        console.error("Error fetching events:", error);
+        return []; // Return array kosong jika terjadi error
     }
 };
 

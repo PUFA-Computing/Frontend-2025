@@ -35,7 +35,7 @@ export default async function EventsPage() {
          {/* title */}
          <section className="flex items-center bg-[#F2F2F2] px-[5rem] py-[2rem] md:px-[10rem]">
             <div className="border-l-4 border-[#E50D0D] pl-8">
-               <h1 className="text-[2rem] font-[600]">Computing Events</h1>
+               <h1 className="text-[2rem] font-[600]">Computer Science Events</h1>
                <h1 className="text-[0.8rem]">
                   Discover the latest updates on events in our faculty.
                </h1>

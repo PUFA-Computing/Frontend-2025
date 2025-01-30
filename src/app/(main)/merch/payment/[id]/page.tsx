@@ -14,11 +14,7 @@ interface ContactPerson {
 
 export default function page() {
    const paymentMethods: PaymentMethod[] = [
-      {
-         bankName: "BCA",
-         accountNumber: "6050537330",
-         accountHolder: "Alexandra Verencia Poluakan",
-      },
+      
       {
          bankName: "ShopeePay",
          accountNumber: "081294807325",

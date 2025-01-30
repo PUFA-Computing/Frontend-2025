@@ -41,15 +41,16 @@ export default function Footer({ version }: { version: Version }) {
                 <div className="md:-mx-3 md:flex md:items-center md:justify-between">
                     <div className="md:mx-3 xl:text-sm dark:text-white">
                         <div className="text-sm font-normal tracking-widest text-[#9CA3AF]">
-                            © {new Date().getFullYear()} PUMA Computing. All
+                            © {new Date().getFullYear()} PUMA Computer Science. All
                             rights reserved.
                             <br />
-                            Made by Research & Technology PUFA Computing
+                            Made by Research & Technology PUFA Computer Science
                         </div>
                         {/*Version Info*/}
                             <div className="mt-2 justify-center text-sm font-normal tracking-widest text-[#9CA3AF]">
-                                App Version: <Link href="/change-log" className="border-blue-600 bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent hover:border-b-2 hover:border-b-blue-600">{version.latest_version}</Link>
+                                App Version: <Link href="/change-log" className="border-blue-600 bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent hover:border-b-2 hover:border-b-blue-600">Latest Version</Link>
                             </div>
+
                                
                     </div>
 

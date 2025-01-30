@@ -33,7 +33,7 @@ function Page() {
                 title="Letter C, IT, and Circuits"
                 image={LOGO.src}
                 description="This logo reflects the identity of PUMA
-                            Informatics under the Computing faculty. By
+                            Informatics under the Computer Science faculty. By
                             using elements such as the letter C, IT, and
                             circuits, this logo depicts the attachment,
                             diversity, and unity within PUMA Informatics."

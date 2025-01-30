@@ -2,7 +2,7 @@ export const StudyProgramData = [
     {
         title: "Informatics",
         article:
-            "Informatics study program that will produce qualified graduates in the field of educators and developer who are experts in Informatics",
+            "Informatics study program that will produce qualified graduates in the field of educators and developer who are experts in Informatics",
         link: "/major/informatics",
     },
     {
@@ -11,39 +11,27 @@ export const StudyProgramData = [
             "Information system programs that enable the student to adept in technology, data management, and innovation.",
         link: "/major/information-system",
     },
-    {
-        title: "VCD",
-        article:
-            "Visual Communication Design empowering graduates to captivate audiences and convey compelling messages through creative mediums.         ",
-        link: "/major/visual-communication-design",
-    },
-    {
-        title: "Interior Design",
-        article:
-            "Interior Design give innovative designers skilled in sustainability and, creating immersive environments that elevate human experiences.",
-        link: "/major/interior-design",
-    },
 ];
 
 export const FaqData = [
     {
         status: "open",
-        title: "What is PUFA Computing?",
+        title: "What is PUFA Computer Science?",
         content:
-            "(President University Faculty Association) Is the new association of the faculty of computing and stands as a faculty BEM. PUFA is The new Rectorate decree has stated that every faculty has to have their own association and all major has to have their own PUMA. PUFA Computing acts as the highest association in the computing faculty and as a supervisor for all of the PUMA under PUFA Computing.",
+            "(President University Faculty Association) Is the new association of the faculty of Computer Science and stands as a faculty BEM. PUFA is The new Rectorate decree has stated that every faculty has to have their own association and all major has to have their own PUMA. PUFA Computer Science acts as the highest association in the Computer Science faculty and as a supervisor for all of the PUMA under PUFA Computer Science.",
     },
     {
-        title: "Why is there is no more PUMA Computing?",
+        title: "Why is there is no more PUMA Computer Science?",
         content:
-            "Now PUMA Computing has been separated into 2 different organizations, which are PUMA Informatics and PUMA IS.",
+            "Now PUMA Computer Science has been separated into 2 different organizations, which are PUMA Informatics and PUMA IS.",
     },
     {
-        title: "How many majors are there in the faculty of computing?",
+        title: "How many majors are there in the faculty of Computer Science?",
         content:
-            "There are 4 majors in the faculty of computing at president university, which consist of Informatics, Information System, Visual Communication Design, and Interior Design.",
+            "There are 4 majors in the faculty of Computer Science at president university, which consist of Informatics, Information System, Visual Communication Design, and Interior Design.",
     },
     {
-        title: "How many divisions are there in PUFA Computing?",
+        title: "How many divisions are there in PUFA Computer Science?",
         content:
             "There are 9 divisions in our organizational structure including: Board of Directors, External Relations, Internal Relations, Student Development and Competition, Research and Technology, Communication and Multimedia, Art and Sport, Student Welfare Advocacy, Entrepreneurship.",
     },
@@ -81,7 +69,7 @@ export const PUMAInformatics = [
     {
         division: "Communication & design",
         description:
-            "PUMA Informatics Communication and Design Division is the division responsible for managing, designing and editing content for PUMA Informatics social media such as Instagram, Tiktok, and Linkedin.",
+            "PUMA Informatics Communication and Design Division is the division responsible for managing, designing and editing content for PUMA Informatics social media such as Instagram, Tiktok, and Linkedin.",
     },
     {
         division: "Student Welfare Advocacy",
@@ -125,12 +113,12 @@ export const PUMAInformationSystem = [
     {
         division: "Communication and Design",
         description:
-            "Responsible for managing, designing and editing templates content for social media such as Instagram, Tiktok, and LinkedIn also handling the wall magazine of PUMA IS.",
+            "Responsible for managing, designing and editing templates content for social media such as Instagram, Tiktok, and LinkedIn also handling the wall magazine of PUMA IS.",
     },
     {
         division: "Research and Development",
         description:
-            "Improving student’S knowledge and skills to enhancing human resource capabilities within the organization, and identifying students’ interests and talents, and channeling them into a competition to hone and showcase their abilities",
+            "Improving student’S knowledge and skills to enhancing human resource capabilities within the organization, and identifying students’ interests and talents, and channeling them into a competition to hone and showcase their abilities",
     },
 ];
 export const PUMAInformationSystemVnM = {
@@ -184,7 +172,7 @@ export const PUMAVisualCommunicationDesign = [
     {
         division: "Multimedia & Design",
         description:
-            "Responsible for content editing and designing purposes in every activity held under the name PUMA VCD",
+            "Responsible for content editing and designing purposes in every activity held under the name PUMA VCD",
     },
 ];
 
@@ -229,7 +217,7 @@ export const PUMAInteriorDesign = [
     {
         division: "Entrepreneure",
         description:
-            "improve the ability of members in terms of business and also produce products that are useful for increasing the organization's financial income.",
+            "improve the ability of members in terms of business and also produce products that are useful for increasing the organization's financial income.",
     },
 ];
 
@@ -246,162 +234,163 @@ export const PUMAInteriorDesignVnM = {
 
 // Content of Cabinet
 // ANS Images
-import BIMASENA_ANS from "@/assets/member/ans/bimasena-yudhaprawira.jpg";
-import GEORGE_ANS from "@/assets/member/ans/george-elver-andrew-tamba.jpg";
-import INDAH_ANS from "@/assets/member/ans/indah-novianti-setyoningrum.jpg";
-import MARIZKY_ANS from "@/assets/member/ans/marizky-arfi.jpg";
+import RIZWAN_ANS from "@/assets/member/ans/maulana-rizwan-ahmad.jpg";
 import NAJLA_ANS from "@/assets/member/ans/najla-rifa-nur-asjad.jpg";
+import ABRAM_ANS from "@/assets/member/ans/abram-pesuma-sitorus.jpg";
+import TIMOTHY_ANS from "@/assets/member/ans/timothy-alessandro-maybrave-mait.jpg";
+import AULIA_ANS from "@/assets/member/ans/marsha-aulia-rizky.jpg";
+import NADA_ANS from "@/assets/member/ans/nada-kamelia.jpg";
 
 // BOD Images
-import ALEX_BOD from "@/assets/member/bod/alexandra-verencia-poluakan.jpg";
-import AURA_BOD from "@/assets/member/bod/aura-shafarina-salsabila.jpg";
-import BINTANG_BOD from "@/assets/member/bod/bintang-wira-gemilang.jpg";
+import BIMASENA_BOD from "@/assets/member/bod/bimasena-yudhaprawira.jpg";
+import GEORGE_BOD from "@/assets/member/bod/george-elver-andrew-tamba.jpg";
 import DIAN_BOD from "@/assets/member/bod/dian-vania-jessicha-rondonuwu.jpg";
-import DINDA_BOD from "@/assets/member/bod/dinda-ayu-maulina.jpg";
-import GABRIELA_BOD from "@/assets/member/bod/gabriela-imanuel-setiawan.jpg";
-import GITA_BOD from "@/assets/member/bod/gita-olfa-hidayah.jpg";
-import IRENE_BOD from "@/assets/member/bod/irene-putri-sihite.jpg";
-import ZIONEZA_BOD from "@/assets/member/bod/zioneza-auxiliadora-lou-jeronimo-martins.jpg";
+import IRENE_BOD from "@/assets/member/bod/veronica-irene-tanumihadja.jpg";
+import JHON_BOD from "@/assets/member/bod/joao-zinho-franklin-saldanha.jpg";
+import EILEEN_BOD from  "@/assets/member/bod/eileen-daneaya.jpg";
+import NABILA_BOD from  "@/assets/member/bod/fasya-nabila-salim.jpg";
 
-// COMM Images
-import YANSAF_COMM from "@/assets/member/comm/annisa-delicia-yansaf.jpg";
-import AQEEL_COMM from "@/assets/member/comm/aqeel-fazlemawla-faslah.jpg";
-import NAILAH_COMM from "@/assets/member/comm/nailah-septiani-putri.jpg";
-import RICARDA_COMM from "@/assets/member/comm/ricarda-sebastian-hutagalung.jpg";
-import THOMAS_COMM from "@/assets/member/comm/thomas-alexander-j.jpg";
-
-// DESIGN Images
-import AGUNG_DESIGN from "@/assets/member/design/anak-agung-gede-bagus-krishna-maha-putra.jpg";
-import DESWITA_DESIGN from "@/assets/member/design/deswita-ranny.jpg";
-import NGURAH_DESIGN from "@/assets/member/design/ngurah-jaya-deva.jpg";
-import RISWALDY_DESIGN from "@/assets/member/design/riswaldy-pakpahan.jpg";
+// COMMDESS Images
+import KEZIA_COMMDESS from "@/assets/member/comm/kezia-vanesa-joseph.jpg";
+import SALSA_COMMDESS from "@/assets/member/comm/salsa-nabila -putri-widiana.jpg";
+import REYNER_COMMDESS from "@/assets/member/comm/reyne-orlando-winata.jpg";
+import NASWA_COMMDESS from "@/assets/member/comm/shakiva-naswa-crescensia.jpg";
+import WIEWIEN_COMMDESS from "@/assets/member/comm/wiewien-tancaniago.jpg";
+import KADEK_COMMDESS from "@/assets/member/comm/kadek-widyana-dharma-dirgayusa.jpg";
+import RAFA_COMMDESS from "@/assets/member/comm/rafa-basia-hanif.jpg";
+import ANGEL_COMMDESS from "@/assets/member/comm/tessalonika-angeline-purba.jpg";
+import NAILAH_COMMDESS from "@/assets/member/comm/nailah-septiani-putri.jpg";
+import RICARDA_COMMDESS from "@/assets/member/comm/ricarda-sebastian-hutagalung.jpg";
+import KAILA_COMMDESS from "@/assets/member/comm/kaila-annisa-syafitri.jpg";
 
 // ENTRE Images
-import ANGEL_ENTRE from "@/assets/member/entre/angel-kusuma-ajinata.jpg";
+import ARIZAL_ENTRE from "@/assets/member/entre/arizal-anru.jpg";
 import BELVA_ENTRE from "@/assets/member/entre/belva-tabitha.jpg";
-import GAVIN_ENTRE from "@/assets/member/entre/gavin-abhinaya-n.jpg";
+import GLORYA_ENTRE from "@/assets/member/entre/glorya-estetica-br-munte.jpg";
+import MELVI_ENTRE from "@/assets/member/entre/melvi-yendra.jpg";
+import AHDA_ENTRE from "@/assets/member/entre/muhammad-ahda-briliantama.jpg";
 
 // ER Images
-import DAFFA_ER from "@/assets/member/er/daffa-athallah-hade.jpg";
-import DENA_ER from "@/assets/member/er/dena-dwi-nagita.jpg";
 import DICHO_ER from "@/assets/member/er/dicho-dermawan.jpg";
-import NINDHITA_ER from "@/assets/member/er/nindhita-akmalia.jpg";
-import REYSA_ER from "@/assets/member/er/reysa-amelia-gehan.jpg";
-import SAMUEL_ER from "@/assets/member/er/samuel-junio-sambuaga.jpg";
+import DAFFA_ER from "@/assets/member/er/daffa-athallah-hade.jpg";
+import AHS_ER from "@/assets/member/er/aisyah-hafizhah-sayoga.jpg";
+import EJI_ER from "@/assets/member/er/alfadzri-abhipraya.jpg";
+import LINTAR_ER from "@/assets/member/er/dimas-lintar-ramadhan.jpg";
+import MAULIDAH_ER from "@/assets/member/er/maulidah-barakbah.jpg";
 
 // IR Images
-import ANNISA_IR from "@/assets/member/ir/annisa-intan-r.jpg";
-import CHAESA_IR from "@/assets/member/ir/chaesha-fairixa.jpg";
-import CRISCELINE_IR from "@/assets/member/ir/crisceline-abella-ranggen .jpg";
-import FAKHRI_IR from "@/assets/member/ir/muh-fakhri-hisyam-akbar.jpg";
-import SAMUEL_IR from "@/assets/member/ir/samuel-christofel-owen.jpg";
+import ADELIA_IR from "@/assets/member/ir/adelia-zhafira-puspasari.jpg";
+import CARINA_IR from "@/assets/member/ir/ajeng-miftahul-carina.jpg";
+import KEVIN_IR from "@/assets/member/ir/kevin-alexander-papu.jpg";
+import PUSRI_IR from "@/assets/member/ir/pusri-ananda-handa.jpg";
+import ARMALIA_IR from "@/assets/member/ir/putri-armalia.jpg";
 
 // RNT Images
-import ADELIA_RNT from "@/assets/member/rnt/adelia-zhafira-puspasari.jpg";
-import ALDEN_RNT from "@/assets/member/rnt/alden-sayidina-radjab.jpg";
-import DEVITA_RNT from "@/assets/member/rnt/devita-annisa.jpg";
-import IRFAN_RNT from "@/assets/member/rnt/irfan-saf.jpg";
-import ALIEF_RNT from "@/assets/member/rnt/m-alief-firmanda.jpg";
 import ALDI_RNT from "@/assets/member/rnt/muhamad-aldi-apriansyah.jpg";
-import ILHAM_RNT from "@/assets/member/rnt/muhammad-ilham-pratama.jpg";
-import JOSH_RNT from "@/assets/member/rnt/rafael-josh.jpg";
-import YUDHISTIRA_RNT from "@/assets/member/rnt/yudhistira-fauzy-achmadarel.jpg";
+import ARKA_RNT from "@/assets/member/rnt/arka-pradipa-dwi-santoso.jpg";
+import SIDIQ_RNT from "@/assets/member/rnt/ahmad-akbar-sidiq-n.jpg";
+import ABYAN_RNT from "@/assets/member/rnt/muhammad-praditya-abyan.jpg";
+import RIZKI_RNT from "@/assets/member/rnt/rizki-adi-prasetyo.jpg";
+import DARRELL_RNT from "@/assets/member/rnt/darrell-rafa-alamsyah.jpg";
+import AUDINA_RNT from "@/assets/member/rnt/fauziah-audina-hapsari.jpg";
 
 // SDC Images
-import BILQIS_SDC from "@/assets/member/sdc/bilqis-nabila-mukhtar.jpg";
-import FIRMAN_SDC from "@/assets/member/sdc/Firman.jpg";
-import ARRIZKY_SDC from "@/assets/member/sdc/muhammad-arrizky-adhita-azizi.jpg";
-import YUSUF_SDC from "@/assets/member/sdc/muhammad-yusuf.jpg";
-import SCARLET_SDC from "@/assets/member/sdc/violetta-scarlet-adeline-roeroe.jpg";
+import ALYSIA_SDC from "@/assets/member/sdc/alysia-dapyaraka.jpg";
+import GERALD_SDC from "@/assets/member/sdc/gerald-darryl-joseph-manurung.jpg";
+import UMAYAH_SDC from "@/assets/member/sdc/nor-umayah.jpg";
+import ZAHRA_SDC from "@/assets/member/sdc/sheny-ayu-zahra.jpg";
+import ZASTALIE_SDC from "@/assets/member/sdc/suri-agatha-zastalie-lumban-tobing.jpg";
 
 // SWA Images
-import DEBY_SWA from "@/assets/member/swa/deby-Ayu-putri-b.jpg";
-import HAFIZH_SWA from "@/assets/member/swa/hafizh-cexarian.jpg";
-import HANIF_SWA from "@/assets/member/swa/muhammad-hanif-insan-rabbani.jpg";
-import NAJWA_SWA from "@/assets/member/swa/najwa-ratu-aini-alamsyah.jpg";
+import ELMIRA_SWA from "@/assets/member/swa/elmira-jacinda-wahid.jpg";
+import HANSON_SWA from "@/assets/member/swa/hanson-samuel-timothy.jpg";
+import FARIS_SWA from "@/assets/member/swa/muhammad-faris-sakhi-ashari.jpg";
+import KARTIKA_SWA from "@/assets/member/swa/putu-kartika-widya-arjentinia.jpg";
 
 // Exporting Images
 export const ANSImages = {
-    BIMASENA_ANS,
-    GEORGE_ANS,
-    INDAH_ANS,
-    MARIZKY_ANS,
+    RIZWAN_ANS,
     NAJLA_ANS,
+    ABRAM_ANS,
+    TIMOTHY_ANS,
+    AULIA_ANS,
+    NADA_ANS,
 };
 
 export const BODImages = {
-    ALEX_BOD,
-    AURA_BOD,
-    BINTANG_BOD,
+    BIMASENA_BOD,
+    GEORGE_BOD,
     DIAN_BOD,
-    DINDA_BOD,
-    GABRIELA_BOD,
-    GITA_BOD,
     IRENE_BOD,
-    ZIONEZA_BOD,
+    JHON_BOD,
+    NABILA_BOD,
+    EILEEN_BOD,
 };
 
-export const COMMImages = {
-    YANSAF_COMM,
-    AQEEL_COMM,
-    NAILAH_COMM,
-    RICARDA_COMM,
-    THOMAS_COMM,
+export const COMMDESSImages = {
+    KEZIA_COMMDESS,
+    SALSA_COMMDESS,
+    REYNER_COMMDESS,
+    NASWA_COMMDESS,
+    WIEWIEN_COMMDESS,
+    KADEK_COMMDESS,
+    RAFA_COMMDESS,
+    ANGEL_COMMDESS,
+    NAILAH_COMMDESS,
+    RICARDA_COMMDESS,
+    KAILA_COMMDESS,
 };
 
-export const DESIGNImages = {
-    AGUNG_DESIGN,
-    DESWITA_DESIGN,
-    NGURAH_DESIGN,
-    RISWALDY_DESIGN,
-};
+// export const DESIGNImages = {
+    
+// };
 
 export const ENTREImages = {
-    ANGEL_ENTRE,
+    ARIZAL_ENTRE,
     BELVA_ENTRE,
-    GAVIN_ENTRE,
+    GLORYA_ENTRE,
+    MELVI_ENTRE,
+    AHDA_ENTRE,
 };
 
 export const ERImages = {
     DAFFA_ER,
-    DENA_ER,
     DICHO_ER,
-    NINDHITA_ER,
-    REYSA_ER,
-    SAMUEL_ER,
+    AHS_ER,
+    EJI_ER,
+    LINTAR_ER,
+    MAULIDAH_ER,
 };
 
 export const IRImages = {
-    ANNISA_IR,
-    CHAESA_IR,
-    CRISCELINE_IR,
-    FAKHRI_IR,
-    SAMUEL_IR,
+    ADELIA_IR,
+    ARMALIA_IR,
+    CARINA_IR,
+    KEVIN_IR,
+    PUSRI_IR,
 };
 
 export const RNTImages = {
-    ADELIA_RNT,
-    ALDEN_RNT,
-    DEVITA_RNT,
-    IRFAN_RNT,
-    ALIEF_RNT,
     ALDI_RNT,
-    ILHAM_RNT,
-    JOSH_RNT,
-    YUDHISTIRA_RNT,
+    ARKA_RNT,
+    SIDIQ_RNT,
+    ABYAN_RNT,
+    RIZKI_RNT,
+    DARRELL_RNT,
+    AUDINA_RNT,
 };
 
 export const SDCImages = {
-    BILQIS_SDC,
-    FIRMAN_SDC,
-    ARRIZKY_SDC,
-    YUSUF_SDC,
-    SCARLET_SDC,
+    ALYSIA_SDC,
+    GERALD_SDC,
+    UMAYAH_SDC,
+    ZAHRA_SDC,
+    ZASTALIE_SDC,
 };
 
 export const SWAImages = {
-    DEBY_SWA,
-    HAFIZH_SWA,
-    HANIF_SWA,
-    NAJWA_SWA,
+    ELMIRA_SWA,
+    HANSON_SWA,
+    FARIS_SWA,
+    KARTIKA_SWA,
 };

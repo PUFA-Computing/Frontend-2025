@@ -36,14 +36,15 @@ export default async function EventsPage() {
         return description;
     };
 
-
     return (
         <div>
             {/* title */}
-            <section className="flex items-center bg-[#F2F2F2] px-[5rem] py-[2rem] md:px-[10rem]">
-                <div className="border-l-4 border-[#E50D0D] pl-8">
-                    <h1 className="text-[2rem] font-[600]">Computing Events</h1>
-                    <h1 className="text-[0.8rem]">
+            <section className="flex items-center bg-black px-[5rem] py-[2rem] md:px-[10rem]">
+                <div className="border-l-4 border-[#FFD700] pl-8">
+                    <h1 className="text-[2rem] font-[600] text-white">
+                        Computer Science Events
+                    </h1>
+                    <h1 className="text-[0.8rem] text-gray-300">
                         Discover the latest updates on events in our faculty.
                     </h1>
                 </div>
@@ -76,12 +77,12 @@ export default async function EventsPage() {
                 <h1 className="mx-auto max-w-7xl p-10 text-[1.2rem] font-bold">
                     Event Categories
                 </h1>
-                <hr className="border-t-2 border-gray-200" />
+                <hr className="border-t-2 border-[#FFD700]" />
                 <div className="mx-auto max-w-7xl p-10">
                     <div className="grid grid-cols-2	 gap-[8rem] md:grid-cols-3 lg:grid-cols-5">
                         <LogoOrganizationEventPage
                             image="../logo/PUFA_Computing.png"
-                            title="PUFA Computing"
+                            title="PUFA Computer Science"
                             link="/events/pufa-computing"
                         />
 
@@ -107,7 +108,7 @@ export default async function EventsPage() {
                         />
                     </div>
                 </div>
-                <hr className="border-t-2 border-gray-200" />
+                <hr className="border-t-2 border-[#FFD700]" />
             </section>
 
             {/* all events section*/}
@@ -121,18 +122,20 @@ export default async function EventsPage() {
             <section className="mx-auto max-w-7xl">
                 <div className="flex justify-between border-t-2 border-gray-100 py-2 text-gray-400">
                     <div>
-                        <button>Previous</button>
+                        <button className="hover:text-[#FFD700]">
+                            Previous
+                        </button>
                     </div>
                     <div className="flex gap-8">
-                        <button className="w-[1.5rem] border-t-2 border-[#3C99DC] text-[#3C99DC]">
+                        <button className="w-[1.5rem] border-t-2 border-[#FFD700] text-[#FFD700]">
                             1
                         </button>
-                        <button>2</button>
-                        <button>...</button>
-                        <button>10</button>
+                        <button className="hover:text-[#FFD700]">2</button>
+                        <button className="hover:text-[#FFD700]">...</button>
+                        <button className="hover:text-[#FFD700]">10</button>
                     </div>
                     <div>
-                        <button>Next</button>
+                        <button className="hover:text-[#FFD700]">Next</button>
                     </div>
                 </div>
             </section>

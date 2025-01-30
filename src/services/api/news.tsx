@@ -8,16 +8,21 @@ export const fetchNews = async (): Promise<News[]> => {
     try {
         const response = await axios.get(API_NEWS);
         const newsData = response.data?.data || [];
-        newsData.publish_date = new Date(newsData.publish_date);
-        newsData.created_at = new Date(newsData.created_at);
-        newsData.updated_at = new Date(newsData.updated_at);
-
-        newsCache[newsData.slug] = newsData;
-
-        return newsData as News[];
+        
+        // Pastikan newsData adalah array sebelum mapping
+        if (Array.isArray(newsData)) {
+            return newsData.map(news => ({
+                ...news,
+                publish_date: new Date(news.publish_date),
+                created_at: new Date(news.created_at),
+                updated_at: new Date(news.updated_at || news.created_at)
+            }));
+        }
+        
+        return [];
     } catch (error) {
-        console.error("Error fetching news", error);
-        throw error;
+        console.error("Error fetching news:", error);
+        return [];
     }
 };
 

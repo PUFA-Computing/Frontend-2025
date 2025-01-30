@@ -1,4 +1,4 @@
-import BGIMAGE from "@/assets/bghomepage.jpg";
+import BGIMAGE from "@/assets/newbghomepage.jpg";
 import LOGO from "@/assets/logo/PUMA_VCD.png";
 import PUMASection from "@/components/puma/PUMASection";
 import About from "@/components/puma/About";

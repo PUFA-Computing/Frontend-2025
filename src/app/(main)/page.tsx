@@ -1,6 +1,6 @@
 import Image from "next/image";
 import BGImage from "@/assets/backgroundimg.svg";
-import bghomepage from "@/assets/bghomepage.jpg";
+import bghomepage from "@/assets/newbghomepage.jpg";
 import Link from "next/link";
 import Button from "@/components/Button";
 import Faq from "@/components/main/Faq";
@@ -11,7 +11,7 @@ import CardStore from "@/components/store/CardStore";
 import EventSection from "@/components/event/EventSection";
 import { Suspense } from "react";
 import { FaqData, StudyProgramData } from "@/lib/data";
-import Logo from "@/assets/anagatalogo.svg";
+import Logo from "@/assets/forcasionlogo.png";
 import CompreciationCards from "./_components/CompreciationCards";
 import { fetchNews } from "@/services/api/news";
 import { CircularProgress } from "@/components/ui/CircularProgress";
@@ -25,7 +25,7 @@ export default async function Index() {
     const news = await fetchNews();
 
     return (
-        <div className="min-h-screen text-[#353535]">
+        <div className="min-h-screen bg-black text-white">
             <div>
                 <Suspense fallback={<CircularProgress />}>
                     <Image
@@ -56,14 +56,13 @@ export default async function Index() {
             /> */}
                 <div className="md:px-22 space-y-6 px-8 text-justify text-base md:text-xl">
                     <p>
-                        PUFA Computing stands for President University's Faculty
-                        Association of Computing, serving as a dynamic platform
-                        for students enrolled in diverse majors such as
-                        Information Technology (IT), Information Systems (IS),
-                        Visual Communication Design (VCD), and Interior Design
-                        (ID). Our organization embodies a vibrant community of
-                        aspiring professionals, united by a shared passion for
-                        technology, creativity, and innovation.
+                        PUFA Computer Science stands for President University's
+                        Faculty Association of Computer Science, serving as a
+                        dynamic platform for students enrolled in majors
+                        such as Information Technology (IT) and Information Systems
+                        (IS). Our organization embodies a vibrant
+                        community of aspiring professionals, united by a shared
+                        passion for technology and innovation.
                     </p>
                     <p>
                         We are committed to fostering a collaborative and
@@ -73,26 +72,30 @@ export default async function Index() {
                         networking events, we provide our members with
                         opportunities to enhance their skills, expand their
                         knowledge, and forge meaningful connections within their
-                        respective fields.
+                        respective fields.
                     </p>
                     <Link href="/" className="block w-max">
-                        <Button>See Details</Button>
+                        <Button className="border-[#FFD700] text-[#FFD700] hover:bg-[#FFD700] hover:text-black">
+                            See Details
+                        </Button>
                     </Link>
                 </div>
             </section>
 
             {/* programs */}
             <section className="my-[10rem] flex flex-col items-center space-y-8 md:px-[5rem]">
-                <div className="border-l-4 border-[#3C99DC] pl-4">
-                    <h1 className="text-[1.5rem] font-[600]">Study Programs</h1>
+                <div className="border-l-4 border-[#FFD700] pl-4">
+                    <h1 className="text-[1.5rem] font-[600] text-[#FFD700]">
+                        Study Programs
+                    </h1>
                 </div>
 
                 <h1 className="text-center">
-                    The Faculty of Computing has four study programs that
+                    The Faculty of Computer Science has four study programs that
                     produce qualified student graduates in their fields.
                 </h1>
 
-                <div className="grid grid-cols-1 gap-12 md:grid-cols-4">
+                <div className="grid grid-cols-1 gap-8 md:gap-12 place-items-center md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 px-4 md:px-8 lg:px-16 w-full max-w-7xl mx-auto">
                     <Suspense fallback={<CircularProgress />}>
                         {StudyProgramData.map((StudyProgram, index) => (
                             <div key={index}>
@@ -103,11 +106,11 @@ export default async function Index() {
                 </div>
             </section>
 
-            {/* cabinet anagata */}
+            {/* cabinet forcasion */}
             <section className="my-[10rem] flex flex-col items-center space-y-8 md:px-[5rem]">
-                <div className="border-l-4 border-[#1FA820] pl-4">
-                    <h1 className="text-[1.5rem] font-bold">
-                        Cabinet 2023/2024
+                <div className="border-l-4 border-[#FFD700] pl-4">
+                    <h1 className="text-[1.5rem] font-bold text-[#FFD700]">
+                        Cabinet 2024/2025
                     </h1>
                 </div>
 
@@ -120,28 +123,30 @@ export default async function Index() {
                         width="256"
                     />
 
-                    <div className="flex max-w-[20rem] flex-col gap-8 rounded-lg border-2 border-[#1FA820] px-8 py-12 md:max-w-[38rem]">
+                    <div className="flex max-w-[20rem] flex-col gap-8 rounded-lg border-2 border-[#FFD700] px-8 py-12 md:max-w-[38rem]">
                         <div className="flex items-center gap-4">
                             <h1 className="text-[1.2rem] font-[600]">
-                                ANAGATA CABINET
+                                FORCASION CABINET
                             </h1>
-                            <hr className="h-[2px] w-[20rem] border-[#1FA820]" />
+                            <hr className="h-[2px] w-[20rem] border-[#FFD700]" />
                         </div>
                         <div className="flex flex-col gap-2">
                             <h1 className="font-[400]">
-                                "One Team, One Vision, One for Computing"
+                                "Together We Stand, Together We Succeed"
                             </h1>
                             <h1>
-                                We are attempting to be a bridge for the
-                                Computing Faculty in a more positive way by
-                                growing together with us.
+                                To create a united, communicative, and
+                                competitive faculty where students from all
+                                departments actively participate in academic and
+                                non-academic activities and are fully supported
+                                in achieving their highest potential.
                             </h1>
                         </div>
                     </div>
                 </div>
 
                 <Link href="/cabinet/anagata">
-                    <button className="rounded-lg border-2 border-[#1FA820] px-10 py-2 text-[#1FA820] transition-all duration-300 hover:bg-[#1FA820] hover:text-white">
+                    <button className="rounded-lg border-2 border-[#FFD700] px-10 py-2 text-[#FFD700] transition-all duration-300 hover:bg-[#FFD700] hover:text-black">
                         See our Cabinet
                     </button>
                 </Link>
@@ -149,9 +154,9 @@ export default async function Index() {
 
             {/* event section */}
             <section className="my-[10rem] flex select-none flex-col items-center space-y-8 md:space-y-8 md:px-[5rem]">
-                <div className="border-l-4 border-[#E50D0D] pl-4">
-                    <h1 className="text-[1.5rem] font-[600]">
-                        Computing Events
+                <div className="border-l-4 border-[#FFD700] pl-4">
+                    <h1 className="text-[1.5rem] font-[600] text-[#FFD700]">
+                        Computer Science Events
                     </h1>
                 </div>
 
@@ -165,7 +170,7 @@ export default async function Index() {
 
                 <Link
                     href={"/events"}
-                    className="rounded-lg border-2 border-[#E50D0D] px-10 py-2 text-[#E50D0D] transition-all duration-300 hover:bg-[#E50D0D] hover:text-white"
+                    className="rounded-lg border-2 border-[#FFD700] px-10 py-2 text-[#FFD700] transition-all duration-300 hover:bg-[#FFD700] hover:text-black"
                 >
                     See all Events
                 </Link>
@@ -174,11 +179,10 @@ export default async function Index() {
             {/* news */}
             <section
                 id="news"
-                className="max-h-xl mx-auto max-w-7xl space-y-8 my-[10rem] p-5 text-center md:px-[5rem]"
+                className="max-h-xl mx-auto my-[10rem] max-w-7xl space-y-8 p-5 text-center md:px-[5rem]"
             >
-                {/*Coming Soon*/}
                 <h2 className="text-2xl font-bold">
-                    <span className="mr-4 border-l-4 border-l-[#FF6F22]"></span>
+                    <span className="mr-4 border-l-4 border-l-[#FFD700]"></span>
                     News
                 </h2>
                 <h3 className="">
@@ -194,7 +198,7 @@ export default async function Index() {
                 </div>
                 <div className="flex items-center justify-center">
                     <Link href="/" className="block w-max">
-                        <Button className="border-[#FF6F22] px-10 py-2 text-[#FF6F22] hover:bg-[#FF6F22] hover:text-white">
+                        <Button className="border-[#FFD700] px-10 py-2 text-[#FFD700] hover:bg-[#FFD700] hover:text-black">
                             See all News
                         </Button>
                     </Link>
@@ -208,16 +212,16 @@ export default async function Index() {
                 className="max-h-xl mx-auto my-[10rem] max-w-7xl space-y-8 p-5 text-center"
             >
                 <h2 className="text-2xl font-bold">
-                    <span className="mr-4 border-l-4 border-l-[#AF95FF]"></span>
+                    <span className="mr-4 border-l-4 border-l-[#FFD700]"></span>
                     Compreciation
                 </h2>
                 <h3 className="">
-                    Appreciation to Computizen’s best projects.
+                    Appreciation to Computizen's best projects.
                 </h3>
                 <CompreciationCards />
                 <div className="flex items-center justify-center">
                     <Link href="/projects" className="block w-max">
-                        <Button className="border-[#AF95FF] px-10 py-2 text-[#AF95FF] hover:bg-[#AF95FF] hover:text-white">
+                        <Button className="border-[#FFD700] px-10 py-2 text-[#FFD700] hover:bg-[#FFD700] hover:text-black">
                             See all items
                         </Button>
                     </Link>
@@ -226,19 +230,18 @@ export default async function Index() {
 
             {/* store */}
             <section className="my-[10rem] flex flex-col items-center space-y-6 md:space-y-12">
-                {/*Coming Soon*/}
-                <div className="border-l-4 border-[#BA704F] pl-4">
-                    <h1 className="text-[1.5rem] font-[600]">
-                        Computing Store
+                <div className="border-l-4 border-[#FFD700] pl-4">
+                    <h1 className="text-[1.5rem] font-[600] text-[#FFD700]">
+                        Computer Science Store
                     </h1>
                 </div>
 
                 <h1 className="text-center">
-                    Get your hands on exclusive Computing merchandise.
+                    Get your hands on exclusive Computer Science merchandise.
                 </h1>
 
                 <Link href="/merch">
-                    <button className="rounded-lg border-2 border-[#BA704F] px-10 py-2 text-[#BA704F] transition-all duration-300 hover:bg-[#BA704F] hover:text-white">
+                    <button className="rounded-lg border-2 border-[#FFD700] px-10 py-2 text-[#FFD700] transition-all duration-300 hover:bg-[#FFD700] hover:text-black">
                         See all Items
                     </button>
                 </Link>
@@ -249,7 +252,7 @@ export default async function Index() {
                 id="faq"
                 className="max-h-xl mx-auto max-w-7xl space-y-8 p-5  md:px-[5rem]"
             >
-                <div className="items-justify container mx-auto flex flex-col rounded-lg border border-black bg-white px-4 py-8 md:p-8">
+                <div className="items-justify container mx-auto flex flex-col rounded-lg border border-[#FFD700] bg-black px-4 py-8 md:p-8">
                     <div>
                         <h2 className="text-2xl font-semibold sm:text-4xl">
                             Frequently Asked Questions

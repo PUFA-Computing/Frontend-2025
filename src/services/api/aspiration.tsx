@@ -5,19 +5,27 @@ import Aspirations from "@/models/aspiration";
 export const fetchAspirations = async (): Promise<Aspirations[]> => {
     try {
         const response = await axios.get(API_ASPIRATION);
-        let aspirationData = (response.data.data as Aspirations[]) || [];
 
-        aspirationData = aspirationData.map((aspiration: Aspirations) => {
-            aspiration.created_at = new Date(aspiration.created_at);
-            aspiration.updated_at = new Date(aspiration.updated_at);
-            return aspiration;
-        });
+        // Pastikan response.data ada dan sesuai format
+        if (!response.data || !response.data.data) {
+            return [];
+        }
 
-        return aspirationData as Aspirations[];
+        let aspirationData = response.data.data;
+
+        // Pastikan aspirationData adalah array
+        if (!Array.isArray(aspirationData)) {
+            return [];
+        }
+
+        return aspirationData.map((aspiration: Aspirations) => ({
+            ...aspiration,
+            created_at: new Date(aspiration.created_at),
+            updated_at: new Date(aspiration.updated_at),
+        }));
     } catch (error) {
-        // Log an error message and rethrow the error.
-        console.error("Error fetching aspirations", error);
-        throw error;
+        console.error("Error fetching aspirations:", error);
+        return []; // Return empty array instead of throwing
     }
 };
 

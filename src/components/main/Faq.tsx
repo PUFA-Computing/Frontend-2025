@@ -23,13 +23,13 @@ export default function Faq({ title, content, status }: FaqProps) {
    return (
       <details open={status === "open"} className="group">
          {/* Summary section for the FAQ */}
-         <summary className="flex cursor-pointer items-center justify-between gap-1.5 rounded-lg p-4 text-black">
+         <summary className="flex cursor-pointer items-center justify-between gap-1.5 rounded-lg bg-zinc-900 p-4 text-white hover:bg-zinc-800">
             {/* Title of the FAQ */}
-            <h2 className="font-medium">{title}</h2>
+            <h2 className="font-medium text-white">{title}</h2>
 
             {/* Icon for indicating open or closed state */}
             <svg
-               className="h-5 w-5 shrink-0 transition duration-300 group-open:-rotate-180"
+               className="h-5 w-5 shrink-0 transition duration-300 group-open:-rotate-180 text-white"
                xmlns="http://www.w3.org/2000/svg"
                fill="none"
                viewBox="0 0 24 24"
@@ -45,7 +45,7 @@ export default function Faq({ title, content, status }: FaqProps) {
          </summary>
 
          {/* Answer content for the FAQ */}
-         <p className="mt-4 px-4 leading-relaxed text-[#6B7280] text-justify">{content}</p>
+         <p className="mt-4 px-4 leading-relaxed text-white bg-zinc-900/50 p-4 rounded-lg">{content}</p>
       </details>
    );
 }

@@ -28,7 +28,7 @@ export default async function NewsPage() {
             {/*    </p>*/}
             {/*</div>*/}
             <PageHeading
-                title="Computing News"
+                title="Computer Science News"
                 description="The latest news about research, technology, achievements, and campus life."
                 borderColor="#FF6F22"
             />

@@ -1,171 +1,84 @@
 import Image from "next/image";
 import React from "react";
-import Logo from "@/assets/anagatalogo.svg";
+import Logo from "@/assets/forcasionlogo.png";
 import CardWithImage from "@/components/CardWithImage";
-import TimelineComponent from "@/components/cabinet/TimelineComponent";
 import Link from "next/link";
+import TimelineComponent from "@/components/cabinet/TimelineComponent";
 import MobileViewPhilosophy from "@/components/cabinet/MobileViewPhilosophy";
 
 export default function Page() {
    return (
-      <div>
-         {/* logo and tagline */}
-         <section className="flex flex-col items-center bg-[#F2F2F2] p-[5rem] md:px-[10rem]">
-            <div className="flex flex-col items-center gap-8 md:flex-row md:gap-16">
-               <Image
-                  alt="ANAGATA logo"
-                  className="rounded-lg object-cover shadow-xl"
-                  height="256"
-                  src={Logo}
-                  width="256"
-               />
-               <div className="flex flex-col space-y-6 border-l-4 border-[#1FA820] pl-8 leading-none text-[#353535]">
-                  <h1 className="text-[3rem] font-[600]">ANAGATA CABINET</h1>
-                  <h1 className="text-[2rem] font-[600]">
-                     "Be Strong, One Determination"
-                  </h1>
-                  <h1 className="text-[1rem] font-[600]">
-                     PUFA COMPUTING PERIOD 2023/2024
-                  </h1>
-               </div>
-            </div>
-         </section>
+      <div className="min-h-screen bg-black text-white">
+         
 
-         {/* logo philosophy  */}
-         <section className="flex flex-col items-center space-y-12 p-[5rem] md:px-[10rem]">
-            <h1 className="text-[2rem] font-[600] text-[#353535]">
-               LOGO PHILOSOPHY
-            </h1>
+         {/* Hero Section */}
+         <section className="relative h-[50vh] w-full">
+                <div className="absolute inset-0">
+                    <div className="h-full w-full bg-gradient-to-b bg-black"></div>
+                </div>
+                <div className="container relative mx-auto flex h-full flex-col items-center justify-center px-4">
+                    <Image
+                        src={Logo}
+                        alt="Forcasion Logo"
+                        width={200}
+                        height={200}
+                        className="mb-8 rounded-full border-4 border-[#FFD700]"
+                    />
+                    <h1 className="mb-4 text-4xl font-bold text-[#FFD700]">
+                        FORCASION CABINET
+                    </h1>
+                    <p className="mb-6 text-xl italic text-[#FFD700]">
+                        "Together We Stand, Together We Succeed"
+                    </p>
+                </div>
+            </section>
 
-            {/* mobile view  */}
-            <MobileViewPhilosophy />
-
-            <div className="hidden max-w-[62rem] flex-col items-center gap-16 md:flex">
-               <div className="relative -left-10 flex gap-8">
-                  <Image
-                     alt="Letter A"
-                     width={1920}
-                     height={1080}
-                     src="/logo/anagataLetterA.svg"
-                     className="h-[150px] w-[150px] rounded-lg shadow-xl"
-                  />
-
-                  <h1 className="max-w-[10rem] self-center rounded-lg border-2 border-[#F6931A] px-6 py-4 text-[1.2rem] font-[600] text-[#376853]">
-                     LETTER "A"
-                  </h1>
-
-                  <h1 className="max-w-[30rem] self-center text-[1.2rem] font-[600] text-[#376853] text-[]">
-                     Our letter "A" that represents our cabinet name is
-                     "ANAGATA".
-                  </h1>
-               </div>
-
-               <div className="relative left-10 flex gap-8">
-                  <Image
-                     alt="Bridge & 25 Pillars"
-                     width={1920}
-                     height={1080}
-                     src="/logo/anagataBridge.svg"
-                     className="h-[150px] w-[150px] rounded-lg shadow-xl"
-                  />
-
-                  <h1 className="max-w-[10rem] self-center rounded-lg border-2 border-[#F6931A] px-6 py-2 text-[1.2rem] font-[600] text-[#376853]">
-                     BRIDGES & 25 PILLARS
-                  </h1>
-
-                  <h1 className="max-w-[30rem] self-center text-[1.2rem] font-[600] text-[#376853]">
-                     A bridge means PUFA Computing as an intermediary for
-                     computing faculty to achieve a bright future. 25 Pillars
-                     which means 25 people consisting of a combination of BoD,
-                     HoD, and VoD.
-                  </h1>
-               </div>
-
-               <div className="relative -left-10 flex gap-8">
-                  <Image
-                     alt="Sun"
-                     width={1920}
-                     height={1080}
-                     src="/logo/anagataSun.svg"
-                     className="h-[150px] w-[150px] rounded-lg shadow-xl"
-                  />
-
-                  <h1 className="max-w-[10rem] self-center rounded-lg border-2 border-[#F6931A] px-12 py-4 text-[1.2rem] font-[600] text-[#376853]">
-                     SUN
-                  </h1>
-
-                  <h1 className="max-w-[30rem] self-center text-[1.2rem] font-[600] text-[#376853]">
-                     The brilliant sun represents a bright future for the
-                     computing faculty, with 9 sides of sunshine representing
-                     the 9 divisions of PUFA Computing.
-                  </h1>
-               </div>
-            </div>
-         </section>
-
-         {/* VISIONS & MISSIONS  */}
-         <section className="flex select-none flex-col items-center space-y-12 bg-[#F2F2F2] px-[5rem] py-[5rem] md:px-[10rem]">
-            <div>
-               <h1 className="text-[2rem] font-[600] text-[#353535]">
-                  VISION & MISSION
-               </h1>
-            </div>
-            <div>
-               <p className="max-w-[50rem] text-center font-[600] text-[#376853]">
-                  PUFA Computing as a bridge for students in the Computing
-                  Faculty, and makes PUFA Computing more responsive,
-                  progressive, professional, and inspiring to become a strong
-                  bridge as a forum for students in the computing faculty to
-                  improve soft skills, hard skills, connecting computing minds
-                  to empowering future innovators, and as an aspirational forum
-                  for the welfare of faculty, lecturers, and students.
-               </p>
-            </div>
-            <div className="grid max-w-[20rem] grid-cols-1 gap-10 md:max-w-[60rem] md:grid-cols-3">
-               <CardWithImage
-                  image="/icon-pufa/explore.svg"
-                  title="EXPLORE"
-                  details="Encouraging the exploration and development of innovation in every change in PUFA Computing."
-               />
-               <CardWithImage
-                  image="/icon-pufa/enhance.svg"
-                  title="ENHANCE"
-                  details="Providing the best forum for aspirations, connections, information, and activities in the academic and non-academic fields by prioritizing the interests of the faculty of computing."
-               />
-               <CardWithImage
-                  image="/icon-pufa/embrace.svg"
-                  title="EMBRACE"
-                  details="To strengthen relationships with faculty, PUFA Computing members, Computizens, PUSB, PUSC, all PUMA, Academic Communities, Alumni, and CnC."
-               />
-            </div>
-         </section>
+         {/* Vision & Mission */}
+         <section className="bg-black/90 py-16">
+                <div className="container mx-auto px-4">
+                    <div className="grid gap-8 md:grid-cols-2">
+                        <div className="rounded-lg border border-[#FFD700] bg-black/50 p-8">
+                            <h2 className="mb-6 text-2xl font-bold text-[#FFD700]">
+                                Vision
+                            </h2>
+                            <p className="text-lg leading-relaxed">
+                                To create a united, communicative, and
+                                competitive faculty where students from all
+                                departments actively participate in academic and
+                                non-academic activities and are fully supported
+                                in achieving their highest potential.
+                            </p>
+                        </div>
+                        <div className="rounded-lg border border-[#FFD700] bg-black/50 p-8">
+                            <h2 className="mb-6 text-2xl font-bold text-[#FFD700]">
+                                Mission
+                            </h2>
+                            <ul className="list-inside list-disc space-y-4">
+                                <li>
+                                    Foster interdepartmental collaboration and
+                                    unity
+                                </li>
+                                <li>
+                                    Facilitate academic and professional growth
+                                </li>
+                                <li>Create engaging events and programs</li>
+                                <li>
+                                    Support student initiatives and development
+                                </li>
+                                <li>Build strong community relationships</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
          {/* division  */}
-         <section className="flex flex-col items-center bg-white">
-            <h1 className="flex justify-center p-8 text-2xl font-[600] text-[#353535] md:p-20 md:text-4xl lg:text-5xl">
+         <section className="flex flex-col items-center bg-black">
+            <h1 className="flex justify-center p-8 text-2xl font-[600] text-[#FFD700] md:p-20 md:text-4xl lg:text-5xl">
                DIVISION
             </h1>
 
-            <div className="md:hidden">
-               {" "}
-               <div className="grid max-w-[20rem] grid-cols-1 gap-8 md:grid-cols-4">
-                  <CardWithImage
-                     image="/icon-pufa/embrace.svg"
-                     title="EMBRACE"
-                     details="To strengthen relationships with faculty, PUFA Computing members, Computizens, PUSB, PUSC, all PUMA, Academic Communities, Alumni, and CnC."
-                  />
-                  <CardWithImage
-                     image="/icon-pufa/embrace.svg"
-                     title="EMBRACE"
-                     details="To strengthen relationships with faculty, PUFA Computing members, Computizens, PUSB, PUSC, all PUMA, Academic Communities, Alumni, and CnC."
-                  />
-                  <CardWithImage
-                     image="/icon-pufa/embrace.svg"
-                     title="EMBRACE"
-                     details="To strengthen relationships with faculty, PUFA Computing members, Computizens, PUSB, PUSC, all PUMA, Academic Communities, Alumni, and CnC."
-                  />
-               </div>
-            </div>
+            
             <div className="hidden md:block">
                <div className="flex items-center justify-center gap-12 pb-20">
                   <div className="flex flex-col gap-14 text-right">
@@ -174,12 +87,12 @@ export default function Page() {
                         className="rounded-xl p-2 duration-300 hover:scale-110 hover:shadow-xl"
                      >
                         <div className="flex items-center justify-end gap-2">
-                           <h1 className="text-[1.2rem] font-[600] text-[#353535]">
+                           <h1 className="text-[1.2rem] font-[600] text-[#FFD700]">
                               Board of Director
                            </h1>
                            <div className="h-[20px] w-[20px] rounded-full bg-gradient-to-br from-orange-200 to-orange-400"></div>
                         </div>
-                        <p className="capitalize text-[0.9rem] font-light text-[#6B7280]">
+                        <p className="capitalize text-[0.9rem] font-light text-[white]">
                            is a representative of the highest division
                            consisting of <br />
                            Chairperson, Vice Chairperson, Secretary and
@@ -192,12 +105,12 @@ export default function Page() {
                         className="relative right-10 rounded-xl p-2 duration-300 hover:scale-110 hover:shadow-xl"
                      >
                         <div className="flex items-center justify-end gap-2">
-                           <h1 className="text-[1.2rem] font-[600] text-[#353535]">
+                           <h1 className="text-[1.2rem] font-[600] text-[#FFD700]">
                               External Relations
                            </h1>
                            <div className="h-[20px] w-[20px] rounded-full bg-gradient-to-br from-green-200 to-green-600"></div>
                         </div>
-                        <p className="capitalize text-[0.9rem] font-light text-[#6B7280]">
+                        <p className="capitalize text-[0.9rem] font-light text-[white]">
                            This division organize activities or events related
                            <br />
                            to parties outside the campus.
@@ -209,12 +122,12 @@ export default function Page() {
                         className="relative right-20 rounded-xl p-2 duration-300 hover:scale-110 hover:shadow-xl"
                      >
                         <div className="flex items-center justify-end gap-2">
-                           <h1 className="text-[1.2rem] font-[600] text-[#353535]">
+                           <h1 className="text-[1.2rem] font-[600] text-[#FFD700]">
                               Internal Relations
                            </h1>
                            <div className="h-[20px] w-[20px] rounded-full bg-gradient-to-br from-orange-200 to-orange-400"></div>
                         </div>
-                        <p className="capitalize text-[0.9rem] font-light text-[#6B7280]">
+                        <p className="capitalize text-[0.9rem] font-light text-[white]">
                            This division has the main task of strengthening the
                            <br />
                            relationship between students and students, students
@@ -228,12 +141,12 @@ export default function Page() {
                         className="relative right-10 rounded-xl p-2 duration-300 hover:scale-110 hover:shadow-xl"
                      >
                         <div className="flex items-center justify-end gap-2">
-                           <h1 className="text-[1.2rem] font-[600] text-[#353535]">
+                           <h1 className="text-[1.2rem] font-[600] text-[#FFD700]">
                               Art and Sport
                            </h1>
                            <div className="h-[20px] w-[20px] rounded-full bg-gradient-to-br from-green-200 to-green-600"></div>
                         </div>
-                        <p className="capitalize text-[0.9rem] font-light text-[#6B7280]">
+                        <p className="capitalize text-[0.9rem] font-light text-[white]">
                            Division that focuses on developing interest and
                            burning <br /> the arts and sports in the computing
                            sphere.
@@ -245,15 +158,18 @@ export default function Page() {
                         className="rounded-xl p-2 duration-300 hover:scale-110 hover:shadow-xl"
                      >
                         <div className="flex items-center justify-end gap-2">
-                           <h1 className="text-[1.2rem] font-[600] text-[#353535]">
-                              Communication
+                           <h1 className="text-[1.2rem] font-[600] text-[#FFD700]">
+                              Communication and Multimedia
                            </h1>
                            <div className="h-[20px] w-[20px] rounded-full bg-gradient-to-br from-orange-200 to-orange-400"></div>
                         </div>
-                        <p className="capitalize text-[0.9rem] font-light text-[#6B7280]">
-                           Division that handles PUFA Computing social media
+                        <p className="capitalize text-[0.9rem] font-light text-[white]">
+                           Com: Division that handles PUFA Computing social media
                            such <br /> as Instagram, LinkedIn, LINE OA, and
-                           youtube.
+                           youtube. <br/> <br/>
+                           Mul: Responsible to in charge of creating and editing{" "}
+                           <br />
+                           templates content to be posted on social media PUFA{" "}
                         </p>
                      </Link>
                   </div>
@@ -272,12 +188,12 @@ export default function Page() {
                         className="rounded-xl p-2 duration-300 hover:scale-110 hover:shadow-xl"
                      >
                         <div className="flex flex-row-reverse items-center justify-end gap-2">
-                           <h1 className="text-[1.2rem] font-[600] text-[#353535]">
+                           <h1 className="text-[1.2rem] font-[600] text-[#FFD700]">
                               Research and Technology
                            </h1>
                            <div className="h-[20px] w-[20px] rounded-full bg-gradient-to-br from-orange-200 to-orange-400"></div>
                         </div>
-                        <p className="capitalize text-[0.9rem] font-light text-[#6B7280]">
+                        <p className="capitalize text-[0.9rem] font-light text-[white]">
                            division in charge of developing creative ideas and
                            sharing <br /> knowledge and sharing knowledge in the
                            field of technology.
@@ -289,12 +205,12 @@ export default function Page() {
                         className="relative left-10 rounded-xl p-2 duration-300 hover:scale-110 hover:shadow-xl"
                      >
                         <div className="flex flex-row-reverse items-center justify-end gap-2">
-                           <h1 className="text-[1.2rem] font-[600] text-[#353535]">
+                           <h1 className="text-[1.2rem] font-[600] text-[#FFD700]">
                               Student Development and Competition
                            </h1>
                            <div className="h-[20px] w-[20px] rounded-full bg-gradient-to-br from-green-200 to-green-600"></div>
                         </div>
-                        <p className="capitalize text-[0.9rem] font-light text-[#6B7280]">
+                        <p className="capitalize text-[0.9rem] font-light text-[white]">
                            is a representative of the highest division
                            consisting of <br />
                            Chairperson, Vice Chairperson, Secretary and
@@ -307,12 +223,12 @@ export default function Page() {
                         className="relative left-20 rounded-xl p-2 duration-300 hover:scale-110 hover:shadow-xl"
                      >
                         <div className="flex flex-row-reverse items-center justify-end gap-2">
-                           <h1 className="text-[1.2rem] font-[600] text-[#353535]">
+                           <h1 className="text-[1.2rem] font-[600] text-[#FFD700]">
                               Student Welfare Advocacy
                            </h1>
                            <div className="h-[20px] w-[20px] rounded-full bg-gradient-to-br from-orange-200 to-orange-400"></div>
                         </div>
-                        <p className="capitalize text-[0.9rem] font-light text-[#6B7280]">
+                        <p className="capitalize text-[0.9rem] font-light text-[white]">
                            Responsible for accommodating aspirations and <br />
                            suggestions, as well as assisting and defending
                            problems <br /> experienced by Computizens.
@@ -323,43 +239,43 @@ export default function Page() {
                         className="relative left-10 rounded-xl p-2 duration-300 hover:scale-110 hover:shadow-xl"
                      >
                         <div className="flex flex-row-reverse items-center justify-end gap-2">
-                           <h1 className="text-[1.2rem] font-[600] text-[#353535]">
+                           <h1 className="text-[1.2rem] font-[600] text-[#FFD700]">
                               Entrepreneurship
                            </h1>
                            <div className="h-[20px] w-[20px] rounded-full bg-gradient-to-br from-green-200 to-green-600"></div>
                         </div>
-                        <p className="capitalize text-[0.9rem] font-light text-[#6B7280]">
+                        <p className="capitalize text-[0.9rem] font-light text-[white]">
                            this division aims to develop computizens interests
                            and <br />
                            talents in entrepreneurship and business.
                         </p>
                      </Link>
-                     <Link
+                     {/* <Link
                         href="anagata/communication-and-multimedia"
                         className="rounded-xl p-2 duration-300 hover:scale-110 hover:shadow-xl"
                      >
                         <div className="flex flex-row-reverse items-center justify-end gap-2">
-                           <h1 className="text-[1.2rem] font-[600] text-[#353535]">
+                           <h1 className="text-[1.2rem] font-[600] text-[#FFD700]">
                               Multimedia
                            </h1>
                            <div className="h-[20px] w-[20px] rounded-full bg-gradient-to-br from-orange-200 to-orange-400"></div>
                         </div>
-                        <p className="capitalize text-[0.9rem] font-light text-[#6B7280]">
+                        <p className="capitalize text-[0.9rem] font-light text-[white]">
                            Responsible to in charge of creating and editing{" "}
                            <br />
                            templates content to be posted on social media PUFA{" "}
                            <br />
                            Computing.
                         </p>
-                     </Link>
+                     </Link> */}
                   </div>
                </div>
             </div>
          </section>
 
          {/* timeline section  */}
-         <section className="bg-[#F2F2F2]">
-            <h1 className="flex justify-center p-8 text-2xl font-[600] text-[#353535] md:p-20 md:text-4xl lg:text-5xl">
+         <section className="bg-black">
+            <h1 className="flex justify-center p-8 text-2xl font-[600] text-[#FFD700] md:p-20 md:text-4xl lg:text-5xl">
                TIMELINE
             </h1>
             <div className="bg-black text-white">
@@ -410,7 +326,7 @@ export default function Page() {
                                  <p className="mb-3 text-base text-yellow-300">
                                     November 2023
                                  </p>
-                                 <h4 className="mb-3 text-lg font-[600] text-[#353535] md:text-2xl">
+                                 <h4 className="mb-3 text-lg font-[600] text-[white] md:text-2xl">
                                     Compbraints
                                  </h4>
                                  <p className="text-sm leading-snug text-gray-50 text-opacity-100 md:text-base">
@@ -426,7 +342,7 @@ export default function Page() {
                                  <p className="mb-3 text-base text-yellow-300">
                                     December 2023
                                  </p>
-                                 <h4 className="mb-3 text-lg font-[600] text-[#353535] md:text-2xl">
+                                 <h4 className="mb-3 text-lg font-[600] text-[white] md:text-2xl">
                                     Compshadow I Welcoming
                                  </h4>
                                  <p className="text-sm leading-snug text-gray-50 text-opacity-100 md:text-base">
@@ -444,7 +360,7 @@ export default function Page() {
                                     {" "}
                                     February 2024
                                  </p>
-                                 <h4 className="mb-3 text-lg font-[600] text-[#353535] md:text-2xl">
+                                 <h4 className="mb-3 text-lg font-[600] text-[white] md:text-2xl">
                                     CSGO
                                  </h4>
                                  <p className="text-sm leading-snug text-gray-50 text-opacity-100 md:text-base">
@@ -464,10 +380,10 @@ export default function Page() {
                                     March 2024
                                  </p>
                                  <ul className="list-disc">
-                                    <li className="mb-3 text-left  text-lg font-[600] text-[#353535] md:text-2xl">
+                                    <li className="mb-3 text-left  text-lg font-[600] text-[white] md:text-2xl">
                                        Social Project
                                     </li>
-                                    <li className="mb-3 text-left  text-lg font-[600] text-[#353535] md:text-2xl">
+                                    <li className="mb-3 text-left  text-lg font-[600] text-[white] md:text-2xl">
                                        Compstud
                                     </li>
                                  </ul>
