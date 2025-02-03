@@ -11,17 +11,17 @@ interface HeaderProps {
 export default function Header({ title, description, image }: HeaderProps) {
     return (
         <section>
-            <div className="flex flex-col space-y-12 bg-[#E5E7EB] px-4 py-[2rem] md:px-[10rem]">
+            <div className="flex flex-col space-y-12 bg-black px-4 py-[2rem] md:px-[10rem]">
                 {/* text logo nya  */}
-                <div className="flex flex-col border-l-4 border-[#1FA820] pl-4 md:pl-8">
-                    <h1 className="text-[2rem] font-[900] uppercase tracking-widest md:text-[3rem]">
+                <div className="flex flex-col border-l-4 border-[#FFD700] pl-4 md:pl-8">
+                    <h1 className="text-[2rem] font-[900] uppercase tracking-widest text-[#FFD700] md:text-[3rem]">
                         {title}
                     </h1>
                     <div className="flex flex-col items-start gap-2 md:flex-row md:items-center">
-                        <h1 className="font-thin text-[2rem] uppercase tracking-widest text-stroke-1 text-stroke-black text-stroke-fill-white md:text-[3rem]">
+                        <h1 className="font-thin text-[2rem] uppercase tracking-widest text-stroke-1 text-stroke-[#FFD700] text-stroke-fill-black md:text-[3rem]">
                             Division
                         </h1>
-                        <h1 className="text-justify text-[0.8rem] md:max-w-[20rem]">
+                        <h1 className="text-justify text-[0.8rem] text-[#FFD700] md:max-w-[20rem]">
                             {description}
                         </h1>
                     </div>

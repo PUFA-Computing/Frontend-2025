@@ -762,6 +762,13 @@ export const divisionPage = [
                 linkedin: "",
             },
             {
+                name: "Rizki Adi Prasetyo",
+                position: "Technology",
+                image: RIZKI_RNT,
+                instagram: "",
+                linkedin: "",
+            },
+            {
                 name: "Darrell Rafa Alamsyah",
                 position: "Technology",
                 image: DARRELL_RNT,
@@ -783,9 +790,9 @@ export const divisionPage = [
                 linkedin: "",
             },
             {
-                name: "Rizki Adi Prasetyo",
-                position: "Technology",
-                image: RIZKI_RNT,
+                name: "Fauziah Audina Hapsari",
+                position: "Research",
+                image: AUDINA_RNT,
                 instagram: "",
                 linkedin: "",
             },

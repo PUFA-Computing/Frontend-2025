@@ -28,7 +28,7 @@ export const FaqData = [
     {
         title: "How many majors are there in the faculty of Computer Science?",
         content:
-            "There are 4 majors in the faculty of Computer Science at president university, which consist of Informatics, Information System, Visual Communication Design, and Interior Design.",
+            "There are 4 majors in the faculty of Computer Science at president university, which consist of Informatics and Information System.",
     },
     {
         title: "How many divisions are there in PUFA Computer Science?",
