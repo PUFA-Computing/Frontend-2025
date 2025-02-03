@@ -39,12 +39,12 @@ export default async function EventsPage() {
     return (
         <div>
             {/* title */}
-            <section className="flex items-center bg-black px-[5rem] py-[2rem] md:px-[10rem]">
+            <section className="flex items-center px-[5rem] py-[2rem] md:px-[10rem] bg-[#F2F2F2]" >
                 <div className="border-l-4 border-[#FFD700] pl-8">
-                    <h1 className="text-[2rem] font-[600] text-white">
+                    <h1 className="text-[2rem] font-[600]">
                         Computer Science Events
                     </h1>
-                    <h1 className="text-[0.8rem] text-gray-300">
+                    <h1 className="text-[0.8rem]">
                         Discover the latest updates on events in our faculty.
                     </h1>
                 </div>
@@ -77,13 +77,12 @@ export default async function EventsPage() {
                 <h1 className="mx-auto max-w-7xl p-10 text-[1.2rem] font-bold">
                     Event Categories
                 </h1>
-                <hr className="border-t-2 border-[#FFD700]" />
                 <div className="mx-auto max-w-7xl p-10">
-                    <div className="grid grid-cols-2	 gap-[8rem] md:grid-cols-3 lg:grid-cols-5">
+                    <div className="flex justify-center gap-16">
                         <LogoOrganizationEventPage
                             image="../logo/PUFA_Computing.png"
                             title="PUFA Computer Science"
-                            link="/events/pufa-computing"
+                            link="/events/pufa-cs"
                         />
 
                         <LogoOrganizationEventPage
@@ -96,19 +95,8 @@ export default async function EventsPage() {
                             title="PUMA Information System"
                             link="/events/puma-is"
                         />
-                        <LogoOrganizationEventPage
-                            image="../logo/PUMA_VCD.png"
-                            title="PUMA Visual Design Communication"
-                            link="/events/puma-vcd"
-                        />
-                        <LogoOrganizationEventPage
-                            image="../logo/PUMA_ID.png"
-                            title="PUMA Interior Design"
-                            link="/events/puma-id"
-                        />
                     </div>
                 </div>
-                <hr className="border-t-2 border-[#FFD700]" />
             </section>
 
             {/* all events section*/}

@@ -9,68 +9,99 @@ import MobileViewPhilosophy from "@/components/cabinet/MobileViewPhilosophy";
 export default function Page() {
    return (
       <div className="min-h-screen bg-black text-white">
-         
-
          {/* Hero Section */}
-         <section className="relative h-[50vh] w-full">
-                <div className="absolute inset-0">
-                    <div className="h-full w-full bg-gradient-to-b bg-black"></div>
-                </div>
-                <div className="container relative mx-auto flex h-full flex-col items-center justify-center px-4">
-                    <Image
-                        src={Logo}
-                        alt="Forcasion Logo"
-                        width={200}
-                        height={200}
-                        className="mb-8 rounded-full border-4 border-[#FFD700]"
-                    />
-                    <h1 className="mb-4 text-4xl font-bold text-[#FFD700]">
-                        FORCASION CABINET
-                    </h1>
-                    <p className="mb-6 text-xl italic text-[#FFD700]">
-                        "Together We Stand, Together We Succeed"
-                    </p>
-                </div>
-            </section>
+         <section className="relative h-[60vh] w-full bg-gradient-to-b from-black via-black/95 to-black/90">
+            <div className="absolute inset-0">
+               <div className="h-full w-full bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-black/20 via-black/50 to-black"></div>
+            </div>
+            <div className="container relative mx-auto flex h-full flex-col items-center justify-center px-4">
+               <Image
+                  src={Logo}
+                  alt="Forcasion Logo"
+                  width={220}
+                  height={220}
+                  className="mb-8 rounded-full border-4 border-[#FFD700] shadow-lg shadow-[#FFD700]/20 transition-transform duration-300 hover:scale-105"
+               />
+               <h1 className="mb-4 text-5xl font-bold text-[#FFD700] tracking-wide text-center">
+                  FORCASION CABINET
+               </h1>
+               <p className="mb-6 text-2xl italic text-[#FFD700]/90 font-light text-center">
+                  "Together We Stand, Together We Succeed"
+               </p>
+            </div>
+         </section>
 
          {/* Vision & Mission */}
-         <section className="bg-black/90 py-16">
-                <div className="container mx-auto px-4">
-                    <div className="grid gap-8 md:grid-cols-2">
-                        <div className="rounded-lg border border-[#FFD700] bg-black/50 p-8">
-                            <h2 className="mb-6 text-2xl font-bold text-[#FFD700]">
-                                Vision
-                            </h2>
-                            <p className="text-lg leading-relaxed">
-                                To create a united, communicative, and
-                                competitive faculty where students from all
-                                departments actively participate in academic and
-                                non-academic activities and are fully supported
-                                in achieving their highest potential.
-                            </p>
+         <section className="bg-black/90 py-20">
+            <div className="container mx-auto px-4 max-w-7xl">
+               <h2 className="text-4xl md:text-5xl font-bold text-center text-[#FFD700] tracking-wider mb-16">
+                  Our Vision & Mission
+               </h2>
+               <div className="grid gap-10 md:grid-cols-2">
+                  <div className="rounded-xl border-2 border-[#FFD700] bg-black/50 p-10 backdrop-blur-sm transition-transform duration-300 hover:scale-[1.02] hover:shadow-xl hover:shadow-[#FFD700]/10">
+                     <h2 className="mb-8 text-3xl font-bold text-[#FFD700] tracking-wide text-center">
+                        Vision
+                     </h2>
+                     <div className="space-y-6">
+                        <p className="text-lg leading-relaxed text-white/90 text-center">
+                           To create a united, communicative, and
+                           competitive faculty where students from all
+                           departments actively participate in academic and
+                           non-academic activities and are fully supported
+                           in achieving their highest potential.
+                        </p>
+                        <div className="flex justify-center gap-4 pt-4">
+                           <span className="inline-flex items-center rounded-full bg-[#FFD700]/10 px-4 py-2 text-sm font-medium text-[#FFD700]">United</span>
+                           <span className="inline-flex items-center rounded-full bg-[#FFD700]/10 px-4 py-2 text-sm font-medium text-[#FFD700]">Communicative</span>
+                           <span className="inline-flex items-center rounded-full bg-[#FFD700]/10 px-4 py-2 text-sm font-medium text-[#FFD700]">Competitive</span>
                         </div>
-                        <div className="rounded-lg border border-[#FFD700] bg-black/50 p-8">
-                            <h2 className="mb-6 text-2xl font-bold text-[#FFD700]">
-                                Mission
-                            </h2>
-                            <ul className="list-inside list-disc space-y-4">
-                                <li>
-                                    Foster interdepartmental collaboration and
-                                    unity
-                                </li>
-                                <li>
-                                    Facilitate academic and professional growth
-                                </li>
-                                <li>Create engaging events and programs</li>
-                                <li>
-                                    Support student initiatives and development
-                                </li>
-                                <li>Build strong community relationships</li>
-                            </ul>
+                     </div>
+                  </div>
+                  <div className="rounded-xl border-2 border-[#FFD700] bg-black/50 p-10 backdrop-blur-sm transition-transform duration-300 hover:scale-[1.02] hover:shadow-xl hover:shadow-[#FFD700]/10">
+                     <h2 className="mb-8 text-3xl font-bold text-[#FFD700] tracking-wide text-center">
+                        Mission
+                     </h2>
+                     <div className="space-y-6">
+                        <div className="flex items-start space-x-4 group">
+                           <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#FFD700] text-black font-bold transition-transform group-hover:scale-110">S</span>
+                           <div>
+                              <h3 className="font-semibold text-[#FFD700] mb-1">Solidify</h3>
+                              <p className="text-white/90">Enhance Solidarity and Cohesion Across Departments</p>
+                           </div>
                         </div>
-                    </div>
-                </div>
-            </section>
+                        <div className="flex items-start space-x-4 group">
+                           <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#FFD700] text-black font-bold transition-transform group-hover:scale-110">C</span>
+                           <div>
+                              <h3 className="font-semibold text-[#FFD700] mb-1">Communicate</h3>
+                              <p className="text-white/90">Improve Effective Communication</p>
+                           </div>
+                        </div>
+                        <div className="flex items-start space-x-4 group">
+                           <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#FFD700] text-black font-bold transition-transform group-hover:scale-110">O</span>
+                           <div>
+                              <h3 className="font-semibold text-[#FFD700] mb-1">Organize</h3>
+                              <p className="text-white/90">Encourage Participation in Academic and Non-Academic Activities</p>
+                           </div>
+                        </div>
+                        <div className="flex items-start space-x-4 group">
+                           <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#FFD700] text-black font-bold transition-transform group-hover:scale-110">P</span>
+                           <div>
+                              <h3 className="font-semibold text-[#FFD700] mb-1">Participate</h3>
+                              <p className="text-white/90">Provide Support and Motivation to Students</p>
+                           </div>
+                        </div>
+                        <div className="flex items-start space-x-4 group">
+                           <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#FFD700] text-black font-bold transition-transform group-hover:scale-110">E</span>
+                           <div>
+                              <h3 className="font-semibold text-[#FFD700] mb-1">Encourage</h3>
+                              <p className="text-white/90">Foster Student Participation and Support Activities</p>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </section>
 
          {/* division  */}
          <section className="flex flex-col items-center bg-black">

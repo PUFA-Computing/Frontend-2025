@@ -40,7 +40,7 @@ export default function LogoOrganizationEventPage({
                />
             </div>
             <div className="text-center text-sm font-bold">{title}</div>
-         </div>
+ </div>
       </Link>
    );
 }

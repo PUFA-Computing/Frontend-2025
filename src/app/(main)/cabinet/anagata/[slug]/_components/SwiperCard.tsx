@@ -20,6 +20,18 @@ interface SwiperCardProps {
 export default function SwiperCard({ members }: SwiperCardProps) {
     return (
         <div className="bg-black px-4 py-4 md:px-[10rem] md:py-[1rem]">
+            <style>
+                {`
+                    .swiper-pagination-bullet {
+                        background-color: #666666 !important;
+                        opacity: 0.5;
+                    }
+                    .swiper-pagination-bullet-active {
+                        background-color: #FFD700 !important;
+                        opacity: 1;
+                    }
+                `}
+            </style>
             <h1 className="justify-center py-1 text-center text-[2.25rem] font-[700] text-[#FFD700] md:flex md:py-[0.125rem]">
                 Division Members
             </h1>

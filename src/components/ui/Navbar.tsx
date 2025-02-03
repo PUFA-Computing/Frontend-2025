@@ -74,14 +74,6 @@ export default function Navbar() {
                     title: "PUMA IS",
                     href: "/puma/puma-is",
                 },
-                {
-                    title: "PUMA ID",
-                    href: "/puma/puma-id",
-                },
-                {
-                    title: "PUMA VCD",
-                    href: "/puma/puma-vcd",
-                },
             ],
         },
     ];
