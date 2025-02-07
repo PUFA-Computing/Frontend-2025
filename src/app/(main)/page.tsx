@@ -26,64 +26,42 @@ export default async function Index() {
 
     return (
         <div className="min-h-screen bg-black text-white">
-            <div>
-                <Suspense fallback={<CircularProgress />}>
+            {/* Hero Section */}
+            <div className="relative h-screen">
+                {/* Background Image */}
+                <div className="absolute inset-0">
                     <Image
-                        src={BGImage}
-                        alt="PUMA Photo"
-                        width="0"
-                        height="0"
-                        sizes="100vw"
-                        className="h-auto w-full"
+                        src={bghomepage}
+                        alt="PUFA Background"
+                        fill
+                        className="object-cover brightness-[0.4]"
+                        priority
                     />
-                </Suspense>
-            </div>
-            <section
-                id="introduction"
-                className="container mx-auto -mt-24 sm:-mt-32 md:-mt-48 md:px-[5rem] lg:-mt-64 xl:-mt-96"
-            >
-                <Image
-                    alt="PUFA Photo"
-                    className="mx-auto my-12 h-48 rounded-2xl object-cover md:h-96"
-                    width={1080}
-                    height={720}
-                    src={bghomepage}
-                />
-                {/* <img
-               className="h-48 mx-auto my-5 aspect-video md:h-96 rounded-2xl"
-               src="../member.jpg"
-               alt="PUMA Photo"
-            /> */}
-                <div className="md:px-22 space-y-6 px-8 text-justify text-base md:text-xl">
-                    <p>
-                        PUFA Computer Science stands for President University's
-                        Faculty Association of Computer Science, serving as a
-                        dynamic platform for students enrolled in majors
-                        such as Information Technology (IT) and Information Systems
-                        (IS). Our organization embodies a vibrant
-                        community of aspiring professionals, united by a shared
-                        passion for technology and innovation.
-                    </p>
-                    <p>
-                        We are committed to fostering a collaborative and
-                        inclusive environment where members can thrive
-                        academically, professionally, and socially. Through a
-                        myriad of activities, workshops, seminars, and
-                        networking events, we provide our members with
-                        opportunities to enhance their skills, expand their
-                        knowledge, and forge meaningful connections within their
-                        respective fields.
-                    </p>
-                    <Link href="/" className="block w-max">
-                        <Button className="border-[#FFD700] text-[#FFD700] hover:bg-[#FFD700] hover:text-black">
-                            See Details
-                        </Button>
-                    </Link>
                 </div>
-            </section>
-
+                
+                {/* Content Overlay */}
+                <div className="relative z-10 flex h-full flex-col items-center justify-center text-white">
+                    <h1 className="mb-2 text-center text-[120px] font-bold tracking-wider">
+                        PUFA 25.
+                    </h1>
+                    <p className="mb-12 text-center text-2xl font-medium tracking-widest">
+                        Be Strong, One Determination.
+                    </p>
+                    
+                    <div className="mt-4 max-w-4xl px-4 text-center">
+                        <p className="text-lg font-light leading-relaxed tracking-wide">
+                            PUFA Computing is a dynamic organization within President University, serving as a platform for students pursuing various
+                            computing-related fields like Information Technology, Information Systems, Visual Communication Design, and Interior
+                            Design. It fosters a vibrant community where students can connect, collaborate, and explore their passion for technology,
+                            creativity, and innovation. PUFA Computing offers opportunities for professional development, networking, and social
+                            engagement, making it a valuable resource for students aspiring to excel in the computing industry.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
             {/* programs */}
-            <section className="my-[10rem] flex flex-col items-center space-y-8 md:px-[5rem]">
+            <section className="my-[10rem] flex flex-col items-center space-y-8 md:px-[5rem] bg-black/50 backdrop-blur-sm">
                 <div className="border-l-4 border-[#FFD700] pl-4">
                     <h1 className="text-[1.5rem] font-[600] text-[#FFD700]">
                         Study Programs
@@ -107,7 +85,7 @@ export default async function Index() {
             </section>
 
             {/* cabinet forcasion */}
-            <section className="my-[10rem] flex flex-col items-center space-y-8 md:px-[5rem]">
+            <section className="my-[10rem] flex flex-col items-center space-y-8 md:px-[5rem] bg-black/50 backdrop-blur-sm">
                 <div className="border-l-4 border-[#FFD700] pl-4">
                     <h1 className="text-[1.5rem] font-bold text-[#FFD700]">
                         Cabinet 2024/2025
@@ -153,7 +131,7 @@ export default async function Index() {
             </section>
 
             {/* event section */}
-            <section className="my-[10rem] flex select-none flex-col items-center space-y-8 md:space-y-8 md:px-[5rem]">
+            <section className="my-[10rem] flex select-none flex-col items-center space-y-8 md:space-y-8 md:px-[5rem] bg-black/50 backdrop-blur-sm">
                 <div className="border-l-4 border-[#FFD700] pl-4">
                     <h1 className="text-[1.5rem] font-[600] text-[#FFD700]">
                         Computer Science Events
@@ -179,7 +157,7 @@ export default async function Index() {
             {/* news */}
             <section
                 id="news"
-                className="max-h-xl mx-auto my-[10rem] max-w-7xl space-y-8 p-5 text-center md:px-[5rem]"
+                className="max-h-xl mx-auto my-[10rem] max-w-7xl space-y-8 p-5 text-center md:px-[5rem] bg-black/50 backdrop-blur-sm"
             >
                 <h2 className="text-2xl font-bold">
                     <span className="mr-4 border-l-4 border-l-[#FFD700]"></span>
@@ -208,8 +186,8 @@ export default async function Index() {
             {/* compreciacion */}
 
             <section
-                id="compreciacion"
-                className="max-h-xl mx-auto my-[10rem] max-w-7xl space-y-8 p-5 text-center"
+                id="compreciation"
+                className="max-h-xl mx-auto my-[10rem] max-w-7xl space-y-8 p-5 text-center bg-black/50 backdrop-blur-sm"
             >
                 <h2 className="text-2xl font-bold">
                     <span className="mr-4 border-l-4 border-l-[#FFD700]"></span>
@@ -229,7 +207,7 @@ export default async function Index() {
             </section>
 
             {/* store */}
-            <section className="my-[10rem] flex flex-col items-center space-y-6 md:space-y-12">
+            <section className="my-[10rem] flex flex-col items-center space-y-6 md:space-y-12 bg-black/50 backdrop-blur-sm">
                 <div className="border-l-4 border-[#FFD700] pl-4">
                     <h1 className="text-[1.5rem] font-[600] text-[#FFD700]">
                         Computer Science Store
@@ -250,9 +228,9 @@ export default async function Index() {
             {/* Faq */}
             <section
                 id="faq"
-                className="max-h-xl mx-auto max-w-7xl space-y-8 p-5  md:px-[5rem]"
+                className="max-h-xl mx-auto max-w-7xl space-y-8 p-5 md:px-[5rem] bg-black/50 backdrop-blur-sm"
             >
-                <div className="items-justify container mx-auto flex flex-col rounded-lg border border-[#FFD700] bg-black px-4 py-8 md:p-8">
+                <div className="items-justify container mx-auto flex flex-col rounded-lg border border-[#FFD700] bg-black/80 px-4 py-8 md:p-8">
                     <div>
                         <h2 className="text-2xl font-semibold sm:text-4xl">
                             Frequently Asked Questions
