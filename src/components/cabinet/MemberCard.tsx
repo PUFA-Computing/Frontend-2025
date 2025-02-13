@@ -1,4 +1,3 @@
-import Link from "next/link";
 import Image, { StaticImageData } from "next/image";
 import { FaInstagram } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
@@ -12,13 +11,13 @@ interface MemberCardProps {
    linkedin?: string | UrlObject;
 }
 
-const MemberCard: React.FC<MemberCardProps> = ({
+const MemberCard = ({
    image,
    name,
    position,
    instagram,
    linkedin,
-}) => {
+}: MemberCardProps) => {
    return (
       <div>
          <div className="mx-auto max-w-xs rounded-md">
@@ -26,20 +25,20 @@ const MemberCard: React.FC<MemberCardProps> = ({
                {(linkedin || instagram) && (
                   <div className="absolute z-20 flex h-72 w-48 items-end justify-center gap-8 rounded-md bg-black p-4 opacity-0 transition-all duration-300 hover:opacity-80">
                      {linkedin && (
-                        <Link href={linkedin as string} passHref>
+                        <a href={linkedin as string} target="_blank" rel="noopener noreferrer">
                            <FaLinkedin
                               size={25}
                               className="text-[#FFD700] duration-300 hover:text-[#FFD700]/80"
                            />
-                        </Link>
+                        </a>
                      )}
                      {instagram && (
-                        <Link href={instagram as string} passHref>
+                        <a href={instagram as string} target="_blank" rel="noopener noreferrer">
                            <FaInstagram
                               size={25}
                               className="text-[#FFD700] duration-300 hover:text-[#FFD700]/80"
                            />
-                        </Link>
+                        </a>
                      )}
                   </div>
                )}

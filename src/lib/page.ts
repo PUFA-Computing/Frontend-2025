@@ -370,6 +370,76 @@ import BANNER from "@/assets/coming_soon.jpg"
 
 export const divisionPage = [
     {
+        division: "Board of Director",
+        slug: "board-of-director",
+        banner: BANNER,
+        description:
+            "is a representative of the highest division consisting of Chairperson, Vice Chairperson, Secretary, and Treasurer.",
+        button: [
+            "LEGISLATOR",
+            "annual event",
+            "review & report",
+            "computing cash",
+        ],
+        member: [
+            {
+                name: "Bimasena Yudhaprawira",
+                position: "Head of Division (Board of Director)",
+                image: BIMASENA_BOD,
+                instagram: "https://www.instagram.com/bmsn.y",
+                linkedin:
+                    "https://id.linkedin.com/in/bimasena-yudhaprawira-488719273",
+            },
+            {
+                name: "George Elver Andrew Tamba",
+                position: "Vice of Division (Board of Director)",
+                image: GEORGE_BOD,
+                instagram: "https://www.instagram.com/_geyorge_/",
+                linkedin: "",
+            },
+            {
+                name: "João Zinho Franklin Saldanha",
+                position: "Vice of Division (Board of Director) 2",
+                image: JHON_BOD,
+                instagram: "https://www.instagram.com",
+                linkedin:
+                    "",
+            },
+            {
+                name: "Veronica Irene Tanumihadja",
+                position: "Secretary 1",
+                image: IRENE_BOD,
+                instagram: "https://www.instagram.com/verrrene",
+                linkedin:
+                    "https://www.linkedin.com/in/fasyanbls",
+            },
+            {
+                name: "Fasya Nabila Salim",
+                position: "Secretary 2",
+                image: NABILA_BOD,
+                instagram: "https://www.instagram.com/fasyanbls_",
+                linkedin:
+                    "https://www.linkedin.com/in/fasyanbls",
+            },
+            {
+                name: "Dian Vania Jessicha Rondonuwu",
+                position: "Treasure 1",
+                image: DIAN_BOD,
+                instagram: "https://www.instagram.com/dian_vjr",
+                linkedin:
+                    "http://www.linkedin.com/in/dian-rondonuwu28",
+            },
+            {
+                name: "Eileen Daneaya",
+                position: "Treasure 2",
+                image: EILEEN_BOD,
+                instagram: "https://www.instagram.com",
+                linkedin:
+                    "",
+            },
+        ],
+    },
+    {
         division: "Art and Sport",
         slug: "art-and-sport",
         banner: BANNER,
@@ -381,16 +451,16 @@ export const divisionPage = [
                 name: "Najla Rifa Nur Asjad",
                 position: "Head of Division",
                 image: NAJLA_ANS,
-                instagram: "https://www.instagram.com",
+                instagram: "https://www.instagram.com/najlasjad",
                 linkedin:
-                    "https://www.linkedin.com/in/najlasjad/",
+                    "https://www.linkedin.com/in/najlasjad",
             },
             {
                 name: "Maulana Rizwan Ahmad",
                 position: "Vice of Division",
                 image: RIZWAN_ANS,
-                instagram: "https://www.instagram.com",
-                linkedin: "",
+                instagram: "https://www.instagram.com/mln.rizwan",
+                linkedin: "https://www.linkedin.com/in/maulana-rizwan-ahmad-8a831728b",
             },
             {
                 name: "Abram Pesuma Sitorus",
@@ -410,8 +480,8 @@ export const divisionPage = [
                 name: "Marsha Aulia Rizky",
                 position: "Member",
                 image: AULIA_ANS,
-                instagram: "",
-                linkedin: "",
+                instagram: "https://www.instagram.com/marshaauri",
+                linkedin: "https://www.linkedin.com/in/marsha-aulia-rizky-6784492aa?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
             },
             {
                 name: "Nada Kamelia",
@@ -419,76 +489,6 @@ export const divisionPage = [
                 image: NADA_ANS,
                 instagram: "",
                 linkedin: "",
-            },
-        ],
-    },
-    {
-        division: "Board of Director",
-        slug: "board-of-director",
-        banner: BANNER,
-        description:
-            "is a representative of the highest division consisting of Chairperson, Vice Chairperson, Secretary, and Treasurer.",
-        button: [
-            "LEGISLATOR",
-            "annual event",
-            "review & report",
-            "computing cash",
-        ],
-        member: [
-            {
-                name: "Bimasena Yudhaprawira",
-                position: "Head of Division (Board of Director)",
-                image: BIMASENA_BOD,
-                instagram: "",
-                linkedin:
-                    "https://www.linkedin.com/in/bimasena-yudhaprawira-488719273/",
-            },
-            {
-                name: "George Elver Andrew Tamba",
-                position: "Vice of Division (Board of Director)",
-                image: GEORGE_BOD,
-                instagram: "https://www.instagram.com",
-                linkedin: "",
-            },
-            {
-                name: "João Zinho Franklin Saldanha",
-                position: "Vice of Division (Board of Director) 2",
-                image: JHON_BOD,
-                instagram: "https://www.instagram.com",
-                linkedin:
-                    "",
-            },
-            {
-                name: "Veronica Irene Tanumihadja",
-                position: "Secretary 1",
-                image: IRENE_BOD,
-                instagram: "https://www.instagram.com/irnesht/",
-                linkedin:
-                    "https://www.linkedin.com/in/irene-putri-sihite-0a45a8258/",
-            },
-            {
-                name: "Fasya Nabila Salim",
-                position: "Secretary 2",
-                image: NABILA_BOD,
-                instagram: "https://www.instagram.com",
-                linkedin:
-                    "",
-            },
-            {
-                name: "Dian Vania Jessicha Rondonuwu",
-                position: "Treasure 1",
-                image: DIAN_BOD,
-                instagram: "https://www.instagram.com",
-                linkedin:
-                    "https://www.linkedin.com/in/dian-vania-jessicha-rondonuwu-5b6a3b1b1/",
-            },
-            {
-                name: "Eileen Daneaya",
-                position: "Treasure 2",
-                image: EILEEN_BOD,
-                instagram: "https://www.instagram.com",
-                linkedin:
-                    "",
             },
         ],
     },
@@ -511,36 +511,36 @@ export const divisionPage = [
                 name: "Nailah Septiani Putri",
                 position: "Head of Division (Communication and Multimedia)",
                 image: NAILAH_COMMDESS,
-                instagram: "",
-                linkedin: "",
+                instagram: "https://www.instagram.com/nailahesp",
+                linkedin: "https://www.linkedin.com/in/najlasjad",
             },
             {
                 name: "Kezia Vanesa Joseph",
                 position: "Vice of Division (Multimedia)",
                 image: KEZIA_COMMDESS,
-                instagram: "",
+                instagram: "https://www.instagram.com",
                 linkedin: "",
             },
             {
                 name: "Ricarda Sebastian Hutagalung",
                 position: "Vice of Division (Communication)",
                 image: RICARDA_COMMDESS,
-                instagram: "",
-                linkedin: "",
+                instagram: "https://www.instagram.com/ricardasebastiann",
+                linkedin: "https://www.linkedin.com/in/ricarda-sebastian-hutagalung-2b503b2b6?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
             },
             {
                 name: "Kaila Annisa Syafitri",
                 position: "Member (Communication)",
                 image: KAILA_COMMDESS,
-                instagram: "",
+                instagram: "https://www.instagram.com/kailannsya",
                 linkedin:
-                    "",
+                    "https://www.linkedin.com/in/kailaannisa2110?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
             },
             {
                 name: "Tessalonika Angeline Purba",
                 position: "Member (Communication)",
                 image: ANGEL_COMMDESS,
-                instagram: "",
+                instagram: "https://www.instagram.com/angelaaaaax__",
                 linkedin:
                     "",
             },
@@ -548,9 +548,9 @@ export const divisionPage = [
                 name: "Rafa Basia Hanif",
                 position: "Member (Communication)",
                 image: RAFA_COMMDESS,
-                instagram: "",
+                instagram: "https://www.instagram.com/rafaahnf.22",
                 linkedin:
-                    "",
+                    "https://www.linkedin.com/in/rafa-basia-hanif-123040326?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
             },
             {
                 name: "Wiewien Tancaniago",
@@ -563,7 +563,7 @@ export const divisionPage = [
                 name: "Reyner Orlando Winata",
                 position: "Member (Multimedia)",
                 image: REYNER_COMMDESS,
-                instagram: "",
+                instagram: "https://www.instagram.com/reyner67",
                 linkedin: "",
             },
             {
@@ -584,9 +584,9 @@ export const divisionPage = [
                 name: "Salsa Nabila Putri Widiana",
                 position: "Member (Multimedia)",
                 image: SALSA_COMMDESS,
-                instagram: "",
+                instagram: "https://www.instagram.com/sanpw",
                 linkedin:
-                    "",
+                    "https://www.linkedin.com/in/salsa-nabila-putri-widiana-7485a0322",
             },
         ],
     },
@@ -610,23 +610,23 @@ export const divisionPage = [
                 name: "Glorya Estetica Br Munte",
                 position: "Vice of Division",
                 image: GLORYA_ENTRE,
-                instagram: "",
+                instagram: "https://www.instagram.com/_.glory19._",
                 linkedin:
-                    "",
+                    "http://www.linkedin.com/in/glorya-estetica-0a9664314",
             },
             {
                 name: "Arizal Anru",
                 position: "Member",
                 image: ARIZAL_ENTRE,
-                instagram: "",
+                instagram: "https://www.instagram.com/arizalanru",
                 linkedin:
-                    "",
+                    "https://www.linkedin.com/in/arizal-anru-797b3a2ba",
             },
             {
                 name: "Melvi Yendra",
                 position: "Member",
                 image: MELVI_ENTRE,
-                instagram: "",
+                instagram: "https://www.instagram.com/",
                 linkedin:
                     "",
             },
@@ -634,7 +634,7 @@ export const divisionPage = [
                 name: "Muhammad Ahda Briliantama",
                 position: "Member",
                 image: AHDA_ENTRE,
-                instagram: "",
+                instagram: "https://www.instagram.com/mabb_brian",
                 linkedin:
                     "",
             },
@@ -675,8 +675,8 @@ export const divisionPage = [
                 name: "Alfadzri Abhipraya",
                 position: "Member",
                 image:EJI_ER,
-                instagram: "",
-                linkedin: "",
+                instagram: "https://www.instagram.com/alfdzrii_",
+                linkedin: "https://www.linkedin.com/in/alfadzri-abhipraya-257a74321",
              },
              {
                 name: "Dimas Lintar Ramadhan",
@@ -689,7 +689,7 @@ export const divisionPage = [
                 name: "Maulidah Barakbah",
                 position: "Member",
                 image:MAULIDAH_ER,
-                instagram: "",
+                instagram: "https://www.instagram.com/maulidahh._",
                 linkedin: "",
              }
         ],
@@ -705,8 +705,8 @@ export const divisionPage = [
                 name: "Adelia Zhafira Puspasari",
                 position: "Head of Division",
                 image: ADELIA_IR,
-                instagram: "",
-                linkedin: "",
+                instagram: "https://www.instagram.com/adeliazzh",
+                linkedin: "https://www.linkedin.com/in/adelia-zhafira-puspasari-55a26428b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
             },
             {
                 name: "Kevin Alexander Papu",
@@ -720,16 +720,16 @@ export const divisionPage = [
                 name: "Ajeng Miftahul Carina",
                 position: "Member",
                 image: CARINA_IR,
-                instagram: "",
+                instagram: "https://www.instagram.com/carinaajeng",
                 linkedin:
-                    "",
+                    "https://www.linkedin.com/in/ajeng-miftahul-carina-65a108317/",
             },
             {
                 name: "Pusri Putra Pratama",
                 position: "Member",
                 image: PUSRI_IR,
-                instagram: "",
-                linkedin: "",
+                instagram: "https://www.instagram.com/pusri.27",
+                linkedin: "https://www.linkedin.com/in/pusri-ananda-handal-1336b8325/",
             },
             {
                 name: "Putri Armalia",
@@ -751,15 +751,8 @@ export const divisionPage = [
                 name: "Muhammad Aldi Apriansyah",
                 position: "Head of Division",
                 image: ALDI_RNT,
-                instagram: "https://www.instagram.com/aldiaprnsyh._/",
-                linkedin: "linkedin.com",
-            },
-            {
-                name: "Arka Pradipa Dwi Santoso",
-                position: "Technology",
-                image: ARKA_RNT,
-                instagram: "",
-                linkedin: "",
+                instagram: "https://www.instagram.com/aldIapriansyah._",
+                linkedin: "https://www.linkedin.com/in/muhamad-aldi-apriansyah",
             },
             {
                 name: "Rizki Adi Prasetyo",
@@ -769,11 +762,18 @@ export const divisionPage = [
                 linkedin: "",
             },
             {
+                name: "Arka Pradipa Dwi Santoso",
+                position: "Technology",
+                image: ARKA_RNT,
+                instagram: "https://www.instagram.com/arkapds_",
+                linkedin: "http://linkedin.com/in/arka-pradipa-dwi-santoso-2877a2325",
+            },
+            {
                 name: "Darrell Rafa Alamsyah",
                 position: "Technology",
                 image: DARRELL_RNT,
-                instagram: "",
-                linkedin: "",
+                instagram: "https://www.instagram.com/darrell.mp4",
+                linkedin: "https://www.linkedin.com/in/darrellrafa/",
             },
             {
                 name: "Ahmad Akbar Sidiq. N",
@@ -809,8 +809,8 @@ export const divisionPage = [
                 name: "Suri Agatha Zastalie Lumban Tobing",
                 position: "Head of Division",
                 image: ZASTALIE_SDC,
-                instagram: "",
-                linkedin: "",
+                instagram: "https://www.instagram.com/sazatobing",
+                linkedin: "https://id.linkedin.com/in/suri-agatha-zastalie-lumban-tobing-a1110728b",
              },
              {
                 name: "Alysia Dapyaraka",
@@ -824,9 +824,9 @@ export const divisionPage = [
                 name: "Gerald Darryl Joseph Manurung",
                 position: "Member",
                 image: GERALD_SDC,
-                instagram: "",
+                instagram: "https://www.instagram.com/_g3raldd",
                 linkedin:
-                   "",
+                   "https://www.linkedin.com/in/gerald-manurung-6877a4325/",
              },
              {
                 name: "Nor Umayah",
@@ -839,9 +839,9 @@ export const divisionPage = [
                 name: "Sheny Ayu Zahra",
                 position: "Member",
                 image: ZAHRA_SDC,
-                instagram: "",
+                instagram: "https://www.instagram.com/zahrahg_",
                 linkedin:
-                   "",
+                   "http://www.linkedin.com/in/shenyayu",
              },
         ],
     },
@@ -856,14 +856,14 @@ export const divisionPage = [
                 name: "Putu Kartika Widya Arjentinia",
                 position: "Head of Division",
                 image: KARTIKA_SWA,
-                instagram: "",
+                instagram: "https://www.instagram.com/ka.rtikaaa",
                 linkedin: "",
              },
              {
                 name: "Hanson Samuel Timothy",
                 position: "Vice of Division",
                 image: HANSON_SWA,
-                instagram: "",
+                instagram: "https://www.instagram.com/hansonweird",
                 linkedin:
                    "",
              },
